@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MaWire — Banca Digital</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --navy:#0A1628;--navy-l:#0F2040;--navy-card:#142035;
+  --blue:#1B6EF3;--blue-l:#4A90F9;
+  --green:#00C896;--red:#FF3B30;--yellow:#FFB800;
+  --tp:rgba(255,255,255,1);--ts:rgba(255,255,255,0.6);--tt:rgba(255,255,255,0.3);
+  --border:rgba(255,255,255,0.08);--surf:rgba(255,255,255,0.06);
+}
+html,body{height:100%;background:#080E1A;display:flex;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#fff}
+#app{width:100%;max-width:390px;min-height:100vh;background:var(--navy);position:relative;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,0.8)}
+.screen{display:none;min-height:100vh;flex-direction:column}
+.screen.active{display:flex}
+
+/* ─── LOGIN ─── */
+#s-login{background:linear-gradient(160deg,#0A1628,#0F2040 50%,#0A1628);justify-content:space-between;padding:64px 32px 48px}
+.logo-wrap{text-align:center}
+.logo-mark{width:80px;height:80px;background:var(--blue);border-radius:28px;display:inline-flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:16px;box-shadow:0 0 50px rgba(27,110,243,.45)}
+.logo-wrap h1{font-size:32px;font-weight:800;letter-spacing:-1px}
+.logo-wrap p{color:var(--ts);margin-top:6px;font-size:15px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--ts);margin-bottom:8px}
+.form-group input{width:100%;background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:16px 18px;color:#fff;font-size:16px;outline:none;transition:border-color .2s}
+.form-group input:focus{border-color:var(--blue)}
+.btn{width:100%;border:none;border-radius:16px;padding:18px;font-size:16px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:active{transform:scale(.98);opacity:.9}
+.btn-ghost{background:var(--surf);color:var(--ts);border:1px solid var(--border)}
+.login-foot{text-align:center;color:var(--tt);font-size:12px;line-height:1.6}
+
+/* ─── BIOMETRIC ─── */
+#s-bio{background:linear-gradient(160deg,#0A1628,#0F2040);align-items:center;justify-content:center;gap:28px;padding:48px 32px;text-align:center}
+.bio-ring{width:128px;height:128px;border-radius:50%;border:2.5px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:52px;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(27,110,243,.35)}50%{box-shadow:0 0 0 24px rgba(27,110,243,0)}}
+#s-bio h2{font-size:22px;font-weight:700}
+#s-bio p{color:var(--ts);font-size:15px;line-height:1.5}
+
+/* ─── HOME ─── */
+#s-home{background:var(--navy);padding-bottom:80px;overflow-y:auto}
+.home-head{padding:52px 24px 16px;display:flex;justify-content:space-between;align-items:center}
+.home-head h2{font-size:22px;font-weight:600}
+.home-head p{color:var(--ts);font-size:13px;margin-top:2px}
+.notif-btn{width:44px;height:44px;background:var(--surf);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;position:relative}
+.notif-dot{position:absolute;top:9px;right:9px;width:7px;height:7px;background:var(--red);border-radius:50%;border:2px solid var(--navy)}
+
+/* Balance Card */
+.bal-card{margin:0 16px 20px;background:linear-gradient(135deg,#1B3A6B,#1B6EF3 55%,#1055C8);border-radius:24px;padding:24px;position:relative;overflow:hidden}
+.bal-card::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:rgba(255,255,255,.07);border-radius:50%}
+.bal-card::after{content:'';position:absolute;bottom:-70px;left:20px;width:220px;height:220px;background:rgba(255,255,255,.04);border-radius:50%}
+.bal-label{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;opacity:.65;margin-bottom:6px}
+.bal-amount{font-size:38px;font-weight:800;letter-spacing:-1.5px;margin-bottom:4px;position:relative;z-index:1}
+.bal-sub{font-size:12px;opacity:.6;margin-bottom:20px}
+.bal-hide{position:absolute;top:22px;right:22px;background:rgba(255,255,255,.15);border:none;border-radius:8px;padding:6px 10px;color:#fff;cursor:pointer;font-size:13px;z-index:2}
+.bal-stats{display:flex;gap:24px;position:relative;z-index:1}
+.bal-stat-l{font-size:10px;opacity:.55;text-transform:uppercase;letter-spacing:.5px}
+.bal-stat-v{font-size:14px;font-weight:600;margin-top:3px}
+.income{color:#7FFFCF}.expense{color:#FFB3AE}
+
+/* Quick Actions */
+.qa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 16px 24px}
+.qa-btn{display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:none;cursor:pointer;color:#fff}
+.qa-icon{width:58px;height:58px;background:var(--surf);border:1px solid var(--border);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:24px;transition:all .2s}
+.qa-btn:active .qa-icon{background:rgba(27,110,243,.2);border-color:var(--blue);transform:scale(.93)}
+.qa-label{font-size:11px;color:var(--ts)}
+
+/* Insight Banner */
+.insight{margin:0 16px 20px;background:linear-gradient(135deg,rgba(0,200,150,.14),rgba(0,200,150,.04));border:1px solid rgba(0,200,150,.25);border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px}
+.insight p{font-size:14px;line-height:1.45;color:rgba(255,255,255,.85)}
+.insight strong{color:var(--green)}
+
+/* Section Card */
+.sec-card{margin:0 16px 20px;background:var(--navy-card);border:1px solid var(--border);border-radius:20px;padding:20px}
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.sec-title{font-size:16px;font-weight:600}
+.sec-link{font-size:13px;color:var(--blue-l);cursor:pointer;background:none;border:none}
+
+/* Transaction Item */
+.tx{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity .15s}
+.tx:last-child{border-bottom:none;padding-bottom:0}
+.tx:active{opacity:.7}
+.tx-ico{width:46px;height:46px;background:var(--surf);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.tx-name{font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx-meta{font-size:12px;color:var(--ts);margin-top:2px}
+.tx-amt{font-size:15px;font-weight:600;flex-shrink:0;white-space:nowrap}
+.cr{color:var(--green)}.dr{color:#FF6B6B}
+
+/* Chart */
+.chart-wrap{height:148px;position:relative}
+
+/* ─── BOTTOM NAV ─── */
+.bot-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:390px;background:rgba(10,22,40,.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:10px 0 22px;display:grid;grid-template-columns:repeat(4,1fr);z-index:100}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px;background:none;border:none;color:var(--tt);transition:color .2s}
+.nav-btn.act{color:var(--blue)}
+.nav-ico{font-size:22px}
+.nav-lbl{font-size:10px;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+
+/* ─── TRANSACTIONS SCREEN ─── */
+#s-tx{background:var(--navy);padding-bottom:80px;overflow-y:auto}
+.scr-head{padding:52px 24px 12px}
+.scr-head h2{font-size:24px;font-weight:800}
+.search{margin:0 16px 16px;background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:10px}
+.search input{background:none;border:none;color:#fff;font-size:15px;outline:none;flex:1}
+.search input::placeholder{color:var(--tt)}
+.tx-group{padding:0 16px;margin-bottom:20px}
+.tx-date{font-size:11px;color:var(--ts);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600}
+.tx-grp-card{background:var(--navy-card);border:1px solid var(--border);border-radius:16px;padding:4px 16px}
+
+/* ─── SEND ─── */
+#s-send{background:var(--navy);overflow-y:auto;padding-bottom:40px}
+.back-head{padding:52px 24px 12px;display:flex;align-items:center;gap:16px}
+.back-btn{width:42px;height:42px;background:var(--surf);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;flex-shrink:0}
+.back-head h2{font-size:18px;font-weight:600}
+.steps{display:flex;justify-content:center;gap:8px;margin-bottom:28px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .3s}
+.dot.act{width:24px;border-radius:4px;background:var(--blue)}
+.send-body{padding:0 24px}
+
+/* Contacts */
+.contacts{display:flex;gap:16px;overflow-x:auto;padding-bottom:4px;margin-bottom:24px;scrollbar-width:none}
+.contacts::-webkit-scrollbar{display:none}
+.con{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;min-width:60px}
+.con-av{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;transition:all .2s}
+.con:active .con-av{transform:scale(.9)}
+.con-name{font-size:11px;color:var(--ts);text-align:center}
+
+/* Numpad */
+.amt-disp{text-align:center;padding:16px 0 28px}
+.amt-label{font-size:14px;color:var(--ts);margin-bottom:12px}
+.amt-val{font-size:46px;font-weight:800;letter-spacing:-2px;min-height:60px;transition:all .1s}
+.amt-avail{font-size:12px;color:var(--ts);margin-top:6px}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.num-btn{background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:20px;font-size:22px;color:#fff;cursor:pointer;transition:all .1s;font-weight:500}
+.num-btn:active{background:rgba(27,110,243,.2);border-color:var(--blue);transform:scale(.94)}
+
+/* Confirm */
+.conf-card{background:var(--navy-card);border:1px solid var(--border);border-radius:16px;padding:0 16px;margin-bottom:20px}
+.conf-row{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--border)}
+.conf-row:last-child{border:none}
+.conf-label{font-size:14px;color:var(--ts)}
+.conf-val{font-size:15px;font-weight:500}
+
+/* Recipient chip */
+.recip-chip{background:var(--navy-card);border:1px solid var(--blue);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:14px;margin-bottom:24px}
+
+/* ─── CARDS SCREEN ─── */
+#s-cards{background:var(--navy);padding-bottom:80px;overflow-y:auto}
+.card-visual{margin:16px;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);border-radius:22px;padding:24px;height:200px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.card-visual::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(27,110,243,.3),transparent 70%)}
+.card-net{font-size:26px;font-weight:900;font-style:italic;position:absolute;top:20px;right:22px}
+.card-chip{font-size:28px;margin-bottom:20px}
+.card-pan{font-size:18px;letter-spacing:3px;font-weight:600;margin-bottom:14px}
+.card-foot{display:flex;justify-content:space-between;align-items:flex-end}
+.card-holder{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.card-exp{font-size:11px;color:rgba(255,255,255,.65);margin-top:3px}
+.card-badge{background:rgba(255,255,255,.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px}
+.card-btns{display:flex;gap:10px;margin:0 16px 16px}
+.card-btn{flex:1;background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:14px;color:#fff;cursor:pointer;font-size:14px;transition:all .15s}
+.card-btn:active{background:rgba(27,110,243,.15);border-color:var(--blue)}
+.controls{padding:0 16px}
+.ctrl-row{display:flex;align-items:center;padding:17px 0;border-bottom:1px solid var(--border)}
+.ctrl-info{flex:1}
+.ctrl-name{font-size:15px;font-weight:500}
+.ctrl-desc{font-size:12px;color:var(--ts);margin-top:2px}
+.toggle{width:52px;height:30px;background:var(--surf);border:1px solid var(--border);border-radius:15px;cursor:pointer;position:relative;transition:background .25s,border-color .25s;flex-shrink:0}
+.toggle.on{background:var(--green);border-color:var(--green)}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:transform .25s;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.toggle.on::after{transform:translateX(22px)}
+
+/* ─── SUCCESS ─── */
+#s-ok{background:var(--navy);align-items:center;justify-content:center;padding:48px 32px;text-align:center;gap:24px}
+.ok-circle{width:104px;height:104px;background:rgba(0,200,150,.12);border:2px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:48px;animation:pop .4s ease-out}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+#s-ok h2{font-size:26px;font-weight:700}
+.ok-details{background:var(--navy-card);border:1px solid var(--border);border-radius:16px;padding:0 20px;width:100%;text-align:left}
+.ok-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border)}
+.ok-row:last-child{border:none}
+
+/* ─── LOADING ─── */
+.loading{display:none;position:fixed;inset:0;background:rgba(10,22,40,.92);z-index:200;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.loading.on{display:flex}
+.spin{width:44px;height:44px;border:3px solid rgba(27,110,243,.2);border-top-color:var(--blue);border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── TOAST ─── */
+.toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(20px);background:#1A3560;border:1px solid rgba(27,110,243,.5);border-radius:12px;padding:12px 20px;font-size:14px;z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;max-width:calc(100% - 40px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ─── AI CHAT ─── */
+#s-ai{background:var(--navy);padding-bottom:80px;display:flex;flex-direction:column}
+.ai-head{padding:52px 24px 16px;display:flex;align-items:center;gap:16px}
+.ai-avatar{width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ai-messages{flex:1;overflow-y:auto;padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:85%;padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5}
+.msg-ai{background:var(--navy-card);border:1px solid var(--border);border-radius:18px 18px 18px 4px;align-self:flex-start}
+.msg-user{background:var(--blue);border-radius:18px 18px 4px 18px;align-self:flex-end}
+.ai-input-area{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:10px}
+.ai-input{flex:1;background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:#fff;font-size:15px;outline:none}
+.ai-send{width:46px;height:46px;background:var(--blue);border:none;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;flex-shrink:0}
+.typing{display:flex;gap:5px;align-items:center;padding:14px 16px}
+.typing span{width:8px;height:8px;background:var(--ts);border-radius:50%;animation:bounce 1.2s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
+.ai-suggestions{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 12px;scrollbar-width:none}
+.ai-sug{background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:8px 14px;font-size:13px;cursor:pointer;white-space:nowrap;transition:all .2s;color:var(--ts)}
+.ai-sug:active{background:rgba(27,110,243,.2);border-color:var(--blue);color:#fff}
+
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- LOGIN -->
+<div class="screen" id="s-login">
+  <div class="logo-wrap">
+    <div class="logo-mark">🏦</div>
+    <h1>MaWire</h1>
+    <p>Banca digital para Chile</p>
+  </div>
+  <div>
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="tel" value="+56 9 8765 4321" id="phone-in">
+    </div>
+    <div style="height:14px"></div>
+    <button class="btn btn-primary" onclick="nav('bio')">Continuar →</button>
+    <div style="height:12px"></div>
+    <button class="btn btn-ghost" onclick="nav('bio')" style="font-size:14px">Iniciar sesión con correo</button>
+  </div>
+  <div class="login-foot">
+    🔒 Cifrado bancario TLS 1.3<br>
+    CMF Chile · PCI-DSS · ISO 27001
+  </div>
+</div>
+
+<!-- BIOMETRIC -->
+<div class="screen" id="s-bio">
+  <div>
+    <div class="bio-ring">👆</div>
+    <h2 style="margin-top:20px">Verificación biométrica</h2>
+    <p style="margin-top:10px">Toca el sensor de huella<br>para confirmar tu identidad</p>
+  </div>
+  <div style="width:100%;display:flex;flex-direction:column;gap:12px">
+    <button class="btn btn-primary" onclick="doBio()">Usar Face ID 👁</button>
+    <button class="btn btn-ghost" onclick="doBio()" style="font-size:14px">Ingresar PIN</button>
+  </div>
+  <p style="color:var(--tt);font-size:12px">Sesión cifrada · Nunca compartimos tu contraseña</p>
+</div>
+
+<!-- HOME -->
+<div class="screen" id="s-home">
+  <div class="home-head">
+    <div>
+      <h2>Hola, María 👋</h2>
+      <p id="today-date"></p>
+    </div>
+    <div class="notif-btn" onclick="toast('2 notificaciones: transferencia recibida, pago procesado')">
+      🔔<span class="notif-dot"></span>
+    </div>
+  </div>
+
+  <div class="bal-card">
+    <div class="bal-label">Saldo disponible</div>
+    <div class="bal-amount" id="bal">$ 1.234.567</div>
+    <div class="bal-sub">Saldo actual: $ 1.284.567</div>
+    <button class="bal-hide" onclick="toggleBal()">👁</button>
+    <div class="bal-stats">
+      <div>
+        <div class="bal-stat-l">Ingreso jun</div>
+        <div class="bal-stat-v income">↑ $2.350.000</div>
+      </div>
+      <div>
+        <div class="bal-stat-l">Gasto jun</div>
+        <div class="bal-stat-v expense">↓ $845.230</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-grid">
+    <button class="qa-btn" onclick="nav('send')">
+      <div class="qa-icon">💸</div><span class="qa-label">Transferir</span>
+    </button>
+    <button class="qa-btn" onclick="toast('QR listo para cobrar')">
+      <div class="qa-icon">📱</div><span class="qa-label">Cobrar</span>
+    </button>
+    <button class="qa-btn" onclick="nav('ai')">
+      <div class="qa-icon">🤖</div><span class="qa-label">MaWire AI</span>
+    </button>
+    <button class="qa-btn" onclick="toast('Próximamente: inversiones, préstamos')">
+      <div class="qa-icon">⋯</div><span class="qa-label">Más</span>
+    </button>
+  </div>
+
+  <div class="insight">
+    <div style="font-size:24px">💡</div>
+    <p>Gastaste <strong>18% menos</strong> en restaurantes este mes. ¡Buen trabajo!</p>
+  </div>
+
+  <div class="sec-card">
+    <div class="sec-head">
+      <span class="sec-title">Gastos por categoría</span>
+      <button class="sec-link">Junio 2026</button>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="chart"></canvas>
+    </div>
+  </div>
+
+  <div class="sec-card">
+    <div class="sec-head">
+      <span class="sec-title">Últimos movimientos</span>
+      <button class="sec-link" onclick="nav('tx')">Ver todos →</button>
+    </div>
+    <div id="home-txs"></div>
+  </div>
+</div>
+
+<!-- TRANSACTIONS -->
+<div class="screen" id="s-tx">
+  <div class="scr-head"><h2>Movimientos</h2></div>
+  <div class="search">
+    <span>🔍</span>
+    <input type="text" placeholder="Buscar transacción o categoría..." id="tx-q" oninput="filterTx()">
+  </div>
+  <div id="tx-list"></div>
+</div>
+
+<!-- SEND MONEY -->
+<div class="screen" id="s-send">
+  <div class="back-head">
+    <div class="back-btn" onclick="nav('home')">←</div>
+    <h2 id="send-ttl">Nueva transferencia</h2>
+  </div>
+  <div class="steps">
+    <div class="dot act" id="d1"></div>
+    <div class="dot" id="d2"></div>
+    <div class="dot" id="d3"></div>
+  </div>
+
+  <!-- Step 1 -->
+  <div id="step1" class="send-body">
+    <p style="font-size:13px;color:var(--ts);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px">Recientes</p>
+    <div class="contacts">
+      <div class="con" onclick="pickContact('Pedro Soto','PS','#E91E63')">
+        <div class="con-av" style="background:#E91E63">PS</div>
+        <span class="con-name">Pedro</span>
+      </div>
+      <div class="con" onclick="pickContact('Ana Ruiz','AR','#9C27B0')">
+        <div class="con-av" style="background:#9C27B0">AR</div>
+        <span class="con-name">Ana</span>
+      </div>
+      <div class="con" onclick="pickContact('Luis Vera','LV','#FF5722')">
+        <div class="con-av" style="background:#FF5722">LV</div>
+        <span class="con-name">Luis</span>
+      </div>
+      <div class="con" onclick="pickContact('Carla Díaz','CD','#4CAF50')">
+        <div class="con-av" style="background:#4CAF50">CD</div>
+        <span class="con-name">Carla</span>
+      </div>
+      <div class="con" onclick="pickContact('Jorge Muñoz','JM','#FF9800')">
+        <div class="con-av" style="background:#FF9800">JM</div>
+        <span class="con-name">Jorge</span>
+      </div>
+    </div>
+    <div class="form-group" style="margin-bottom:14px">
+      <label>RUT destinatario</label>
+      <input type="text" placeholder="12.345.678-9" id="rut-in" oninput="fmtRut(this)">
+    </div>
+    <div class="form-group" style="margin-bottom:24px">
+      <label>Banco</label>
+      <input type="text" placeholder="Banco de Chile, BancoEstado, Santander…" id="bank-in">
+    </div>
+    <button class="btn btn-primary" onclick="toStep2()">Continuar →</button>
+  </div>
+
+  <!-- Step 2 -->
+  <div id="step2" class="send-body hidden">
+    <div class="recip-chip" id="recip-chip">
+      <div class="con-av" id="recip-av" style="width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">?</div>
+      <div>
+        <div id="recip-name" style="font-weight:600">—</div>
+        <div style="font-size:12px;color:var(--ts)" id="recip-bank">Banco de Chile · CTA. CTE.</div>
+      </div>
+    </div>
+    <div class="amt-disp">
+      <div class="amt-label">¿Cuánto quieres transferir?</div>
+      <div class="amt-val" id="amt-val">$ 0</div>
+      <div class="amt-avail">Disponible: $ 1.234.567</div>
+    </div>
+    <div class="numpad">
+      <button class="num-btn" onclick="dig('1')">1</button>
+      <button class="num-btn" onclick="dig('2')">2</button>
+      <button class="num-btn" onclick="dig('3')">3</button>
+      <button class="num-btn" onclick="dig('4')">4</button>
+      <button class="num-btn" onclick="dig('5')">5</button>
+      <button class="num-btn" onclick="dig('6')">6</button>
+      <button class="num-btn" onclick="dig('7')">7</button>
+      <button class="num-btn" onclick="dig('8')">8</button>
+      <button class="num-btn" onclick="dig('9')">9</button>
+      <button class="num-btn" onclick="dig('000')" style="font-size:15px">000</button>
+      <button class="num-btn" onclick="dig('0')">0</button>
+      <button class="num-btn" onclick="delDig()">⌫</button>
+    </div>
+    <button class="btn btn-primary" onclick="toStep3()">Continuar →</button>
+  </div>
+
+  <!-- Step 3 -->
+  <div id="step3" class="send-body hidden">
+    <h3 style="font-size:18px;font-weight:600;margin-bottom:20px">Confirmar transferencia</h3>
+    <div class="conf-card">
+      <div class="conf-row">
+        <span class="conf-label">Destinatario</span>
+        <span class="conf-val" id="cf-recip">—</span>
+      </div>
+      <div class="conf-row">
+        <span class="conf-label">Monto</span>
+        <span class="conf-val" id="cf-amt" style="color:var(--blue);font-size:18px;font-weight:800">—</span>
+      </div>
+      <div class="conf-row">
+        <span class="conf-label">Banco</span>
+        <span class="conf-val">Banco de Chile</span>
+      </div>
+      <div class="conf-row">
+        <span class="conf-label">Cuenta</span>
+        <span class="conf-val">Corriente</span>
+      </div>
+      <div class="conf-row">
+        <span class="conf-label">Comisión</span>
+        <span class="conf-val" style="color:var(--green)">Gratis ✓</span>
+      </div>
+      <div class="conf-row">
+        <span class="conf-label">Llega</span>
+        <span class="conf-val">En minutos (TEF)</span>
+      </div>
+    </div>
+    <div style="background:rgba(27,110,243,.1);border:1px solid rgba(27,110,243,.25);border-radius:12px;padding:14px;margin-bottom:20px;font-size:13px;color:var(--ts)">
+      💬 Sin concepto — puedes añadir uno en la próxima versión
+    </div>
+    <button class="btn btn-primary" onclick="doTransfer()" style="background:linear-gradient(135deg,var(--blue),var(--green))">
+      👁 Confirmar con Face ID
+    </button>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="screen" id="s-cards">
+  <div class="scr-head"><h2>Mis tarjetas</h2></div>
+  <div class="card-visual">
+    <div class="card-net">MC</div>
+    <div class="card-chip">📶</div>
+    <div class="card-pan">•••• &nbsp;•••• &nbsp;•••• &nbsp;4521</div>
+    <div class="card-foot">
+      <div>
+        <div class="card-holder">MARÍA GONZÁLEZ L.</div>
+        <div class="card-exp">Vence 09/28</div>
+      </div>
+      <div class="card-badge">Débito Virtual</div>
+    </div>
+  </div>
+  <div class="card-btns">
+    <button class="card-btn" onclick="toast('CVV: 8 4 7 — visible 30s por seguridad')">Ver CVV 🔒</button>
+    <button class="card-btn" onclick="toast('Número de tarjeta copiado al portapapeles')">Copiar PAN 📋</button>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row">
+      <div class="ctrl-info">
+        <div class="ctrl-name">Pagos online</div>
+        <div class="ctrl-desc">Compras por internet y suscripciones</div>
+      </div>
+      <div class="toggle on" onclick="togCtrl(this,'Pagos online')"></div>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-info">
+        <div class="ctrl-name">Pagos internacionales</div>
+        <div class="ctrl-desc">Transacciones fuera de Chile</div>
+      </div>
+      <div class="toggle" onclick="togCtrl(this,'Pagos internacionales')"></div>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-info">
+        <div class="ctrl-name">Contactless / NFC</div>
+        <div class="ctrl-desc">Pago sin contacto y Apple Pay</div>
+      </div>
+      <div class="toggle on" onclick="togCtrl(this,'Contactless')"></div>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-info">
+        <div class="ctrl-name">Bloquear tarjeta</div>
+        <div class="ctrl-desc">Bloqueo temporal de emergencia</div>
+      </div>
+      <div class="toggle" onclick="togCard(this)"></div>
+    </div>
+  </div>
+  <div style="padding:20px 16px 0;display:flex;flex-direction:column;gap:10px">
+    <button onclick="toast('✅ Tarjeta agregada a Apple Pay')" style="background:#000;border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:16px;color:#fff;cursor:pointer;font-size:15px;font-weight:600">
+      🍎 Agregar a Apple Pay
+    </button>
+    <button onclick="toast('✅ Tarjeta agregada a Google Wallet')" style="background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:16px;color:#fff;cursor:pointer;font-size:15px;font-weight:600">
+      <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span> Wallet
+    </button>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="screen" id="s-ok">
+  <div class="ok-circle">✅</div>
+  <div>
+    <h2>¡Transferencia enviada!</h2>
+    <p style="color:var(--ts);margin-top:8px">El dinero llegará en minutos vía TEF</p>
+  </div>
+  <div class="ok-details" id="ok-det"></div>
+  <div style="width:100%;display:flex;flex-direction:column;gap:10px">
+    <button class="btn btn-primary" onclick="nav('home')">Volver al inicio</button>
+    <button onclick="toast('📄 Comprobante PDF descargado')" style="background:none;border:none;color:var(--blue-l);cursor:pointer;font-size:15px;padding:8px">
+      Descargar comprobante
+    </button>
+  </div>
+</div>
+
+<!-- AI CHAT -->
+<div class="screen" id="s-ai">
+  <div class="ai-head">
+    <div class="back-btn" onclick="nav('home')">←</div>
+    <div class="ai-avatar">🤖</div>
+    <div>
+      <div style="font-weight:600">MaWire AI</div>
+      <div style="font-size:12px;color:var(--green)">● En línea</div>
+    </div>
+  </div>
+  <div class="ai-messages" id="ai-msgs">
+    <div class="msg msg-ai">¡Hola, María! 👋 Soy tu asistente financiero de MaWire. Puedo ayudarte con tus gastos, transferencias, productos o cualquier pregunta sobre tus finanzas. ¿En qué te puedo ayudar hoy?</div>
+  </div>
+  <div class="ai-suggestions">
+    <div class="ai-sug" onclick="aiSend('¿En qué gasté más este mes?')">¿En qué gasté más?</div>
+    <div class="ai-sug" onclick="aiSend('¿Cuánto me queda disponible para el mes?')">¿Cuánto queda?</div>
+    <div class="ai-sug" onclick="aiSend('¿Qué es el cobro de Netflix?')">¿Qué es Netflix?</div>
+    <div class="ai-sug" onclick="aiSend('¿Cuál es mi tasa de ahorro?')">Mi tasa de ahorro</div>
+  </div>
+  <div class="ai-input-area">
+    <input class="ai-input" type="text" placeholder="Escribe tu pregunta..." id="ai-in" onkeydown="if(event.key==='Enter')aiSend()">
+    <button class="ai-send" onclick="aiSend()">↑</button>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bot-nav" id="bnav">
+  <button class="nav-btn act" id="nb-home" onclick="nav('home')">
+    <span class="nav-ico">🏠</span><span class="nav-lbl">Inicio</span>
+  </button>
+  <button class="nav-btn" id="nb-tx" onclick="nav('tx')">
+    <span class="nav-ico">📊</span><span class="nav-lbl">Movim.</span>
+  </button>
+  <button class="nav-btn" id="nb-cards" onclick="nav('cards')">
+    <span class="nav-ico">💳</span><span class="nav-lbl">Tarjetas</span>
+  </button>
+  <button class="nav-btn" id="nb-ai" onclick="nav('ai')">
+    <span class="nav-ico">🤖</span><span class="nav-lbl">AI</span>
+  </button>
+</nav>
+
+<!-- LOADING -->
+<div class="loading" id="loader">
+  <div class="spin"></div>
+  <p style="color:var(--ts);font-size:14px" id="loader-txt">Cargando...</p>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast-el"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// ── DATA ──────────────────────────────────────────────────────
+const TXS = [
+  {id:1,name:'Sueldo — Empresa Tech XYZ',  amt:2350000,cr:true, ico:'💼',cat:'Ingresos',        date:'2026-06-05'},
+  {id:2,name:'Netflix',                     amt:17990,  cr:false,ico:'🎬',cat:'Entretenimiento', date:'2026-06-05'},
+  {id:3,name:'Jumbo Apoquindo',             amt:67450,  cr:false,ico:'🛒',cat:'Supermercado',    date:'2026-06-04'},
+  {id:4,name:'Uber · Las Condes',           amt:8900,   cr:false,ico:'🚗',cat:'Transporte',      date:'2026-06-04'},
+  {id:5,name:'Farmacia Cruz Verde',         amt:15200,  cr:false,ico:'💊',cat:'Salud',           date:'2026-06-03'},
+  {id:6,name:'Traspaso — Pedro Soto',       amt:50000,  cr:false,ico:'💸',cat:'Transferencia',   date:'2026-06-03'},
+  {id:7,name:'Copec · Av. Apoquindo',       amt:48300,  cr:false,ico:'⛽',cat:'Combustible',     date:'2026-06-02'},
+  {id:8,name:'Movistar Chile',              amt:29990,  cr:false,ico:'📱',cat:'Telecom',         date:'2026-06-02'},
+  {id:9,name:'Restaurant Osaka',            amt:89000,  cr:false,ico:'🍣',cat:'Restaurantes',    date:'2026-06-01'},
+  {id:10,name:'Enel Chile',                 amt:43760,  cr:false,ico:'💡',cat:'Servicios',       date:'2026-06-01'},
+  {id:11,name:'Falabella Online',           amt:129990, cr:false,ico:'👗',cat:'Ropa',            date:'2026-05-31'},
+  {id:12,name:'Lider Vitacura',             amt:54320,  cr:false,ico:'🛒',cat:'Supermercado',    date:'2026-05-31'},
+];
+
+const AI_REPLIES = {
+  'gasté': 'Tu mayor gasto en junio fue en <strong>Ropa y calzado</strong> con $129.990 (Falabella). Le sigue <strong>Restaurantes</strong> con $89.000. En total llevas $845.230 de gasto este mes. ¿Quieres ver el detalle por categoría? 📊',
+  'queda': 'Tienes <strong>$ 1.234.567 disponibles</strong> ahora mismo. Según tus gastos habituales, proyectamos que terminarás el mes con aproximadamente <strong>$ 980.000</strong> si mantienes el ritmo actual. 💰',
+  'netflix': 'El cobro de <strong>Netflix $ 17.990</strong> del 5 de junio corresponde a tu suscripción mensual al plan Standard con Anuncios. Es un cargo recurrente que se descuenta automáticamente el primer viernes de cada mes. ✅',
+  'ahorro': 'Este mes llevas <strong>CLP $1.504.770 de ingresos netos</strong> (sueldo menos gastos). Eso es una tasa de ahorro del <strong>64%</strong> — muy por encima del promedio chileno de 23%. ¡Excelente! 🎉',
+  default: '¡Buena pregunta! Basándome en tus datos financieros de MaWire: tienes saldo disponible de <strong>$1.234.567</strong>, 12 movimientos este mes, y tus gastos están dentro de lo normal. ¿Necesitas algo más específico? 😊'
+};
+
+// ── STATE ─────────────────────────────────────────────────────
+let S = {
+  screen:'login', balHidden:false,
+  recip:null, amtStr:'', chart:null,
+};
+
+// ── NAVIGATION ────────────────────────────────────────────────
+function nav(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const noNav = ['login','bio','send','ok'];
+  document.getElementById('bnav').style.display = noNav.includes(id)?'none':'grid';
+  const el = document.getElementById('s-'+id);
+  if(el) el.classList.add('active');
+  S.screen = id;
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('act'));
+  const map={home:'nb-home',tx:'nb-tx',cards:'nb-cards',ai:'nb-ai'};
+  if(map[id]) document.getElementById(map[id])?.classList.add('act');
+  if(id==='send'){document.getElementById('bnav').style.display='none';resetSend();}
+  if(id==='home') initHome();
+  if(id==='tx') initTx();
+}
+
+// ── LOGIN / BIO ────────────────────────────────────────────────
+function doBio(){
+  load('Verificando identidad...');
+  setTimeout(()=>{unload();nav('home');},1400);
+}
+
+// ── HOME ──────────────────────────────────────────────────────
+function initHome(){
+  document.getElementById('today-date').textContent =
+    new Date().toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('home-txs').innerHTML = TXS.slice(0,5).map(txHTML).join('');
+  setTimeout(drawChart,60);
+}
+
+function txHTML(t){
+  const neg = !t.cr;
+  return `<div class="tx" onclick="toast('${t.name}: ${neg?'-':'+'} $${t.amt.toLocaleString('es-CL')}')">
+    <div class="tx-ico">${t.ico}</div>
+    <div style="flex:1;min-width:0">
+      <div class="tx-name">${t.name}</div>
+      <div class="tx-meta">${t.cat} · ${relDate(t.date)}</div>
+    </div>
+    <div class="tx-amt ${neg?'dr':'cr'}">${neg?'-':'+'}$${t.amt.toLocaleString('es-CL')}</div>
+  </div>`;
+}
+
+function drawChart(){
+  const c = document.getElementById('chart');
+  if(!c) return;
+  if(S.chart){S.chart.destroy();}
+  S.chart = new Chart(c,{
+    type:'bar',
+    data:{
+      labels:['Super','Rest.','Trans.','Serv.','Ropa','Salud'],
+      datasets:[{
+        data:[121770,89000,57200,73750,129990,15200],
+        backgroundColor:['#1B6EF3','#00C896','#FFB800','#FF6B6B','#A78BFA','#34D399'],
+        borderRadius:8,borderSkipped:false,
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{ticks:{color:'rgba(255,255,255,.5)',font:{size:11}},grid:{display:false},border:{display:false}},
+        y:{ticks:{color:'rgba(255,255,255,.5)',font:{size:10},callback:v=>'$'+(v/1000).toFixed(0)+'K',maxTicksLimit:4},
+           grid:{color:'rgba(255,255,255,.06)'},border:{display:false}}
+      }
+    }
+  });
+}
+
+function toggleBal(){
+  S.balHidden=!S.balHidden;
+  document.getElementById('bal').textContent = S.balHidden?'$ ••••••':'$ 1.234.567';
+}
+
+// ── TRANSACTIONS ──────────────────────────────────────────────
+function initTx(){ renderTxList(TXS); }
+
+function renderTxList(list){
+  const grp={};
+  list.forEach(t=>{grp[t.date]||(grp[t.date]=[]);grp[t.date].push(t);});
+  document.getElementById('tx-list').innerHTML =
+    Object.entries(grp).map(([d,ts])=>
+      `<div class="tx-group">
+        <div class="tx-date">${fullDate(d)}</div>
+        <div class="tx-grp-card">${ts.map(txHTML).join('')}</div>
+      </div>`
+    ).join('');
+}
+
+function filterTx(){
+  const q=document.getElementById('tx-q').value.toLowerCase();
+  renderTxList(q?TXS.filter(t=>t.name.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q)):TXS);
+}
+
+// ── SEND MONEY ────────────────────────────────────────────────
+function resetSend(){
+  S.recip=null; S.amtStr='';
+  showStep(1);
+  document.getElementById('amt-val').textContent='$ 0';
+  document.getElementById('rut-in').value='';
+  document.getElementById('bank-in').value='';
+}
+
+function showStep(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('step'+i).classList.toggle('hidden',i!==n);
+    document.getElementById('d'+i).classList.toggle('act',i===n);
+  });
+  const titles=['Nueva transferencia','Ingresa el monto','Confirmar pago'];
+  document.getElementById('send-ttl').textContent=titles[n-1];
+}
+
+function pickContact(name,init,color){
+  S.recip={name,init,color};
+  document.querySelectorAll('.con').forEach(c=>c.style.opacity='.45');
+  event.currentTarget.style.opacity='1';
+  setTimeout(()=>toStep2(),220);
+}
+
+function toStep2(){
+  if(!S.recip){
+    const rut=document.getElementById('rut-in').value;
+    if(!rut){toast('Selecciona un contacto o ingresa un RUT');return;}
+    S.recip={name:'Nuevo destinatario',init:'?',color:'#1B6EF3'};
+  }
+  const av=document.getElementById('recip-av');
+  av.textContent=S.recip.init; av.style.background=S.recip.color;
+  document.getElementById('recip-name').textContent=S.recip.name;
+  showStep(2);
+}
+
+function dig(d){
+  if(S.amtStr.length<8){S.amtStr+=d;updAmt();}
+}
+function delDig(){S.amtStr=S.amtStr.slice(0,-1);updAmt();}
+function updAmt(){
+  const v=parseInt(S.amtStr||'0');
+  document.getElementById('amt-val').textContent='$ '+v.toLocaleString('es-CL');
+}
+
+function toStep3(){
+  const v=parseInt(S.amtStr||'0');
+  if(v<100){toast('Ingresa un monto mínimo de $100');return;}
+  if(v>1234567){toast('⚠️ Saldo insuficiente');return;}
+  document.getElementById('cf-recip').textContent=S.recip.name;
+  document.getElementById('cf-amt').textContent='$ '+v.toLocaleString('es-CL');
+  showStep(3);
+}
+
+function doTransfer(){
+  load('Verificando Face ID...');
+  setTimeout(()=>{
+    document.getElementById('loader-txt').textContent='Procesando TEF...';
+    setTimeout(()=>{
+      unload();
+      const v=parseInt(S.amtStr||'0');
+      const ref='MW'+Date.now().toString().slice(-9);
+      document.getElementById('ok-det').innerHTML=`
+        <div class="ok-row"><span style="color:var(--ts)">Para</span><strong>${S.recip.name}</strong></div>
+        <div class="ok-row"><span style="color:var(--ts)">Monto</span><strong style="color:var(--blue);font-size:18px">$ ${v.toLocaleString('es-CL')}</strong></div>
+        <div class="ok-row"><span style="color:var(--ts)">Estado</span><strong style="color:var(--green)">✓ Enviado</strong></div>
+        <div class="ok-row"><span style="color:var(--ts)">N° operación</span><span style="font-size:12px;font-family:monospace">${ref}</span></div>
+      `;
+      nav('ok');
+    },1100);
+  },1000);
+}
+
+// ── CARDS ─────────────────────────────────────────────────────
+function togCtrl(el,name){
+  el.classList.toggle('on');
+  const on=el.classList.contains('on');
+  toast((on?'✅ ':'⛔ ')+name+' '+(on?'activado':'desactivado'));
+}
+function togCard(el){
+  el.classList.toggle('on');
+  const bl=el.classList.contains('on');
+  toast(bl?'🔒 Tarjeta bloqueada de emergencia':'✅ Tarjeta desbloqueada');
+}
+
+// ── AI CHAT ───────────────────────────────────────────────────
+function aiSend(msg){
+  const inp=document.getElementById('ai-in');
+  const text=msg||inp.value.trim();
+  if(!text) return;
+  inp.value='';
+  const box=document.getElementById('ai-msgs');
+  box.innerHTML+=`<div class="msg msg-user">${text}</div>`;
+  // typing indicator
+  const tid='typing-'+Date.now();
+  box.innerHTML+=`<div class="msg msg-ai" id="${tid}"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  box.scrollTop=box.scrollHeight;
+  setTimeout(()=>{
+    const key=Object.keys(AI_REPLIES).find(k=>text.toLowerCase().includes(k))||'default';
+    document.getElementById(tid).innerHTML=AI_REPLIES[key];
+    box.scrollTop=box.scrollHeight;
+  },1200);
+}
+
+// ── HELPERS ───────────────────────────────────────────────────
+function relDate(d){
+  const t=new Date(d+'T12:00:00'), today=new Date(), yest=new Date(today);
+  yest.setDate(yest.getDate()-1);
+  if(t.toDateString()===today.toDateString()) return 'Hoy';
+  if(t.toDateString()===yest.toDateString()) return 'Ayer';
+  return t.toLocaleDateString('es-CL',{day:'numeric',month:'short'});
+}
+function fullDate(d){
+  return new Date(d+'T12:00:00').toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long'});
+}
+function fmtRut(el){
+  let v=el.value.replace(/[^0-9kK]/g,'');
+  if(v.length>1) v=v.slice(0,-1).replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1.')+'-'+v.slice(-1);
+  el.value=v;
+}
+function load(t='Cargando...'){
+  document.getElementById('loader').classList.add('on');
+  document.getElementById('loader-txt').textContent=t;
+}
+function unload(){document.getElementById('loader').classList.remove('on');}
+let _toastTimer;
+function toast(msg){
+  const el=document.getElementById('toast-el');
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>el.classList.remove('show'),2600);
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+nav('login');
+</script>
+</body>
+</html>
