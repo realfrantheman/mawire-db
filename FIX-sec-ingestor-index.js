@@ -2,7 +2,7 @@
  * mergers.news — SEC EDGAR Ingestion Service
  * Runs every 30 minutes via cron
  * Fetches DEFM14A, SC TO-T, S-4, SC 13E-3 filings
- * Stores raw filing to S3, deal record to PostgreSQL
+ * Stores deal records to PostgreSQL
  */
 
 'use strict';
@@ -10,26 +10,16 @@
 const https    = require('https');
 const http     = require('http');
 const { Pool } = require('pg');
-const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 
 // ── CONFIG ────────────────────────────────────────────────────────
 const CONFIG = {
-  edgar_base:    'https://efts.sec.gov/LATEST/search-index',
-  edgar_full:    'https://efts.sec.gov/LATEST/search-index',
-  edgar_filing:  'https://www.sec.gov/cgi-bin/browse-edgar',
-  edgar_archive: 'https://www.sec.gov/Archives/edgar/data',
-  s3_bucket:     process.env.S3_BUCKET    || 'mergers-news-raw',
-  s3_prefix:     'sec/',
   db_url:        process.env.DATABASE_URL,
   batch_size:    100,
-  // Filing types to ingest
   filing_types: ['DEFM14A', 'SC TO-T', 'S-4', 'SC 13E-3', 'DEFA14A', 'SC TO-T/A'],
-  // How far back to look on each run (days)
   lookback_days: 2,
 };
 
 const db = new Pool({ connectionString: CONFIG.db_url, ssl: { rejectUnauthorized: false } });
-const s3 = new S3Client({ region: process.env.AWS_REGION || 'us-east-1' });
 
 // ── MAIN ──────────────────────────────────────────────────────────
 async function run() {
@@ -112,10 +102,6 @@ async function processFiling(filing, filingType) {
   // Fetch filing detail from EDGAR
   const detail = await fetchFilingDetail(filing.cik, filing.id);
 
-  // Store raw to S3
-  const s3Key = `${CONFIG.s3_prefix}${filingType}/${filing.cik}/${filing.id}.json`;
-  await storeS3(s3Key, { filing, detail, fetched_at: new Date().toISOString() });
-
   // Extract deal info
   const dealInfo = extractDealInfo(filing, detail, filingType);
 
@@ -140,9 +126,9 @@ async function processFiling(filing, filingType) {
     dealId,
     acquirerResult.id,
     filingType,
-    detail?.document_url || filing.filing_url,
-    filing.filing_url,
-    filing.id,
+    trunc(detail?.document_url || filing.filing_url, 500),
+    trunc(filing.filing_url, 500),
+    trunc(filing.id, 50),
     filing.cik,
     filing.filing_date,
   ]);
@@ -262,7 +248,7 @@ async function upsertCompany(info, cik) {
     `INSERT INTO companies (name, normalized_name, cik)
      VALUES ($1, $2, $3)
      RETURNING id`,
-    [info.name, normalized, cik || null]
+    [trunc(info.name, 500), trunc(normalized, 500), cik || null]
   );
   return res.rows[0];
 }
@@ -295,12 +281,16 @@ async function insertDeal(info) {
   await db.query(`
     INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date)
     VALUES ($1, 'sec_edgar', 'SEC EDGAR', $2, $3)
-  `, [dealId, info.source_url, info.filing_date || null]);
+  `, [dealId, trunc(info.source_url, 500), info.filing_date || null]);
 
   return dealId;
 }
 
 // ── HELPERS ────────────────────────────────────────────────────────
+function trunc(str, len) {
+  return str ? String(str).slice(0, len) : str;
+}
+
 function normalizeName(name) {
   return String(name)
     .toLowerCase()
@@ -344,19 +334,6 @@ async function fetchJson(url) {
     req.on('error', reject);
     req.setTimeout(30000, () => { req.destroy(); reject(new Error('Timeout')); });
   });
-}
-
-async function storeS3(key, data) {
-  try {
-    await s3.send(new PutObjectCommand({
-      Bucket: CONFIG.s3_bucket,
-      Key:    key,
-      Body:   JSON.stringify(data),
-      ContentType: 'application/json',
-    }));
-  } catch (err) {
-    console.warn('[S3] Could not store:', key, err.message);
-  }
 }
 
 async function startLog(source) {
