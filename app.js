@@ -918,14 +918,14 @@ function populateModal(d) {
   if (summarySection && summaryText) {
     if (d.body && d.body.trim()) {
       var leadHtml = (d.summary && d.summary.trim())
-        ? '<p style="margin-bottom:14px;padding:10px 14px;background:var(--bg3);border-left:2px solid var(--red);border-radius:0 4px 4px 0;font-size:12px;line-height:1.6;color:var(--fg2)">' + esc(d.summary) + '</p>'
+        ? '<p style="margin-bottom:14px;padding:10px 14px;background:var(--bg4);border-left:2px solid var(--red);border-radius:0 4px 4px 0;font-size:12px;line-height:1.6;color:var(--text2)">' + esc(d.summary) + '</p>'
         : '';
       summaryText.innerHTML = leadHtml + d.body.split('\n\n').map(function(para) {
         return '<p style="margin-bottom:10px">' + esc(para.trim()) + '</p>';
       }).join('');
       summarySection.style.display = '';
     } else if (d.summary && d.summary.trim()) {
-      summaryText.innerHTML = '<p style="margin-bottom:14px;padding:10px 14px;background:var(--bg3);border-left:2px solid var(--red);border-radius:0 4px 4px 0;font-size:12px;line-height:1.6;color:var(--fg2)">' + esc(d.summary) + '</p>';
+      summaryText.innerHTML = '<p style="margin-bottom:14px;padding:10px 14px;background:var(--bg4);border-left:2px solid var(--red);border-radius:0 4px 4px 0;font-size:12px;line-height:1.6;color:var(--text2)">' + esc(d.summary) + '</p>';
       summarySection.style.display = '';
     } else if (d.subheadline) {
       summaryText.innerHTML = '<p>' + esc(d.subheadline) + '</p>';
