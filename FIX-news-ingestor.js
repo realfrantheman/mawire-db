@@ -19,10 +19,6 @@ const RSS_FEEDS = [
     url:  'https://www.prnewswire.com/rss/news-releases-list.rss?category=mergers-acquisitions-alliances',
   },
   {
-    name: 'Reuters Business',
-    url:  'https://feeds.reuters.com/reuters/businessNews',
-  },
-  {
     name: 'Business Wire M&A',
     url:  'https://feed.businesswire.com/rss/home/?rss=G7&rssid=20899abb-18e7-4e0f-a4f2-77a5c4c9a6e8',
   },
