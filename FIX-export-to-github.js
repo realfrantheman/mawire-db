@@ -157,7 +157,7 @@ function cleanName(name) {
 function buildSummary(row, acquirerRaw, targetRaw, dealType, date, dealValue, body) {
   const source = resolveSourceName(row);
 
-  // For news/non-SEC items: use first sentence of body if available
+  // For news/exchange items: use first sentence of body if available
   if (source !== 'SEC Filing' && body) {
     const first = body.split(/(?<=[a-z])\.\s+(?=[A-Z])/)[0].replace(/\.$/, '');
     if (first && first.length > 30) return first + '.';
@@ -172,6 +172,21 @@ function buildSummary(row, acquirerRaw, targetRaw, dealType, date, dealValue, bo
   const isPlaceholderTarget   = !target   || target   === 'Undisclosed' || /target.*filing/i.test(target);
   const hasAcquirer = !isPlaceholderAcquirer;
   const hasTarget   = !isPlaceholderTarget;
+
+  // EU Merger Registry
+  if (source === 'EU Merger Registry') {
+    const a = hasAcquirer ? acquirer : 'A company';
+    const t = hasTarget   ? ` regarding ${target}` : '';
+    return `${a} filed a merger notification with the European Commission${t}${valStr}. The transaction is subject to EU merger regulation review.`;
+  }
+
+  // Exchange filings (HKEX, ASX, SGX)
+  if (/HKEX|ASX|SGX/.test(source)) {
+    if (hasAcquirer && hasTarget)
+      return `${acquirer} announced a ${dealType.toLowerCase()} involving ${target}${valStr}. The transaction was disclosed via ${source} on ${date}.`;
+    const co = hasAcquirer ? acquirer : (hasTarget ? target : 'A company');
+    return `${co} disclosed a ${dealType.toLowerCase()}${valStr} via ${source} on ${date}.`;
+  }
 
   if (dealType === 'Merger') {
     if (hasAcquirer && hasTarget)
@@ -211,7 +226,9 @@ function buildSummary(row, acquirerRaw, targetRaw, dealType, date, dealValue, bo
   const desc = hasAcquirer && hasTarget
     ? `${acquirer} and ${target}`
     : (hasAcquirer ? acquirer : (hasTarget ? target : 'A company'));
-  return `${desc} announced a ${(dealType || 'transaction').toLowerCase()}${valStr} on ${date}.`;
+  const typeWord = (dealType || 'transaction').toLowerCase();
+  const article  = /^[aeiou]/i.test(typeWord) ? 'an' : 'a';
+  return `${desc} announced ${article} ${typeWord}${valStr} on ${date}.`;
 }
 
 function buildBody(row, acquirer, target, dealType, date, perShare) {
