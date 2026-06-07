@@ -705,26 +705,75 @@
 
 <!-- ── BOTTOM NAV (mobile) ─────────────────────────────────── -->
 <nav class="bottom-nav" aria-label="Mobile navigation">
-  <div class="bottom-nav-inner" style="display:flex;height:56px">
-    <button class="bottom-nav-item active" onclick="window.scrollTo(0,0)" style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:none;border:none;cursor:pointer;color:var(--red)">
-      <span style="font-size:18px;line-height:1">⌂</span>
-      <span style="font-family:var(--mono);font-size:6px;letter-spacing:0;text-transform:uppercase;overflow:hidden;white-space:nowrap;max-width:100%;display:block;text-align:center">Home</span>
+  <style>
+    .bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(7,8,10,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      z-index: 200;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .bnav-inner {
+      display: flex;
+      height: 58px;
+      align-items: stretch;
+    }
+    .bnav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      border-top: 2px solid transparent;
+      cursor: pointer;
+      color: rgba(107,114,128,0.8);
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bnav-item:active { opacity: 0.7; }
+    .bnav-item.active  { color: #c8102e; border-top-color: #c8102e; }
+    .bnav-icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+    }
+    .bnav-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+  </style>
+  <div class="bnav-inner">
+    <button class="bnav-item active" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Home">
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5L2.5 9H4v8.5h4.5V13h3v4.5H16V9h1.5L10 2.5z"/></svg>
+      <span class="bnav-label">Home</span>
     </button>
-    <button class="bottom-nav-item" id="mobileSearchBtn" style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:none;border:none;cursor:pointer;color:var(--muted)">
-      <span style="font-size:18px;line-height:1">⌕</span>
-      <span style="font-family:var(--mono);font-size:6px;letter-spacing:0;text-transform:uppercase;overflow:hidden;white-space:nowrap;max-width:100%;display:block;text-align:center">Search</span>
+    <button class="bnav-item" id="mobileSearchBtn" aria-label="Search deals">
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><circle cx="8.5" cy="8.5" r="5"/><line x1="12.5" y1="12.5" x2="17" y2="17"/></svg>
+      <span class="bnav-label">Search</span>
     </button>
-    <a href="/ipo" style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;color:var(--muted)">
-      <span style="font-size:18px;line-height:1">▲</span>
-      <span style="font-family:var(--mono);font-size:6px;letter-spacing:0;text-transform:uppercase;overflow:hidden;white-space:nowrap;max-width:100%;display:block;text-align:center">IPO</span>
+    <a href="/ipo" class="bnav-item" aria-label="IPO Watch">
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10 3.5l6.5 12H3.5L10 3.5z"/></svg>
+      <span class="bnav-label">IPO</span>
     </a>
-    <a href="/about" style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;color:var(--muted)">
-      <span style="font-size:18px;line-height:1">ℹ</span>
-      <span style="font-family:var(--mono);font-size:6px;letter-spacing:0;text-transform:uppercase;overflow:hidden;white-space:nowrap;max-width:100%;display:block;text-align:center">About</span>
+    <a href="/about" class="bnav-item" aria-label="About">
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v4a1 1 0 102 0V7zm-1-3a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/></svg>
+      <span class="bnav-label">About</span>
     </a>
-    <a href="/contact" style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;color:var(--muted)">
-      <span style="font-size:18px;line-height:1">✉</span>
-      <span style="font-family:var(--mono);font-size:6px;letter-spacing:0;text-transform:uppercase;overflow:hidden;white-space:nowrap;max-width:100%;display:block;text-align:center">Contact</span>
+    <a href="/contact" class="bnav-item" aria-label="Contact">
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="5" width="15" height="11" rx="1.5"/><path d="M2.5 7l7.5 5.5L17.5 7"/></svg>
+      <span class="bnav-label">Contact</span>
     </a>
   </div>
 </nav>
