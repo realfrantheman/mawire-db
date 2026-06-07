@@ -38,13 +38,19 @@ async function run() {
   }
 }
 
+function hkexListUrl(yyyymmdd) {
+  const year = yyyymmdd.slice(0, 4);
+  const mmdd = yyyymmdd.slice(4, 8);
+  return `https://www.hkexnews.hk/listedco/listconews/sehk/${year}/${mmdd}/LIST.HTM`;
+}
+
 async function runHkex(stats) {
   const dates = [todayStr(), yesterdayStr()];
   console.log('[APAC/HKEX] Fetching announcements for', dates.join(', '));
 
   for (const dateStr of dates) {
     try {
-      const url  = `https://www1.hkexnews.hk/listedco/listconews/mainboard/${dateStr}/`;
+      const url  = hkexListUrl(dateStr);
       const html = await fetchText(url);
       const announcements = parseHkexAnnouncements(html, dateStr);
 

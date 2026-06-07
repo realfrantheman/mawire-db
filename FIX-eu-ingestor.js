@@ -30,27 +30,22 @@ async function run() {
 }
 
 async function runEuMergerRegistry(stats) {
-  const today    = new Date();
-  const pastDate = new Date();
-  pastDate.setDate(today.getDate() - 30);
-
-  const startDate = formatDDMMYYYY(pastDate);
-  const endDate   = formatDDMMYYYY(today);
-
-  const url = `https://ec.europa.eu/competition/elojade/isef/index.cfm?fuseaction=dsp_result&procedure_title=&case_title=&case_title_lng=EN&from_notif_date=&to_notif_date=&from_date=${startDate}&to_date=${endDate}`;
-
   console.log('[EU] Fetching EU Merger Registry');
 
-  let html;
+  // EC moved to competition-cases.ec.europa.eu — use their JSON search API
+  const url = 'https://competition-cases.ec.europa.eu/search?sortBy=date&sortOrder=desc&pageSize=100&procedureType=M';
+
+  let data;
   try {
-    html = await fetchText(url);
+    data = await fetchJson(url);
   } catch (err) {
     console.error('[EU] Failed to fetch EU registry:', err.message);
     stats.failed++;
     return;
   }
 
-  const cases = parseEuCaseRows(html);
+  // Parse JSON response from new EC portal
+  const cases = parseEuJsonCases(data);
   console.log(`[EU] Parsed ${cases.length} EU merger cases`);
   stats.fetched += cases.length;
 
@@ -66,42 +61,24 @@ async function runEuMergerRegistry(stats) {
   }
 }
 
-function formatDDMMYYYY(date) {
-  const d = String(date.getDate()).padStart(2, '0');
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const y = date.getFullYear();
-  return `${d}/${m}/${y}`;
-}
-
-function parseEuCaseRows(html) {
-  if (!html) return [];
-  const cases    = [];
-  const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
-  let rowMatch;
-
-  while ((rowMatch = rowRegex.exec(html)) !== null) {
-    const row   = rowMatch[1];
-    const cells = [];
-    const tdRe  = /<td[^>]*>([\s\S]*?)<\/td>/gi;
-    let tdMatch;
-
-    while ((tdMatch = tdRe.exec(row)) !== null) {
-      cells.push(stripHtml(tdMatch[1]).trim());
-    }
-
-    if (cells.length < 3) continue;
-
-    const caseNumber = cells[0] || '';
-    if (!/^M\.\d{4,}/.test(caseNumber.trim())) continue;
-
+function parseEuJsonCases(data) {
+  if (!data) return [];
+  // New EC portal returns { results: [...] } or { hits: [...] }
+  const items = data.results || data.hits || data.cases || data.items || (Array.isArray(data) ? data : []);
+  const cases = [];
+  for (const item of items) {
+    const caseNumber = item.caseNumber || item.case_number || item.id || item.reference || '';
+    const caseTitle  = item.caseTitle  || item.case_title  || item.title || item.name || '';
+    const notifDate  = item.notificationDate || item.notification_date || item.date || item.openingDate || '';
+    const statusRaw  = item.status || item.phase || item.outcome || '';
+    if (!caseNumber && !caseTitle) continue;
     cases.push({
-      caseNumber: caseNumber.trim(),
-      caseTitle:  (cells[1] || '').trim(),
-      notifDate:  (cells[2] || '').trim(),
-      status:     normalizeEuStatus((cells[3] || '').trim()),
+      caseNumber: String(caseNumber).trim(),
+      caseTitle:  String(caseTitle).trim(),
+      notifDate:  String(notifDate).trim(),
+      status:     normalizeEuStatus(String(statusRaw)),
     });
   }
-
   return cases;
 }
 
