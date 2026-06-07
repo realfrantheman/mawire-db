@@ -186,6 +186,18 @@ cron.schedule('0 */6 * * *', async () => {
   }
 });
 
+// ── EXPORT TO GITHUB — every 2 hours ──────────────────────────────
+cron.schedule('30 */2 * * *', async () => {
+  try {
+    console.log('[CRON] Starting GitHub export');
+    const exporter = require('./scripts/export-to-github');
+    await exporter.run();
+    console.log('[CRON] GitHub export complete');
+  } catch (err) {
+    console.error('[CRON] GitHub export error:', err.message);
+  }
+});
+
 // ── STATS CACHE — every hour ───────────────────────────────────────
 cron.schedule('15 * * * *', async () => {
   try {
@@ -230,3 +242,11 @@ setTimeout(async () => {
   try { const { run } = require('./services/apac-ingestor/index'); await run(); }
   catch (err) { console.error('[STARTUP] APAC failed:', err.message); }
 }, 45000);
+
+setTimeout(async () => {
+  try {
+    console.log('[STARTUP] Running GitHub export...');
+    const exporter = require('./scripts/export-to-github');
+    await exporter.run();
+  } catch (err) { console.error('[STARTUP] GitHub export failed:', err.message); }
+}, 60000);
