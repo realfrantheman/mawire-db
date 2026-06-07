@@ -56,9 +56,7 @@ async function run() {
     LEFT JOIN deal_sources ds ON ds.deal_id    = d.id AND ds.source_type = 'sec_edgar'
     LEFT JOIN filings f       ON f.deal_id     = d.id
     WHERE d.canonical_id IS NULL
-      AND d.source_confidence >= 0.5
     ORDER BY d.announcement_date DESC NULLS LAST
-    LIMIT 50000
   `);
 
   const deals = res.rows.map(row => ({
