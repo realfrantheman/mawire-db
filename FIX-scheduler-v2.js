@@ -1,7 +1,15 @@
 'use strict';
 
+process.on('uncaughtException',  function(err) { console.error('[FATAL] Uncaught exception:', err); });
+process.on('unhandledRejection', function(err) { console.error('[FATAL] Unhandled rejection:', err); });
+process.stdin.resume(); // keep process alive
+
+console.log('[SCHEDULER] Booting...');
+
 const cron = require('node-cron');
 const { Pool } = require('pg');
+
+console.log('[SCHEDULER] Modules loaded.');
 
 const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
@@ -189,18 +197,18 @@ cron.schedule('15 * * * *', async () => {
 });
 
 // ── STARTUP ────────────────────────────────────────────────────────
-console.log('╔══════════════════════════════════════════════════════╗');
-console.log('║     mergers.news Pipeline Scheduler v2               ║');
-console.log('╠══════════════════════════════════════════════════════╣');
-console.log('║  SEC EDGAR       every 30 min                        ║');
-console.log('║  GDELT           every 1 hour                        ║');
-console.log('║  News RSS        every 2 hours                       ║');
-console.log('║  EU Merger Reg   every 12 hours                      ║');
-console.log('║  APAC (HK/AU/SG) every 4 hours                       ║');
-console.log('║  Extraction      every 5 min                         ║');
-console.log('║  Dedup           every 6 hours                       ║');
-console.log('║  Stats cache     every 1 hour                        ║');
-console.log('╚══════════════════════════════════════════════════════╝');
+console.log('[SCHEDULER] ==========================================');
+console.log('[SCHEDULER] mergers.news Pipeline Scheduler v2');
+console.log('[SCHEDULER]   SEC EDGAR       every 30 min');
+console.log('[SCHEDULER]   GDELT           every 1 hour');
+console.log('[SCHEDULER]   News RSS        every 2 hours');
+console.log('[SCHEDULER]   EU Merger Reg   every 12 hours');
+console.log('[SCHEDULER]   APAC (HK/AU/SG) every 4 hours');
+console.log('[SCHEDULER]   Extraction      every 5 min');
+console.log('[SCHEDULER]   Dedup           every 6 hours');
+console.log('[SCHEDULER]   Stats cache     every 1 hour');
+console.log('[SCHEDULER] ==========================================');
+console.log('[SCHEDULER] All crons active. Waiting for first tick...');
 
 // Staggered startup runs
 setTimeout(async () => {
