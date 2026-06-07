@@ -2,6 +2,7 @@
 
 const https    = require('https');
 const http     = require('http');
+const { URL }  = require('url');
 const { Pool } = require('pg');
 
 const db = new Pool({
@@ -29,7 +30,7 @@ async function run() {
 }
 
 async function runEuMergerRegistry(stats) {
-  const today   = new Date();
+  const today    = new Date();
   const pastDate = new Date();
   pastDate.setDate(today.getDate() - 30);
 
@@ -38,7 +39,7 @@ async function runEuMergerRegistry(stats) {
 
   const url = `https://ec.europa.eu/competition/elojade/isef/index.cfm?fuseaction=dsp_result&procedure_title=&case_title=&case_title_lng=EN&from_notif_date=&to_notif_date=&from_date=${startDate}&to_date=${endDate}`;
 
-  console.log('[EU] Fetching EU Merger Registry:', url);
+  console.log('[EU] Fetching EU Merger Registry');
 
   let html;
   try {
@@ -74,8 +75,7 @@ function formatDDMMYYYY(date) {
 
 function parseEuCaseRows(html) {
   if (!html) return [];
-  const cases = [];
-
+  const cases    = [];
   const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
   let rowMatch;
 
@@ -94,15 +94,11 @@ function parseEuCaseRows(html) {
     const caseNumber = cells[0] || '';
     if (!/^M\.\d{4,}/.test(caseNumber.trim())) continue;
 
-    const caseTitle      = cells[1] || '';
-    const notifDate      = cells[2] || '';
-    const statusRaw      = cells[3] || '';
-
     cases.push({
-      caseNumber:   caseNumber.trim(),
-      caseTitle:    caseTitle.trim(),
-      notifDate:    notifDate.trim(),
-      status:       normalizeEuStatus(statusRaw.trim()),
+      caseNumber: caseNumber.trim(),
+      caseTitle:  (cells[1] || '').trim(),
+      notifDate:  (cells[2] || '').trim(),
+      status:     normalizeEuStatus((cells[3] || '').trim()),
     });
   }
 
@@ -111,16 +107,17 @@ function parseEuCaseRows(html) {
 
 function normalizeEuStatus(raw) {
   const r = raw.toLowerCase();
-  if (r.includes('prohibit'))  return 'Withdrawn';
+  if (r.includes('prohibit'))                                        return 'Withdrawn';
   if (r.includes('approv') || r.includes('phase i') || r.includes('cleared')) return 'Completed';
-  if (r.includes('phase ii')) return 'Announced';
+  if (r.includes('phase ii'))                                        return 'Announced';
   return 'Announced';
 }
 
 async function processEuCase(c) {
-  const caseNum = c.caseNumber.replace(/[^A-Z0-9._-]/gi, '');
+  const caseNum   = c.caseNumber.replace(/[^A-Z0-9._-]/gi, '');
+  const caseId    = caseNum.replace('M.', '');
   const sourceUrl = trunc(
-    `https://ec.europa.eu/competition/elojade/isef/case_details.cfm?proc_code=2_M_${caseNum.replace('M.', '')}`,
+    `https://ec.europa.eu/competition/elojade/isef/case_details.cfm?proc_code=2_M_${caseId}`,
     500
   );
 
@@ -140,7 +137,7 @@ async function processEuCase(c) {
 
   await insertDeal(db, {
     acquirer_id:       acquirerRec.id,
-    target_id:         targetRec?.id || null,
+    target_id:         targetRec ? targetRec.id : null,
     headline:          trunc(c.caseTitle || `${acquirer} / ${target}`, 500),
     deal_type:         'Merger',
     status:            c.status,
@@ -162,7 +159,7 @@ async function processEuCase(c) {
 
 function parseEuCaseTitle(title) {
   if (!title) return { acquirer: null, target: null };
-  const sep  = title.indexOf(' / ');
+  const sep = title.indexOf(' / ');
   if (sep !== -1) {
     return {
       acquirer: title.slice(0, sep).trim().slice(0, 200),
@@ -193,16 +190,15 @@ async function runUkCompaniesHouse(stats) {
     return;
   }
 
-  if (!data || !data.items || !Array.isArray(data.items)) {
+  if (!data || !Array.isArray(data.items)) {
     console.log('[EU] UK Companies House: no items returned');
     return;
   }
 
-  const items = data.items;
-  console.log(`[EU] UK Companies House returned ${items.length} companies`);
-  stats.fetched += items.length;
+  console.log(`[EU] UK Companies House returned ${data.items.length} companies`);
+  stats.fetched += data.items.length;
 
-  for (const item of items) {
+  for (const item of data.items) {
     try {
       const result = await processUkCompany(item);
       if (result === 'new') stats.new++;
@@ -215,7 +211,7 @@ async function runUkCompaniesHouse(stats) {
 
 async function processUkCompany(item) {
   const companyNumber = item.company_number || '';
-  const companyName   = item.company_name  || '';
+  const companyName   = item.company_name   || '';
   if (!companyNumber || !companyName) return 'skip';
 
   const sourceUrl = trunc(
@@ -234,14 +230,18 @@ async function processUkCompany(item) {
 }
 
 function stripHtml(str) {
-  return (str || '').replace(/<[^>]+>/g, ' ').replace(/\s{2,}/g, ' ').trim();
+  return (str || '').replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s{2,}/g, ' ').trim();
 }
 
 function parseDateFlexible(str) {
   if (!str) return null;
-  const ddmmyyyy = /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/.exec(str);
+  const ddmmyyyy = /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/.exec(str.trim());
   if (ddmmyyyy) {
-    return `${ddmmyyyy[3]}-${ddmmyyyy[2].padStart(2,'0')}-${ddmmyyyy[1].padStart(2,'0')}`;
+    return `${ddmmyyyy[3]}-${ddmmyyyy[2].padStart(2, '0')}-${ddmmyyyy[1].padStart(2, '0')}`;
+  }
+  const yyyymmdd = /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/.exec(str.trim());
+  if (yyyymmdd) {
+    return `${yyyymmdd[1]}-${yyyymmdd[2].padStart(2, '0')}-${yyyymmdd[3].padStart(2, '0')}`;
   }
   try {
     const d = new Date(str);
@@ -296,7 +296,7 @@ async function insertDeal(db, info) {
     RETURNING id
   `, [
     info.acquirer_id,
-    info.target_id    || null,
+    info.target_id         || null,
     trunc(info.headline, 500),
     trunc(info.deal_type, 100),
     trunc(info.status, 50),
@@ -349,22 +349,32 @@ async function endLog(id, status, stats, error) {
   );
 }
 
-function fetchText(url) {
+function fetchText(url, redirectDepth) {
+  redirectDepth = redirectDepth || 0;
+  if (redirectDepth > 5) return Promise.reject(new Error('Too many redirects'));
   return new Promise((resolve, reject) => {
-    const client  = url.startsWith('https') ? https : http;
-    const options = {
+    const parsedUrl = new URL(url);
+    const client    = parsedUrl.protocol === 'https:' ? https : http;
+    const options   = {
+      hostname: parsedUrl.hostname,
+      path:     parsedUrl.pathname + parsedUrl.search,
       headers: {
         'User-Agent': 'mergers.news contact@mergers.news',
-        'Accept':     'text/html,application/xhtml+xml,application/json,*/*',
+        'Accept':     'text/html, application/xhtml+xml, application/json, */*',
       },
     };
-    const req = client.get(url, options, res => {
+    const req = client.get(options, res => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return fetchText(res.headers.location).then(resolve).catch(reject);
+        const location = res.headers.location.startsWith('http')
+          ? res.headers.location
+          : `${parsedUrl.protocol}//${parsedUrl.host}${res.headers.location}`;
+        res.resume();
+        return fetchText(location, redirectDepth + 1).then(resolve).catch(reject);
       }
-      let data = '';
-      res.on('data', chunk => { data += chunk; });
-      res.on('end', () => resolve(data));
+      const chunks = [];
+      res.on('data',  chunk => chunks.push(chunk));
+      res.on('end',   ()    => resolve(Buffer.concat(chunks).toString('utf8')));
+      res.on('error', reject);
     });
     req.on('error', reject);
     req.setTimeout(30000, () => { req.destroy(); reject(new Error('Timeout')); });

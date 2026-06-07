@@ -61,7 +61,7 @@ async function run() {
           try {
             if (!isMaDeal(item)) continue;
             const result = await processNewsItem(item, feed.name);
-            if (result === 'new')  stats.new++;
+            if (result === 'new') stats.new++;
           } catch (err) {
             stats.failed++;
             console.error(`[NEWS] Error processing item "${trunc(item.title, 80)}":`, err.message);
@@ -85,7 +85,7 @@ async function run() {
 
 function parseRssItems(xml) {
   if (!xml) return [];
-  const items = [];
+  const items    = [];
   const itemRegex = /<item[^>]*>([\s\S]*?)<\/item>/gi;
   let match;
 
@@ -108,7 +108,9 @@ function extractTag(xml, tag) {
   const cdata   = cdataRe.exec(xml);
   if (cdata) return cdata[1].trim();
   const plain   = plainRe.exec(xml);
-  if (plain)  return plain[1].replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').trim();
+  if (plain)  return plain[1]
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
   return '';
 }
 
@@ -128,7 +130,7 @@ async function processNewsItem(item, feedName) {
   if (existing.rows.length > 0) return 'skip';
 
   const { acquirer, target } = extractEntities(item.title || '');
-  const dealValue            = extractDealValue(item.title + ' ' + item.description);
+  const dealValue            = extractDealValue((item.title || '') + ' ' + (item.description || ''));
   const pubDate              = parseDateFlexible(item.pubDate);
 
   const acquirerRec = await upsertCompany(db, { name: acquirer || 'Unknown' }, null);
@@ -138,9 +140,9 @@ async function processNewsItem(item, feedName) {
 
   await insertDeal(db, {
     acquirer_id:       acquirerRec.id,
-    target_id:         targetRec?.id || null,
+    target_id:         targetRec ? targetRec.id : null,
     headline:          trunc(item.title || `${acquirer} / ${target}`, 500),
-    deal_type:         inferDealType(item.title),
+    deal_type:         inferDealType(item.title || ''),
     status:            'Announced',
     announcement_date: pubDate,
     filing_date:       null,
@@ -187,16 +189,20 @@ function extractDealValue(text) {
 }
 
 function inferDealType(title) {
-  const t = (title || '').toLowerCase();
-  if (/tender\s+offer/.test(t))                         return 'Tender Offer';
-  if (/going.private/.test(t))                          return 'Going-Private';
-  if (/merger|to\s+merge/.test(t))                      return 'Merger';
-  if (/acquires|acquisition|to\s+buy|agrees\s+to\s+buy/.test(t)) return 'Acquisition';
+  const t = title.toLowerCase();
+  if (/tender\s+offer/.test(t))                                      return 'Tender Offer';
+  if (/going.private/.test(t))                                       return 'Going-Private';
+  if (/merger|to\s+merge/.test(t))                                   return 'Merger';
+  if (/acquires|acquisition|to\s+buy|agrees\s+to\s+buy/.test(t))    return 'Acquisition';
   return 'Merger';
 }
 
 function parseDateFlexible(str) {
   if (!str) return null;
+  const ddmmyyyy = /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/.exec(str.trim());
+  if (ddmmyyyy) {
+    return `${ddmmyyyy[3]}-${ddmmyyyy[2].padStart(2, '0')}-${ddmmyyyy[1].padStart(2, '0')}`;
+  }
   try {
     const d = new Date(str);
     if (!isNaN(d.getTime())) return d.toISOString().split('T')[0];
@@ -218,7 +224,7 @@ function normalizeName(name) {
 }
 
 async function upsertCompany(db, info, cik) {
-  const name = (info && info.name) ? info.name : 'Unknown';
+  const name       = (info && info.name) ? info.name : 'Unknown';
   const normalized = normalizeName(name);
 
   if (cik) {
@@ -250,7 +256,7 @@ async function insertDeal(db, info) {
     RETURNING id
   `, [
     info.acquirer_id,
-    info.target_id    || null,
+    info.target_id         || null,
     trunc(info.headline, 500),
     trunc(info.deal_type, 100),
     trunc(info.status, 50),
@@ -303,22 +309,32 @@ async function endLog(id, status, stats, error) {
   );
 }
 
-function fetchText(url) {
+function fetchText(url, redirectDepth) {
+  redirectDepth = redirectDepth || 0;
+  if (redirectDepth > 5) return Promise.reject(new Error('Too many redirects'));
   return new Promise((resolve, reject) => {
-    const client  = url.startsWith('https') ? https : http;
-    const options = {
+    const parsedUrl = new (require('url').URL)(url);
+    const client    = parsedUrl.protocol === 'https:' ? https : http;
+    const options   = {
+      hostname: parsedUrl.hostname,
+      path:     parsedUrl.pathname + parsedUrl.search,
       headers: {
         'User-Agent': 'mergers.news contact@mergers.news',
-        'Accept':     'application/rss+xml, application/xml, text/xml, text/html',
+        'Accept':     'application/rss+xml, application/xml, text/xml, text/html, */*',
       },
     };
-    const req = client.get(url, options, res => {
+    const req = client.get(options, res => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return fetchText(res.headers.location).then(resolve).catch(reject);
+        const location = res.headers.location.startsWith('http')
+          ? res.headers.location
+          : `${parsedUrl.protocol}//${parsedUrl.host}${res.headers.location}`;
+        res.resume();
+        return fetchText(location, redirectDepth + 1).then(resolve).catch(reject);
       }
-      let data = '';
-      res.on('data', chunk => { data += chunk; });
-      res.on('end', () => resolve(data));
+      const chunks = [];
+      res.on('data', chunk => chunks.push(chunk));
+      res.on('end',  ()    => resolve(Buffer.concat(chunks).toString('utf8')));
+      res.on('error', reject);
     });
     req.on('error', reject);
     req.setTimeout(30000, () => { req.destroy(); reject(new Error('Timeout')); });
