@@ -1,0 +1,37 @@
+name: Refresh deals.json from SEC EDGAR
+
+on:
+  schedule:
+    # Every Sunday at 02:00 UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:   # Allow manual trigger from GitHub Actions UI
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120   # enriching 100s of filings takes a while
+
+    steps:
+      - name: Checkout mawire-site (has the backfill scripts)
+        uses: actions/checkout@v4
+        with:
+          repository: realfrantheman/mawire-site
+          token: ${{ secrets.MAWIRE_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run M&A backfill (DEFM14A + SC TO-T + S-4 + SC 13E-3)
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
+        run: node backfill.js
+
+      - name: Run IPO fetcher (S-1 filings)
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
+        run: |
+          # fetch-ipos.js lives in mawire-db — copy it here first
+          curl -s https://raw.githubusercontent.com/realfrantheman/mawire-db/main/fetch-ipos.js -o fetch-ipos.js
+          node fetch-ipos.js
