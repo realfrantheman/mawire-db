@@ -23,12 +23,32 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Run M&A backfill (DEFM14A + SC TO-T + S-4 + SC 13E-3)
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: node FIX-historical-backfill.js
 
       - name: Run IPO fetcher (S-1 filings)
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
         run: node fetch-ipos.js
+
+      - name: Generate journalist-style summaries for all deals
+        run: python3 generate-summaries.py
+
+      - name: Commit and push enriched deals.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add deals.json
+          git diff --cached --quiet && echo "No changes to commit" || \
+            git commit -m "chore: refresh deals.json summaries [skip ci]"
+          git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main
