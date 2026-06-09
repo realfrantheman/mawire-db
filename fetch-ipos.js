@@ -213,6 +213,8 @@ async function fetchS1Text(cik, hitId) {
 
 // ── BUILD IPO COMPANY OBJECT ──────────────────────────────
 async function buildIPO(hit, formType, fetchText) {
+  // Allow workflow to disable S-1 text fetching via env var for speed
+  if (process.env.FETCH_S1_TEXT === 'false') fetchText = false;
   var src  = hit._source || {};
   var name = extractName(src.display_names);
   var cik  = extractCIK(src.display_names) || src.entity_id || '';

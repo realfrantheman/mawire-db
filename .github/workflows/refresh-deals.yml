@@ -9,7 +9,7 @@ on:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
       - name: Checkout mawire-db
@@ -38,19 +38,19 @@ jobs:
           LOCAL_ONLY: 'true'
         run: node FIX-export-to-github.js
 
-      - name: Run IPO fetcher (S-1 filings)
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
-        run: node fetch-ipos.js
-
       - name: Commit and push deals.json
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
           git add deals.json
           git diff --cached --quiet && echo "No changes to commit" || \
             git commit -m "chore: refresh deals.json [skip ci]"
           git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main
+
+      - name: Run IPO fetcher (S-1 filings — metadata only, no S-1 text download)
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
+          FETCH_S1_TEXT: 'false'
+        run: node fetch-ipos.js
