@@ -54,7 +54,8 @@ async function run() {
       ds.source_date  AS "sourceDate",
       f.filing_type   AS "filingType",
       f.edgar_url     AS "edgarUrl",
-      f.accession_no  AS "accessionNo"
+      f.accession_no  AS "accessionNo",
+      f.cik           AS "filingCik"
     FROM deals d
     LEFT JOIN companies a     ON d.acquirer_id = a.id
     LEFT JOIN companies t     ON d.target_id   = t.id
@@ -123,9 +124,12 @@ async function run() {
       body,
       summary,
       source,
-      sourceUrl:    row.sourceUrl || row.edgarUrl,
+      sourceUrl:    row.sourceType === 'news_rss' ? row.sourceUrl : (reconstructEdgarUrl(row) || row.sourceUrl || row.edgarUrl),
       filingType:   row.filingType,
-      edgarUrl:     row.edgarUrl,
+      edgarUrl:     reconstructEdgarUrl(row) || row.edgarUrl,
+      extractionMethod: row.extractionMethod,
+      sourceType:   row.sourceType,
+      sourceName:   row.sourceName,
       confidence:   row.confidence,
       breaking,
       advisors:     null,
@@ -295,6 +299,15 @@ function buildSubheadline(row, acquirer, target, date) {
   }
 
   return parts.join(' — ');
+}
+
+function reconstructEdgarUrl(row) {
+  const cik = row.filingCik;
+  const accNo = row.accessionNo;
+  if (!cik || !accNo) return null;
+  const folder = String(accNo).replace(/-/g, '');
+  if (!folder || folder.length < 10) return null;
+  return `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
 }
 
 function resolveSourceName(row) {

@@ -1103,9 +1103,9 @@ function handleUrlParams() {
     var si = el('searchInput');
     if (si) si.value = q;
   }
-  // /deal/12345 — open specific deal once data loads
-  var m = window.location.pathname.match(/^\/deal\/(\d+)$/);
-  if (m) window._pendingDealId = parseInt(m[1], 10);
+  // /deal/{uuid} — open specific deal once data loads
+  var m = window.location.pathname.match(/^\/deal\/([a-f0-9-]{30,40})$/i);
+  if (m) window._pendingDealId = m[1];
 }
 
 /* ── BROWSER BACK/FORWARD ───────────────────────────────────── */

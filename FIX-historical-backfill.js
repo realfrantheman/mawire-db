@@ -70,12 +70,13 @@ async function fetchFilingsForPeriod(filingType, startdt, enddt) {
 
     const hits = data.hits.hits;
     hits.forEach(hit => {
+      const cik = hit._source?.entity_id || extractCIK(hit._id);
       allFilings.push({
         id:          hit._id,
         entity_name: hit._source?.entity_name || hit._source?.display_names?.[0] || 'Unknown',
-        cik:         hit._source?.entity_id   || extractCIK(hit._id),
+        cik,
         filing_date: hit._source?.file_date   || hit._source?.period_of_report,
-        filing_url:  `https://www.sec.gov/Archives/edgar/data/${hit._source?.entity_id || extractCIK(hit._id)}/${String(hit._id).replace(/-/g,'').replace(/\//g,'')}/`,
+        filing_url:  buildEdgarUrl(hit._id, cik),
       });
     });
 
@@ -314,7 +315,20 @@ function sicToSector(sic) {
 }
 function extractCIK(id) {
   if (!id) return '';
-  return String(id).split(':')[0] || '';
+  const m = String(id).match(/^(\d{10})-\d{2}-\d{6}/);
+  if (m) return parseInt(m[1], 10).toString();
+  return '';
+}
+
+function buildEdgarUrl(hitId, cik) {
+  const parts     = String(hitId || '').split(':');
+  const accession = parts[0]; // "0001104659-26-071582"
+  const filename  = parts[1] || '';
+  const folder    = accession.replace(/-/g, ''); // "000110465926071582"
+  if (!cik || !folder) return null;
+  return filename
+    ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${filename}`
+    : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
 }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 async function fetchJson(url) {

@@ -72,22 +72,39 @@ async function fetchRecentFilings(filingType) {
 
   if (!data || !data.hits || !data.hits.hits) return [];
 
-  return data.hits.hits.map(hit => ({
-    id:           hit._id,
-    accession_no: hit._source?.period_of_report,
-    entity_name:  hit._source?.entity_name || hit._source?.display_names?.[0] || 'Unknown',
-    cik:          hit._source?.entity_id   || extractCIK(hit._id),
-    filing_date:  hit._source?.period_of_report || hit._source?.file_date,
-    filing_url:   `https://www.sec.gov/Archives/edgar/data/${extractCIK(hit._id)}/${hit._id.replace(/-/g,'').replace(/\//g,'')}/`,
-    document_url: hit._source?.file_date,
-    raw:          hit._source,
-  }));
+  return data.hits.hits.map(hit => {
+    const cik = hit._source?.entity_id || extractCIK(hit._id);
+    return {
+      id:           hit._id,
+      accession_no: hit._source?.period_of_report,
+      entity_name:  hit._source?.entity_name || hit._source?.display_names?.[0] || 'Unknown',
+      cik,
+      filing_date:  hit._source?.period_of_report || hit._source?.file_date,
+      filing_url:   buildEdgarUrl(hit._id, cik),
+      document_url: hit._source?.file_date,
+      raw:          hit._source,
+    };
+  });
 }
 
+// EDGAR EFTS hit._id format: "{CIK10d}-{YY}-{SEQNO}:{FILENAME}"
+// e.g. "0001104659-26-071582:tm2617193d1_defa14a.htm"
 function extractCIK(id) {
   if (!id) return '';
-  const parts = String(id).split(':');
-  return parts[0] || '';
+  const m = String(id).match(/^(\d{10})-\d{2}-\d{6}/);
+  if (m) return parseInt(m[1], 10).toString(); // strip leading zeros
+  return '';
+}
+
+function buildEdgarUrl(hitId, cik) {
+  const parts     = String(hitId || '').split(':');
+  const accession = parts[0]; // "0001104659-26-071582"
+  const filename  = parts[1] || '';
+  const folder    = accession.replace(/-/g, ''); // "000110465926071582"
+  if (!cik || !folder) return null;
+  return filename
+    ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${filename}`
+    : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
 }
 
 // ── PROCESS A SINGLE FILING ────────────────────────────────────────
