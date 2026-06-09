@@ -1,0 +1,70 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/deal/:id",                       "destination": "/index.html" },
+    { "source": "/ipo",                            "destination": "/ipo.html" },
+    { "source": "/about",                          "destination": "/about.html" },
+    { "source": "/contact",                        "destination": "/contact.html" },
+    { "source": "/tender-offers",                  "destination": "/tender-offers.html" },
+    { "source": "/mergers/technology",             "destination": "/mergers/technology.html" },
+    { "source": "/mergers/healthcare",             "destination": "/mergers/healthcare.html" },
+    { "source": "/mergers/financial-services",     "destination": "/mergers/financial-services.html" },
+    { "source": "/legal/terms",                    "destination": "/legal/terms.html" },
+    { "source": "/legal/privacy",                  "destination": "/legal/privacy.html" },
+    { "source": "/legal/disclaimer",               "destination": "/legal/disclaimer.html" }
+  ],
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control",          "value": "no-cache, no-store, must-revalidate" },
+        { "key": "Service-Worker-Allowed", "value": "/" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Content-Type",            "value": "text/html; charset=utf-8" },
+        { "key": "X-Content-Type-Options",  "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.js",
+      "headers": [
+        { "key": "Content-Type", "value": "application/javascript; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.css",
+      "headers": [
+        { "key": "Content-Type", "value": "text/css; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        },
+        { "key": "X-Frame-Options",         "value": "DENY" },
+        { "key": "X-Content-Type-Options",  "value": "nosniff" },
+        { "key": "Referrer-Policy",         "value": "strict-origin-when-cross-origin" },
+        {
+          "key": "Permissions-Policy",
+          "value": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://formspree.io https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com; manifest-src 'self'; worker-src 'self'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests; block-all-mixed-content;"
+        },
+        { "key": "Cross-Origin-Opener-Policy",          "value": "same-origin" },
+        { "key": "Cross-Origin-Resource-Policy",        "value": "same-origin" },
+        { "key": "X-DNS-Prefetch-Control",              "value": "off" },
+        { "key": "X-Permitted-Cross-Domain-Policies",   "value": "none" },
+        { "key": "Server",                              "value": "" }
+      ]
+    }
+  ]
+}

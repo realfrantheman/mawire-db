@@ -1,0 +1,27 @@
+# COPY THIS CONTENT TO: mawire-platform/.gitignore
+# (replace the existing .gitignore content)
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+config/.env
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+*.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Build outputs
+dist/
+build/

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="theme-color" content="#07080a"/>
+  <meta name="description" content="Track 10,000+ mergers and acquisitions from SEC EDGAR filings. Search M&A deals by company, sector, value, and date. Free global M&A deal intelligence — no registration required."/>
+  <meta name="keywords" content="mergers and acquisitions, M&A deals, SEC filings, DEFM14A, SC TO-T, tender offer, merger database, acquisition news"/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="mergers.news"/>
+  <meta property="og:title" content="mergers.news — Global M&A Deal Intelligence | 10,000+ Deals"/>
+  <meta property="og:description" content="Search 10,000+ mergers and acquisitions from SEC EDGAR filings. Free. No registration required."/>
+  <meta property="og:url" content="https://mergers.news/"/>
+  <meta property="og:image" content="https://mergers.news/og-image.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="mergers.news — Global M&A Deal Intelligence"/>
+  <meta name="twitter:image" content="https://mergers.news/og-image.png"/>
+  <link rel="canonical" href="https://mergers.news/"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <title>mergers.news — Global M&A Deal Intelligence | Search 10,000+ Deals</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q0RPXEDKS1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-Q0RPXEDKS1');
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"WebSite","@id":"https://mergers.news/#website","url":"https://mergers.news/","name":"mergers.news","description":"Global M&A deal intelligence platform tracking mergers, acquisitions, tender offers and corporate transactions from SEC EDGAR filings.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://mergers.news/?q={search_term_string}"},"query-input":"required name=search_term_string"}},
+    {"@type":"Organization","@id":"https://mergers.news/#organization","name":"mergers.news","url":"https://mergers.news/","foundingDate":"2026","address":{"@type":"PostalAddress","addressLocality":"Concon","addressRegion":"Región de Valparaíso","addressCountry":"CL"},"contactPoint":{"@type":"ContactPoint","email":"contact@mergers.news","contactType":"customer service"}},
+    {"@type":"Dataset","name":"Global M&A Deals Database — mergers.news","description":"10,000+ mergers, acquisitions, tender offers, and going-private transactions sourced from SEC EDGAR regulatory filings spanning 1993 to present.","url":"https://mergers.news/","temporalCoverage":"1993/..","spatialCoverage":"Global"}
+  ]}
+  </script>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<a href="#mainContent" class="skip-link">Skip to main content</a>
+
+<!-- ── TICKER ─────────────────────────────────────────────── -->
+<div class="ticker-bar" id="tickerBar" aria-hidden="true">
+  <div class="ticker-label">LIVE</div>
+  <div class="ticker-track">
+    <div class="ticker-content" id="tickerContent">
+      <span class="tick-item"><span class="tick-dot">▶</span> Tech M&A leads 2026 with $680B in transactions</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Microsoft / Activision Blizzard $68.7B — largest gaming acquisition</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Private equity dry powder at record $1.4T globally</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Cross-border deals account for 38% of global volume</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Bristol-Myers / Celgene $74B — largest pharma deal ever</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> 10,000+ deals tracked directly from SEC EDGAR filings</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Tech M&A leads 2026 with $680B in transactions</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Microsoft / Activision Blizzard $68.7B — largest gaming acquisition</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Private equity dry powder at record $1.4T globally</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Cross-border deals account for 38% of global volume</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> Bristol-Myers / Celgene $74B — largest pharma deal ever</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> 10,000+ deals tracked directly from SEC EDGAR filings</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── HEADER ─────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <div class="logo" id="logoBtn" role="button" tabindex="0" aria-label="mergers.news — go to homepage">
+      <div class="logo-m">M</div>
+      <div>
+        <div class="logo-wordmark">ERGERS<span>.NEWS</span></div>
+      </div>
+      <div class="logo-dot"></div>
+    </div>
+
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link active">Deals</a>
+      <a href="/ipo" class="nav-link">IPO Watch</a>
+      <a href="/mergers/technology" class="nav-link">Technology</a>
+      <a href="/mergers/healthcare" class="nav-link">Healthcare</a>
+      <a href="/mergers/financial-services" class="nav-link">Financial</a>
+      <a href="/tender-offers" class="nav-link">Filings</a>
+      <a href="/about" class="nav-link">About</a>
+    </nav>
+
+    <button class="search-trigger" id="searchTrigger" aria-label="Open search (Command K)">
+      <span class="search-trigger-icon">⌕</span>
+      <span class="search-trigger-text">Search deals, companies…</span>
+      <span class="search-trigger-kbd">⌘K</span>
+    </button>
+
+    <div class="header-right">
+      <div class="live-clock" id="liveClock" aria-live="off">--:--:-- UTC</div>
+      <div class="live-badge" aria-label="Live updates">
+        <span class="pulse-dot"></span>LIVE
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── COMMAND PALETTE ────────────────────────────────────── -->
+<div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="cmd-palette" id="cmdPalette">
+    <div class="cmd-input-wrap">
+      <span class="cmd-icon">⌕</span>
+      <input type="text" class="cmd-input" id="cmdInput"
+             placeholder="Search deals, companies, sectors…"
+             aria-label="Search deals" autocomplete="off"/>
+      <button class="cmd-esc" id="cmdClose" aria-label="Close search">ESC</button>
+    </div>
+    <div id="cmdBody">
+      <!-- Recent searches shown by default -->
+      <div class="cmd-section" id="cmdRecent">
+        <div class="cmd-section-label">Recent Searches</div>
+        <div id="cmdRecentItems"></div>
+      </div>
+      <!-- Quick nav -->
+      <div class="cmd-section">
+        <div class="cmd-section-label">Browse</div>
+        <div class="cmd-item" data-action="goto" data-href="/mergers/technology">
+          <span class="cmd-item-icon">💻</span>
+          <div class="cmd-item-text">
+            <div class="cmd-item-title">Technology M&A</div>
+            <div class="cmd-item-sub">Software, semiconductors, AI, cloud</div>
+          </div>
+          <span class="cmd-item-badge">1,000+</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-href="/mergers/healthcare">
+          <span class="cmd-item-icon">💊</span>
+          <div class="cmd-item-text">
+            <div class="cmd-item-title">Healthcare M&A</div>
+            <div class="cmd-item-sub">Pharma, biotech, medical devices</div>
+          </div>
+          <span class="cmd-item-badge">900+</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-href="/mergers/financial-services">
+          <span class="cmd-item-icon">🏦</span>
+          <div class="cmd-item-text">
+            <div class="cmd-item-title">Financial Services M&A</div>
+            <div class="cmd-item-sub">Banks, fintech, insurance, asset management</div>
+          </div>
+          <span class="cmd-item-badge">760+</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-href="/tender-offers">
+          <span class="cmd-item-icon">📋</span>
+          <div class="cmd-item-text">
+            <div class="cmd-item-title">Tender Offer Database</div>
+            <div class="cmd-item-sub">SEC Form SC TO-T filings</div>
+          </div>
+          <span class="cmd-item-badge">1,200+</span>
+        </div>
+        <div class="cmd-item" data-action="goto" data-href="/ipo">
+          <span class="cmd-item-icon">▲</span>
+          <div class="cmd-item-text">
+            <div class="cmd-item-title">IPO Watch</div>
+            <div class="cmd-item-sub">Pre-IPO pipeline tracker</div>
+          </div>
+          <span class="cmd-item-badge">20+</span>
+        </div>
+      </div>
+    </div>
+    <!-- Live search results -->
+    <div id="cmdResults" style="display:none"></div>
+    <div class="cmd-footer">
+      <div class="cmd-footer-hint"><kbd>↑↓</kbd> navigate</div>
+      <div class="cmd-footer-hint"><kbd>↵</kbd> open</div>
+      <div class="cmd-footer-hint"><kbd>ESC</kbd> close</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN CONTENT ───────────────────────────────────────── -->
+<main class="main-content" id="mainContent" role="main">
+
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-line"></span>
+            SEC EDGAR · 1993 to Present
+          </div>
+          <h1 class="hero-title">
+            The M&amp;A Intelligence<br/>
+            Platform. <em>Free.</em>
+          </h1>
+          <p class="hero-subtitle">
+            10,000+ mergers and acquisitions sourced directly from SEC EDGAR regulatory filings.
+            Search by company, sector, value, or filing type — no registration required.
+          </p>
+
+          <!-- Hero search -->
+          <div class="hero-search" role="search">
+            <div class="hero-search-inner">
+              <span class="hero-search-icon">⌕</span>
+              <input type="text" class="hero-search-input" id="heroSearchInput"
+                     placeholder="Search deals, companies, sectors…"
+                     aria-label="Search deals"/>
+              <button class="hero-search-btn" id="heroSearchBtn">Search</button>
+            </div>
+            <div class="hero-search-chips">
+              <button class="hero-chip" data-q="Microsoft acquisitions">Microsoft</button>
+              <button class="hero-chip" data-q="healthcare">Healthcare M&A</button>
+              <button class="hero-chip" data-q="tender offer">Tender Offers</button>
+              <button class="hero-chip" data-q="technology software">Tech Software</button>
+              <button class="hero-chip" data-q="private equity going-private">Going Private</button>
+            </div>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num" id="heroStatDeals">10,000+</div>
+              <div class="hero-stat-lbl">Deals Tracked</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">1993</div>
+              <div class="hero-stat-lbl">Coverage From</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">$12T+</div>
+              <div class="hero-stat-lbl">Total Value</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">4</div>
+              <div class="hero-stat-lbl">Filing Types</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero feed — recent deals -->
+        <div class="hero-feed" aria-label="Recent deals">
+          <div class="hero-feed-header">
+            <span class="hero-feed-title">Recent Filings</span>
+            <span class="hero-feed-live"><span class="pulse-dot"></span> Live</span>
+          </div>
+          <div id="heroFeed">
+            <!-- Populated by JS -->
+            <div class="hero-feed-item">
+              <div class="hero-feed-sector skeleton sk-badge" style="width:80px;height:10px;margin-bottom:6px"></div>
+              <div class="hero-feed-headline skeleton" style="height:14px;margin-bottom:6px"></div>
+              <div class="skeleton" style="width:100px;height:10px"></div>
+            </div>
+            <div class="hero-feed-item">
+              <div class="hero-feed-sector skeleton sk-badge" style="width:60px;height:10px;margin-bottom:6px"></div>
+              <div class="hero-feed-headline skeleton" style="height:14px;margin-bottom:6px"></div>
+              <div class="skeleton" style="width:80px;height:10px"></div>
+            </div>
+            <div class="hero-feed-item">
+              <div class="hero-feed-sector skeleton sk-badge" style="width:70px;height:10px;margin-bottom:6px"></div>
+              <div class="hero-feed-headline skeleton" style="height:14px;margin-bottom:6px"></div>
+              <div class="skeleton" style="width:90px;height:10px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── KPI CARDS ──────────────────────────────────────────── -->
+  <section class="kpi-section">
+    <div class="container">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">2026 Deal Volume</div>
+          <div class="kpi-value red" id="kpiYtd">—</div>
+          <div class="kpi-sub">transactions tracked</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Largest Deal</div>
+          <div class="kpi-value green">$74B</div>
+          <div class="kpi-sub">BMS / Celgene · 2019</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Most Active Sector</div>
+          <div class="kpi-value" id="kpiSector">Tech</div>
+          <div class="kpi-sub" id="kpiSectorSub">1,000+ deals</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Filing Types</div>
+          <div class="kpi-value">4</div>
+          <div class="kpi-sub">DEFM14A · SC TO-T · S-4 · 13E-3</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DEAL VOLUME CHART ───────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-title-text">M&A Deal Volume by Year</span>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="chart-control-btn active" data-chart-view="count">Deal Count</button>
+          <button class="chart-control-btn" data-chart-view="sector">By Sector</button>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-body" style="position:relative">
+          <canvas id="volumeChart" class="chart-canvas" height="220"
+                  aria-label="M&A deal volume by year chart" role="img"></canvas>
+          <div class="chart-tooltip" id="chartTooltip" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DEAL DATABASE ───────────────────────────────────────── -->
+  <section class="section" id="dealDatabaseSection">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-title-text">Deal Database</span>
+          <span class="section-title-count" id="dealCountBadge">Loading…</span>
+        </div>
+        <a href="#" class="section-link" id="exportBtn">Export CSV ↗</a>
+      </div>
+
+      <!-- Desktop table -->
+      <div class="deal-table-wrap" id="dealTableWrap">
+        <div class="deal-table-controls">
+          <div class="deal-search-wrap" role="search">
+            <span class="deal-search-icon">⌕</span>
+            <input type="text" class="deal-search-input" id="searchInput"
+                   placeholder="Search deals, companies, sectors…"
+                   aria-label="Search deals by company, sector, or keyword"/>
+            <button id="searchClear" style="display:none;background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer" aria-label="Clear search">✕</button>
+          </div>
+          <div class="filter-pills" role="group" aria-label="Quick filters">
+            <button class="filter-pill active" data-filter-type="status" data-filter-val="all">All Status <span class="filter-pill-arrow">▾</span></button>
+            <button class="filter-pill" data-filter-type="sector" data-filter-val="all">Sector <span class="filter-pill-arrow">▾</span></button>
+            <button class="filter-pill" data-filter-type="value" data-filter-val="all">Value <span class="filter-pill-arrow">▾</span></button>
+            <button class="filter-pill" data-filter-type="type" data-filter-val="all">Type <span class="filter-pill-arrow">▾</span></button>
+            <button class="filter-pill" data-filter-type="sort" data-filter-val="newest">Newest First <span class="filter-pill-arrow">▾</span></button>
+          </div>
+        </div>
+
+        <!-- Filter dropdowns -->
+        <div id="filterDropdown" style="display:none;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg4)">
+          <div style="display:flex;gap:24px;flex-wrap:wrap">
+            <div>
+              <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Status</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap" id="statusFilters">
+                <button class="filter-pill active" data-filter="status-all">All</button>
+                <button class="filter-pill" data-filter="status-Completed">Completed</button>
+                <button class="filter-pill" data-filter="status-Announced">Announced</button>
+                <button class="filter-pill" data-filter="status-Pending">Pending</button>
+                <button class="filter-pill" data-filter="status-Agreed">Agreed</button>
+                <button class="filter-pill" data-filter="status-Rumored">Rumored</button>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Sector</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap" id="sectorFilters">
+                <button class="filter-pill active" data-filter="sector-all">All</button>
+                <button class="filter-pill" data-filter="sector-Technology">Tech</button>
+                <button class="filter-pill" data-filter="sector-Healthcare">Health</button>
+                <button class="filter-pill" data-filter="sector-Finance">Finance</button>
+                <button class="filter-pill" data-filter="sector-Energy">Energy</button>
+                <button class="filter-pill" data-filter="sector-Consumer">Consumer</button>
+                <button class="filter-pill" data-filter="sector-Media">Media</button>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Deal Value</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap" id="valueFilters">
+                <button class="filter-pill active" data-filter="value-all">All</button>
+                <button class="filter-pill" data-filter="value-mega">$10B+</button>
+                <button class="filter-pill" data-filter="value-large">$1B–$10B</button>
+                <button class="filter-pill" data-filter="value-mid">$100M–$1B</button>
+                <button class="filter-pill" data-filter="value-small">&lt;$100M</button>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Sort</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap" id="sortFilters">
+                <button class="filter-pill active" data-filter="sort-newest">Newest</button>
+                <button class="filter-pill" data-filter="sort-oldest">Oldest</button>
+                <button class="filter-pill" data-filter="sort-largest">Largest</button>
+                <button class="filter-pill" data-filter="sort-smallest">Smallest</button>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button id="applyFiltersBtn" style="background:var(--red);color:#fff;padding:7px 16px;border-radius:2px;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;border:none;cursor:pointer">Apply</button>
+            <button id="clearFiltersBtn" style="background:var(--bg5);color:var(--muted);padding:7px 16px;border-radius:2px;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--border2);cursor:pointer" aria-label="Clear all active filters">Clear all</button>
+          </div>
+        </div>
+
+        <div class="deal-count-bar">
+          <span class="deal-count-text" id="dealCountText" aria-live="polite">Loading deals…</span>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted2)">SEC EDGAR · 1993–2026</div>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loadingState">
+          <div class="skeleton-row"><div class="skeleton sk-date"></div><div class="skeleton sk-headline"></div><div class="skeleton sk-value"></div><div class="skeleton sk-badge"></div></div>
+          <div class="skeleton-row"><div class="skeleton sk-date"></div><div class="skeleton sk-headline"></div><div class="skeleton sk-value"></div><div class="skeleton sk-badge"></div></div>
+          <div class="skeleton-row"><div class="skeleton sk-date"></div><div class="skeleton sk-headline"></div><div class="skeleton sk-value"></div><div class="skeleton sk-badge"></div></div>
+          <div class="skeleton-row"><div class="skeleton sk-date"></div><div class="skeleton sk-headline"></div><div class="skeleton sk-value"></div><div class="skeleton sk-badge"></div></div>
+          <div class="skeleton-row"><div class="skeleton sk-date"></div><div class="skeleton sk-headline"></div><div class="skeleton sk-value"></div><div class="skeleton sk-badge"></div></div>
+        </div>
+
+        <!-- Error state -->
+        <div id="errorState" style="display:none">
+          <div class="state-box">
+            <div class="state-icon">⚠</div>
+            <div class="state-title">Could not load deal data</div>
+            <div class="state-text">Unable to connect to the database. Please check your connection and try again.</div>
+            <button class="state-btn" id="retryBtn" aria-label="Retry loading deal data">Retry</button>
+          </div>
+        </div>
+
+        <!-- No results state -->
+        <div id="noResultsState" style="display:none">
+          <div class="state-box">
+            <div class="state-icon">◎</div>
+            <div class="state-title">No deals found</div>
+            <div class="state-text">Try different search terms or remove some filters to see more results.</div>
+            <button class="state-btn" id="clearSearchBtn">Clear filters</button>
+          </div>
+        </div>
+
+        <!-- Deal table -->
+        <table class="deal-table" id="dealTable" style="display:none" role="table" aria-label="M&A deals database">
+          <thead>
+            <tr>
+              <th style="width:90px">Date</th>
+              <th>Transaction</th>
+              <th style="width:110px">Value</th>
+              <th style="width:90px">Type</th>
+              <th style="width:100px">Sector</th>
+              <th style="width:90px">Status</th>
+              <th style="width:80px">Filing</th>
+            </tr>
+          </thead>
+          <tbody id="dealList" role="list" aria-label="M&A deals"></tbody>
+        </table>
+
+        <!-- Load more -->
+        <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+          <button class="load-more-btn" id="loadMoreBtn">
+            <span>Load 50 More Deals</span>
+          </button>
+          <div class="load-more-count" id="loadMoreCount"></div>
+        </div>
+      </div>
+
+      <!-- Mobile cards -->
+      <div class="deal-cards-wrap" id="dealCardsWrap" style="display:none">
+        <div id="dealCardsList"></div>
+        <div class="load-more-wrap" id="loadMoreWrapMobile" style="display:none">
+          <button class="load-more-btn" id="loadMoreBtnMobile">Load 50 More Deals</button>
+          <div class="load-more-count" id="loadMoreCountMobile"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INDUSTRY EXPLORER ───────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-title-text">Explore by Industry</span>
+        </div>
+        <a href="/" class="section-link">All industries →</a>
+      </div>
+      <div class="industry-grid">
+        <a href="/mergers/technology" class="industry-card" style="text-decoration:none">
+          <div class="industry-card-accent"></div>
+          <div class="industry-card-icon">💻</div>
+          <div class="industry-card-name">Technology</div>
+          <div class="industry-card-count" id="indTech">1,000+</div>
+          <div class="industry-card-label">deals tracked</div>
+        </a>
+        <a href="/mergers/healthcare" class="industry-card" style="text-decoration:none">
+          <div class="industry-card-accent"></div>
+          <div class="industry-card-icon">💊</div>
+          <div class="industry-card-name">Healthcare</div>
+          <div class="industry-card-count" id="indHealth">900+</div>
+          <div class="industry-card-label">deals tracked</div>
+        </a>
+        <a href="/mergers/financial-services" class="industry-card" style="text-decoration:none">
+          <div class="industry-card-accent"></div>
+          <div class="industry-card-icon">🏦</div>
+          <div class="industry-card-name">Financial Services</div>
+          <div class="industry-card-count" id="indFinance">760+</div>
+          <div class="industry-card-label">deals tracked</div>
+        </a>
+        <a href="#" onclick="filterBySector('Energy');return false" class="industry-card" style="text-decoration:none">
+          <div class="industry-card-accent"></div>
+          <div class="industry-card-icon">⚡</div>
+          <div class="industry-card-name">Energy</div>
+          <div class="industry-card-count" id="indEnergy">540+</div>
+          <div class="industry-card-label">deals tracked</div>
+        </a>
+        <a href="#" onclick="filterBySector('Consumer');return false" class="industry-card" style="text-decoration:none">
+          <div class="industry-card-accent"></div>
+          <div class="industry-card-icon">🛍</div>
+          <div class="industry-card-name">Consumer</div>
+          <div class="industry-card-count" id="indConsumer">430+</div>
+          <div class="industry-card-label">deals tracked</div>
+        </a>
+        <a href="#" onclick="filterBySector('Telecom');return false" class="industry-card" style="text-decoration:none">
+          <div class="industry-card-accent"></div>
+          <div class="industry-card-icon">📡</div>
+          <div class="industry-card-name">Telecom</div>
+          <div class="industry-card-count" id="indTelecom">290+</div>
+          <div class="industry-card-label">deals tracked</div>
+        </a>
+        <a href="#" onclick="filterBySector('Media');return false" class="industry-card" style="text-decoration:none">
+          <div class="industry-card-accent"></div>
+          <div class="industry-card-icon">📺</div>
+          <div class="industry-card-name">Media</div>
+          <div class="industry-card-count" id="indMedia">210+</div>
+          <div class="industry-card-label">deals tracked</div>
+        </a>
+        <a href="/tender-offers" class="industry-card" style="text-decoration:none">
+          <div class="industry-card-accent"></div>
+          <div class="industry-card-icon">📋</div>
+          <div class="industry-card-name">Tender Offers</div>
+          <div class="industry-card-count">1,200+</div>
+          <div class="industry-card-label">SC TO-T filings</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FILING TYPES ────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-title-text">SEC Filing Types</span>
+        </div>
+        <a href="/tender-offers" class="section-link">Browse filings →</a>
+      </div>
+      <div class="filing-grid">
+        <div class="filing-card" onclick="filterByType('Merger')">
+          <div class="filing-card-code">DEFM14A</div>
+          <div class="filing-card-name">Definitive Merger Proxy</div>
+          <div class="filing-card-desc">Filed by target companies seeking shareholder approval for a merger transaction.</div>
+          <div class="filing-card-count">3,100+</div>
+          <div class="filing-card-count-label">filings</div>
+        </div>
+        <div class="filing-card" onclick="filterByType('Acquisition')">
+          <div class="filing-card-code">SC TO-T</div>
+          <div class="filing-card-name">Tender Offer Statement</div>
+          <div class="filing-card-desc">Filed by acquirers making public cash offers directly to target shareholders.</div>
+          <div class="filing-card-count">1,200+</div>
+          <div class="filing-card-count-label">filings</div>
+        </div>
+        <div class="filing-card" onclick="filterByType('Merger')">
+          <div class="filing-card-code">S-4</div>
+          <div class="filing-card-name">Merger Registration</div>
+          <div class="filing-card-desc">Filed by acquirers issuing shares as consideration in stock-for-stock mergers.</div>
+          <div class="filing-card-count">700+</div>
+          <div class="filing-card-count-label">filings</div>
+        </div>
+        <div class="filing-card" onclick="filterByType('Going-Private')">
+          <div class="filing-card-code">SC 13E-3</div>
+          <div class="filing-card-name">Going-Private Transaction</div>
+          <div class="filing-card-desc">Filed for leveraged buyouts and management buyouts taking companies private.</div>
+          <div class="filing-card-count">250+</div>
+          <div class="filing-card-count-label">filings</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUST SECTION ───────────────────────────────────────── -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-item-icon">📄</div>
+          <div class="trust-item-title">Primary Source Data</div>
+          <div class="trust-item-text">
+            Every transaction is sourced directly from the SEC's EDGAR system — the authoritative US public filing database. We do not estimate, interpolate, or aggregate from secondary sources.
+          </div>
+          <a href="https://www.sec.gov/cgi-bin/browse-edgar" target="_blank" rel="noopener" class="trust-item-link">SEC EDGAR →</a>
+        </div>
+        <div class="trust-item">
+          <div class="trust-item-icon">🔓</div>
+          <div class="trust-item-title">Free. Always.</div>
+          <div class="trust-item-text">
+            No registration. No subscription. No paywall. Bloomberg and PitchBook charge $20,000+ per year for M&A data. mergers.news provides direct SEC-sourced deal intelligence at $0.
+          </div>
+          <a href="/about" class="trust-item-link">Our mission →</a>
+        </div>
+        <div class="trust-item">
+          <div class="trust-item-icon">📅</div>
+          <div class="trust-item-title">Three Decades of Coverage</div>
+          <div class="trust-item-text">
+            Coverage spans 1993 to present across all major sectors and regions. Every M&A cycle — the dot-com era, the 2007 PE boom, the post-GFC recovery, and the AI wave — is represented in our database.
+          </div>
+          <a href="/about" class="trust-item-link">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LEARN ───────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-title-text">New to M&A?</span>
+        </div>
+      </div>
+      <div class="learn-grid">
+        <div class="learn-card">
+          <div class="learn-card-category">Fundamentals</div>
+          <div class="learn-card-title">What is a Merger vs. Acquisition?</div>
+          <div class="learn-card-desc">Understand the key differences between merger structures, asset acquisitions, and share purchases — with real examples from our database.</div>
+          <div class="learn-card-meta">3 min read · Beginner</div>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-category">SEC Filings</div>
+          <div class="learn-card-title">How to Read a DEFM14A Proxy</div>
+          <div class="learn-card-desc">The definitive merger proxy contains everything you need to understand a deal — price, timeline, fairness opinion, and all conditions. Here's how to navigate one.</div>
+          <div class="learn-card-meta">5 min read · Intermediate</div>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-category">Valuation</div>
+          <div class="learn-card-title">M&A Deal Valuation Multiples</div>
+          <div class="learn-card-desc">EV/Revenue, EV/EBITDA, price-to-earnings — the key multiples investment bankers use to value acquisition targets and how to find them in SEC filings.</div>
+          <div class="learn-card-meta">7 min read · Intermediate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTERNAL LINKS ──────────────────────────────────────── -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-title-text">Explore mergers.news</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <a href="/mergers/technology" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">Technology M&A</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Browse 1,000+ technology acquisitions covering software, semiconductors, AI, and cloud computing from 1993 to present.</p>
+        </a>
+        <a href="/mergers/healthcare" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">Healthcare M&A</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Search 900+ healthcare mergers including pharma, biotech, and medical device transactions from 1993 to present.</p>
+        </a>
+        <a href="/mergers/financial-services" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">Financial Services M&A</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Track bank mergers and fintech acquisitions from the SEC EDGAR database spanning 1993 to present.</p>
+        </a>
+        <a href="/tender-offers" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">Tender Offer Database</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Search SEC Form SC TO-T tender offer filings — cash acquisition bids from 1993 to present.</p>
+        </a>
+        <a href="/ipo" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">IPO Watch</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Track pre-IPO companies including Klarna, Stripe, Databricks, and Discord with S-1 filing status and expected timelines.</p>
+        </a>
+        <a href="/about" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">About mergers.news</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Learn about our free M&A deal intelligence platform — data sourced from SEC EDGAR filings, no registration required.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── DEAL MODAL ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Deal details">
+  <div class="modal" id="modal">
+    <div class="modal-hero">
+      <button class="modal-close" id="modalClose" aria-label="Close deal details">✕</button>
+      <div class="modal-eyebrow" id="modalEyebrow"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid" id="modalStats"></div>
+      <div class="modal-section" id="modalSummarySection">
+        <div class="modal-section-title">Transaction Summary</div>
+        <div id="modalSummaryText" style="font-size:13px;color:var(--text2);line-height:1.75"></div>
+      </div>
+
+      <div class="modal-section" id="modalTimeline">
+        <div class="modal-section-title">Transaction Timeline</div>
+        <div class="modal-timeline" id="modalTimelineItems"></div>
+      </div>
+      <div class="modal-section" id="modalDocs">
+        <div class="modal-section-title">SEC Documents</div>
+        <div class="modal-docs" id="modalDocItems"></div>
+      </div>
+      <div class="modal-section" id="modalComparables">
+        <div class="modal-section-title">Comparable Transactions</div>
+        <div class="comparable-grid" id="modalComparableItems"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BOTTOM NAV (mobile) ─────────────────────────────────── -->
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <style>
+    .bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      width: 100%;
+      background: rgba(7,8,10,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      z-index: 200;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      box-sizing: border-box;
+    }
+    .bnav-inner {
+      display: flex;
+      width: 100%;
+      height: 58px;
+      align-items: stretch;
+    }
+    .bnav-item {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      border-top: 2px solid transparent;
+      cursor: pointer;
+      color: rgba(107,114,128,0.75);
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+    .bnav-item:active { opacity: 0.6; }
+    .bnav-item.active { color: #c8102e; border-top-color: #c8102e; }
+    .bnav-icon { width: 19px; height: 19px; flex-shrink: 0; }
+    .bnav-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      line-height: 1;
+      white-space: nowrap;
+    }
+  </style>
+  <div class="bnav-inner">
+
+    <button class="bnav-item active" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Home">
+      <!-- House -->
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2.5L2.5 9H4v8.5h4.5V13h3v4.5H16V9h1.5L10 2.5z"/>
+      </svg>
+      <span class="bnav-label">Home</span>
+    </button>
+
+    <button class="bnav-item" id="mobileSearchBtn" aria-label="Search deals">
+      <!-- Magnifier -->
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="8.5" cy="8.5" r="5"/>
+        <line x1="12.5" y1="12.5" x2="17" y2="17"/>
+      </svg>
+      <span class="bnav-label">Search</span>
+    </button>
+
+    <a href="/ipo" class="bnav-item" aria-label="IPO Watch">
+      <!-- Upward triangle / market chart -->
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3.5l6.5 12H3.5L10 3.5z"/>
+      </svg>
+      <span class="bnav-label">IPO</span>
+    </a>
+
+    <a href="/about" class="bnav-item" aria-label="About mergers.news">
+      <!-- Newspaper / document — fits M&A intelligence theme -->
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2v1h10V6H5zm0 3v1h10V9H5zm0 3v1h6v-1H5z" clip-rule="evenodd"/>
+      </svg>
+      <span class="bnav-label">About</span>
+    </a>
+
+    <a href="/contact" class="bnav-item" aria-label="Contact">
+      <!-- Paper plane / send -->
+      <svg class="bnav-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.5 3.5l15 6.5-15 6.5V12l10-2-10-2V3.5z"/>
+      </svg>
+      <span class="bnav-label">Contact</span>
+    </a>
+
+  </div>
+</nav>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">M<span>.NEWS</span></div>
+        <div class="footer-tagline">Global M&A deal intelligence. All data sourced directly from public SEC EDGAR regulatory filings. Not financial advice.</div>
+        <div class="footer-edgar">
+          <span class="footer-edgar-dot"></span>
+          Powered by SEC EDGAR
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <ul class="footer-links">
+          <li><a href="/">Deal Database</a></li>
+          <li><a href="/ipo">IPO Watch</a></li>
+          <li><a href="/tender-offers">Tender Offers</a></li>
+          <li><a href="/mergers/technology">Technology M&A</a></li>
+          <li><a href="/mergers/healthcare">Healthcare M&A</a></li>
+          <li><a href="/mergers/financial-services">Financial M&A</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="mailto:contact@mergers.news">contact@mergers.news</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/legal/terms">Terms of Use</a></li>
+          <li><a href="/legal/privacy">Privacy Policy</a></li>
+          <li><a href="/legal/disclaimer">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 mergers.news. Headquartered in Concon, Región de Valparaíso, Chile.</div>
+      <div class="footer-bottom-links">
+        <a href="/legal/terms">Terms</a>
+        <a href="/legal/privacy">Privacy</a>
+        <a href="/legal/disclaimer">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── NOSCRIPT ────────────────────────────────────────────── -->
+<noscript>
+  <div class="noscript-fallback">
+    <h1>mergers.news — Global M&A Deal Intelligence</h1>
+    <p>mergers.news tracks 10,000+ mergers and acquisitions from SEC EDGAR regulatory filings spanning 1993 to present. Enable JavaScript to search and filter all deals.</p>
+    <h2>Notable Deals in our Database</h2>
+    <ul>
+      <li>Microsoft / Activision Blizzard — $68.7B — Technology — 2023</li>
+      <li>Bristol-Myers Squibb / Celgene — $74B — Healthcare — 2019</li>
+      <li>CVS Health / Aetna — $69B — Financial Services — 2018</li>
+      <li>Broadcom / VMware — $61B — Technology — 2023</li>
+      <li>AbbVie / Allergan — $63B — Healthcare — 2020</li>
+    </ul>
+    <h2>Browse by Sector</h2>
+    <p><a href="/mergers/technology">Technology M&A</a> · <a href="/mergers/healthcare">Healthcare M&A</a> · <a href="/mergers/financial-services">Financial Services M&A</a> · <a href="/tender-offers">Tender Offers</a></p>
+  </div>
+</noscript>
+
+<script>
+  // Bottom nav: show on mobile, hide on desktop
+  function updateBottomNav() {
+    var nav = document.querySelector('.bottom-nav');
+    if (!nav) return;
+    nav.style.display = window.innerWidth <= 768 ? 'flex' : 'none';
+  }
+  updateBottomNav();
+  window.addEventListener('resize', updateBottomNav);
+</script>
+<script src="/app.js"></script>
+<script src="/charts.js"></script>
+</body>
+</html>

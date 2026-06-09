@@ -1,0 +1,34 @@
+name: Enrich deals — fix placeholder acquirer/target names
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: 'Number of deals to process per run (default 500)'
+        required: false
+        default: '500'
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout mawire-db
+        uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pg
+        run: npm install pg
+
+      - name: Run deal enrichment
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          BATCH: ${{ github.event.inputs.batch || '500' }}
+        run: node FIX-enrich-deals.js
