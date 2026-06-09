@@ -28,6 +28,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install Node.js dependencies
+        run: npm install pg
+
       - name: Run M&A backfill (DEFM14A + SC TO-T + S-4 + SC 13E-3)
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
