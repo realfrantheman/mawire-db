@@ -1,0 +1,29 @@
+name: Deploy to mawire-platform and mawire-site
+
+on:
+  push:
+    branches:
+      - main
+      - 'claude/**'
+    paths:
+      - 'FIX-*.js'
+      - 'DEPLOY-*.html'
+      - 'DEPLOY-vercel.json'
+      - 'app.js'
+      - 'style.css'
+      - 'deploy.py'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout mawire-db
+        uses: actions/checkout@v4
+
+      - name: Deploy all files to mawire-platform and mawire-site
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
+        run: python3 deploy.py
