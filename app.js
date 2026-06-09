@@ -332,6 +332,13 @@ function onDealsLoaded() {
   applyFilters();
   updateIndustryCounts();
   if (window.renderVolumeChart) window.renderVolumeChart(allDeals);
+
+  // Open deal from permalink /deal/12345
+  if (window._pendingDealId) {
+    var deal = allDeals.find(function(d) { return d.id === window._pendingDealId; });
+    window._pendingDealId = null;
+    if (deal) setTimeout(function() { openModal(deal); }, 50);
+  }
 }
 
 function showLoading() {
@@ -801,6 +808,11 @@ function openModal(deal) {
     overlay.focus();
   }
   document.body.style.overflow = 'hidden';
+
+  // Push permalink URL so each deal is directly shareable
+  var slug = '/deal/' + deal.id;
+  history.pushState({ dealId: deal.id }, deal.headline || 'Deal', slug);
+  document.title = (deal.headline || 'Deal') + ' | mergers.news';
 }
 
 function closeModal() {
@@ -808,6 +820,8 @@ function closeModal() {
   if (overlay) overlay.classList.remove('open');
   document.body.style.overflow = '';
   currentDeal = null;
+  history.pushState(null, 'mergers.news — Global M&A Intelligence', '/');
+  document.title = 'mergers.news — Global M&A Deal Intelligence';
 }
 
 /* ── SECTOR INFERENCE FROM KEYWORDS ─────────────────────── */
@@ -983,11 +997,14 @@ function findComparables(d) {
 
 function shareModal() {
   if (!currentDeal) return;
-  var url = window.location.origin + '/?q=' + encodeURIComponent(currentDeal.headline || '');
+  var url = window.location.origin + '/deal/' + currentDeal.id;
   if (navigator.clipboard) {
     navigator.clipboard.writeText(url).then(function() {
-      alert('Link copied to clipboard');
-    });
+      var btn = document.querySelector('[onclick="shareModal()"]');
+      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Share'; }, 1800); }
+    }).catch(function() { prompt('Copy this link:', url); });
+  } else {
+    prompt('Copy this link:', url);
   }
 }
 
@@ -1054,7 +1071,31 @@ function handleUrlParams() {
     var si = el('searchInput');
     if (si) si.value = q;
   }
+  // /deal/12345 — open specific deal once data loads
+  var m = window.location.pathname.match(/^\/deal\/(\d+)$/);
+  if (m) window._pendingDealId = parseInt(m[1], 10);
 }
+
+/* ── BROWSER BACK/FORWARD ───────────────────────────────────── */
+window.addEventListener('popstate', function(e) {
+  if (e.state && e.state.dealId) {
+    var deal = allDeals.find(function(d) { return d.id === e.state.dealId; });
+    if (deal) {
+      currentDeal = deal;
+      populateModal(deal);
+      var ov = el('modalOverlay');
+      if (ov) { ov.classList.add('open'); ov.focus(); }
+      document.body.style.overflow = 'hidden';
+      document.title = (deal.headline || 'Deal') + ' | mergers.news';
+    }
+  } else {
+    var ov = el('modalOverlay');
+    if (ov) ov.classList.remove('open');
+    document.body.style.overflow = '';
+    currentDeal = null;
+    document.title = 'mergers.news — Global M&A Deal Intelligence';
+  }
+});
 
 /* ── INIT ────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
