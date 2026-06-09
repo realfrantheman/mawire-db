@@ -286,7 +286,9 @@ async function fetchAllS1s() {
     ['2024-01-01', '2024-12-31'],
     ['2023-01-01', '2023-12-31'],
   ];
-  var forms = ['S-1', 'S-1/A'];
+  // S-1/S-1/A: US domestic IPOs
+  // F-1/F-1/A: Foreign private issuers (UK, EU, Asia, LatAm listing in US)
+  var forms = ['S-1', 'S-1/A', 'F-1', 'F-1/A'];
 
   for (var f = 0; f < forms.length; f++) {
     var form = forms[f];

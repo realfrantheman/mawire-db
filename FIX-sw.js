@@ -1,17 +1,17 @@
 'use strict';
 
-var CACHE = 'mergers-news-v5';
+var CACHE = 'mergers-news-v6';
 var SHELL = [
-  '/index.html',
+  '/',
   '/style.css',
   '/app.js',
   '/charts.js',
   '/manifest.json',
-  '/about.html',
+  '/about',
   '/about.js',
-  '/ipo.html',
+  '/ipo',
   '/ipo.js',
-  '/contact.html'
+  '/contact'
 ];
 
 self.addEventListener('install', function(e) {
@@ -56,13 +56,13 @@ self.addEventListener('fetch', function(e) {
   // Formspree form submissions — pass through
   if (url.hostname === 'formspree.io') return;
 
-  // HTML navigation — network first, then cached page, then index
-  if (req.headers.get('accept') && req.headers.get('accept').includes('text/html')) {
+  // HTML navigation — always network first; SW never intercepts nav on the
+  // same URL twice in quick succession to prevent the double-click download bug.
+  if (req.mode === 'navigate') {
     e.respondWith(
       fetch(req).catch(function() {
-        return caches.match(req).then(function(cached) {
-          return cached || caches.match('/index.html');
-        });
+        return caches.match(req)
+          .then(function(c) { return c || caches.match('/'); });
       })
     );
     return;
