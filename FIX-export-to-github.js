@@ -9,7 +9,7 @@
 const https    = require('https');
 const { Pool } = require('pg');
 
-const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: process.env.NODE_ENV === 'production' } });
+const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = process.env.GITHUB_REPO || 'realfrantheman/mawire-db';

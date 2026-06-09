@@ -11,7 +11,7 @@ const https    = require('https');
 const http     = require('http');
 const { Pool } = require('pg');
 
-const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: process.env.NODE_ENV === 'production' } });
+const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 const FILING_TYPES  = ['DEFM14A', 'SC TO-T', 'S-4', 'SC 13E-3', 'DEFA14A', 'SC TO-T/A', 'PREM14A', 'SC 13E-3/A'];
 const START_YEAR    = 1993;

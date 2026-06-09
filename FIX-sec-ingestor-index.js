@@ -19,7 +19,7 @@ const CONFIG = {
   lookback_days: 2,
 };
 
-const db = new Pool({ connectionString: CONFIG.db_url, ssl: { rejectUnauthorized: process.env.NODE_ENV === 'production' } });
+const db = new Pool({ connectionString: CONFIG.db_url, ssl: { rejectUnauthorized: false } });
 
 // ── MAIN ──────────────────────────────────────────────────────────
 async function run() {
