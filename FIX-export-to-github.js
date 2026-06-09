@@ -72,7 +72,6 @@ async function run() {
       ORDER BY id
       LIMIT 1
     ) f ON true
-    WHERE d.canonical_id IS NULL
     ORDER BY d.announcement_date DESC NULLS LAST
   `);
 
