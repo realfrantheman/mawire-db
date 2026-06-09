@@ -697,7 +697,7 @@ function buildRow(d, i) {
 function buildRowInner(d) {
   var statusClass = 'badge-' + (d.status || 'rumored').toLowerCase();
   var displaySector = (d.sector && d.sector !== 'Other') ? d.sector : inferSector(d);
-  var filingType  = d.filingType || (d.dealType === 'Acquisition' ? 'SC TO-T' : 'DEFM14A');
+  var filingType  = getFilingLabel(d);
   var filingUrl   = safeUrl(d.sourceUrl || d.edgarUrl || '#');
 
   return '<td class="deal-date-cell">' + esc(d.date || String(d.year || '—')) + '</td>' +
@@ -878,7 +878,7 @@ function populateModal(d) {
       { label: 'Acquirer',       value: d.acquirer  || 'Undisclosed' },
       { label: 'Target',         value: d.target    || 'Undisclosed' },
       { label: 'Date',           value: d.date || String(d.year || 'Unknown') },
-      { label: 'Filing Type',    value: d.filingType || d.dealType || '—' },
+      { label: 'Filing Type',    value: getFilingLabel(d) },
       { label: 'Sector',         value: (d.sector && d.sector !== 'Other') ? d.sector : inferSector(d) },
     ];
     if (d.premium) statDefs.push({ label: 'Premium', value: d.premium });
@@ -914,16 +914,16 @@ function populateModal(d) {
   var docItems = el('modalDocItems');
   if (docItems) {
     var filingUrl = safeUrl(d.sourceUrl || d.edgarUrl || '');
-    var filingType = d.filingType || (d.dealType === 'Acquisition' ? 'SC TO-T' : 'DEFM14A');
+    var filingType = getFilingLabel(d);
     if (filingUrl && filingUrl !== '#') {
       docItems.innerHTML =
         '<div class="modal-doc">' +
           '<div class="modal-doc-icon">📄</div>' +
           '<div class="modal-doc-info">' +
             '<div class="modal-doc-type">' + esc(filingType) + '</div>' +
-            '<div class="modal-doc-desc">' + getFilingDesc(filingType) + '</div>' +
+            '<div class="modal-doc-desc">' + getFilingDesc(d) + '</div>' +
           '</div>' +
-          '<a href="' + filingUrl + '" target="_blank" rel="noopener" class="modal-doc-link">EDGAR ↗</a>' +
+          '<a href="' + filingUrl + '" target="_blank" rel="noopener" class="modal-doc-link">' + getFilingSourceLabel(d) + '</a>' +
         '</div>';
     } else {
       docItems.innerHTML = '<div style="font-family:var(--mono);font-size:10px;color:var(--muted)">Filing URL not available for this record.</div>';
@@ -974,14 +974,42 @@ function populateModal(d) {
   }
 }
 
-function getFilingDesc(type) {
-  var descs = {
+function getFilingLabel(d) {
+  var st = (d.sourceType || d.extractionMethod || '').toLowerCase();
+  if (st === 'news_rss')              return 'Press Release';
+  if (st === 'eu_merger_registry')    return 'EU Filing';
+  if (st === 'asx')                   return 'ASX Filing';
+  if (st === 'hkex')                  return 'HKEX Filing';
+  if (st === 'sgx')                   return 'SGX Filing';
+  if (d.filingType)                   return d.filingType;
+  return d.dealType === 'Acquisition' ? 'SC TO-T' : 'DEFM14A';
+}
+
+function getFilingSourceLabel(d) {
+  var st = (d.sourceType || d.extractionMethod || '').toLowerCase();
+  if (st === 'news_rss')              return 'Source ↗';
+  if (st === 'eu_merger_registry')    return 'EC ↗';
+  if (st === 'asx')                   return 'ASX ↗';
+  if (st === 'hkex')                  return 'HKEX ↗';
+  if (st === 'sgx')                   return 'SGX ↗';
+  return 'EDGAR ↗';
+}
+
+function getFilingDesc(d) {
+  var label = typeof d === 'string' ? d : getFilingLabel(d);
+  var st    = typeof d === 'string' ? '' : (d.sourceType || d.extractionMethod || '').toLowerCase();
+  if (st === 'news_rss')           return 'Press release sourced from ' + (d.sourceName || 'newswire') + ' — may require verification';
+  if (st === 'eu_merger_registry') return 'European Commission merger registry filing — notified under EU Merger Regulation';
+  if (st === 'asx')                return 'ASX market announcement — filed by acquirer or target with the Australian Securities Exchange';
+  if (st === 'hkex')               return 'HKEX company announcement — filed with the Hong Kong Stock Exchange';
+  if (st === 'sgx')                return 'SGX company announcement — filed with the Singapore Exchange';
+  var secDescs = {
     'DEFM14A': 'Definitive merger proxy — filed by target for shareholder approval',
     'SC TO-T':  'Tender offer statement — filed by acquirer making public share offer',
     'S-4':      'Merger registration — stock-for-stock merger consideration',
     'SC 13E-3': 'Going-private transaction — LBO or management buyout'
   };
-  return descs[type] || 'SEC regulatory filing';
+  return secDescs[label] || 'SEC regulatory filing';
 }
 
 function findComparables(d) {
