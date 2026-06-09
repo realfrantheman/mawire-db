@@ -28,10 +28,39 @@ const RSS_FEEDS = [
   },
 ];
 
-const MA_KEYWORDS = [
-  'acquires', 'acquisition', 'merger', 'takeover',
-  'to buy', 'agrees to buy', 'to merge', 'bid for',
-  'tender offer', 'going private', 'going-private',
+// Unambiguous M&A signals — a match alone is sufficient
+const STRONG_MA_KEYWORDS = [
+  'to acquire ', 'agrees to acquire', 'acquisition of ',
+  'completing acquisition', 'complete acquisition', 'completed acquisition',
+  'announces acquisition', 'announces merger', 'merger with ',
+  'to merge with', 'agrees to merge',
+  'tender offer', 'going-private', 'going private',
+  'buyout of', 'take private', 'taken private',
+  'to be acquired by', 'acquired by ',
+  'definitive agreement to ', 'signs definitive agreement',
+];
+
+// Weaker signals — valid only when entity extraction also succeeds
+const WEAK_MA_KEYWORDS = [
+  'acquires ', 'acquisition', 'merger', 'takeover', 'to buy ', 'bid for ',
+];
+
+// Disqualifiers — block the item even if an MA keyword matched
+const EXCLUDE_KEYWORDS = [
+  'acquires rights', 'acquires license', 'acquires content', 'acquires land',
+  'acquires property', 'acquires building', 'acquires office',
+  'acquires minority', 'acquires equity stake', 'acquires stake in',
+  'minority stake', 'minority investment', 'strategic investment',
+  'strategic alliance', 'partnership agreement', 'joint venture',
+  'series a ', 'series b ', 'series c ', 'series d ', 'seed round',
+  'funding round', 'raises $', 'raised $', 'raises funding', 'secures funding',
+  'licensing agreement', 'license agreement', 'distribution agreement',
+  'content deal', 'marketing agreement', 'supply agreement',
+  'wins contract', 'awarded contract', 'contract award',
+  'credit facility', 'loan agreement', 'refinanc',
+  'ipo ', 'initial public offering',
+  'real estate', 'acquires hotel', 'acquires portfolio',
+  'buys back', 'share buyback', 'stock buyback', 'repurchase',
 ];
 
 const ENTITY_PATTERNS = [
@@ -116,7 +145,20 @@ function extractTag(xml, tag) {
 
 function isMaDeal(item) {
   const text = ((item.title || '') + ' ' + (item.description || '')).toLowerCase();
-  return MA_KEYWORDS.some(kw => text.includes(kw));
+
+  // Hard exclusions first — these are never M&A regardless of other keywords
+  if (EXCLUDE_KEYWORDS.some(kw => text.includes(kw))) return false;
+
+  // Strong signal alone is sufficient
+  if (STRONG_MA_KEYWORDS.some(kw => text.includes(kw))) return true;
+
+  // Weak signal only qualifies if we can also extract two distinct parties
+  if (WEAK_MA_KEYWORDS.some(kw => text.includes(kw))) {
+    const { acquirer, target } = extractEntities(item.title || '');
+    return !!(acquirer && target);
+  }
+
+  return false;
 }
 
 async function processNewsItem(item, feedName) {
@@ -191,10 +233,11 @@ function extractDealValue(text) {
 function inferDealType(title) {
   const t = title.toLowerCase();
   if (/tender\s+offer/.test(t))                                      return 'Tender Offer';
-  if (/going.private/.test(t))                                       return 'Going-Private';
+  if (/going.private|take\s+private|taken\s+private/.test(t))       return 'Going-Private';
+  if (/buyout/.test(t))                                              return 'Buyout';
   if (/merger|to\s+merge/.test(t))                                   return 'Merger';
   if (/acquires|acquisition|to\s+buy|agrees\s+to\s+buy/.test(t))    return 'Acquisition';
-  return 'Merger';
+  return 'Acquisition';
 }
 
 function parseDateFlexible(str) {
