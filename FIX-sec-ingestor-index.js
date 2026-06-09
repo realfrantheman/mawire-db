@@ -16,7 +16,7 @@ const CONFIG = {
   db_url:        process.env.DATABASE_URL,
   batch_size:    100,
   filing_types: ['DEFM14A', 'SC TO-T', 'S-4', 'SC 13E-3', 'DEFA14A', 'SC TO-T/A'],
-  lookback_days: 2,
+  lookback_days: parseInt(process.env.LOOKBACK_DAYS || '2', 10),
 };
 
 const db = new Pool({ connectionString: CONFIG.db_url, ssl: { rejectUnauthorized: false } });
@@ -516,5 +516,5 @@ async function endLog(id, status, stats, error) {
 module.exports = { run };
 
 if (require.main === module) {
-  run().catch(console.error);
+  run().then(() => db.end()).catch(e => { console.error(e); db.end(); process.exit(1); });
 }

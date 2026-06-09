@@ -307,10 +307,13 @@ function loadDeals() {
 
       // Validate and sanitise
       var NON_MA_TYPES = { 'Funding Round': 1, 'Strategic Investment': 1, 'Divestiture': 1 };
+      // Headlines that are clearly product/earnings announcements, not M&A
+      var NON_MA_HEADLINE = /\bto (?:release|launch|unveil|introduce|present|ship)\b|\bearnings?\b|\bquarterly results?\b|\bproduct launch\b|\bsensor\b|\bfirmware\b|\bsoftware update\b|\bIPO priced\b/i;
       var safe = data.filter(function(d) {
         if (!d || typeof d !== 'object') return false;
         if (typeof d.headline !== 'string') return false;
         if (d.dealType && NON_MA_TYPES[d.dealType]) return false;
+        if (NON_MA_HEADLINE.test(d.headline)) return false;
         var fields = [d.headline, d.acquirer, d.target, d.body];
         for (var i = 0; i < fields.length; i++) {
           if (typeof fields[i] === 'string' && /<script/i.test(fields[i])) return false;

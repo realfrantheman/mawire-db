@@ -14,9 +14,9 @@ const { Pool } = require('pg');
 const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 const FILING_TYPES  = ['DEFM14A', 'SC TO-T', 'S-4', 'SC 13E-3', 'DEFA14A', 'SC TO-T/A', 'PREM14A', 'SC 13E-3/A'];
-const START_YEAR    = 1993;
-const END_YEAR      = new Date().getFullYear();
-const DELAY_MS      = 600; // be polite to SEC servers
+const START_YEAR    = parseInt(process.env.BACKFILL_START_YEAR || '1993', 10);
+const END_YEAR      = parseInt(process.env.BACKFILL_END_YEAR   || String(new Date().getFullYear()), 10);
+const DELAY_MS      = 400; // be polite to SEC servers
 
 async function run() {
   console.log(`[BACKFILL] Starting historical backfill ${START_YEAR}–${END_YEAR}`);
@@ -38,19 +38,18 @@ async function run() {
         for (const filing of filings) {
           try {
             const result = await processFiling(filing, filingType);
-            if (result === 'new')     totalNew++;
-            if (result === 'skip')    totalSkipped++;
+            if (result === 'new')     { totalNew++;     await sleep(DELAY_MS); }
+            if (result === 'skip')    { totalSkipped++;  /* no delay for skips */ }
           } catch (err) {
             totalFailed++;
             // silent — keep going
           }
-          await sleep(DELAY_MS);
         }
       } catch (err) {
         console.error(`[BACKFILL] ${filingType} ${year} error:`, err.message);
       }
 
-      await sleep(500);
+      await sleep(300);
     }
   }
 

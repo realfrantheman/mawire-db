@@ -136,9 +136,17 @@ async function run() {
     };
   });
 
-  console.log(`[EXPORT] Exporting ${deals.length} deals to GitHub...`);
+  console.log(`[EXPORT] Exporting ${deals.length} deals...`);
 
-  const json    = JSON.stringify(deals, null, 2);
+  const json = JSON.stringify(deals, null, 2);
+
+  // LOCAL_ONLY=true: write to disk only (workflow commits via git)
+  if (process.env.LOCAL_ONLY === 'true') {
+    require('fs').writeFileSync('deals.json', json + '\n');
+    console.log('[EXPORT] Wrote', deals.length, 'deals to local deals.json');
+    return;
+  }
+
   const encoded = Buffer.from(json).toString('base64');
   const sha     = await getFileSHA();
 
@@ -302,12 +310,28 @@ function buildSubheadline(row, acquirer, target, date) {
 }
 
 function reconstructEdgarUrl(row) {
-  const cik = row.filingCik;
-  const accNo = row.accessionNo;
-  if (!cik || !accNo) return null;
-  const folder = String(accNo).replace(/-/g, '');
-  if (!folder || folder.length < 10) return null;
-  return `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
+  const rawAcc = row.accessionNo;
+  if (!rawAcc) return null;
+
+  // accession_no may be stored as full EFTS hit._id: "0001213900-26-066422:filename.htm"
+  const colonIdx = String(rawAcc).indexOf(':');
+  const accPart  = colonIdx >= 0 ? String(rawAcc).slice(0, colonIdx) : String(rawAcc);
+  const fileName = colonIdx >= 0 ? String(rawAcc).slice(colonIdx + 1) : '';
+
+  // Use stored CIK if available; otherwise extract from first 10 digits of accession number
+  let cik = row.filingCik;
+  if (!cik) {
+    const m = accPart.match(/^(\d{10})-\d{2}-\d{6}/);
+    if (m) cik = parseInt(m[1], 10).toString();
+  }
+  if (!cik || !accPart) return null;
+
+  const folder = accPart.replace(/-/g, '');
+  if (!folder || folder.length < 18) return null;
+
+  return fileName
+    ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
+    : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
 }
 
 function resolveSourceName(row) {

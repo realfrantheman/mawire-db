@@ -1,15 +1,21 @@
-name: Refresh deals.json from SEC EDGAR
+name: Historical M&A Backfill (manual)
 
 on:
-  schedule:
-    # Every Sunday at 02:00 UTC
-    - cron: '0 2 * * 0'
   workflow_dispatch:
+    inputs:
+      start_year:
+        description: 'Start year (e.g. 2020)'
+        required: true
+        default: '2020'
+      end_year:
+        description: 'End year (e.g. 2024)'
+        required: true
+        default: '2024'
 
 jobs:
-  refresh:
+  backfill:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 115
 
     steps:
       - name: Checkout mawire-db
@@ -26,11 +32,12 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install pg
 
-      - name: Ingest new SEC filings (last 8 days)
+      - name: Run historical backfill (${{ github.event.inputs.start_year }}–${{ github.event.inputs.end_year }})
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          LOOKBACK_DAYS: '8'
-        run: node FIX-sec-ingestor-index.js
+          BACKFILL_START_YEAR: ${{ github.event.inputs.start_year }}
+          BACKFILL_END_YEAR: ${{ github.event.inputs.end_year }}
+        run: node FIX-historical-backfill.js
 
       - name: Export full DB → deals.json
         env:
@@ -38,19 +45,13 @@ jobs:
           LOCAL_ONLY: 'true'
         run: node FIX-export-to-github.js
 
-      - name: Run IPO fetcher (S-1 filings)
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
-        run: node fetch-ipos.js
-
       - name: Commit and push deals.json
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
           git add deals.json
           git diff --cached --quiet && echo "No changes to commit" || \
-            git commit -m "chore: refresh deals.json [skip ci]"
+            git commit -m "chore: backfill deals.json ${{ github.event.inputs.start_year }}-${{ github.event.inputs.end_year }} [skip ci]"
           git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main
