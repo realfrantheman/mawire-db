@@ -77,9 +77,16 @@ async function run() {
 
   const now = new Date();
 
+  // Placeholder strings stored in the companies table when extraction failed
+  const PLACEHOLDERS = new Set([
+    'Acquirer (see filing)', 'Disclosed in filing',
+    'Public company target (see filing)', 'Target (see filing)',
+    'Unknown',
+  ]);
+
   const deals = res.rows.map(row => {
-    const acquirer   = row.acquirer || 'Undisclosed';
-    const target     = row.target   || 'Undisclosed';
+    const acquirer = cleanCompanyName(row.acquirer, PLACEHOLDERS);
+    const target   = cleanCompanyName(row.target,   PLACEHOLDERS);
     const dealType   = row.dealType || 'Merger';
     const headline   = row.headline || `${acquirer} / ${target}`;
     const dateObj    = row.announcementDate ? new Date(row.announcementDate) : null;
@@ -308,26 +315,51 @@ function buildSubheadline(row, acquirer, target, date) {
   return parts.join(' — ');
 }
 
+function cleanCompanyName(name, placeholders) {
+  if (!name || placeholders.has(name)) return 'Undisclosed';
+  // Strip EDGAR annotations: "(CEPO)", "(CIK 0002027708)", extra whitespace
+  return name
+    .replace(/\s*\([A-Z]{1,5}\)\s*/g, ' ')        // ticker symbols
+    .replace(/\s*\(CIK\s+\d+\)\s*/gi, ' ')         // CIK annotations
+    .replace(/\s{2,}/g, ' ')
+    .trim() || 'Undisclosed';
+}
+
 function reconstructEdgarUrl(row) {
+  // Path 1: reconstruct from accession_no (populated by current ingestor/backfill)
   const rawAcc = row.accessionNo;
-  if (!rawAcc) return null;
+  if (rawAcc) {
+    const colonIdx = String(rawAcc).indexOf(':');
+    const accPart  = colonIdx >= 0 ? String(rawAcc).slice(0, colonIdx) : String(rawAcc);
+    const fileName = colonIdx >= 0 ? String(rawAcc).slice(colonIdx + 1) : '';
+    const m = accPart.match(/^(\d{10})-\d{2}-\d{6}/);
+    if (m) {
+      const cik    = parseInt(m[1], 10).toString();
+      const folder = accPart.replace(/-/g, '');
+      if (folder.length >= 18) {
+        return fileName
+          ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
+          : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
+      }
+    }
+  }
 
-  // accession_no may be stored as full EFTS hit._id: "0001213900-26-066422:filename.htm"
-  const colonIdx = String(rawAcc).indexOf(':');
-  const accPart  = colonIdx >= 0 ? String(rawAcc).slice(0, colonIdx) : String(rawAcc);
-  const fileName = colonIdx >= 0 ? String(rawAcc).slice(colonIdx + 1) : '';
+  // Path 2: fix old broken edgar_url where accession number was used as CIK
+  // Old format: https://www.sec.gov/Archives/edgar/data/{ACC}/{FOLDER}:{FILENAME}
+  const oldUrl = row.edgarUrl || '';
+  if (oldUrl.includes('/Archives/edgar/data/')) {
+    const m = oldUrl.match(/\/Archives\/edgar\/data\/[^/]+\/(\d{18,20})(?::([^/?#]+))?/);
+    if (m) {
+      const folder   = m[1];
+      const fileName = m[2] || '';
+      const cik      = parseInt(folder.slice(0, 10), 10).toString();
+      return fileName
+        ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
+        : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
+    }
+  }
 
-  // Extract CIK from first 10 digits of the accession number
-  const m = accPart.match(/^(\d{10})-\d{2}-\d{6}/);
-  const cik = m ? parseInt(m[1], 10).toString() : null;
-  if (!cik || !accPart) return null;
-
-  const folder = accPart.replace(/-/g, '');
-  if (!folder || folder.length < 18) return null;
-
-  return fileName
-    ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
-    : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
+  return null;
 }
 
 function resolveSourceName(row) {

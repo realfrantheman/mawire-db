@@ -266,9 +266,11 @@ async function buildIPO(hit, formType, fetchText) {
 
 // ── EDGAR FULL-TEXT SEARCH ────────────────────────────────
 async function edgarSearch(form, startDt, endDt, from) {
+  // No q= filter: fetch ALL filings of this form type in the date range.
+  // A text-match on "IPO" was the original bug that capped results at ~40
+  // because most S-1 filings don't contain that exact phrase in the indexed text.
   var url = 'https://efts.sec.gov/LATEST/search-index' +
-    '?q=' + encodeURIComponent('"initial public offering" OR "IPO"') +
-    '&forms=' + encodeURIComponent(form) +
+    '?forms=' + encodeURIComponent(form) +
     '&dateRange=custom&startdt=' + startDt + '&enddt=' + endDt +
     '&from=' + (from || 0);
   try {
