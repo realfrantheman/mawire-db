@@ -54,8 +54,7 @@ async function run() {
       ds.source_date  AS "sourceDate",
       f.filing_type   AS "filingType",
       f.edgar_url     AS "edgarUrl",
-      f.accession_no  AS "accessionNo",
-      f.cik           AS "filingCik"
+      f.accession_no  AS "accessionNo"
     FROM deals d
     LEFT JOIN companies a     ON d.acquirer_id = a.id
     LEFT JOIN companies t     ON d.target_id   = t.id
@@ -318,12 +317,9 @@ function reconstructEdgarUrl(row) {
   const accPart  = colonIdx >= 0 ? String(rawAcc).slice(0, colonIdx) : String(rawAcc);
   const fileName = colonIdx >= 0 ? String(rawAcc).slice(colonIdx + 1) : '';
 
-  // Use stored CIK if available; otherwise extract from first 10 digits of accession number
-  let cik = row.filingCik;
-  if (!cik) {
-    const m = accPart.match(/^(\d{10})-\d{2}-\d{6}/);
-    if (m) cik = parseInt(m[1], 10).toString();
-  }
+  // Extract CIK from first 10 digits of the accession number
+  const m = accPart.match(/^(\d{10})-\d{2}-\d{6}/);
+  const cik = m ? parseInt(m[1], 10).toString() : null;
   if (!cik || !accPart) return null;
 
   const folder = accPart.replace(/-/g, '');
