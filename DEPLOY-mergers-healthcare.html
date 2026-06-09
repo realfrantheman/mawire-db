@@ -58,7 +58,7 @@
           <a href="/mergers/healthcare" class="header-nav-btn active">Healthcare</a>
           <a href="/mergers/financial-services" class="header-nav-btn">Financial</a>
           <a href="/tender-offers" class="header-nav-btn">Filings</a>
-          <a href="/about" class="header-nav-btn active">About</a>
+          <a href="/about" class="header-nav-btn">About</a>
           <a href="/contact" class="header-nav-btn">Contact</a>
         </nav>
         <div class="header-right">
@@ -178,7 +178,7 @@
   </style>
   <div class="bnav-inner">
 
-    <a href="/" class="bnav-item active" aria-label="Home">
+    <a href="/" class="bnav-item" aria-label="Home">
       <svg class="bnav-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 2.5L2.5 9H4v8.5h4.5V13h3v4.5H16V9h1.5L10 2.5z"/>
       </svg>
@@ -248,18 +248,6 @@
       </div>
     </div>
   </footer>
-  <script>
-    var logoBtn = document.getElementById('logoBtn');
-    if (logoBtn) {
-      logoBtn.addEventListener('click', function(){ window.location.href = '/'; });
-      logoBtn.addEventListener('keydown', function(e){ if(e.key==='Enter') window.location.href='/'; });
-    }
-    var el = document.getElementById('liveClock');
-    function tick(){ el.textContent = new Date().toUTCString().split(' ')[4]+' UTC'; }
-    tick(); setInterval(tick,1000);
-    function pad(){ var h=document.getElementById('siteHeader'),m=document.getElementById('mainContent'); if(h&&m) m.style.paddingTop=(h.offsetHeight+12)+'px'; }
-    pad(); setTimeout(pad,200); setTimeout(pad,600); window.addEventListener('resize',pad);
-  </script>
   <script>
     var _cl=document.getElementById('liveClock'); if(_cl){function _tick(){_cl.textContent=new Date().toUTCString().split(' ')[4]+' UTC';} _tick();setInterval(_tick,1000);}
     var _lb=document.getElementById('logoBtn'); if(_lb){_lb.addEventListener('click',function(){window.location.href='/';});_lb.addEventListener('keydown',function(e){if(e.key==='Enter')window.location.href='/';});}

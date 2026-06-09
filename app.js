@@ -306,9 +306,11 @@ function loadDeals() {
       if (!Array.isArray(data) || !data.length) throw new Error('Empty');
 
       // Validate and sanitise
+      var NON_MA_TYPES = { 'Funding Round': 1, 'Strategic Investment': 1, 'Divestiture': 1 };
       var safe = data.filter(function(d) {
         if (!d || typeof d !== 'object') return false;
         if (typeof d.headline !== 'string') return false;
+        if (d.dealType && NON_MA_TYPES[d.dealType]) return false;
         var fields = [d.headline, d.acquirer, d.target, d.body];
         for (var i = 0; i < fields.length; i++) {
           if (typeof fields[i] === 'string' && /<script/i.test(fields[i])) return false;
@@ -643,7 +645,7 @@ function renderDesktopTable(isFiltered) {
       lmb.onclick = loadMoreDeals;
       lmb.querySelector('span').textContent = 'Load 50 More Deals';
     }
-    if (lmc) lmc.textContent = (filteredDeals.length - PAGE_SIZE).toLocaleString() + ' more deals remaining';
+    if (lmc) lmc.textContent = 'Showing ' + PAGE_SIZE.toLocaleString() + ' of ' + filteredDeals.length.toLocaleString() + ' deals';
   } else {
     if (lmw) lmw.style.display = 'none';
   }
@@ -677,13 +679,14 @@ function loadMoreDeals() {
   tbody.appendChild(frag);
   currentPage++;
 
-  var remaining = filteredDeals.length - (currentPage * PAGE_SIZE);
+  var shown = Math.min(currentPage * PAGE_SIZE, filteredDeals.length);
+  var remaining = filteredDeals.length - shown;
   var lmw = el('loadMoreWrap');
   var lmc = el('loadMoreCount');
   if (remaining <= 0) {
     if (lmw) lmw.style.display = 'none';
   } else {
-    if (lmc) lmc.textContent = remaining.toLocaleString() + ' more deals remaining';
+    if (lmc) lmc.textContent = 'Showing ' + shown.toLocaleString() + ' of ' + filteredDeals.length.toLocaleString() + ' deals';
   }
 }
 
@@ -754,7 +757,7 @@ function renderMobileCards(isFiltered) {
     currentPage = 1;
     if (lmwm) lmwm.style.display = '';
     if (lmbm) lmbm.onclick = loadMoreMobile;
-    if (lmcm) lmcm.textContent = (filteredDeals.length - PAGE_SIZE).toLocaleString() + ' more remaining';
+    if (lmcm) lmcm.textContent = 'Showing ' + PAGE_SIZE.toLocaleString() + ' of ' + filteredDeals.length.toLocaleString() + ' deals';
   } else {
     if (lmwm) lmwm.style.display = 'none';
   }
@@ -789,11 +792,12 @@ function loadMoreMobile() {
   });
 
   currentPage++;
-  var remaining = filteredDeals.length - (currentPage * PAGE_SIZE);
+  var shownM = Math.min(currentPage * PAGE_SIZE, filteredDeals.length);
+  var remainingM = filteredDeals.length - shownM;
   var lmwm = el('loadMoreWrapMobile');
   var lmcm = el('loadMoreCountMobile');
-  if (remaining <= 0) { if (lmwm) lmwm.style.display = 'none'; }
-  else if (lmcm) lmcm.textContent = remaining.toLocaleString() + ' more remaining';
+  if (remainingM <= 0) { if (lmwm) lmwm.style.display = 'none'; }
+  else if (lmcm) lmcm.textContent = 'Showing ' + shownM.toLocaleString() + ' of ' + filteredDeals.length.toLocaleString() + ' deals';
 }
 
 /* ── MODAL ───────────────────────────────────────────────────── */

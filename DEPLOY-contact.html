@@ -546,22 +546,6 @@
   </footer>
 
   <script>
-    // Logo navigation
-    var logoBtn = document.getElementById('logoBtn');
-    if (logoBtn) {
-      logoBtn.addEventListener('click', function(){ window.location.href = '/'; });
-      logoBtn.addEventListener('keydown', function(e){ if(e.key==='Enter') window.location.href='/'; });
-    }
-
-    // Clock
-    var el = document.getElementById('liveClock');
-    function tick(){ el.textContent = new Date().toUTCString().split(' ')[4]+' UTC'; }
-    tick(); setInterval(tick,1000);
-
-    // Dynamic padding
-    function pad(){ var h=document.getElementById('siteHeader'),m=document.getElementById('mainContent'); if(h&&m) m.style.paddingTop=(h.offsetHeight+12)+'px'; }
-    pad(); setTimeout(pad,200); setTimeout(pad,600); window.addEventListener('resize',pad);
-
     // Form submission via Formspree
     var form = document.getElementById('contactForm');
     var btn  = document.getElementById('submitBtn');
