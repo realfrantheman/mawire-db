@@ -93,7 +93,9 @@ async function processFiling(filing, filingType) {
   if (existing.rows.length > 0) return 'skip';
 
   const detail  = await fetchFilingDetail(filing.cik, filing.id);
-  const dealInfo = extractDealInfo(filing, detail, filingType);
+  const rawHtml = await fetchFilingText(detail?.document_url || '');
+  const docText = rawHtml ? stripHtml(rawHtml) : '';
+  const dealInfo = extractDealInfo(filing, detail, filingType, docText);
 
   const acquirerResult = await upsertCompany(dealInfo.acquirer, filing.cik);
   const targetResult   = await upsertCompany(dealInfo.target, null);
@@ -138,34 +140,106 @@ async function fetchFilingDetail(cik, accessionNo) {
   } catch { return null; }
 }
 
-function extractDealInfo(filing, detail, filingType) {
+async function fetchFilingText(documentUrl) {
+  if (!documentUrl) return '';
+  try {
+    return await new Promise((resolve) => {
+      const req = https.get(documentUrl, {
+        headers: { 'User-Agent': 'mergers.news contact@mergers.news', 'Accept': 'text/html,text/plain' }
+      }, res => {
+        let data = '';
+        res.on('data', c => { data += c; if (data.length > 40000) { req.destroy(); resolve(data.slice(0, 40000)); } });
+        res.on('end', () => resolve(data.slice(0, 40000)));
+      });
+      req.on('error', () => resolve(''));
+      req.setTimeout(15000, () => { req.destroy(); resolve(''); });
+    });
+  } catch { return ''; }
+}
+
+function stripHtml(html) {
+  return html
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+    .replace(/&#\d+;/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function extractOtherParty(text, filingType) {
+  if (!text || text.length < 100) return null;
+  if (filingType === 'DEFM14A' || filingType === 'PREM14A' || filingType === 'DEFA14A') {
+    const patterns = [
+      /to\s+be\s+acquired\s+by\s+([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
+      /merger\s+with\s+(?:and\s+into\s+)?([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
+      /acquisition\s+by\s+([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
+      /PROPOSED\s+MERGER\s+WITH\s+([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
+    ];
+    for (const p of patterns) {
+      const m = text.match(p);
+      if (m?.[1]) { const n = m[1].trim().replace(/\s+/g, ' '); if (n.length >= 3 && n.length <= 80 && !/^(the|a|an|this)\b/i.test(n)) return n; }
+    }
+  }
+  if (filingType === 'SC TO-T' || filingType === 'SC TO-T/A') {
+    const patterns = [
+      /Offer\s+to\s+Purchase\s+(?:All\s+)?(?:Outstanding\s+)?(?:Shares|Stock)\s+of\s+(?:Common\s+Stock\s+of\s+)?([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
+      /(?:acquire|purchase)\s+(?:all\s+)?(?:outstanding\s+)?(?:shares|stock)\s+of\s+([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
+    ];
+    for (const p of patterns) {
+      const m = text.match(p);
+      if (m?.[1]) { const n = m[1].trim().replace(/\s+/g, ' '); if (n.length >= 3 && n.length <= 80 && !/^(the|a|an|all|any)\b/i.test(n)) return n; }
+    }
+  }
+  if (filingType === 'S-4') {
+    const m = text.match(/merger\s+with\s+(?:and\s+into\s+)?([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i);
+    if (m?.[1]) { const n = m[1].trim(); if (n.length >= 3 && n.length <= 80) return n; }
+  }
+  return null;
+}
+
+function extractDealValueCents(text) {
+  if (!text) return null;
+  const candidates = [];
+  const bpat = /(?:aggregate|total|transaction)\s+(?:consideration|value)\s+of\s+(?:approximately\s+)?\$\s*([\d,]+(?:\.\d+)?)\s*billion/gi;
+  const mpat = /(?:aggregate|total|transaction)\s+(?:consideration|value)\s+of\s+(?:approximately\s+)?\$\s*([\d,]+(?:\.\d+)?)\s*million/gi;
+  let m;
+  while ((m = bpat.exec(text)) !== null) { const v = parseFloat(m[1].replace(/,/g, '')) * 1e9; if (!isNaN(v) && v >= 1e7) candidates.push(v); }
+  while ((m = mpat.exec(text)) !== null) { const v = parseFloat(m[1].replace(/,/g, '')) * 1e6; if (!isNaN(v) && v >= 1e6) candidates.push(v); }
+  if (!candidates.length) return null;
+  return Math.round(Math.max(...candidates) * 100);
+}
+
+function extractDealInfo(filing, detail, filingType, docText) {
   const companyName = detail?.company_name || filing.entity_name || 'Unknown';
+  const otherParty  = extractOtherParty(docText, filingType);
+  const dealValueCents = extractDealValueCents(docText);
   let acquirer, target, dealType;
   switch (filingType) {
-    case 'DEFM14A': case 'PREM14A':
-      target = companyName; acquirer = 'Acquirer (see filing)'; dealType = 'Merger'; break;
+    case 'DEFM14A': case 'PREM14A': case 'DEFA14A':
+      target = companyName; acquirer = otherParty || 'Acquirer (see filing)'; dealType = 'Merger'; break;
     case 'SC TO-T': case 'SC TO-T/A':
-      acquirer = companyName; target = 'Target (see filing)'; dealType = 'Acquisition'; break;
+      acquirer = companyName; target = otherParty || 'Target (see filing)'; dealType = 'Acquisition'; break;
     case 'S-4':
-      acquirer = companyName; target = 'Target (see filing)'; dealType = 'Merger'; break;
+      acquirer = companyName; target = otherParty || 'Target (see filing)'; dealType = 'Merger'; break;
     case 'SC 13E-3': case 'SC 13E-3/A':
       acquirer = companyName; target = companyName; dealType = 'Going-Private'; break;
     default:
-      acquirer = companyName; target = 'Unknown'; dealType = 'Merger';
+      acquirer = companyName; target = otherParty || 'Unknown'; dealType = 'Merger';
   }
   return {
     headline:          `${acquirer} / ${target}`,
     acquirer:          { name: acquirer, cik: filing.cik },
     target:            { name: target },
     deal_type:         dealType,
+    deal_value_cents:  dealValueCents,
     status:            'Announced',
     filing_type:       filingType,
     filing_date:       filing.filing_date,
     announcement_date: filing.filing_date,
     source_url:        filing.filing_url,
     sector:            sicToSector(detail?.sic),
-    source_confidence: 0.7,
-    needs_review:      true,
+    source_confidence: otherParty ? 0.8 : 0.7,
+    needs_review:      !otherParty,
   };
 }
 
@@ -196,13 +270,13 @@ async function upsertCompany(info, cik) {
 async function insertDeal(info) {
   const res = await db.query(`
     INSERT INTO deals (acquirer_id,target_id,headline,deal_type,status,announcement_date,
-      filing_date,sector,source_confidence,extraction_method,needs_review)
-    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,'sec_filing',$10)
+      filing_date,sector,deal_value,source_confidence,extraction_method,needs_review)
+    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,'sec_filing',$11)
     RETURNING id
   `, [
     info.acquirer_id, info.target_id, info.headline, info.deal_type, info.status,
     info.announcement_date||null, info.filing_date||null, info.sector||null,
-    info.source_confidence||0.7, info.needs_review||true,
+    info.deal_value_cents||null, info.source_confidence||0.7, info.needs_review||true,
   ]);
   const dealId = res.rows[0].id;
   await db.query(
