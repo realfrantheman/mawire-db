@@ -212,7 +212,7 @@ async function fetchS1Text(cik, hitId) {
 }
 
 // ── BUILD IPO COMPANY OBJECT ──────────────────────────────
-async function buildIPO(hit, formType) {
+async function buildIPO(hit, formType, fetchText) {
   var src  = hit._source || {};
   var name = extractName(src.display_names);
   var cik  = extractCIK(src.display_names) || src.entity_id || '';
@@ -226,7 +226,7 @@ async function buildIPO(hit, formType) {
   var yr      = (date || '').slice(0, 4);
   var expected = yr ? yr : '2025-2026';
 
-  var text        = await fetchS1Text(cik, hit._id || '');
+  var text        = fetchText !== false ? await fetchS1Text(cik, hit._id || '') : '';
   var valuation   = parseOffering(text) || '—';
   var exchange    = parseExchange(text);
   var description = parseDescription(text, name);
@@ -281,37 +281,54 @@ async function edgarSearch(form, startDt, endDt, from) {
 // ── FETCH ALL S-1 FILINGS ─────────────────────────────────
 async function fetchAllS1s() {
   var ipos = [];
+  // Expanded to 8 years; each 2-year window keeps per-query hit counts manageable
   var periods = [
     ['2025-01-01', '2026-12-31'],
-    ['2024-01-01', '2024-12-31'],
-    ['2023-01-01', '2023-12-31'],
+    ['2023-01-01', '2024-12-31'],
+    ['2021-01-01', '2022-12-31'],
+    ['2019-01-01', '2020-12-31'],
   ];
   // S-1/S-1/A: US domestic IPOs
   // F-1/F-1/A: Foreign private issuers (UK, EU, Asia, LatAm listing in US)
   var forms = ['S-1', 'S-1/A', 'F-1', 'F-1/A'];
+  var MAX_IPOS = 1200;
+  var nowYear  = new Date().getFullYear();
 
+  outer:
   for (var f = 0; f < forms.length; f++) {
     var form = forms[f];
     for (var p = 0; p < periods.length; p++) {
       var start = periods[p][0], end = periods[p][1];
       console.log('[EDGAR] ' + form + ' ' + start.slice(0,4) + '-' + end.slice(0,4) + '...');
 
-      for (var from = 0; from < 1000; from += 100) {
+      var pageSize = null; // auto-detected from first response
+
+      for (var from = 0; ; from += (pageSize || 10)) {
         var hits = await edgarSearch(form, start, end, from);
         if (!hits.length) break;
 
+        // Detect actual page size from first response
+        if (pageSize === null) pageSize = hits.length;
+
+        var periodYear = parseInt(end.slice(0, 4));
+        var fetchText  = (nowYear - periodYear) < 2; // only fetch full text for recent filings
+
         for (var i = 0; i < hits.length; i++) {
           try {
-            var ipo = await buildIPO(hits[i], form);
+            var ipo = await buildIPO(hits[i], form, fetchText);
             if (ipo) { ipos.push(ipo); process.stdout.write('.'); }
           } catch(e) { /* skip */ }
-          await sleep(120); // respect SEC rate limit
+          await sleep(fetchText ? 120 : 50); // lighter rate-limit for metadata-only
         }
 
         console.log('\n  ' + form + ' ' + start.slice(0,4) + ' from=' + from + ': ' + hits.length + ' hits → ' + ipos.length + ' total');
         await sleep(400);
-        if (hits.length < 100) break;
+
+        if (hits.length < pageSize) break; // last page
+        if (ipos.length >= MAX_IPOS) break outer;
       }
+
+      if (ipos.length >= MAX_IPOS) break outer;
     }
   }
 
