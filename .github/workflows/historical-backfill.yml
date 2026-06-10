@@ -1,16 +1,19 @@
-name: Historical M&A Backfill (manual)
+name: Historical M&A Backfill
 
 on:
+  schedule:
+    # 1st of every month at 03:00 UTC — auto-fills last 2 years
+    - cron: '0 3 1 * *'
   workflow_dispatch:
     inputs:
       start_year:
-        description: 'Start year (e.g. 2020)'
-        required: true
-        default: '2020'
+        description: 'Start year (e.g. 2020) — leave blank to auto (current year - 1)'
+        required: false
+        default: ''
       end_year:
-        description: 'End year (e.g. 2024)'
-        required: true
-        default: '2024'
+        description: 'End year (e.g. 2024) — leave blank to auto (current year)'
+        required: false
+        default: ''
 
 jobs:
   backfill:
@@ -32,11 +35,21 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install pg
 
-      - name: Run historical backfill (${{ github.event.inputs.start_year }}–${{ github.event.inputs.end_year }})
+      - name: Resolve backfill year range
+        id: years
+        run: |
+          YEAR=$(date +%Y)
+          PREV=$((YEAR - 1))
+          START="${{ github.event.inputs.start_year }}"
+          END="${{ github.event.inputs.end_year }}"
+          echo "start_year=${START:-$PREV}" >> $GITHUB_OUTPUT
+          echo "end_year=${END:-$YEAR}"     >> $GITHUB_OUTPUT
+
+      - name: Run historical backfill (${{ steps.years.outputs.start_year }}–${{ steps.years.outputs.end_year }})
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          BACKFILL_START_YEAR: ${{ github.event.inputs.start_year }}
-          BACKFILL_END_YEAR: ${{ github.event.inputs.end_year }}
+          BACKFILL_START_YEAR: ${{ steps.years.outputs.start_year }}
+          BACKFILL_END_YEAR: ${{ steps.years.outputs.end_year }}
         run: node FIX-historical-backfill.js
 
       - name: Export full DB → deals.json
