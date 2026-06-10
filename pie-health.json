@@ -1,62 +1,158 @@
 {
-  "overallScore": 0,
-  "status": "critical",
-  "generatedAt": "2026-06-10T17:25:00.000Z",
-  "summary": { "pass": 0, "warn": 0, "fail": 0, "critical": 0, "warnings": 0 },
+  "generatedAt": "2026-06-10T17:39:43.976Z",
+  "overallScore": 100,
+  "status": "healthy",
+  "durationMs": 2407,
   "categories": {
     "ingestion": {
-      "score": 0,
-      "status": "critical",
+      "score": 100,
+      "status": "healthy",
       "checks": [
-        { "name": "ingestion_freshness", "status": "skip" },
-        { "name": "ingestion_velocity", "status": "skip" },
-        { "name": "source_diversity",   "status": "skip" }
-      ]
-    },
-    "quality": {
-      "score": 0,
-      "status": "critical",
-      "checks": [
-        { "name": "name_quality",          "status": "skip" },
-        { "name": "value_completeness",    "status": "skip" },
-        { "name": "data_completeness",     "status": "skip" },
-        { "name": "dedup_health",          "status": "skip" }
+        {
+          "name": "ingestion_freshness",
+          "status": "pass",
+          "score": 100,
+          "message": "Last deal ingested 0.3h ago"
+        },
+        {
+          "name": "ingestion_velocity",
+          "status": "pass",
+          "score": 100,
+          "message": "3434 deals last 24h · 13614 last 7d · 13614 last 30d"
+        },
+        {
+          "name": "source_diversity",
+          "status": "pass",
+          "score": 100,
+          "message": "2 source type(s) active in last 48h"
+        },
+        {
+          "name": "filing_coverage",
+          "status": "pass",
+          "score": 100,
+          "message": "All 4 key filing types seen in last 7d"
+        }
       ]
     },
     "pipeline": {
-      "score": 0,
-      "status": "critical",
+      "score": 100,
+      "status": "healthy",
       "checks": [
-        { "name": "export_freshness", "status": "skip" },
-        { "name": "review_queue",     "status": "skip" }
-      ]
-    },
-    "coverage": {
-      "score": 0,
-      "status": "critical",
-      "checks": [
-        { "name": "filing_coverage",          "status": "skip" },
-        { "name": "geographic_coverage",      "status": "skip" },
-        { "name": "sector_coverage",          "status": "skip" },
-        { "name": "confidence_distribution",  "status": "skip" }
+        {
+          "name": "export_freshness",
+          "status": "pass",
+          "score": 100,
+          "message": "deals.json last updated 0.1h ago (via deals.updated_at (proxy))"
+        },
+        {
+          "name": "review_queue",
+          "status": "pass",
+          "score": 100,
+          "message": "0 of 0 active deals need review"
+        }
       ]
     }
   },
-  "alerts": [],
   "checks": [
-    { "name": "ingestion_freshness",      "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run (runs at :45 each hour)" },
-    { "name": "ingestion_velocity",       "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "source_diversity",         "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "name_quality",             "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "value_completeness",       "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "data_completeness",        "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "dedup_health",             "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "export_freshness",         "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "review_queue",             "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "filing_coverage",          "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "geographic_coverage",      "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "sector_coverage",          "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
-    { "name": "confidence_distribution",  "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" }
+    {
+      "name": "ingestion_freshness",
+      "category": "ingestion",
+      "status": "pass",
+      "score": 100,
+      "message": "Last deal ingested 0.3h ago"
+    },
+    {
+      "name": "ingestion_velocity",
+      "category": "ingestion",
+      "status": "pass",
+      "score": 100,
+      "message": "3434 deals last 24h · 13614 last 7d · 13614 last 30d"
+    },
+    {
+      "name": "source_diversity",
+      "category": "ingestion",
+      "status": "pass",
+      "score": 100,
+      "message": "2 source type(s) active in last 48h"
+    },
+    {
+      "name": "filing_coverage",
+      "category": "ingestion",
+      "status": "pass",
+      "score": 100,
+      "message": "All 4 key filing types seen in last 7d"
+    },
+    {
+      "name": "name_quality",
+      "category": "unknown",
+      "status": "skip",
+      "score": 50,
+      "message": "Check error: column \"acquirer\" does not exist"
+    },
+    {
+      "name": "value_completeness",
+      "category": "quality",
+      "status": "skip",
+      "score": 100,
+      "message": "No active deals"
+    },
+    {
+      "name": "data_completeness",
+      "category": "quality",
+      "status": "skip",
+      "score": 100,
+      "message": "No active deals"
+    },
+    {
+      "name": "dedup_health",
+      "category": "unknown",
+      "status": "skip",
+      "score": 50,
+      "message": "Check error: column a.acquirer does not exist"
+    },
+    {
+      "name": "export_freshness",
+      "category": "pipeline",
+      "status": "pass",
+      "score": 100,
+      "message": "deals.json last updated 0.1h ago (via deals.updated_at (proxy))"
+    },
+    {
+      "name": "review_queue",
+      "category": "pipeline",
+      "status": "pass",
+      "score": 100,
+      "message": "0 of 0 active deals need review"
+    },
+    {
+      "name": "geographic_coverage",
+      "category": "coverage",
+      "status": "skip",
+      "score": 100,
+      "message": "No active deals"
+    },
+    {
+      "name": "sector_coverage",
+      "category": "coverage",
+      "status": "skip",
+      "score": 100,
+      "message": "No active deals"
+    },
+    {
+      "name": "confidence_distribution",
+      "category": "unknown",
+      "status": "skip",
+      "score": 50,
+      "message": "Check error: column \"confidence\" does not exist"
+    }
   ],
-  "durationMs": 0
+  "alerts": [],
+  "summary": {
+    "pass": 6,
+    "warn": 0,
+    "fail": 0,
+    "skip": 7,
+    "critical": 0,
+    "warnings": 0
+  }
 }
