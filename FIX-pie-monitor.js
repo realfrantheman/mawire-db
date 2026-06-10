@@ -17,6 +17,7 @@ const DB_URL      = process.env.DATABASE_URL;
 const GH_TOKEN    = process.env.GITHUB_TOKEN || process.env.MAWIRE_TOKEN;
 const GH_OWNER    = 'realfrantheman';
 const GH_REPO     = 'mawire-db';
+const GH_SITE     = 'mawire-site';
 const HEALTH_FILE = 'pie-health.json';
 
 const T = {
@@ -641,15 +642,23 @@ async function exportHealthJson(payload) {
     console.log('[PIE] No GitHub token — skipping pie-health.json export');
     return;
   }
-  const content  = Buffer.from(JSON.stringify(payload, null, 2)).toString('base64');
-  const existing = await ghRequest('GET', `/repos/${GH_OWNER}/${GH_REPO}/contents/${HEALTH_FILE}`);
-  const body = {
-    message: `pie: health snapshot ${new Date().toISOString().slice(0, 16)}Z`,
-    content,
-    ...(existing && existing.sha ? { sha: existing.sha } : {}),
-  };
-  await ghRequest('PUT', `/repos/${GH_OWNER}/${GH_REPO}/contents/${HEALTH_FILE}`, body);
-  console.log('[PIE] Exported pie-health.json to GitHub');
+  const content = Buffer.from(JSON.stringify(payload, null, 2)).toString('base64');
+  const message = `pie: health snapshot ${new Date().toISOString().slice(0, 16)}Z`;
+
+  for (const repo of [GH_REPO, GH_SITE]) {
+    try {
+      const existing = await ghRequest('GET', `/repos/${GH_OWNER}/${repo}/contents/${HEALTH_FILE}`);
+      const body = {
+        message,
+        content,
+        ...(existing && existing.sha ? { sha: existing.sha } : {}),
+      };
+      await ghRequest('PUT', `/repos/${GH_OWNER}/${repo}/contents/${HEALTH_FILE}`, body);
+      console.log(`[PIE] Exported pie-health.json to ${repo}`);
+    } catch (err) {
+      console.error(`[PIE] Export to ${repo} failed:`, err.message);
+    }
+  }
 }
 
 // ── MAIN ──────────────────────────────────────────────────────────────────────
