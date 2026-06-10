@@ -149,7 +149,7 @@ async function processFiling(filing, filingType) {
     filingType,
     trunc(detail?.document_url || filing.filing_url, 500),
     trunc(filing.filing_url, 500),
-    trunc(filing.id, 50),
+    trunc(filing.id.split(':')[0], 30),  // store clean accession "0001234567-26-000076", not truncated hit._id
     filing.cik,
     filing.filing_date,
   ]);

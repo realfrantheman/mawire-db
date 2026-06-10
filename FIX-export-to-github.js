@@ -326,7 +326,15 @@ function cleanCompanyName(name, placeholders) {
 }
 
 function reconstructEdgarUrl(row) {
-  // Path 1: reconstruct from accession_no (populated by current ingestor/backfill)
+  const GOOD_EXTS = ['.htm', '.html', '.pdf', '.txt', '.xml'];
+  function isGoodExt(name) {
+    const lower = String(name || '').toLowerCase();
+    return GOOD_EXTS.some(e => lower.endsWith(e));
+  }
+
+  // Path 1: accession_no stored as "{accession}:{filename}" (may be truncated at 50 chars)
+  // Only use if the filename extension is valid — a truncated filename like ".ht" falls through
+  // to Path 2 which uses filings.edgar_url (the complete URL).
   const rawAcc = row.accessionNo;
   if (rawAcc) {
     const colonIdx = String(rawAcc).indexOf(':');
@@ -336,27 +344,37 @@ function reconstructEdgarUrl(row) {
     if (m) {
       const cik    = parseInt(m[1], 10).toString();
       const folder = accPart.replace(/-/g, '');
-      if (folder.length >= 18) {
-        return fileName
-          ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
-          : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
+      if (folder.length >= 18 && isGoodExt(fileName)) {
+        return `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`;
       }
+      // Truncated / missing filename — fall through to Path 2
     }
   }
 
-  // Path 2: fix old broken edgar_url where accession number was used as CIK
-  // Old format: https://www.sec.gov/Archives/edgar/data/{ACC}/{FOLDER}:{FILENAME}
-  const oldUrl = row.edgarUrl || '';
-  if (oldUrl.includes('/Archives/edgar/data/')) {
-    const m = oldUrl.match(/\/Archives\/edgar\/data\/[^/]+\/(\d{18,20})(?::([^/?#]+))?/);
-    if (m) {
-      const folder   = m[1];
-      const fileName = m[2] || '';
-      const cik      = parseInt(folder.slice(0, 10), 10).toString();
-      return fileName
-        ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
-        : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
-    }
+  // Path 2: use edgar_url stored in filings table (complete URL from buildEdgarUrl)
+  const oldUrl = String(row.edgarUrl || '');
+  if (!oldUrl.includes('/Archives/edgar/data/')) return null;
+
+  // Old colon format: .../data/{accession}/{folder}:{filename}
+  const colonMatch = oldUrl.match(/\/Archives\/edgar\/data\/[^/]+\/(\d{18,20}):([^/?#]+)/);
+  if (colonMatch) {
+    const folder   = colonMatch[1];
+    const fileName = colonMatch[2] || '';
+    const cik      = parseInt(folder.slice(0, 10), 10).toString();
+    return isGoodExt(fileName)
+      ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
+      : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
+  }
+
+  // Current format: .../data/{cik}/{folder}/{filename}
+  const slashMatch = oldUrl.match(/\/Archives\/edgar\/data\/(\d+)\/(\d{18,20})(?:\/([^/?#]*))?/);
+  if (slashMatch) {
+    const cik      = slashMatch[1];
+    const folder   = slashMatch[2];
+    const fileName = slashMatch[3] || '';
+    return isGoodExt(fileName)
+      ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
+      : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
   }
 
   return null;
