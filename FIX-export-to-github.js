@@ -161,14 +161,22 @@ async function run() {
   const deduped = Array.from(bestByHeadline.values());
   console.log(`[EXPORT] Deduped ${deals.length} → ${deduped.length} records (removed ${deals.length - deduped.length} duplicates)`);
 
-  console.log(`[EXPORT] Exporting ${deduped.length} deals...`);
+  // Drop records where both parties are unknown — no useful information for the user
+  const qualityFiltered = deduped.filter(d =>
+    !(d.acquirer === 'Undisclosed' && d.target === 'Undisclosed')
+  );
+  if (deduped.length !== qualityFiltered.length) {
+    console.log(`[EXPORT] Quality filter: removed ${deduped.length - qualityFiltered.length} no-party records`);
+  }
 
-  const json = JSON.stringify(deduped, null, 2);
+  console.log(`[EXPORT] Exporting ${qualityFiltered.length} deals...`);
+
+  const json = JSON.stringify(qualityFiltered, null, 2);
 
   // LOCAL_ONLY=true: write to disk only (workflow commits via git)
   if (process.env.LOCAL_ONLY === 'true') {
     require('fs').writeFileSync('deals.json', json + '\n');
-    console.log('[EXPORT] Wrote', deduped.length, 'deals to local deals.json');
+    console.log('[EXPORT] Wrote', qualityFiltered.length, 'deals to local deals.json');
     return;
   }
 
@@ -178,7 +186,7 @@ async function run() {
   console.log('[EXPORT] Current SHA:', sha || 'new file');
 
   await pushToGitHub(encoded, sha);
-  console.log('[EXPORT] Done! GitHub updated with', deduped.length, 'deals');
+  console.log('[EXPORT] Done! GitHub updated with', qualityFiltered.length, 'deals');
 }
 
 /* ── Summary generation (ported from generate-summaries.py) ─────────── */

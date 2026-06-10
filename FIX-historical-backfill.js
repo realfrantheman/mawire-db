@@ -109,6 +109,25 @@ async function fetchFilingsForPeriod(filingType, startdt, enddt) {
 const FILING_AGENT_PATTERNS = [/\/FA$/i, /- FA$/i, /EDGARFILINGS/i, /FILING SERVICES/i, /FILING AGENT/i, /DONNELLEY\s+FINANCIAL/i];
 function isFilingAgent(name) { return name ? FILING_AGENT_PATTERNS.some(p => p.test(name)) : false; }
 
+const MA_KEYWORD_PATTERNS = [
+  /\b(?:merger|mergers)\b/i,
+  /\bacquisition\b/i,
+  /\bacquir(?:ed|es|ing)\b/i,
+  /\btender\s+offer\b/i,
+  /\bgoing.private\b/i,
+  /\bbuyout\b/i,
+  /\bagreement\s+and\s+plan\b/i,
+  /\bmerger\s+agreement\b/i,
+  /\bto\s+be\s+acquired\b/i,
+  /\bconsideration\s+per\s+share\b/i,
+  /\bper\s+share\s+(?:cash\s+)?(?:merger\s+)?consideration\b/i,
+  /\bcash\s+consideration\b/i,
+];
+function isMergerDocument(text) {
+  if (!text || text.length < 1000) return true;
+  return MA_KEYWORD_PATTERNS.some(p => p.test(text));
+}
+
 async function processFiling(filing, filingType) {
   if (isFilingAgent(filing.entity_name)) return 'skip';
 
@@ -120,6 +139,12 @@ async function processFiling(filing, filingType) {
   const detail  = await fetchFilingDetail(filing.cik, filing.id);
   const rawHtml = await fetchFilingText(detail?.document_url || '');
   const docText = rawHtml ? stripHtml(rawHtml) : '';
+
+  if (!isMergerDocument(docText)) {
+    console.log(`[BACKFILL] Skip non-M&A document (${filingType}): ${filing.entity_name}`);
+    return 'skip';
+  }
+
   const dealInfo = extractDealInfo(filing, detail, filingType, docText);
 
   const acquirerResult = await upsertCompany(dealInfo.acquirer, filing.cik);

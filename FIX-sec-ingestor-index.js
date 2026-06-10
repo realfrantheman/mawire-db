@@ -121,6 +121,29 @@ function isFilingAgent(entityName) {
   return FILING_AGENT_PATTERNS.some(p => p.test(entityName));
 }
 
+// Keywords that confirm this document is about an M&A transaction
+const MA_KEYWORD_PATTERNS = [
+  /\b(?:merger|mergers)\b/i,
+  /\bacquisition\b/i,
+  /\bacquir(?:ed|es|ing)\b/i,
+  /\btender\s+offer\b/i,
+  /\bgoing.private\b/i,
+  /\bbuyout\b/i,
+  /\bagreement\s+and\s+plan\b/i,
+  /\bmerger\s+agreement\b/i,
+  /\bto\s+be\s+acquired\b/i,
+  /\bconsideration\s+per\s+share\b/i,
+  /\bper\s+share\s+(?:cash\s+)?(?:merger\s+)?consideration\b/i,
+  /\bcash\s+consideration\b/i,
+];
+
+// Returns false only when we have substantial document text with zero M&A keywords.
+// Short or empty text → allow through (can't determine from first chunk alone).
+function isMergerDocument(text) {
+  if (!text || text.length < 1000) return true;
+  return MA_KEYWORD_PATTERNS.some(p => p.test(text));
+}
+
 // ── PROCESS A SINGLE FILING ────────────────────────────────────────
 async function processFiling(filing, filingType) {
   // Skip known filing agents masquerading as deal entities
@@ -143,6 +166,12 @@ async function processFiling(filing, filingType) {
   // Fetch document text for party + value extraction (best-effort, 15s timeout)
   const rawHtml = await fetchFilingText(detail?.document_url || '');
   const docText = rawHtml ? stripHtml(rawHtml) : '';
+
+  // Reject filings whose document text is substantial but contains no M&A language
+  if (!isMergerDocument(docText)) {
+    console.log(`[SEC] Skip non-M&A document (${filingType}): ${filing.entity_name}`);
+    return 'skip';
+  }
 
   // Extract deal info
   const dealInfo = extractDealInfo(filing, detail, filingType, docText);
