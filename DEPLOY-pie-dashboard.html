@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Platform Integrity Engine — mergers.news</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0d1117;--card:#161b22;--border:#30363d;--border2:#21262d;
+      --text:#e6edf3;--muted:#8b949e;--muted2:#6e7681;
+      --green:#3fb950;--yellow:#d29922;--red:#f85149;--blue:#58a6ff;
+      --green-bg:rgba(63,185,80,.12);--yellow-bg:rgba(210,153,34,.12);--red-bg:rgba(248,81,73,.12);
+      --radius:8px;--card-radius:10px;
+    }
+    html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;line-height:1.5}
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ── LAYOUT ── */
+    .shell{max-width:1100px;margin:0 auto;padding:24px 16px 48px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .topbar-left{display:flex;align-items:center;gap:14px}
+    .logo{font-size:13px;color:var(--muted);letter-spacing:.02em}
+    .logo strong{color:var(--text)}
+    .divider{color:var(--border);font-size:18px}
+    .page-title{font-size:15px;font-weight:600;color:var(--text)}
+    .refresh-info{font-size:12px;color:var(--muted2)}
+    #refreshBtn{background:none;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px}
+    #refreshBtn:hover{border-color:var(--blue);color:var(--blue)}
+
+    /* ── HERO SCORE ── */
+    .hero{display:flex;align-items:center;gap:24px;background:var(--card);border:1px solid var(--border2);border-radius:var(--card-radius);padding:24px 28px;margin-bottom:20px}
+    .score-ring{position:relative;width:100px;height:100px;flex-shrink:0}
+    .score-ring svg{transform:rotate(-90deg)}
+    .score-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .score-number{font-size:28px;font-weight:700;line-height:1}
+    .score-total{font-size:11px;color:var(--muted2)}
+    .hero-meta{flex:1}
+    .hero-status{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:3px 10px;border-radius:20px;margin-bottom:6px}
+    .hero-status.healthy{background:var(--green-bg);color:var(--green)}
+    .hero-status.degraded{background:var(--yellow-bg);color:var(--yellow)}
+    .hero-status.critical{background:var(--red-bg);color:var(--red)}
+    .hero-status-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+    .hero-updated{font-size:12px;color:var(--muted2);margin-top:2px}
+    .hero-summary{display:flex;gap:20px;margin-top:12px;flex-wrap:wrap}
+    .hero-summary-item{display:flex;flex-direction:column;align-items:flex-start}
+    .hero-summary-val{font-size:20px;font-weight:600;line-height:1}
+    .hero-summary-lbl{font-size:11px;color:var(--muted2);margin-top:2px}
+    .val-pass{color:var(--green)}
+    .val-warn{color:var(--yellow)}
+    .val-fail{color:var(--red)}
+    .val-alert{color:var(--red)}
+
+    /* ── CATEGORY CARDS ── */
+    .categories{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:20px}
+    .cat-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--card-radius);padding:16px 18px}
+    .cat-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .cat-name{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+    .cat-score-badge{font-size:13px;font-weight:700;padding:2px 8px;border-radius:4px}
+    .badge-healthy{background:var(--green-bg);color:var(--green)}
+    .badge-degraded{background:var(--yellow-bg);color:var(--yellow)}
+    .badge-critical{background:var(--red-bg);color:var(--red)}
+    .cat-bar-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+    .cat-bar-fill{height:100%;border-radius:2px;transition:width .4s ease}
+    .fill-healthy{background:var(--green)}
+    .fill-degraded{background:var(--yellow)}
+    .fill-critical{background:var(--red)}
+    .cat-checks{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+    .cat-check-row{display:flex;align-items:center;justify-content:space-between;font-size:12px}
+    .cat-check-name{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+    .check-pill{font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;flex-shrink:0}
+    .pill-pass{background:var(--green-bg);color:var(--green)}
+    .pill-warn{background:var(--yellow-bg);color:var(--yellow)}
+    .pill-fail{background:var(--red-bg);color:var(--red)}
+    .pill-skip{background:rgba(139,148,158,.12);color:var(--muted2)}
+
+    /* ── ALERTS ── */
+    .section-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .section-count{font-size:11px;font-weight:500;color:var(--muted2);background:var(--border2);padding:1px 7px;border-radius:10px}
+    .alerts-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+    .alert-row{display:flex;align-items:flex-start;gap:12px;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:12px 14px}
+    .alert-row.critical{border-left:3px solid var(--red)}
+    .alert-row.warning{border-left:3px solid var(--yellow)}
+    .alert-row.info{border-left:3px solid var(--blue)}
+    .alert-sev{font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0;margin-top:1px}
+    .alert-sev.critical{background:var(--red-bg);color:var(--red)}
+    .alert-sev.warning{background:var(--yellow-bg);color:var(--yellow)}
+    .alert-sev.info{background:rgba(88,166,255,.12);color:var(--blue)}
+    .alert-body{flex:1}
+    .alert-title{font-size:13px;font-weight:600;color:var(--text)}
+    .alert-desc{font-size:12px;color:var(--muted);margin-top:2px}
+    .alert-since{font-size:11px;color:var(--muted2);margin-top:4px}
+    .no-alerts{background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:16px 18px;color:var(--muted);font-size:13px;text-align:center;margin-bottom:20px}
+
+    /* ── ALL CHECKS TABLE ── */
+    .checks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-bottom:24px}
+    .check-card{background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px}
+    .check-icon{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+    .icon-pass{background:var(--green-bg);color:var(--green)}
+    .icon-warn{background:var(--yellow-bg);color:var(--yellow)}
+    .icon-fail{background:var(--red-bg);color:var(--red)}
+    .icon-skip{background:rgba(139,148,158,.1);color:var(--muted2)}
+    .check-body{flex:1}
+    .check-card-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px}
+    .check-card-msg{font-size:12px;color:var(--muted);line-height:1.4}
+    .check-score-bar{display:flex;align-items:center;gap:8px;margin-top:6px}
+    .mini-track{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+    .mini-fill{height:100%;border-radius:2px}
+    .check-score-num{font-size:11px;color:var(--muted2);width:26px;text-align:right;flex-shrink:0}
+
+    /* ── LOADING / ERROR ── */
+    .state-center{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;text-align:center}
+    .state-center p{color:var(--muted);margin-top:10px;font-size:13px}
+    .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── FOOTER ── */
+    .footer{border-top:1px solid var(--border2);padding-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .footer-text{font-size:11px;color:var(--muted2)}
+
+    @media(max-width:600px){
+      .hero{flex-direction:column;align-items:flex-start}
+      .hero-summary{gap:14px}
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="logo"><strong>mergers.news</strong></span>
+      <span class="divider">/</span>
+      <span class="page-title">Platform Integrity Engine</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="refresh-info" id="refreshInfo"></span>
+      <button id="refreshBtn" onclick="loadHealth()">↻ Refresh</button>
+    </div>
+  </div>
+
+  <div id="loadingState" class="state-center">
+    <div class="spinner"></div>
+    <p>Loading health data…</p>
+  </div>
+
+  <div id="errorState" class="state-center" style="display:none">
+    <p style="color:var(--red);font-size:15px">⚠ Failed to load health data</p>
+    <p id="errorMsg"></p>
+  </div>
+
+  <div id="mainContent" style="display:none">
+
+    <!-- Hero score -->
+    <div class="hero">
+      <div class="score-ring">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="42" fill="none" stroke="var(--border)" stroke-width="8"/>
+          <circle id="scoreArc" cx="50" cy="50" r="42" fill="none" stroke="var(--green)"
+                  stroke-width="8" stroke-linecap="round"
+                  stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
+        </svg>
+        <div class="score-ring-label">
+          <span class="score-number" id="scoreNum">—</span>
+          <span class="score-total">/100</span>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-status" id="heroStatus">
+          <span class="hero-status-dot"></span>
+          <span id="heroStatusText">—</span>
+        </div>
+        <div class="hero-updated" id="heroUpdated"></div>
+        <div class="hero-summary">
+          <div class="hero-summary-item">
+            <span class="hero-summary-val val-pass" id="sumPass">—</span>
+            <span class="hero-summary-lbl">Pass</span>
+          </div>
+          <div class="hero-summary-item">
+            <span class="hero-summary-val val-warn" id="sumWarn">—</span>
+            <span class="hero-summary-lbl">Warn</span>
+          </div>
+          <div class="hero-summary-item">
+            <span class="hero-summary-val val-fail" id="sumFail">—</span>
+            <span class="hero-summary-lbl">Fail</span>
+          </div>
+          <div class="hero-summary-item">
+            <span class="hero-summary-val val-alert" id="sumAlerts">—</span>
+            <span class="hero-summary-lbl">Active Alerts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category cards -->
+    <div class="categories" id="categories"></div>
+
+    <!-- Alerts -->
+    <div class="section-title">Active Alerts <span class="section-count" id="alertCount">0</span></div>
+    <div id="alertsPanel"></div>
+
+    <!-- All checks -->
+    <div class="section-title">All Checks <span class="section-count" id="checksCount">0</span></div>
+    <div class="checks-grid" id="checksGrid"></div>
+
+    <div class="footer">
+      <span class="footer-text">Auto-refreshes every 5 minutes · <a href="/">← Back to mergers.news</a></span>
+      <span class="footer-text" id="footerDuration"></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var HEALTH_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/pie-health.json';
+var refreshTimer;
+
+function el(id) { return document.getElementById(id); }
+
+function scoreColor(score) {
+  if (score >= 85) return 'var(--green)';
+  if (score >= 60) return 'var(--yellow)';
+  return 'var(--red)';
+}
+
+function badgeClass(status) {
+  return 'badge-' + (status === 'healthy' ? 'healthy' : status === 'degraded' ? 'degraded' : 'critical');
+}
+
+function fillClass(status) {
+  return 'fill-' + (status === 'healthy' ? 'healthy' : status === 'degraded' ? 'degraded' : 'critical');
+}
+
+function pillClass(status) { return 'pill-' + status; }
+function iconClass(status) { return 'icon-' + status; }
+
+function iconLabel(status) {
+  return { pass: '✓', warn: '⚠', fail: '✗', skip: '–' }[status] || '?';
+}
+
+function formatRelative(iso) {
+  var diff = Date.now() - new Date(iso).getTime();
+  var s = Math.floor(diff / 1000);
+  if (s < 60)  return s + 's ago';
+  var m = Math.floor(s / 60);
+  if (m < 60)  return m + 'm ago';
+  var h = Math.floor(m / 60);
+  if (h < 24)  return h + 'h ago';
+  return Math.floor(h / 24) + 'd ago';
+}
+
+function fmtName(name) {
+  return name.replace(/_/g, ' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+}
+
+function render(data) {
+  // Hero
+  var score = data.overallScore || 0;
+  el('scoreNum').textContent = score;
+  var arc = el('scoreArc');
+  var circumference = 263.9;
+  arc.style.strokeDashoffset = circumference - (score / 100) * circumference;
+  arc.style.stroke = scoreColor(score);
+  var heroStatus = el('heroStatus');
+  heroStatus.className = 'hero-status ' + data.status;
+  el('heroStatusText').textContent = data.status.charAt(0).toUpperCase() + data.status.slice(1);
+  el('heroUpdated').textContent = 'Last checked ' + formatRelative(data.generatedAt);
+  var s = data.summary || {};
+  el('sumPass').textContent   = s.pass    || 0;
+  el('sumWarn').textContent   = s.warn    || 0;
+  el('sumFail').textContent   = s.fail    || 0;
+  el('sumAlerts').textContent = (s.critical || 0) + (s.warnings || 0);
+
+  // Categories
+  var catOrder = ['ingestion','quality','pipeline','coverage'];
+  var catNames = { ingestion:'Ingestion', quality:'Quality', pipeline:'Pipeline', coverage:'Coverage' };
+  var catHtml = '';
+  catOrder.forEach(function(cat) {
+    var c = (data.categories || {})[cat];
+    if (!c) return;
+    var status = c.status;
+    var checksHtml = (c.checks || []).map(function(ch) {
+      return '<div class="cat-check-row">' +
+        '<span class="cat-check-name">' + fmtName(ch.name) + '</span>' +
+        '<span class="check-pill ' + pillClass(ch.status) + '">' + ch.status.toUpperCase() + '</span>' +
+        '</div>';
+    }).join('');
+    catHtml += '<div class="cat-card">' +
+      '<div class="cat-card-header">' +
+        '<span class="cat-name">' + catNames[cat] + '</span>' +
+        '<span class="cat-score-badge ' + badgeClass(status) + '">' + c.score + '</span>' +
+      '</div>' +
+      '<div class="cat-bar-track"><div class="cat-bar-fill ' + fillClass(status) + '" style="width:' + c.score + '%"></div></div>' +
+      '<div class="cat-checks">' + checksHtml + '</div>' +
+    '</div>';
+  });
+  el('categories').innerHTML = catHtml;
+
+  // Alerts
+  var alerts = data.alerts || [];
+  el('alertCount').textContent = alerts.length;
+  if (alerts.length === 0) {
+    el('alertsPanel').innerHTML = '<div class="no-alerts">✓ No active alerts — all systems nominal</div>';
+  } else {
+    el('alertsPanel').innerHTML = '<div class="alerts-list">' +
+      alerts.map(function(a) {
+        return '<div class="alert-row ' + a.severity + '">' +
+          '<span class="alert-sev ' + a.severity + '">' + a.severity.toUpperCase() + '</span>' +
+          '<div class="alert-body">' +
+            '<div class="alert-title">' + a.title.replace(/^(FAIL|WARN): /, '') + '</div>' +
+            (a.description ? '<div class="alert-desc">' + a.description + '</div>' : '') +
+            '<div class="alert-since">Since ' + formatRelative(a.since) + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }
+
+  // All checks grid
+  var checks = data.checks || [];
+  el('checksCount').textContent = checks.length;
+  el('checksGrid').innerHTML = checks.map(function(c) {
+    var color = scoreColor(c.score);
+    return '<div class="check-card">' +
+      '<div class="check-icon ' + iconClass(c.status) + '">' + iconLabel(c.status) + '</div>' +
+      '<div class="check-body">' +
+        '<div class="check-card-name">' + fmtName(c.name) + '</div>' +
+        '<div class="check-card-msg">' + (c.message || '') + '</div>' +
+        '<div class="check-score-bar">' +
+          '<div class="mini-track"><div class="mini-fill" style="width:' + c.score + '%;background:' + color + '"></div></div>' +
+          '<span class="check-score-num">' + c.score + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  // Footer
+  if (data.durationMs) {
+    el('footerDuration').textContent = 'Check took ' + data.durationMs + 'ms';
+  }
+}
+
+function loadHealth() {
+  el('refreshBtn').textContent = '↻ Loading…';
+  el('refreshBtn').disabled = true;
+  clearTimeout(refreshTimer);
+
+  fetch(HEALTH_URL + '?_=' + Date.now())
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      el('loadingState').style.display  = 'none';
+      el('errorState').style.display    = 'none';
+      el('mainContent').style.display   = 'block';
+      render(data);
+      el('refreshInfo').textContent = 'Updated ' + formatRelative(data.generatedAt);
+    })
+    .catch(function(err) {
+      el('loadingState').style.display = 'none';
+      el('mainContent').style.display  = 'none';
+      el('errorState').style.display   = 'block';
+      el('errorMsg').textContent = err.message;
+    })
+    .finally(function() {
+      el('refreshBtn').textContent = '↻ Refresh';
+      el('refreshBtn').disabled = false;
+      refreshTimer = setTimeout(loadHealth, 5 * 60 * 1000);
+    });
+}
+
+loadHealth();
+</script>
+</body>
+</html>

@@ -33,6 +33,7 @@ MAPPINGS = [
     ('FIX-apac-ingestor.js',         'mawire-platform', 'services/apac-ingestor/index.js'),
     ('FIX-news-ingestor.js',         'mawire-platform', 'services/news-ingestor/index.js'),
     ('FIX-enrich-deals.js',          'mawire-platform', 'scripts/enrich-deals.js'),
+    ('FIX-pie-monitor.js',           'mawire-platform', 'services/pie-monitor/index.js'),
     # ── mawire-site ──────────────────────────────────────────────
     ('DEPLOY-index.html',                      'mawire-site', 'index.html'),
     ('DEPLOY-ipo.html',                        'mawire-site', 'ipo.html'),
@@ -47,6 +48,8 @@ MAPPINGS = [
     ('app.js',                                 'mawire-site', 'app.js'),
     ('style.css',                              'mawire-site', 'style.css'),
     ('DEPLOY-vercel.json',                     'mawire-site', 'vercel.json'),
+    ('DEPLOY-404.html',                        'mawire-site', '404.html'),
+    ('DEPLOY-pie-dashboard.html',              'mawire-site', 'monitoring.html'),
 ]
 
 # ── GITHUB API HELPERS ────────────────────────────────────────────
@@ -73,7 +76,7 @@ def get_sha(repo, path):
     result = api(f'/repos/{OWNER}/{repo}/contents/{path}')
     return result['sha'] if result else None
 
-def push_file(repo, path, content_bytes, message, max_retries=3):
+def push_file(repo, path, content_bytes, message, max_retries=4):
     encoded = base64.b64encode(content_bytes).decode()
     for attempt in range(max_retries):
         sha = get_sha(repo, path)
@@ -84,15 +87,23 @@ def push_file(repo, path, content_bytes, message, max_retries=3):
             api(f'/repos/{OWNER}/{repo}/contents/{path}', method='PUT', body=payload)
             return
         except RuntimeError as e:
-            if '→ 409' in str(e) and attempt < max_retries - 1:
-                print(f'  RETRY ({attempt+1}/{max_retries-1}) {repo}/{path} — SHA conflict, re-fetching')
-                time.sleep(2 ** attempt)
+            msg = str(e)
+            is_last = attempt >= max_retries - 1
+            # Retry on SHA conflict (409), transient auth errors (401), rate limits (429/403)
+            retryable = any(f'→ {c}' in msg for c in ('401', '403', '409', '429'))
+            if retryable and not is_last:
+                wait = 2 ** (attempt + 1)   # 2s, 4s, 8s
+                print(f'  RETRY ({attempt+1}/{max_retries-1}) {repo}/{path} — {msg[-60:].strip()} — waiting {wait}s')
+                time.sleep(wait)
                 continue
             raise
 
 # ── MAIN ──────────────────────────────────────────────────────────
 def main():
-    ok = err = 0
+    ok = 0
+    site_err = 0      # mawire-site failures → fatal
+    platform_err = 0  # mawire-platform failures → warning only
+
     for src, repo, dest in MAPPINGS:
         if not os.path.exists(src):
             print(f'  SKIP  {src} (not found)')
@@ -100,17 +111,26 @@ def main():
         try:
             with open(src, 'rb') as f:
                 content = f.read()
-            msg = f'deploy: {src} → {dest}'
-            push_file(repo, dest, content, msg)
+            push_file(repo, dest, content, f'deploy: {src} → {dest}')
             print(f'  OK    {repo}/{dest}')
             ok += 1
-            time.sleep(0.3)   # avoid secondary rate limits
+            time.sleep(0.5)   # avoid secondary rate limits
         except Exception as e:
             print(f'  FAIL  {repo}/{dest}: {e}')
-            err += 1
+            if repo == 'mawire-site':
+                site_err += 1
+            else:
+                platform_err += 1
 
-    print(f'\nDone: {ok} deployed, {err} failed.')
-    if err:
+    total_err = site_err + platform_err
+    print(f'\nDone: {ok} deployed, {total_err} failed'
+          + (f' ({site_err} site, {platform_err} platform)' if total_err else '') + '.')
+
+    if platform_err and not site_err:
+        print(f'WARNING: {platform_err} mawire-platform file(s) failed — site is healthy.')
+
+    # Only fail the workflow if mawire-site had errors
+    if site_err:
         sys.exit(1)
 
 if __name__ == '__main__':

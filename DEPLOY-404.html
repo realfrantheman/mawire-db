@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>mergers.news</title>
+  <script>
+    // SPA 404 fallback: preserve /deal/{id} permalinks across the Vercel 404 boundary.
+    // If the URL is a deal permalink, stash the ID in sessionStorage then redirect to /.
+    // The main app reads sessionStorage on load and opens the modal.
+    var path = window.location.pathname;
+    var m = path.match(/^\/deal\/([a-f0-9-]{30,40})$/i);
+    if (m) {
+      try { sessionStorage.setItem('pendingDealId', m[1]); } catch(e) {}
+    }
+    window.location.replace('/');
+  </script>
+</head>
+<body></body>
+</html>

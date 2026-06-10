@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/deal/:id",                       "destination": "/index.html" },
+    { "source": "/deal/(.*)",                      "destination": "/index.html" },
     { "source": "/ipo",                            "destination": "/ipo.html" },
     { "source": "/about",                          "destination": "/about.html" },
     { "source": "/contact",                        "destination": "/contact.html" },
@@ -10,6 +10,7 @@
     { "source": "/mergers/technology",             "destination": "/mergers/technology.html" },
     { "source": "/mergers/healthcare",             "destination": "/mergers/healthcare.html" },
     { "source": "/mergers/financial-services",     "destination": "/mergers/financial-services.html" },
+    { "source": "/monitoring",                     "destination": "/monitoring.html" },
     { "source": "/legal/terms",                    "destination": "/legal/terms.html" },
     { "source": "/legal/privacy",                  "destination": "/legal/privacy.html" },
     { "source": "/legal/disclaimer",               "destination": "/legal/disclaimer.html" }
