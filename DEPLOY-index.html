@@ -422,6 +422,16 @@
           </div>
         </div>
 
+        <!-- Deal not found state (shown when a /deal/{id} permalink no longer exists) -->
+        <div id="dealNotFoundState" style="display:none">
+          <div class="state-box">
+            <div class="state-icon">◌</div>
+            <div class="state-title">Deal not found</div>
+            <div class="state-text">This deal may have been updated or removed from our database. Browse current M&amp;A deals below.</div>
+            <button class="state-btn" id="dealNotFoundBtn">Browse all deals</button>
+          </div>
+        </div>
+
         <!-- Deal table -->
         <table class="deal-table" id="dealTable" style="display:none" role="table" aria-label="M&A deals database">
           <thead>

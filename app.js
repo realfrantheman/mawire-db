@@ -346,11 +346,15 @@ function onDealsLoaded() {
   updateIndustryCounts();
   if (window.renderVolumeChart) window.renderVolumeChart(allDeals);
 
-  // Open deal from permalink /deal/12345
+  // Open deal from permalink /deal/{uuid}
   if (window._pendingDealId) {
     var deal = allDeals.find(function(d) { return d.id === window._pendingDealId; });
     window._pendingDealId = null;
-    if (deal) setTimeout(function() { openModal(deal); }, 50);
+    if (deal) {
+      setTimeout(function() { openModal(deal); }, 50);
+    } else {
+      showDealNotFound();
+    }
   }
 }
 
@@ -364,6 +368,17 @@ function showLoading() {
 function showError() {
   el('loadingState') && hide('loadingState');
   el('errorState')   && show('errorState');
+}
+function showDealNotFound() {
+  hide('loadingState');
+  hide('errorState');
+  hide('noResultsState');
+  el('dealTableWrap')    && hide('dealTableWrap');
+  el('dealCardsWrap')    && hide('dealCardsWrap');
+  el('loadMoreWrap')     && hide('loadMoreWrap');
+  show('dealNotFoundState');
+  history.replaceState(null, 'mergers.news', '/');
+  document.title = 'Deal Not Found | mergers.news';
 }
 function el(id) { return document.getElementById(id); }
 function show(id) { var e = el(id); if (e) e.style.display = ''; }
@@ -1173,6 +1188,11 @@ document.addEventListener('DOMContentLoaded', function() {
   setupModal();
   handleUrlParams();
   loadDeals();
+  var dnfBtn = el('dealNotFoundBtn');
+  if (dnfBtn) dnfBtn.addEventListener('click', function() {
+    hide('dealNotFoundState');
+    applyFilters();
+  });
 });
 
 // Expose for inline handlers
