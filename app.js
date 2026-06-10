@@ -1147,9 +1147,20 @@ function handleUrlParams() {
     var si = el('searchInput');
     if (si) si.value = q;
   }
-  // /deal/{uuid} — open specific deal once data loads
+  // /deal/{uuid} — open specific deal once data loads.
+  // Also check sessionStorage set by 404.html when Vercel routing falls back.
   var m = window.location.pathname.match(/^\/deal\/([a-f0-9-]{30,40})$/i);
-  if (m) window._pendingDealId = m[1];
+  if (m) {
+    window._pendingDealId = m[1];
+  } else {
+    try {
+      var storedId = sessionStorage.getItem('pendingDealId');
+      if (storedId) {
+        sessionStorage.removeItem('pendingDealId');
+        window._pendingDealId = storedId;
+      }
+    } catch(e) {}
+  }
 }
 
 /* ── BROWSER BACK/FORWARD ───────────────────────────────────── */

@@ -42,6 +42,7 @@ MAPPINGS = [
     ('DEPLOY-mergers-technology.html',         'mawire-site', 'mergers/technology.html'),
     ('DEPLOY-mergers-healthcare.html',         'mawire-site', 'mergers/healthcare.html'),
     ('DEPLOY-mergers-financial-services.html', 'mawire-site', 'mergers/financial-services.html'),
+    ('DEPLOY-404.html',                          'mawire-site', '404.html'),
     ('FIX-sw.js',                              'mawire-site', 'sw.js'),
     ('FIX-ipo-dynamic-loader.js',              'mawire-site', 'ipo.js'),
     ('app.js',                                 'mawire-site', 'app.js'),
