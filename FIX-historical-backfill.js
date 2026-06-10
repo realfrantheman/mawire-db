@@ -17,17 +17,29 @@ const FILING_TYPES  = ['DEFM14A', 'SC TO-T', 'S-4', 'SC 13E-3', 'DEFA14A', 'SC T
 const START_YEAR    = parseInt(process.env.BACKFILL_START_YEAR || '1993', 10);
 const END_YEAR      = parseInt(process.env.BACKFILL_END_YEAR   || String(new Date().getFullYear()), 10);
 const DELAY_MS      = 400; // be polite to SEC servers
+// Stop gracefully N minutes before the GHA timeout (default 100 min budget)
+const TIME_LIMIT_MS = (parseInt(process.env.BACKFILL_TIME_LIMIT_MINUTES || '100', 10)) * 60 * 1000;
 
 async function run() {
+  const startedAt = Date.now();
   console.log(`[BACKFILL] Starting historical backfill ${START_YEAR}–${END_YEAR}`);
   console.log(`[BACKFILL] Filing types: ${FILING_TYPES.join(', ')}`);
+  console.log(`[BACKFILL] Time limit: ${TIME_LIMIT_MS / 60000} min`);
 
   let totalNew = 0, totalSkipped = 0, totalFailed = 0;
+  let timedOut = false;
 
+  outer:
   for (const filingType of FILING_TYPES) {
     console.log(`\n[BACKFILL] === ${filingType} ===`);
 
     for (let year = END_YEAR; year >= START_YEAR; year--) {
+      if (Date.now() - startedAt >= TIME_LIMIT_MS) {
+        console.log(`[BACKFILL] Time limit reached at ${filingType} ${year} — stopping gracefully`);
+        timedOut = true;
+        break outer;
+      }
+
       const startdt = `${year}-01-01`;
       const enddt   = `${year}-12-31`;
 
@@ -36,13 +48,17 @@ async function run() {
         console.log(`[BACKFILL] ${filingType} ${year}: ${filings.length} filings`);
 
         for (const filing of filings) {
+          if (Date.now() - startedAt >= TIME_LIMIT_MS) {
+            console.log(`[BACKFILL] Time limit reached mid-year — stopping gracefully`);
+            timedOut = true;
+            break outer;
+          }
           try {
             const result = await processFiling(filing, filingType);
-            if (result === 'new')     { totalNew++;     await sleep(DELAY_MS); }
-            if (result === 'skip')    { totalSkipped++;  /* no delay for skips */ }
+            if (result === 'new')  { totalNew++;     await sleep(DELAY_MS); }
+            if (result === 'skip') { totalSkipped++; }
           } catch (err) {
             totalFailed++;
-            // silent — keep going
           }
         }
       } catch (err) {
@@ -53,7 +69,8 @@ async function run() {
     }
   }
 
-  console.log(`\n[BACKFILL] Complete: ${totalNew} new, ${totalSkipped} skipped, ${totalFailed} failed`);
+  const elapsed = Math.round((Date.now() - startedAt) / 1000);
+  console.log(`\n[BACKFILL] ${timedOut ? 'Stopped (time limit)' : 'Complete'}: ${totalNew} new, ${totalSkipped} skipped, ${totalFailed} failed — ${elapsed}s elapsed`);
   await db.end();
 }
 
@@ -88,8 +105,16 @@ async function fetchFilingsForPeriod(filingType, startdt, enddt) {
   return allFilings;
 }
 
+// Known filing agents — skip them (same filter as live ingestor)
+const FILING_AGENT_PATTERNS = [/\/FA$/i, /- FA$/i, /EDGARFILINGS/i, /FILING SERVICES/i, /FILING AGENT/i, /DONNELLEY\s+FINANCIAL/i];
+function isFilingAgent(name) { return name ? FILING_AGENT_PATTERNS.some(p => p.test(name)) : false; }
+
 async function processFiling(filing, filingType) {
-  const existing = await db.query('SELECT id FROM filings WHERE accession_no = $1', [filing.id]);
+  if (isFilingAgent(filing.entity_name)) return 'skip';
+
+  // Dedup check using clean accession (no colon+filename suffix)
+  const cleanAcc = filing.id.split(':')[0];
+  const existing = await db.query('SELECT id FROM filings WHERE accession_no = $1', [cleanAcc]);
   if (existing.rows.length > 0) return 'skip';
 
   const detail  = await fetchFilingDetail(filing.cik, filing.id);
@@ -113,7 +138,7 @@ async function processFiling(filing, filingType) {
     dealId, acquirerResult.id, filingType,
     trunc(detail?.document_url || filing.filing_url, 500),
     trunc(filing.filing_url, 500),
-    trunc(filing.id, 50),
+    trunc(filing.id.split(':')[0], 30),  // clean accession only, no colon+filename
     filing.cik,
     filing.filing_date,
   ]);
