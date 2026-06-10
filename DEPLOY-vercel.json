@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/monitoring",                        "destination": "/monitoring.html" },
     { "source": "/deal/(.*)",                      "destination": "/index.html" },
     { "source": "/ipo",                            "destination": "/ipo.html" },
     { "source": "/about",                          "destination": "/about.html" },
