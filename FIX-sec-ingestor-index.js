@@ -107,12 +107,33 @@ function buildEdgarUrl(hitId, cik) {
     : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
 }
 
+// Known filing agents whose names appear as EDGAR entity_name but are not deal parties
+const FILING_AGENT_PATTERNS = [
+  /\/FA$/i, /- FA$/i,           // e.g. "MERRILL CORP /NEW/ - FA", "Toppan Merrill/FA"
+  /EDGARFILINGS/i,
+  /FILING SERVICES/i,
+  /FILING AGENT/i,
+  /DONNELLEY\s+FINANCIAL/i,
+];
+
+function isFilingAgent(entityName) {
+  if (!entityName) return false;
+  return FILING_AGENT_PATTERNS.some(p => p.test(entityName));
+}
+
 // ── PROCESS A SINGLE FILING ────────────────────────────────────────
 async function processFiling(filing, filingType) {
-  // Check if already processed
+  // Skip known filing agents masquerading as deal entities
+  if (isFilingAgent(filing.entity_name)) {
+    console.log(`[SEC] Skip filing agent entity: ${filing.entity_name}`);
+    return 'skip';
+  }
+
+  // Check if already processed — compare using clean accession (no colon/filename suffix)
+  const cleanAcc = filing.id.split(':')[0];
   const existing = await db.query(
     'SELECT id FROM filings WHERE accession_no = $1',
-    [filing.id]
+    [cleanAcc]
   );
   if (existing.rows.length > 0) return 'skip';
 

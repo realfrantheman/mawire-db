@@ -142,14 +142,33 @@ async function run() {
     };
   });
 
-  console.log(`[EXPORT] Exporting ${deals.length} deals...`);
+  // Deduplicate by headline: keep the record with the most complete data
+  function recordScore(d) {
+    let s = 0;
+    if (d.sourceUrl)                                    s += 3;
+    if (d.filingType)                                   s += 2;
+    if (d.acquirer && !/undisclosed|see filing/i.test(d.acquirer)) s += 2;
+    if (d.dealValue && d.dealValue !== 'Undisclosed')   s += 2;
+    if (d.edgarUrl)                                     s += 1;
+    return s;
+  }
+  const bestByHeadline = new Map();
+  for (const d of deals) {
+    const key = d.headline || '';
+    const prev = bestByHeadline.get(key);
+    if (!prev || recordScore(d) > recordScore(prev)) bestByHeadline.set(key, d);
+  }
+  const deduped = Array.from(bestByHeadline.values());
+  console.log(`[EXPORT] Deduped ${deals.length} → ${deduped.length} records (removed ${deals.length - deduped.length} duplicates)`);
 
-  const json = JSON.stringify(deals, null, 2);
+  console.log(`[EXPORT] Exporting ${deduped.length} deals...`);
+
+  const json = JSON.stringify(deduped, null, 2);
 
   // LOCAL_ONLY=true: write to disk only (workflow commits via git)
   if (process.env.LOCAL_ONLY === 'true') {
     require('fs').writeFileSync('deals.json', json + '\n');
-    console.log('[EXPORT] Wrote', deals.length, 'deals to local deals.json');
+    console.log('[EXPORT] Wrote', deduped.length, 'deals to local deals.json');
     return;
   }
 
@@ -159,7 +178,7 @@ async function run() {
   console.log('[EXPORT] Current SHA:', sha || 'new file');
 
   await pushToGitHub(encoded, sha);
-  console.log('[EXPORT] Done! GitHub updated with', deals.length, 'deals');
+  console.log('[EXPORT] Done! GitHub updated with', deduped.length, 'deals');
 }
 
 /* ── Summary generation (ported from generate-summaries.py) ─────────── */
