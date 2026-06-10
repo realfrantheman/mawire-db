@@ -49,8 +49,8 @@ MAPPINGS = [
     ('style.css',                              'mawire-site', 'style.css'),
     ('DEPLOY-vercel.json',                     'mawire-site', 'vercel.json'),
     ('DEPLOY-404.html',                        'mawire-site', '404.html'),
-    ('DEPLOY-pie-dashboard.html',              'mawire-site', 'monitoring.html'),
     ('pie-health.json',                        'mawire-site', 'pie-health.json'),
+    ('DEPLOY-pie-dashboard.html',              'mawire-site', 'monitoring.html'),
 ]
 
 # ── GITHUB API HELPERS ────────────────────────────────────────────
