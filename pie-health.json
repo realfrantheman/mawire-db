@@ -1,0 +1,62 @@
+{
+  "overallScore": 0,
+  "status": "critical",
+  "generatedAt": "2026-06-10T17:25:00.000Z",
+  "summary": { "pass": 0, "warn": 0, "fail": 0, "critical": 0, "warnings": 0 },
+  "categories": {
+    "ingestion": {
+      "score": 0,
+      "status": "critical",
+      "checks": [
+        { "name": "ingestion_freshness", "status": "skip" },
+        { "name": "ingestion_velocity", "status": "skip" },
+        { "name": "source_diversity",   "status": "skip" }
+      ]
+    },
+    "quality": {
+      "score": 0,
+      "status": "critical",
+      "checks": [
+        { "name": "name_quality",          "status": "skip" },
+        { "name": "value_completeness",    "status": "skip" },
+        { "name": "data_completeness",     "status": "skip" },
+        { "name": "dedup_health",          "status": "skip" }
+      ]
+    },
+    "pipeline": {
+      "score": 0,
+      "status": "critical",
+      "checks": [
+        { "name": "export_freshness", "status": "skip" },
+        { "name": "review_queue",     "status": "skip" }
+      ]
+    },
+    "coverage": {
+      "score": 0,
+      "status": "critical",
+      "checks": [
+        { "name": "filing_coverage",          "status": "skip" },
+        { "name": "geographic_coverage",      "status": "skip" },
+        { "name": "sector_coverage",          "status": "skip" },
+        { "name": "confidence_distribution",  "status": "skip" }
+      ]
+    }
+  },
+  "alerts": [],
+  "checks": [
+    { "name": "ingestion_freshness",      "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run (runs at :45 each hour)" },
+    { "name": "ingestion_velocity",       "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "source_diversity",         "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "name_quality",             "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "value_completeness",       "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "data_completeness",        "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "dedup_health",             "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "export_freshness",         "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "review_queue",             "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "filing_coverage",          "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "geographic_coverage",      "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "sector_coverage",          "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" },
+    { "name": "confidence_distribution",  "status": "skip", "score": 0, "message": "Awaiting first PIE monitor run" }
+  ],
+  "durationMs": 0
+}
