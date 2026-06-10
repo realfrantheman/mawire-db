@@ -571,13 +571,20 @@ story.append(table(
      ['mawire-db',       '✓', '✗', '✗'],
      ['mawire-platform', '✓', '✗', '✗'],
      ['mawire-site',     '✓', '✗', '✗'],
-     ['mawire-monitor',  '✓', '✗', '✓ (workflow_dispatch only)'],
+     ['mawire-monitor',  '✓', '✓ (full)', '✓'],
     ],
     [5*cm, 2.5*cm, 2.5*cm, 7*cm]
 ))
 story.append(sp(4))
-story.append(p('Implemented via a fine-grained GitHub PAT (CODEX_AUDIT_TOKEN) with Contents: Read on all repos '
-               'and Actions: Read+Write on mawire-monitor only.'))
+story.append(p(
+    'Codex has full read+write access to mawire-monitor (its home repo) and read-only access to '
+    'the three operational repos. This allows Codex to modify health checks, update thresholds, '
+    'commit audit reports, and trigger runs — while having no write access to production code '
+    'in mawire-db, mawire-platform, or mawire-site.'))
+story.append(sp(4))
+story.append(p('Implemented via a fine-grained GitHub PAT (CODEX_AUDIT_TOKEN):'))
+story.append(b('mawire-monitor — Contents: Read+Write, Actions: Read+Write, Metadata: Read'))
+story.append(b('mawire-db, mawire-platform, mawire-site — Contents: Read, Metadata: Read only'))
 
 story.append(sp(8))
 story.append(h2('7.3 Audit Capabilities'))
