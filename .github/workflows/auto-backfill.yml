@@ -1,8 +1,8 @@
-name: Auto Backfill — 1993 to 2024 (runs every 4 hours)
+name: Auto Backfill — 1993 to 2024 (runs every 30 min)
 
 on:
   schedule:
-    - cron: '0 */4 * * *'   # every 4 hours: 00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC
+    - cron: '*/30 * * * *'   # every 30 minutes
   workflow_dispatch:
 
 concurrency:
@@ -12,7 +12,7 @@ concurrency:
 jobs:
   backfill:
     runs-on: ubuntu-latest
-    timeout-minutes: 115
+    timeout-minutes: 35
 
     steps:
       - name: Checkout mawire-db
@@ -29,12 +29,12 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install pg
 
-      - name: Backfill 1993–2024 (stops gracefully at 100 min)
+      - name: Backfill 1993–2024 (stops gracefully at 25 min)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           BACKFILL_START_YEAR: '1993'
           BACKFILL_END_YEAR: '2024'
-          BACKFILL_TIME_LIMIT_MINUTES: '100'
+          BACKFILL_TIME_LIMIT_MINUTES: '25'
         run: node FIX-historical-backfill.js
 
       - name: Export full DB → deals.json

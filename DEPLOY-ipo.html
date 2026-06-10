@@ -76,7 +76,7 @@
     <p class="page-lead">Track the global pre-IPO pipeline — US, UK, Europe, and Asia-Pacific. Monitor S-1 filing status, valuations, expected exchange listings, and IPO timelines across all major markets.</p>
 
     <!-- Stats -->
-    <div class="stat-row" style="grid-template-columns:repeat(4,1fr);margin-bottom:32px">
+    <div class="ipo-stat-row stat-row" style="margin-bottom:28px">
       <div class="stat-box">
         <div class="stat-num" id="ipoCountStat">—</div>
         <div class="stat-lbl">Companies Tracked</div>
@@ -95,9 +95,20 @@
       </div>
     </div>
 
+    <!-- Search bar -->
+    <div style="position:relative;margin-bottom:14px">
+      <svg style="position:absolute;left:11px;top:50%;transform:translateY(-50%);width:14px;height:14px;pointer-events:none;flex-shrink:0" viewBox="0 0 20 20" fill="none" stroke="rgba(107,114,128,0.7)" stroke-width="1.7" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="8.5" cy="8.5" r="5"/><line x1="12.5" y1="12.5" x2="17" y2="17"/>
+      </svg>
+      <input id="ipoSearch" type="search" autocomplete="off" spellcheck="false"
+        placeholder="Search companies, sector, exchange…"
+        aria-label="Search IPO companies"
+        style="width:100%;box-sizing:border-box;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:10px 12px 10px 34px;font-family:var(--mono);font-size:12px;color:var(--text);outline:none;-webkit-appearance:none;appearance:none;transition:border-color 0.15s"/>
+    </div>
+
     <!-- Filter pills -->
-    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px" id="ipoFilters" role="group" aria-label="Filter IPO companies">
-      <button class="filter-pill active" data-ipo-filter="all">All Companies</button>
+    <div class="ipo-filter-row" id="ipoFilters" role="group" aria-label="Filter IPO companies">
+      <button class="filter-pill active" data-ipo-filter="all">All</button>
       <button class="filter-pill" data-ipo-filter="s1">S-1 Filed</button>
       <button class="filter-pill" data-ipo-filter="expected">Expected</button>
       <button class="filter-pill" data-ipo-filter="rumored">Rumored</button>
@@ -106,28 +117,30 @@
       <button class="filter-pill" data-ipo-filter="fintech">Fintech</button>
       <button class="filter-pill" data-ipo-filter="consumer">Consumer</button>
       <button class="filter-pill" data-ipo-filter="healthcare">Healthcare</button>
-      <button class="filter-pill" data-ipo-filter="global">Global / Intl</button>
+      <button class="filter-pill" data-ipo-filter="global">Global</button>
     </div>
 
-    <!-- IPO Table -->
-    <div class="deal-table-wrap">
+    <!-- IPO Table (desktop) -->
+    <div class="deal-table-wrap ipo-table-desktop">
       <table class="deal-table" id="ipoTable" role="table" aria-label="IPO Watch companies">
         <thead>
           <tr>
-            <th style="width:180px">Company</th>
-            <th style="width:90px">Sector</th>
-            <th style="width:110px">Valuation</th>
-            <th style="width:100px">Status</th>
-            <th style="width:100px">Exchange</th>
-            <th style="width:100px">Expected</th>
+            <th style="width:170px">Company</th>
+            <th style="width:85px">Sector</th>
+            <th style="width:100px">Valuation</th>
+            <th style="width:95px">Status</th>
+            <th style="width:110px">Exchange</th>
+            <th style="width:90px">Expected</th>
             <th>Notes</th>
           </tr>
         </thead>
         <tbody id="ipoList"></tbody>
       </table>
     </div>
-  <!-- Mobile cards rendered by JS -->
-  <div id="ipoCardsMobile" style="display:none"></div>
+    <!-- Mobile cards rendered by JS -->
+    <div id="ipoCardsMobile" class="ipo-cards-mobile"></div>
+    <!-- Empty state -->
+    <div id="ipoEmpty" style="display:none;text-align:center;padding:48px 20px;font-family:var(--mono);font-size:12px;color:var(--muted)">No companies match your search</div>
 
   </div>
   </div>
@@ -137,7 +150,7 @@
     <div class="section-header" style="margin-top:40px">
       <div class="section-title"><span class="section-title-text">Explore M&A Database</span></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    <div class="ipo-links-grid">
       <a href="/" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
         <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">M&A Deal Database</div>
         <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Search 10,000+ mergers and acquisitions from SEC EDGAR filings spanning 1993 to present.</p>
@@ -161,6 +174,66 @@
     <div id="ipoModalContent" style="padding:32px"></div>
   </div>
 </div>
+
+<!-- ── IPO PAGE RESPONSIVE STYLES ───────────────────────────── -->
+<style>
+  /* Stat row: 4 cols desktop → 2 cols mobile */
+  .ipo-stat-row { grid-template-columns: repeat(4,1fr) !important; }
+  @media (max-width:600px) {
+    .ipo-stat-row { grid-template-columns: repeat(2,1fr) !important; }
+  }
+
+  /* Filter pills row: scrollable on mobile, wrapped on desktop */
+  .ipo-filter-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  @media (max-width:600px) {
+    .ipo-filter-row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      margin-left: -16px;
+      margin-right: -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .ipo-filter-row::-webkit-scrollbar { display: none; }
+    .ipo-filter-row .filter-pill { flex-shrink: 0; }
+  }
+
+  /* Desktop table hidden on mobile */
+  .ipo-table-desktop { display: block; }
+  @media (max-width:768px) { .ipo-table-desktop { display: none; } }
+
+  /* Mobile cards hidden on desktop */
+  .ipo-cards-mobile { display: none; }
+  @media (max-width:768px) { .ipo-cards-mobile { display: block; } }
+
+  /* Internal links grid: 3 cols → 1 col on mobile */
+  .ipo-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+  }
+  @media (max-width:768px) {
+    .ipo-links-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Search input focus glow */
+  #ipoSearch:focus { border-color: var(--border3); }
+
+  /* Page lead max-width on mobile */
+  @media (max-width:768px) {
+    .page-lead { font-size: 13px; }
+    /* Pad content above mobile bottom nav */
+    #mainContent { padding-bottom: 80px !important; }
+  }
+</style>
 
 <!-- ── BOTTOM NAV (mobile) ─────────────────────────────────── -->
 <nav class="bottom-nav" aria-label="Mobile navigation">
@@ -397,72 +470,72 @@ function loadDynamicIPOs(callback) {
 
 // ── RENDER TABLE ──────────────────────────────────────────
 function renderIPOTable(companies) {
-  // Hide desktop table on mobile, show on desktop
-  var isMobileView = window.innerWidth <= 768;
-  var tableWrap = document.querySelector('.deal-table-wrap');
-  if (tableWrap) tableWrap.style.display = isMobileView ? 'none' : '';
+  var emptyEl = document.getElementById('ipoEmpty');
 
   // Desktop table
   var tbody = document.getElementById('ipoList');
   if (tbody) {
-    if (!companies || companies.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--muted);font-family:var(--mono);font-size:11px">No companies match this filter</td></tr>';
+    if (!companies || !companies.length) {
+      tbody.innerHTML = '';
     } else {
       tbody.innerHTML = companies.map(function(c, i) {
         var st = STATUS_STYLES[c.status] || STATUS_STYLES['rumored'];
         return '<tr tabindex="0" data-idx="' + i + '" style="cursor:pointer">' +
-          '<td><strong style="color:#fff;font-size:13px;font-family:var(--sans)">' + c.name + '</strong></td>' +
-          '<td style="font-family:var(--mono);font-size:10px;color:var(--muted)">' + c.sector + '</td>' +
-          '<td style="font-family:var(--mono);font-size:12px;font-weight:600;color:var(--green)">' + c.valuation + '</td>' +
-          '<td><span style="display:inline-flex;align-items:center;font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px;background:' + st.bg + ';color:' + st.color + ';border:1px solid ' + st.border + '">' + c.statusLabel + '</span></td>' +
-          '<td style="font-family:var(--mono);font-size:10px;color:var(--muted)">' + c.exchange + '</td>' +
-          '<td style="font-family:var(--mono);font-size:11px;color:var(--muted)">' + c.expected + '</td>' +
-          '<td style="font-size:12px;color:var(--text2);line-height:1.4">' + c.notes + '</td>' +
+          '<td><strong style="color:#fff;font-size:13px;font-family:var(--sans)">' + esc(c.name) + '</strong></td>' +
+          '<td style="font-family:var(--mono);font-size:10px;color:var(--muted)">' + esc(c.sector) + '</td>' +
+          '<td style="font-family:var(--mono);font-size:12px;font-weight:600;color:var(--green)">' + esc(c.valuation) + '</td>' +
+          '<td><span style="display:inline-flex;align-items:center;font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px;background:' + st.bg + ';color:' + st.color + ';border:1px solid ' + st.border + '">' + esc(c.statusLabel) + '</span></td>' +
+          '<td style="font-family:var(--mono);font-size:10px;color:var(--muted)">' + esc(c.exchange) + '</td>' +
+          '<td style="font-family:var(--mono);font-size:11px;color:var(--muted)">' + esc(c.expected) + '</td>' +
+          '<td style="font-size:12px;color:var(--text2);line-height:1.4">' + esc(c.notes) + '</td>' +
         '</tr>';
       }).join('');
-
       tbody.querySelectorAll('tr[data-idx]').forEach(function(row) {
-        var idx = parseInt(row.dataset.idx);
-        var company = companies[idx];
-        row.addEventListener('click', function() { openIPOModal(company); });
-        row.addEventListener('keydown', function(e) { if (e.key === 'Enter') openIPOModal(company); });
+        var c = companies[parseInt(row.dataset.idx)];
+        row.addEventListener('click', function() { openIPOModal(c); });
+        row.addEventListener('keydown', function(e) { if (e.key === 'Enter') openIPOModal(c); });
       });
     }
   }
 
-  // Mobile cards — fixed: notes clipped at word boundary, not mid-word
+  // Mobile cards
   var mobile = document.getElementById('ipoCardsMobile');
   if (mobile) {
-    var isMobile = window.innerWidth <= 768;
-    mobile.style.display = isMobile ? 'block' : 'none';
-    if (isMobile) {
+    if (!companies || !companies.length) {
+      mobile.innerHTML = '';
+    } else {
       mobile.innerHTML = (companies || []).map(function(c, i) {
         var st = STATUS_STYLES[c.status] || STATUS_STYLES['rumored'];
-        // Clip notes at word boundary (not mid-word)
         var notesFull = c.notes || '';
         var notesClip = notesFull.length > 120
           ? notesFull.slice(0, notesFull.lastIndexOf(' ', 120)) + '…'
           : notesFull;
-        return '<div data-idx="' + i + '" style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:10px;cursor:pointer">' +
-          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
-            '<span style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase">' + c.sector + '</span>' +
-            '<span style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px;background:' + st.bg + ';color:' + st.color + ';border:1px solid ' + st.border + '">' + c.statusLabel + '</span>' +
+        return '<div data-idx="' + i + '" style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:10px;cursor:pointer;-webkit-tap-highlight-color:transparent">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px">' +
+            '<span style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;flex-shrink:0">' + esc(c.sector) + '</span>' +
+            '<span style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px;background:' + st.bg + ';color:' + st.color + ';border:1px solid ' + st.border + ';white-space:nowrap">' + esc(c.statusLabel) + '</span>' +
           '</div>' +
-          '<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px">' + c.name + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);line-height:1.5;margin-bottom:10px">' + notesClip + '</div>' +
-          '<div style="display:flex;justify-content:space-between">' +
-            '<span style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--green)">' + c.valuation + '</span>' +
-            '<span style="font-family:var(--mono);font-size:10px;color:var(--muted)">' + c.exchange + ' · ' + c.expected + '</span>' +
+          '<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;word-break:break-word">' + esc(c.name) + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);line-height:1.5;margin-bottom:10px">' + esc(notesClip) + '</div>' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+            '<span style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--green)">' + esc(c.valuation) + '</span>' +
+            '<span style="font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right">' + esc(c.exchange) + ' · ' + esc(c.expected) + '</span>' +
           '</div>' +
         '</div>';
       }).join('');
       mobile.querySelectorAll('[data-idx]').forEach(function(card) {
-        var idx = parseInt(card.dataset.idx);
-        var company = companies[idx];
-        card.addEventListener('click', function() { openIPOModal(company); });
+        var c = companies[parseInt(card.dataset.idx)];
+        card.addEventListener('click', function() { openIPOModal(c); });
       });
     }
   }
+
+  // Empty state
+  if (emptyEl) emptyEl.style.display = (!companies || !companies.length) ? 'block' : 'none';
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 // ── MODAL ─────────────────────────────────────────────────
@@ -509,43 +582,74 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// ── FILTERS ───────────────────────────────────────────────
-var _currentList = IPO_COMPANIES;
+// ── FILTER + SEARCH STATE ─────────────────────────────────
+var _currentList  = IPO_COMPANIES;
+var _activeFilter = 'all';
+var _searchQuery  = '';
+
+function getFilteredList() {
+  var q = _searchQuery.toLowerCase().trim();
+  return _currentList.filter(function(c) {
+    var matchFilter = _activeFilter === 'all'
+      || c.status === _activeFilter
+      || (c.tags && c.tags.indexOf(_activeFilter) !== -1);
+    if (!matchFilter) return false;
+    if (!q) return true;
+    return (c.name     || '').toLowerCase().indexOf(q) !== -1
+        || (c.sector   || '').toLowerCase().indexOf(q) !== -1
+        || (c.exchange || '').toLowerCase().indexOf(q) !== -1
+        || (c.notes    || '').toLowerCase().indexOf(q) !== -1
+        || (c.expected || '').toLowerCase().indexOf(q) !== -1;
+  });
+}
+
+// Filter pills
 document.getElementById('ipoFilters').addEventListener('click', function(e) {
   var pill = e.target.closest('.filter-pill');
   if (!pill) return;
   document.querySelectorAll('#ipoFilters .filter-pill').forEach(function(p) { p.classList.remove('active'); });
   pill.classList.add('active');
-  var filter = pill.dataset.ipoFilter;
-  var filtered = filter === 'all'
-    ? _currentList
-    : _currentList.filter(function(c) {
-        return c.status === filter || (c.tags && c.tags.indexOf(filter) !== -1);
-      });
-  renderIPOTable(filtered);
+  _activeFilter = pill.dataset.ipoFilter;
+  renderIPOTable(getFilteredList());
+});
+
+// Search — 300ms debounce
+var _searchTimer = null;
+document.getElementById('ipoSearch').addEventListener('input', function(e) {
+  clearTimeout(_searchTimer);
+  var val = e.target.value;
+  _searchTimer = setTimeout(function() {
+    _searchQuery = val;
+    renderIPOTable(getFilteredList());
+  }, 300);
+});
+// Clear search on ESC
+document.getElementById('ipoSearch').addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    this.value = '';
+    _searchQuery = '';
+    clearTimeout(_searchTimer);
+    renderIPOTable(getFilteredList());
+  }
 });
 
 // ── INIT ──────────────────────────────────────────────────
 function init() {
-  // First render immediately with hardcoded data, then enhance with EDGAR data
   renderIPOTable(IPO_COMPANIES);
 
-  // Update stat counters immediately with seed data
-  var countEl = document.getElementById('ipoCountStat');
+  var countEl     = document.getElementById('ipoCountStat');
   var completedEl = document.getElementById('ipoCompletedStat');
-  if (countEl) countEl.textContent = IPO_COMPANIES.length + '+';
+  if (countEl)     countEl.textContent     = IPO_COMPANIES.length + '+';
   if (completedEl) completedEl.textContent = IPO_COMPANIES.filter(function(c) { return c.status === 'completed'; }).length + '+';
 
   loadDynamicIPOs(function(merged) {
     _currentList = merged;
-    renderIPOTable(merged);
-    // Always update stat counters with merged total
-    if (countEl) countEl.textContent = merged.length + '+';
-    var comp = merged.filter(function(c) { return c.status === 'completed'; }).length;
-    if (completedEl) completedEl.textContent = comp + '+';
+    renderIPOTable(getFilteredList());
+    if (countEl)     countEl.textContent     = merged.length + '+';
+    if (completedEl) completedEl.textContent = merged.filter(function(c) { return c.status === 'completed'; }).length + '+';
   });
 
-  window.addEventListener('resize', function() { renderIPOTable(_currentList); });
+  window.addEventListener('resize', function() { renderIPOTable(getFilteredList()); });
 }
 
 if (document.readyState === 'complete' || document.readyState === 'interactive') {

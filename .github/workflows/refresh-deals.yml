@@ -2,8 +2,8 @@ name: Refresh deals.json from SEC EDGAR
 
 on:
   schedule:
-    # Every Sunday at 02:00 UTC
-    - cron: '0 2 * * 0'
+    # Every 30 minutes
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
