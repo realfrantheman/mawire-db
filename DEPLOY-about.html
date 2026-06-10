@@ -107,7 +107,7 @@
 
       <!-- STATS -->
       <div class="stat-row">
-        <div class="stat-box"><div class="stat-num">10,000+</div><div class="stat-lbl">Deals Tracked</div></div>
+        <div class="stat-box"><div class="stat-num" id="aboutDealCount">10,000+</div><div class="stat-lbl">Deals Tracked</div></div>
         <div class="stat-box"><div class="stat-num">$680B</div><div class="stat-lbl">2026 M&amp;A Volume</div></div>
         <div class="stat-box"><div class="stat-num">340+</div><div class="stat-lbl">AI Deals in 2026</div></div>
         <div class="stat-box"><div class="stat-num">1993</div><div class="stat-lbl">Coverage From</div></div>
@@ -181,7 +181,7 @@
         <div class="a-grid">
           <div class="a-card">
             <div class="a-card-title">⊕ M&amp;A Deals Database</div>
-            <p>Search 10,000+ <a href="/" style="color:var(--red)">mergers and acquisitions</a> from SEC EDGAR filings spanning 1993 to present. Filter by sector, value, type, and region.</p>
+            <p>Search <span id="aboutDealCountText">10,000+</span> <a href="/" style="color:var(--red)">mergers and acquisitions</a> from SEC EDGAR filings spanning 1993 to present. Filter by sector, value, type, and region.</p>
           </div>
           <div class="a-card">
             <div class="a-card-title">▲ IPO Watch</div>
@@ -350,6 +350,26 @@
     // Padding
     function _pad(){ var h=document.getElementById('siteHeader'),m=document.getElementById('mainContent'); if(h&&m) m.style.paddingTop=(h.offsetHeight+28+12)+'px'; }
     _pad(); setTimeout(_pad,200); window.addEventListener('resize',_pad);
+    // Dynamic deal count
+    (function() {
+      function getRoundedDealCount(n) {
+        if (!n || n < 100) return n || 0;
+        return Math.floor(n / 100) * 100;
+      }
+      fetch('https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals.json?t=' + Date.now())
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .then(function(data) {
+          if (!data || !Array.isArray(data)) return;
+          var total   = data.length;
+          var rounded = getRoundedDealCount(total);
+          var display = rounded ? rounded.toLocaleString() + '+' : '10,000+';
+          var el1 = document.getElementById('aboutDealCount');
+          var el2 = document.getElementById('aboutDealCountText');
+          if (el1) el1.textContent = display;
+          if (el2) el2.textContent = display;
+        })
+        .catch(function() {});
+    })();
   </script>
 </body>
 </html>

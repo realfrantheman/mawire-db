@@ -293,6 +293,12 @@ function setupHeroSearch() {
   });
 }
 
+/* ── DYNAMIC COUNT HELPER ────────────────────────────────────────── */
+function getRoundedDealCount(n) {
+  if (!n || n < 100) return n || 0;
+  return Math.floor(n / 100) * 100;
+}
+
 /* ── DATA LOADING ────────────────────────────────────────────── */
 function loadDeals() {
   showLoading();
@@ -306,9 +312,11 @@ function loadDeals() {
       if (!Array.isArray(data) || !data.length) throw new Error('Empty');
 
       // Validate and sanitise
-      var NON_MA_TYPES = { 'Funding Round': 1, 'Strategic Investment': 1, 'Divestiture': 1 };
-      // Headlines that are clearly product/earnings announcements, not M&A
-      var NON_MA_HEADLINE = /\bto (?:release|launch|unveil|introduce|present|ship)\b|\bearnings?\b|\bquarterly results?\b|\bproduct launch\b|\bsensor\b|\bfirmware\b|\bsoftware update\b|\bIPO priced\b/i;
+      // Funding Round and Strategic Investment are not M&A transactions.
+      // Divestiture IS a valid M&A transaction — intentionally excluded from this list.
+      var NON_MA_TYPES = { 'Funding Round': 1, 'Strategic Investment': 1 };
+      // Headlines clearly indicating non-M&A content
+      var NON_MA_HEADLINE = /\bto (?:release|launch|unveil|introduce|present|ship|report)\b|\bearnings?\b|\bquarterly results?\b|\bannual results?\b|\bproduct launch\b|\bsensor\b|\bfirmware\b|\bsoftware update\b|\bIPO priced\b|\bappoints?\s+(?:new\s+)?(?:ceo|cfo|coo|cto|president|chairman|vp)\b|\bnames?\s+(?:new\s+)?(?:ceo|cfo|coo|cto|president|chairman)\b|\braises?\s+\$\d|\bseries [a-e]\s+(?:funding|round|investment)\b|\bjoint venture\b|\bpartnership agreement\b|\bdistribution agreement\b|\blicen(?:se|sing) agreement\b/i;
       var safe = data.filter(function(d) {
         if (!d || typeof d !== 'object') return false;
         if (typeof d.headline !== 'string') return false;
@@ -363,8 +371,16 @@ function hide(id) { var e = el(id); if (e) e.style.display = 'none'; }
 
 /* ── STATS UPDATE ────────────────────────────────────────────── */
 function updateHeroStats() {
+  var total   = allDeals.length;
+  var rounded = getRoundedDealCount(total);
+  var display = rounded ? rounded.toLocaleString() + '+' : '10,000+';
+
   var heroStat = el('heroStatDeals');
-  if (heroStat) heroStat.textContent = allDeals.length.toLocaleString() + '+';
+  if (heroStat) heroStat.textContent = display;
+
+  // Update hero subtitle and any other dynamic count spans
+  var subtitleCount = el('heroSubtitleCount');
+  if (subtitleCount) subtitleCount.textContent = display;
 }
 
 function updateKPIs() {
@@ -396,13 +412,17 @@ function updateIndustryCounts() {
   });
   var map = {
     'Technology': 'indTech', 'Healthcare': 'indHealth',
-    'Finance': 'indFinance', 'Energy': 'indEnergy',
-    'Consumer': 'indConsumer', 'Telecom': 'indTelecom',
+    'Financial Services': 'indFinance', 'Finance': 'indFinance',
+    'Energy': 'indEnergy', 'Consumer': 'indConsumer',
+    'Telecommunications': 'indTelecom', 'Telecom': 'indTelecom',
     'Media': 'indMedia'
   };
   Object.keys(map).forEach(function(sector) {
     var e = el(map[sector]);
-    if (e && counts[sector]) e.textContent = counts[sector].toLocaleString();
+    if (e && counts[sector]) {
+      var c = counts[sector];
+      e.textContent = getRoundedDealCount(c).toLocaleString() + (c > 99 ? '+' : '');
+    }
   });
 }
 
@@ -559,10 +579,16 @@ function applyFilters() {
     return true;
   });
 
-  // Sort
+  // Sort — prefer dateISO for precise ordering; fall back to year
   results.sort(function(a, b) {
-    if (state.sort === 'newest')   return (b.year || 0) - (a.year || 0);
-    if (state.sort === 'oldest')   return (a.year || 0) - (b.year || 0);
+    if (state.sort === 'newest') {
+      var ad = a.dateISO || String(a.year || ''), bd = b.dateISO || String(b.year || '');
+      return bd.localeCompare(ad);
+    }
+    if (state.sort === 'oldest') {
+      var ad = a.dateISO || String(a.year || ''), bd = b.dateISO || String(b.year || '');
+      return ad.localeCompare(bd);
+    }
     if (state.sort === 'largest') {
       return parseDealValue(b.dealValue) - parseDealValue(a.dealValue);
     }

@@ -38,6 +38,11 @@ const STRONG_MA_KEYWORDS = [
   'buyout of', 'take private', 'taken private',
   'to be acquired by', 'acquired by ',
   'definitive agreement to ', 'signs definitive agreement',
+  'enters into definitive agreement', 'enters definitive agreement',
+  'merger agreement', 'definitive merger agreement',
+  'scheme of arrangement', 'recommended offer', 'recommended cash offer',
+  'all-cash acquisition', 'all-stock merger', 'all cash deal',
+  'to acquire all outstanding', 'acquire all shares',
 ];
 
 // Weaker signals — valid only when entity extraction also succeeds
@@ -52,15 +57,28 @@ const EXCLUDE_KEYWORDS = [
   'acquires minority', 'acquires equity stake', 'acquires stake in',
   'minority stake', 'minority investment', 'strategic investment',
   'strategic alliance', 'partnership agreement', 'joint venture',
-  'series a ', 'series b ', 'series c ', 'series d ', 'seed round',
-  'funding round', 'raises $', 'raised $', 'raises funding', 'secures funding',
+  'series a ', 'series b ', 'series c ', 'series d ', 'series e ', 'series f ',
+  'seed round', 'funding round', 'raises $', 'raised $', 'raises funding', 'secures funding',
   'licensing agreement', 'license agreement', 'distribution agreement',
   'content deal', 'marketing agreement', 'supply agreement',
   'wins contract', 'awarded contract', 'contract award',
   'credit facility', 'loan agreement', 'refinanc',
-  'ipo ', 'initial public offering',
+  'ipo ', 'initial public offering', 'ipo priced', 'prices its ipo',
   'real estate', 'acquires hotel', 'acquires portfolio',
   'buys back', 'share buyback', 'stock buyback', 'repurchase',
+  // Earnings / financial results — never M&A
+  'quarterly earnings', 'quarterly results', 'annual results', 'full year results',
+  'q1 results', 'q2 results', 'q3 results', 'q4 results',
+  'q1 earnings', 'q2 earnings', 'q3 earnings', 'q4 earnings',
+  'reports financial results', 'announces financial results', 'announces results',
+  'first quarter results', 'second quarter results', 'third quarter results', 'fourth quarter results',
+  'earnings per share', 'reports revenue', 'revenue grew',
+  // Executive appointments
+  'appoints new ceo', 'appoints new cfo', 'appoints new coo', 'appoints new president',
+  'names new ceo', 'names new cfo', 'names new coo', 'names new president',
+  'appoints chief executive', 'names chief executive',
+  // Product / technology announcements
+  'product launch', 'launches new product', 'unveils new', 'introduces new',
 ];
 
 const ENTITY_PATTERNS = [

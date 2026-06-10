@@ -161,7 +161,7 @@ async function processFiling(filing, filingType) {
 async function fetchFilingDetail(cik, accessionNo) {
   try {
     if (!cik || !accessionNo) return null;
-    const cleanAccession = String(accessionNo).replace(/-/g, '');
+    const cleanAccession = String(accessionNo).split(':')[0].replace(/-/g, '');
     const url = `https://data.sec.gov/submissions/CIK${String(cik).padStart(10,'0')}.json`;
     const data = await fetchJson(url);
     if (!data) return null;
