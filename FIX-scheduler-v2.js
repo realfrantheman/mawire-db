@@ -20,7 +20,6 @@ let extractRunning = false;
 let newsRunning   = false;
 let euRunning     = false;
 let apacRunning   = false;
-let pieRunning    = false;
 
 function safeRun(name, flagRef, flagKey, fn) {
   return async () => {
@@ -41,7 +40,7 @@ function safeRun(name, flagRef, flagKey, fn) {
 
 const flags = {
   sec: false, gdelt: false, dedup: false, extract: false,
-  news: false, eu: false, apac: false, pie: false,
+  news: false, eu: false, apac: false,
 };
 
 // ── SEC EDGAR — every 30 minutes ──────────────────────────────────
@@ -199,22 +198,6 @@ cron.schedule('30 */2 * * *', async () => {
   }
 });
 
-// ── PLATFORM INTEGRITY ENGINE — every hour ────────────────────────
-cron.schedule('45 * * * *', async () => {
-  if (flags.pie) { console.log('[CRON] PIE already running, skipping'); return; }
-  flags.pie = true;
-  try {
-    console.log('[CRON] Starting PIE monitor');
-    const { run } = require('./services/pie-monitor/index');
-    await run();
-    console.log('[CRON] PIE monitor complete');
-  } catch (err) {
-    console.error('[CRON] PIE error:', err.message);
-  } finally {
-    flags.pie = false;
-  }
-});
-
 // ── STATS CACHE — every hour ───────────────────────────────────────
 cron.schedule('15 * * * *', async () => {
   try {
@@ -236,7 +219,6 @@ console.log('[SCHEDULER]   APAC (HK/AU/SG) every 4 hours');
 console.log('[SCHEDULER]   Extraction      every 5 min');
 console.log('[SCHEDULER]   Dedup           every 6 hours');
 console.log('[SCHEDULER]   Stats cache     every 1 hour');
-console.log('[SCHEDULER]   PIE monitor     every 1 hour');
 console.log('[SCHEDULER] ==========================================');
 console.log('[SCHEDULER] All crons active. Waiting for first tick...');
 

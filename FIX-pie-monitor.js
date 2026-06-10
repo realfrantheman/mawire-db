@@ -16,7 +16,7 @@ const https    = require('https');
 const DB_URL      = process.env.DATABASE_URL;
 const GH_TOKEN    = process.env.GITHUB_TOKEN || process.env.MAWIRE_TOKEN;
 const GH_OWNER    = 'realfrantheman';
-const GH_REPO     = 'mawire-db';
+const GH_REPO     = 'mawire-monitor';
 const GH_SITE     = 'mawire-site';
 const HEALTH_FILE = 'pie-health.json';
 

@@ -24,6 +24,9 @@ OWNER = 'realfrantheman'
 # ── FILE MAPPINGS ─────────────────────────────────────────────────
 # (source_file_in_mawire_db, target_repo, target_path)
 MAPPINGS = [
+    # ── mawire-monitor ───────────────────────────────────────────
+    ('FIX-pie-monitor.js',           'mawire-monitor', 'index.js'),
+    ('MONITOR-workflow.yml',         'mawire-monitor', '.github/workflows/run.yml'),
     # ── mawire-platform ──────────────────────────────────────────
     ('FIX-scheduler-v2.js',          'mawire-platform', 'scheduler.js'),
     ('FIX-sec-ingestor-index.js',    'mawire-platform', 'services/sec-ingestor/index.js'),
@@ -33,7 +36,6 @@ MAPPINGS = [
     ('FIX-apac-ingestor.js',         'mawire-platform', 'services/apac-ingestor/index.js'),
     ('FIX-news-ingestor.js',         'mawire-platform', 'services/news-ingestor/index.js'),
     ('FIX-enrich-deals.js',          'mawire-platform', 'scripts/enrich-deals.js'),
-    ('FIX-pie-monitor.js',           'mawire-platform', 'services/pie-monitor/index.js'),
     # ── mawire-site ──────────────────────────────────────────────
     ('DEPLOY-index.html',                      'mawire-site', 'index.html'),
     ('DEPLOY-ipo.html',                        'mawire-site', 'ipo.html'),
