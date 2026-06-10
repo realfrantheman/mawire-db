@@ -73,13 +73,22 @@ def get_sha(repo, path):
     result = api(f'/repos/{OWNER}/{repo}/contents/{path}')
     return result['sha'] if result else None
 
-def push_file(repo, path, content_bytes, message):
+def push_file(repo, path, content_bytes, message, max_retries=3):
     encoded = base64.b64encode(content_bytes).decode()
-    sha = get_sha(repo, path)
-    payload = {'message': message, 'content': encoded}
-    if sha:
-        payload['sha'] = sha
-    api(f'/repos/{OWNER}/{repo}/contents/{path}', method='PUT', body=payload)
+    for attempt in range(max_retries):
+        sha = get_sha(repo, path)
+        payload = {'message': message, 'content': encoded}
+        if sha:
+            payload['sha'] = sha
+        try:
+            api(f'/repos/{OWNER}/{repo}/contents/{path}', method='PUT', body=payload)
+            return
+        except RuntimeError as e:
+            if '→ 409' in str(e) and attempt < max_retries - 1:
+                print(f'  RETRY ({attempt+1}/{max_retries-1}) {repo}/{path} — SHA conflict, re-fetching')
+                time.sleep(2 ** attempt)
+                continue
+            raise
 
 # ── MAIN ──────────────────────────────────────────────────────────
 def main():
