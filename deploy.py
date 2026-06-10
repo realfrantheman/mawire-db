@@ -24,6 +24,8 @@ OWNER = 'realfrantheman'
 # ── FILE MAPPINGS ─────────────────────────────────────────────────
 # (source_file_in_mawire_db, target_repo, target_path)
 MAPPINGS = [
+    # ── mawire-monitor ───────────────────────────────────────────
+    ('MONITOR-workflow.yml', 'mawire-monitor', '.github/workflows/run.yml'),
     # ── mawire-platform ──────────────────────────────────────────
     ('FIX-scheduler-v2.js',          'mawire-platform', 'scheduler.js'),
     ('FIX-sec-ingestor-index.js',    'mawire-platform', 'services/sec-ingestor/index.js'),
