@@ -98,7 +98,10 @@ def push_file(repo, path, content_bytes, message, max_retries=4):
 
 # ── MAIN ──────────────────────────────────────────────────────────
 def main():
-    ok = err = 0
+    ok = 0
+    site_err = 0      # mawire-site failures → fatal
+    platform_err = 0  # mawire-platform failures → warning only
+
     for src, repo, dest in MAPPINGS:
         if not os.path.exists(src):
             print(f'  SKIP  {src} (not found)')
@@ -106,17 +109,26 @@ def main():
         try:
             with open(src, 'rb') as f:
                 content = f.read()
-            msg = f'deploy: {src} → {dest}'
-            push_file(repo, dest, content, msg)
+            push_file(repo, dest, content, f'deploy: {src} → {dest}')
             print(f'  OK    {repo}/{dest}')
             ok += 1
-            time.sleep(0.3)   # avoid secondary rate limits
+            time.sleep(0.5)   # avoid secondary rate limits
         except Exception as e:
             print(f'  FAIL  {repo}/{dest}: {e}')
-            err += 1
+            if repo == 'mawire-site':
+                site_err += 1
+            else:
+                platform_err += 1
 
-    print(f'\nDone: {ok} deployed, {err} failed.')
-    if err:
+    total_err = site_err + platform_err
+    print(f'\nDone: {ok} deployed, {total_err} failed'
+          + (f' ({site_err} site, {platform_err} platform)' if total_err else '') + '.')
+
+    if platform_err and not site_err:
+        print(f'WARNING: {platform_err} mawire-platform file(s) failed — site is healthy.')
+
+    # Only fail the workflow if mawire-site had errors
+    if site_err:
         sys.exit(1)
 
 if __name__ == '__main__':
