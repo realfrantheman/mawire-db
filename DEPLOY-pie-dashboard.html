@@ -17,6 +17,21 @@
     a{color:var(--blue);text-decoration:none}
     a:hover{text-decoration:underline}
 
+    /* ── AUTH GATE ── */
+    #authGate{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center}
+    .auth-box{background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:36px 32px;width:100%;max-width:360px}
+    .auth-logo{font-size:13px;color:var(--muted);margin-bottom:20px}
+    .auth-logo strong{color:var(--text)}
+    .auth-title{font-size:18px;font-weight:600;color:var(--text);margin-bottom:6px}
+    .auth-sub{font-size:13px;color:var(--muted2);margin-bottom:24px}
+    .auth-label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:6px}
+    .auth-input{width:100%;background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:9px 12px;color:var(--text);font-size:14px;outline:none;transition:border-color .15s}
+    .auth-input:focus{border-color:var(--blue)}
+    .auth-btn{width:100%;margin-top:16px;background:var(--blue);color:#fff;border:none;border-radius:6px;padding:10px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s}
+    .auth-btn:hover{opacity:.85}
+    .auth-btn:disabled{opacity:.5;cursor:not-allowed}
+    .auth-error{margin-top:12px;font-size:12px;color:var(--red);text-align:center;min-height:16px}
+
     /* ── LAYOUT ── */
     .shell{max-width:1100px;margin:0 auto;padding:24px 16px 48px}
     .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
@@ -126,6 +141,21 @@
   </style>
 </head>
 <body>
+
+<!-- Auth gate — rendered server-side before any dashboard content -->
+<div id="authGate">
+  <div class="auth-box">
+    <div class="auth-logo"><strong>mergers.news</strong></div>
+    <div class="auth-title">Restricted Access</div>
+    <div class="auth-sub">Platform Integrity Engine is for internal use only.</div>
+    <label class="auth-label" for="authPwd">Password</label>
+    <input id="authPwd" class="auth-input" type="password" placeholder="Enter password" autocomplete="current-password"/>
+    <button id="authBtn" class="auth-btn">Unlock Dashboard</button>
+    <div id="authError" class="auth-error"></div>
+  </div>
+</div>
+
+<div id="dashContent" style="display:none">
 <div class="shell">
 
   <div class="topbar">
@@ -211,8 +241,60 @@
   </div>
 
 </div>
+</div><!-- /dashContent -->
 
 <script>
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+var SESSION_KEY = 'pie_auth';
+// SHA-256 of the access password (password never stored in source)
+var PWD_HASH = '18af8f28a0a1e4af4f6896e44765996e1afc543614896e4dfa364ef8981c68e0';
+
+async function sha256(str) {
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
+function unlock() {
+  el('authGate').style.display = 'none';
+  el('dashContent').style.display = 'block';
+  loadHealth();
+}
+
+async function tryAuth() {
+  var pwd = el('authPwd').value;
+  if (!pwd) return;
+  el('authBtn').disabled = true;
+  el('authBtn').textContent = 'Checking…';
+  try {
+    var hash = await sha256(pwd);
+    if (hash === PWD_HASH) {
+      try { sessionStorage.setItem(SESSION_KEY, '1'); } catch(e) {}
+      unlock();
+    } else {
+      el('authError').textContent = 'Incorrect password.';
+      el('authPwd').value = '';
+      el('authPwd').focus();
+    }
+  } catch(e) {
+    el('authError').textContent = 'Auth error — try again.';
+  } finally {
+    el('authBtn').disabled = false;
+    el('authBtn').textContent = 'Unlock Dashboard';
+  }
+}
+
+// Check existing session before rendering anything
+(function() {
+  try {
+    if (sessionStorage.getItem(SESSION_KEY) === '1') { unlock(); return; }
+  } catch(e) {}
+  // Gate stays visible; wire up controls
+  el('authBtn').addEventListener('click', tryAuth);
+  el('authPwd').addEventListener('keydown', function(e){ if (e.key === 'Enter') tryAuth(); });
+  el('authPwd').focus();
+})();
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────────
 var HEALTH_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/pie-health.json';
 var refreshTimer;
 
