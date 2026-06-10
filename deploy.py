@@ -74,7 +74,7 @@ def get_sha(repo, path):
     result = api(f'/repos/{OWNER}/{repo}/contents/{path}')
     return result['sha'] if result else None
 
-def push_file(repo, path, content_bytes, message, max_retries=3):
+def push_file(repo, path, content_bytes, message, max_retries=4):
     encoded = base64.b64encode(content_bytes).decode()
     for attempt in range(max_retries):
         sha = get_sha(repo, path)
@@ -85,9 +85,14 @@ def push_file(repo, path, content_bytes, message, max_retries=3):
             api(f'/repos/{OWNER}/{repo}/contents/{path}', method='PUT', body=payload)
             return
         except RuntimeError as e:
-            if '→ 409' in str(e) and attempt < max_retries - 1:
-                print(f'  RETRY ({attempt+1}/{max_retries-1}) {repo}/{path} — SHA conflict, re-fetching')
-                time.sleep(2 ** attempt)
+            msg = str(e)
+            is_last = attempt >= max_retries - 1
+            # Retry on SHA conflict (409), transient auth errors (401), rate limits (429/403)
+            retryable = any(f'→ {c}' in msg for c in ('401', '403', '409', '429'))
+            if retryable and not is_last:
+                wait = 2 ** (attempt + 1)   # 2s, 4s, 8s
+                print(f'  RETRY ({attempt+1}/{max_retries-1}) {repo}/{path} — {msg[-60:].strip()} — waiting {wait}s')
+                time.sleep(wait)
                 continue
             raise
 
