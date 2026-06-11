@@ -2,9 +2,14 @@
 
 const https    = require('https');
 const http     = require('http');
+const fs       = require('fs');
+const path     = require('path');
 const { URL }  = require('url');
 const { Pool } = require('pg');
-const { extractParties, rawSnippet, withRetry } = require('../shared/deal-extraction');
+const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-extraction.js'))
+  ? '../shared/deal-extraction'
+  : './FIX-deal-extraction';
+const { extractParties, rawSnippet, withRetry } = require(sharedExtractionPath);
 
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,

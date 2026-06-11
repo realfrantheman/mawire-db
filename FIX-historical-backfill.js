@@ -10,8 +10,12 @@
 const https    = require('https');
 const http     = require('http');
 const fs       = require('fs');
+const path     = require('path');
 const { Pool } = require('pg');
-const { extractParties, firstReliable, isReliableName, rawSnippet } = require('../services/shared/deal-extraction');
+const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../services/shared/deal-extraction.js'))
+  ? '../services/shared/deal-extraction'
+  : './FIX-deal-extraction';
+const { extractParties, firstReliable, isReliableName, rawSnippet } = require(sharedExtractionPath);
 
 const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
@@ -386,4 +390,8 @@ async function fetchJson(url) {
   });
 }
 
-run().catch(err => { console.error('[BACKFILL] Fatal:', err); db.end(); });
+module.exports = { run, ensureIngestionSchema };
+
+if (require.main === module) {
+  run().catch(err => { console.error('[BACKFILL] Fatal:', err); db.end(); process.exit(1); });
+}
