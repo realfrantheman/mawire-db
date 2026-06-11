@@ -9,6 +9,7 @@
 
 const https    = require('https');
 const http     = require('http');
+const fs       = require('fs');
 const { Pool } = require('pg');
 const { extractParties, firstReliable, isReliableName, rawSnippet } = require('../services/shared/deal-extraction');
 
@@ -22,6 +23,7 @@ const DELAY_MS      = 400; // be polite to SEC servers
 const TIME_LIMIT_MS = (parseInt(process.env.BACKFILL_TIME_LIMIT_MINUTES || '100', 10)) * 60 * 1000;
 
 async function run() {
+  await ensureIngestionSchema();
   const startedAt = Date.now();
   console.log(`[BACKFILL] Starting historical backfill ${START_YEAR}–${END_YEAR}`);
   console.log(`[BACKFILL] Filing types: ${FILING_TYPES.join(', ')}`);
@@ -73,6 +75,19 @@ async function run() {
   const elapsed = Math.round((Date.now() - startedAt) / 1000);
   console.log(`\n[BACKFILL] ${timedOut ? 'Stopped (time limit)' : 'Complete'}: ${totalNew} new, ${totalSkipped} skipped, ${totalFailed} failed — ${elapsed}s elapsed`);
   await db.end();
+}
+
+async function ensureIngestionSchema() {
+  const migrationPaths = [
+    'FIX-ingestion-quality-migration.sql',
+    'database/migrations/20260611_ingestion_quality.sql',
+  ];
+  const migrationPath = migrationPaths.find(path => fs.existsSync(path));
+  if (!migrationPath) throw new Error('Ingestion quality migration file not found');
+
+  console.log(`[BACKFILL] Applying migration: ${migrationPath}`);
+  await db.query(fs.readFileSync(migrationPath, 'utf8'));
+  console.log('[BACKFILL] Ingestion quality migration complete');
 }
 
 async function fetchFilingsForPeriod(filingType, startdt, enddt) {
