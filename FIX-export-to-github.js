@@ -7,6 +7,7 @@
 'use strict';
 
 const https    = require('https');
+const { execFileSync } = require('child_process');
 const { Pool } = require('pg');
 
 const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
@@ -173,6 +174,7 @@ async function run() {
 
   // LOCAL_ONLY=true: write to disk only (workflow commits via git)
   if (process.env.LOCAL_ONLY === 'true') {
+    syncActionsCheckout();
     require('fs').writeFileSync('deals.json', json + '\n');
     console.log('[EXPORT] Wrote', deduped.length, 'deals to local deals.json');
     return;
@@ -185,6 +187,14 @@ async function run() {
 
   await pushToGitHub(encoded, sha);
   console.log('[EXPORT] Done! GitHub updated with', deduped.length, 'deals');
+}
+
+function syncActionsCheckout() {
+  if (process.env.GITHUB_ACTIONS !== 'true') return;
+
+  console.log('[EXPORT] Synchronizing Actions checkout with latest main');
+  execFileSync('git', ['fetch', 'origin', 'main'], { stdio: 'inherit' });
+  execFileSync('git', ['reset', '--hard', 'origin/main'], { stdio: 'inherit' });
 }
 
 /* ── Summary generation (ported from generate-summaries.py) ─────────── */
