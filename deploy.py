@@ -32,6 +32,12 @@ MAPPINGS = [
     ('FIX-eu-ingestor.js',           'mawire-platform', 'services/eu-ingestor/index.js'),
     ('FIX-apac-ingestor.js',         'mawire-platform', 'services/apac-ingestor/index.js'),
     ('FIX-news-ingestor.js',         'mawire-platform', 'services/news-ingestor/index.js'),
+    ('FIX-gdelt-ingestor.js',        'mawire-platform', 'services/gdelt-ingestor/index.js'),
+    ('FIX-deal-extraction.js',       'mawire-platform', 'services/shared/deal-extraction.js'),
+    ('FIX-api-service.js',           'mawire-platform', 'services/api/index.js'),
+    ('FIX-platform-schema.sql',      'mawire-platform', 'schema.sql'),
+    ('FIX-platform-schema.sql',      'mawire-platform', 'database/schema.sql'),
+    ('FIX-ingestion-quality-migration.sql', 'mawire-platform', 'database/migrations/20260611_ingestion_quality.sql'),
     ('FIX-enrich-deals.js',          'mawire-platform', 'scripts/enrich-deals.js'),
     # ── mawire-site ──────────────────────────────────────────────
     ('DEPLOY-index.html',                      'mawire-site', 'index.html'),

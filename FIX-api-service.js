@@ -89,13 +89,16 @@ function paginate(query) {
 }
 
 function formatDeal(row) {
+  const reliable = value => value && !/^(unknown|undisclosed(?: buyer| acquirer| target)?|acquirer.*see filing|target.*see filing|disclosed in filing)$/i.test(value)
+    ? value
+    : null;
   return {
     id:                row.id,
     headline:          row.headline,
-    acquirer:          row.acquirer_name  || null,
+    acquirer:          reliable(row.acquirer_name) || reliable(row.extracted_acquirer_name) || null,
     acquirer_id:       row.acquirer_id    || null,
     acquirer_country:  row.acquirer_country || null,
-    target:            row.target_name    || null,
+    target:            reliable(row.target_name) || reliable(row.extracted_target_name) || null,
     target_id:         row.target_id      || null,
     target_country:    row.target_country || null,
     deal_type:         row.deal_type,

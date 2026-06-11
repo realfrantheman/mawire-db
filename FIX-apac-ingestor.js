@@ -2,8 +2,14 @@
 
 const https    = require('https');
 const http     = require('http');
+const fs       = require('fs');
+const path     = require('path');
 const { URL }  = require('url');
 const { Pool } = require('pg');
+const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-extraction.js'))
+  ? '../shared/deal-extraction'
+  : './FIX-deal-extraction';
+const { extractParties, rawSnippet, withRetry } = require(sharedExtractionPath);
 
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -51,7 +57,7 @@ async function runHkex(stats) {
   for (const dateStr of dates) {
     try {
       const url  = hkexListUrl(dateStr);
-      const html = await fetchText(url);
+      const html = await withRetry(() => fetchText(url), { attempts: 4, baseDelayMs: 1000 });
       const announcements = parseHkexAnnouncements(html, dateStr);
 
       console.log(`[APAC/HKEX] Found ${announcements.length} M&A announcements on ${dateStr}`);
@@ -127,13 +133,15 @@ async function processHkexAnnouncement(ann) {
   );
   if (existing.rows.length > 0) return 'skip';
 
-  const companyName = ann.companyName || extractCompanyFromTitle(ann.title) || 'Unknown';
-  const companyRec  = await upsertCompany(db, { name: companyName }, null);
+  const parties = extractParties(ann.title);
+  const companyName = parties.acquirer || ann.companyName || extractCompanyFromTitle(ann.title) || null;
+  const companyRec  = companyName ? await upsertCompany(db, { name: companyName }, null) : null;
+  const targetRec = parties.target ? await upsertCompany(db, { name: parties.target }, null) : null;
   const annoDate    = parseDateFromYYYYMMDD(ann.dateStr);
 
   await insertDeal(db, {
-    acquirer_id:       companyRec.id,
-    target_id:         null,
+    acquirer_id:       companyRec?.id || null,
+    target_id:         targetRec?.id || null,
     headline:          trunc(ann.title, 500),
     deal_type:         ann.dealType,
     status:            'Announced',
@@ -148,6 +156,9 @@ async function processHkexAnnouncement(ann) {
     source_name:       'HKEX News',
     source_url:        sourceUrl,
     source_date:       annoDate,
+    extracted_acquirer_name: parties.acquirer || companyName,
+    extracted_target_name: parties.target,
+    raw_extracted_snippet: rawSnippet(ann.title),
   });
 
   return 'new';
@@ -162,7 +173,7 @@ async function runAsx(stats) {
 
   let html;
   try {
-    html = await fetchText(url);
+    html = await withRetry(() => fetchText(url), { attempts: 4, baseDelayMs: 1000 });
   } catch (err) {
     console.error('[APAC/ASX] Failed to fetch ASX announcements:', err.message);
     stats.failed++;
@@ -240,14 +251,16 @@ async function processAsxAnnouncement(ann) {
   );
   if (existing.rows.length > 0) return 'skip';
 
-  const companyName = ann.ticker ? `${ann.ticker} (ASX)` : extractCompanyFromTitle(ann.title) || 'Unknown';
-  const companyRec  = await upsertCompany(db, { name: companyName }, null);
+  const parties = extractParties(ann.title);
+  const companyName = parties.acquirer || (ann.ticker ? `${ann.ticker} (ASX)` : extractCompanyFromTitle(ann.title) || null);
+  const companyRec  = companyName ? await upsertCompany(db, { name: companyName }, null) : null;
+  const targetRec = parties.target ? await upsertCompany(db, { name: parties.target }, null) : null;
   const annoDate    = parseDateFlexible(ann.dateStr);
   const dealValue   = extractDealValue(ann.title);
 
   await insertDeal(db, {
-    acquirer_id:       companyRec.id,
-    target_id:         null,
+    acquirer_id:       companyRec?.id || null,
+    target_id:         targetRec?.id || null,
     headline:          trunc(ann.title, 500),
     deal_type:         ann.dealType,
     status:            'Announced',
@@ -262,6 +275,9 @@ async function processAsxAnnouncement(ann) {
     source_name:       'ASX Announcements',
     source_url:        sourceUrl,
     source_date:       annoDate,
+    extracted_acquirer_name: parties.acquirer || companyName,
+    extracted_target_name: parties.target,
+    raw_extracted_snippet: rawSnippet(ann.title),
   });
 
   return 'new';
@@ -274,7 +290,7 @@ async function runSgx(stats) {
 
   let html;
   try {
-    html = await fetchText(url);
+    html = await withRetry(() => fetchText(url), { attempts: 4, baseDelayMs: 1000 });
   } catch (err) {
     console.error('[APAC/SGX] Failed to fetch SGX announcements:', err.message);
     stats.failed++;
@@ -342,14 +358,16 @@ async function processSgxAnnouncement(ann) {
   );
   if (existing.rows.length > 0) return 'skip';
 
-  const companyName = extractCompanyFromTitle(ann.title) || 'Unknown';
-  const companyRec  = await upsertCompany(db, { name: companyName }, null);
+  const parties = extractParties(ann.title);
+  const companyName = parties.acquirer || extractCompanyFromTitle(ann.title) || null;
+  const companyRec  = companyName ? await upsertCompany(db, { name: companyName }, null) : null;
+  const targetRec = parties.target ? await upsertCompany(db, { name: parties.target }, null) : null;
   const dealValue   = extractDealValue(ann.title);
   const today       = new Date().toISOString().split('T')[0];
 
   await insertDeal(db, {
-    acquirer_id:       companyRec.id,
-    target_id:         null,
+    acquirer_id:       companyRec?.id || null,
+    target_id:         targetRec?.id || null,
     headline:          trunc(ann.title, 500),
     deal_type:         ann.dealType,
     status:            'Announced',
@@ -364,6 +382,9 @@ async function processSgxAnnouncement(ann) {
     source_name:       'SGX Company Announcements',
     source_url:        sourceUrl,
     source_date:       today,
+    extracted_acquirer_name: parties.acquirer || companyName,
+    extracted_target_name: parties.target,
+    raw_extracted_snippet: rawSnippet(ann.title),
   });
 
   return 'new';
@@ -485,8 +506,9 @@ async function insertDeal(db, info) {
     INSERT INTO deals (
       acquirer_id, target_id, headline, deal_type, status,
       announcement_date, filing_date, deal_value, sector,
-      source_confidence, extraction_method, needs_review
-    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+      source_confidence, extraction_method, needs_review,
+      extracted_acquirer_name, extracted_target_name, raw_extracted_snippet
+    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
     RETURNING id
   `, [
     info.acquirer_id,
@@ -501,19 +523,24 @@ async function insertDeal(db, info) {
     info.source_confidence,
     trunc(info.extraction_method, 100),
     info.needs_review,
+    trunc(info.extracted_acquirer_name, 500),
+    trunc(info.extracted_target_name, 500),
+    info.raw_extracted_snippet,
   ]);
 
   const dealId = res.rows[0].id;
 
   await db.query(`
-    INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date, raw_content, confidence)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
   `, [
     dealId,
     trunc(info.source_type, 50),
     trunc(info.source_name, 100),
     trunc(info.source_url, 500),
     info.source_date || null,
+    info.raw_extracted_snippet,
+    info.source_confidence,
   ]);
 
   return dealId;

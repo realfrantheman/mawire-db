@@ -18,6 +18,9 @@
   <meta name="twitter:image" content="https://mergers.news/og-image.png"/>
   <link rel="canonical" href="https://mergers.news/"/>
   <link rel="manifest" href="/manifest.json"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin/>
   <title>mergers.news — Global M&A Deal Intelligence | Search 10,000+ Deals</title>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q0RPXEDKS1"></script>
   <script>
@@ -189,15 +192,13 @@
             Search by company, sector, value, or filing type — no registration required.
           </p>
 
-          <!-- Hero search -->
-          <div class="hero-search" role="search">
-            <div class="hero-search-inner">
+          <!-- Hero search trigger; the database owns the page's single visible search input. -->
+          <div class="hero-search">
+            <button type="button" class="hero-search-open" id="heroSearchBtn" aria-label="Open deal search">
               <span class="hero-search-icon">⌕</span>
-              <input type="text" class="hero-search-input" id="heroSearchInput"
-                     placeholder="Search deals, companies, sectors…"
-                     aria-label="Search deals"/>
-              <button class="hero-search-btn" id="heroSearchBtn">Search</button>
-            </div>
+              <span>Search deals, companies, sectors…</span>
+              <span class="hero-search-btn">Search</span>
+            </button>
             <div class="hero-search-chips">
               <button class="hero-chip" data-q="Microsoft acquisitions">Microsoft</button>
               <button class="hero-chip" data-q="healthcare">Healthcare M&A</button>
@@ -314,7 +315,7 @@
           <span class="section-title-text">Deal Database</span>
           <span class="section-title-count" id="dealCountBadge">Loading…</span>
         </div>
-        <a href="#" class="section-link" id="exportBtn">Export CSV ↗</a>
+        <button type="button" class="section-link" id="exportBtn">Export CSV ↗</button>
       </div>
 
       <!-- Desktop table -->
@@ -422,18 +423,8 @@
           </div>
         </div>
 
-        <!-- Deal not found state (shown when a /deal/{id} permalink no longer exists) -->
-        <div id="dealNotFoundState" style="display:none">
-          <div class="state-box">
-            <div class="state-icon">◌</div>
-            <div class="state-title">Deal not found</div>
-            <div class="state-text">This deal may have been updated or removed from our database. Browse current M&amp;A deals below.</div>
-            <button class="state-btn" id="dealNotFoundBtn">Browse all deals</button>
-          </div>
-        </div>
-
         <!-- Deal table -->
-        <table class="deal-table" id="dealTable" style="display:none" role="table" aria-label="M&A deals database">
+        <table class="deal-table" id="dealTable" style="display:none" aria-label="M&A deals database">
           <thead>
             <tr>
               <th style="width:90px">Date</th>
@@ -445,7 +436,7 @@
               <th style="width:80px">Filing</th>
             </tr>
           </thead>
-          <tbody id="dealList" role="list" aria-label="M&A deals"></tbody>
+          <tbody id="dealList"></tbody>
         </table>
 
         <!-- Load more -->
@@ -499,34 +490,34 @@
           <div class="industry-card-count" id="indFinance">760+</div>
           <div class="industry-card-label">deals tracked</div>
         </a>
-        <a href="#" onclick="filterBySector('Energy');return false" class="industry-card" style="text-decoration:none">
+        <button type="button" onclick="filterBySector('Energy')" class="industry-card">
           <div class="industry-card-accent"></div>
           <div class="industry-card-icon">⚡</div>
           <div class="industry-card-name">Energy</div>
           <div class="industry-card-count" id="indEnergy">540+</div>
           <div class="industry-card-label">deals tracked</div>
-        </a>
-        <a href="#" onclick="filterBySector('Consumer');return false" class="industry-card" style="text-decoration:none">
+        </button>
+        <button type="button" onclick="filterBySector('Consumer')" class="industry-card">
           <div class="industry-card-accent"></div>
           <div class="industry-card-icon">🛍</div>
           <div class="industry-card-name">Consumer</div>
           <div class="industry-card-count" id="indConsumer">430+</div>
           <div class="industry-card-label">deals tracked</div>
-        </a>
-        <a href="#" onclick="filterBySector('Telecom');return false" class="industry-card" style="text-decoration:none">
+        </button>
+        <button type="button" onclick="filterBySector('Telecom')" class="industry-card">
           <div class="industry-card-accent"></div>
           <div class="industry-card-icon">📡</div>
           <div class="industry-card-name">Telecom</div>
           <div class="industry-card-count" id="indTelecom">290+</div>
           <div class="industry-card-label">deals tracked</div>
-        </a>
-        <a href="#" onclick="filterBySector('Media');return false" class="industry-card" style="text-decoration:none">
+        </button>
+        <button type="button" onclick="filterBySector('Media')" class="industry-card">
           <div class="industry-card-accent"></div>
           <div class="industry-card-icon">📺</div>
           <div class="industry-card-name">Media</div>
           <div class="industry-card-count" id="indMedia">210+</div>
           <div class="industry-card-label">deals tracked</div>
-        </a>
+        </button>
         <a href="/tender-offers" class="industry-card" style="text-decoration:none">
           <div class="industry-card-accent"></div>
           <div class="industry-card-icon">📋</div>
@@ -893,7 +884,7 @@
   updateBottomNav();
   window.addEventListener('resize', updateBottomNav);
 </script>
-<script src="/app.js"></script>
-<script src="/charts.js"></script>
+<script defer src="/app.js"></script>
+<script defer src="/charts.js"></script>
 </body>
 </html>

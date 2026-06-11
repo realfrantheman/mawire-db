@@ -9,7 +9,13 @@
 
 const https    = require('https');
 const http     = require('http');
+const fs       = require('fs');
+const path     = require('path');
 const { Pool } = require('pg');
+const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../services/shared/deal-extraction.js'))
+  ? '../services/shared/deal-extraction'
+  : './FIX-deal-extraction';
+const { extractParties, firstReliable, isReliableName, rawSnippet } = require(sharedExtractionPath);
 
 const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
@@ -21,6 +27,7 @@ const DELAY_MS      = 400; // be polite to SEC servers
 const TIME_LIMIT_MS = (parseInt(process.env.BACKFILL_TIME_LIMIT_MINUTES || '100', 10)) * 60 * 1000;
 
 async function run() {
+  await ensureIngestionSchema();
   const startedAt = Date.now();
   console.log(`[BACKFILL] Starting historical backfill ${START_YEAR}–${END_YEAR}`);
   console.log(`[BACKFILL] Filing types: ${FILING_TYPES.join(', ')}`);
@@ -74,6 +81,19 @@ async function run() {
   await db.end();
 }
 
+async function ensureIngestionSchema() {
+  const migrationPaths = [
+    'FIX-ingestion-quality-migration.sql',
+    'database/migrations/20260611_ingestion_quality.sql',
+  ];
+  const migrationPath = migrationPaths.find(path => fs.existsSync(path));
+  if (!migrationPath) throw new Error('Ingestion quality migration file not found');
+
+  console.log(`[BACKFILL] Applying migration: ${migrationPath}`);
+  await db.query(fs.readFileSync(migrationPath, 'utf8'));
+  console.log('[BACKFILL] Ingestion quality migration complete');
+}
+
 async function fetchFilingsForPeriod(filingType, startdt, enddt) {
   const allFilings = [];
   let from = 0;
@@ -109,25 +129,6 @@ async function fetchFilingsForPeriod(filingType, startdt, enddt) {
 const FILING_AGENT_PATTERNS = [/\/FA$/i, /- FA$/i, /EDGARFILINGS/i, /FILING SERVICES/i, /FILING AGENT/i, /DONNELLEY\s+FINANCIAL/i];
 function isFilingAgent(name) { return name ? FILING_AGENT_PATTERNS.some(p => p.test(name)) : false; }
 
-const MA_KEYWORD_PATTERNS = [
-  /\b(?:merger|mergers)\b/i,
-  /\bacquisition\b/i,
-  /\bacquir(?:ed|es|ing)\b/i,
-  /\btender\s+offer\b/i,
-  /\bgoing.private\b/i,
-  /\bbuyout\b/i,
-  /\bagreement\s+and\s+plan\b/i,
-  /\bmerger\s+agreement\b/i,
-  /\bto\s+be\s+acquired\b/i,
-  /\bconsideration\s+per\s+share\b/i,
-  /\bper\s+share\s+(?:cash\s+)?(?:merger\s+)?consideration\b/i,
-  /\bcash\s+consideration\b/i,
-];
-function isMergerDocument(text) {
-  if (!text || text.length < 1000) return true;
-  return MA_KEYWORD_PATTERNS.some(p => p.test(text));
-}
-
 async function processFiling(filing, filingType) {
   if (isFilingAgent(filing.entity_name)) return 'skip';
 
@@ -139,20 +140,14 @@ async function processFiling(filing, filingType) {
   const detail  = await fetchFilingDetail(filing.cik, filing.id);
   const rawHtml = await fetchFilingText(detail?.document_url || '');
   const docText = rawHtml ? stripHtml(rawHtml) : '';
-
-  if (!isMergerDocument(docText)) {
-    console.log(`[BACKFILL] Skip non-M&A document (${filingType}): ${filing.entity_name}`);
-    return 'skip';
-  }
-
   const dealInfo = extractDealInfo(filing, detail, filingType, docText);
 
-  const acquirerResult = await upsertCompany(dealInfo.acquirer, filing.cik);
-  const targetResult   = await upsertCompany(dealInfo.target, null);
+  const acquirerResult = await upsertCompany(dealInfo.acquirer, dealInfo.acquirer_is_filer ? filing.cik : null);
+  const targetResult   = await upsertCompany(dealInfo.target, dealInfo.target_is_filer ? filing.cik : null);
 
   const dealId = await insertDeal({
     ...dealInfo,
-    acquirer_id: acquirerResult.id,
+    acquirer_id: acquirerResult?.id || null,
     target_id:   targetResult?.id,
   });
 
@@ -160,7 +155,7 @@ async function processFiling(filing, filingType) {
     INSERT INTO filings (deal_id, company_id, filing_type, document_url, edgar_url, accession_no, cik, filing_date, processed)
     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,true)
   `, [
-    dealId, acquirerResult.id, filingType,
+    dealId, (dealInfo.target_is_filer ? targetResult?.id : acquirerResult?.id) || null, filingType,
     trunc(detail?.document_url || filing.filing_url, 500),
     trunc(filing.filing_url, 500),
     trunc(filing.id.split(':')[0], 30),  // clean accession only, no colon+filename
@@ -262,24 +257,30 @@ function extractDealValueCents(text) {
 function extractDealInfo(filing, detail, filingType, docText) {
   const companyName = detail?.company_name || filing.entity_name || 'Unknown';
   const otherParty  = extractOtherParty(docText, filingType);
+  const generic = extractParties(docText);
   const dealValueCents = extractDealValueCents(docText);
   let acquirer, target, dealType;
   switch (filingType) {
     case 'DEFM14A': case 'PREM14A': case 'DEFA14A':
-      target = companyName; acquirer = otherParty || 'Acquirer (see filing)'; dealType = 'Merger'; break;
+      target = companyName; acquirer = firstReliable(otherParty, generic.acquirer); dealType = 'Merger'; break;
     case 'SC TO-T': case 'SC TO-T/A':
-      acquirer = companyName; target = otherParty || 'Target (see filing)'; dealType = 'Acquisition'; break;
+      acquirer = companyName; target = firstReliable(otherParty, generic.target); dealType = 'Acquisition'; break;
     case 'S-4':
-      acquirer = companyName; target = otherParty || 'Target (see filing)'; dealType = 'Merger'; break;
+      acquirer = companyName; target = firstReliable(otherParty, generic.target); dealType = 'Merger'; break;
     case 'SC 13E-3': case 'SC 13E-3/A':
       acquirer = companyName; target = companyName; dealType = 'Going-Private'; break;
     default:
-      acquirer = companyName; target = otherParty || 'Unknown'; dealType = 'Merger';
+      acquirer = companyName; target = firstReliable(otherParty, generic.target); dealType = 'Merger';
   }
   return {
-    headline:          `${acquirer} / ${target}`,
-    acquirer:          { name: acquirer, cik: filing.cik },
-    target:            { name: target },
+    headline:          `${acquirer || 'Unknown acquirer'} / ${target || 'Unknown target'}`,
+    acquirer:          acquirer ? { name: acquirer, cik: filing.cik } : null,
+    target:            target ? { name: target } : null,
+    extracted_acquirer_name: acquirer,
+    extracted_target_name: target,
+    raw_extracted_snippet: rawSnippet(docText),
+    acquirer_is_filer: !['DEFM14A', 'PREM14A', 'DEFA14A'].includes(filingType),
+    target_is_filer: ['DEFM14A', 'PREM14A', 'DEFA14A'].includes(filingType),
     deal_type:         dealType,
     deal_value_cents:  dealValueCents,
     status:            'Announced',
@@ -289,20 +290,12 @@ function extractDealInfo(filing, detail, filingType, docText) {
     source_url:        filing.filing_url,
     sector:            sicToSector(detail?.sic),
     source_confidence: otherParty ? 0.8 : 0.7,
-    needs_review:      !otherParty,
+    needs_review:      !isReliableName(acquirer) || !isReliableName(target),
   };
 }
 
 async function upsertCompany(info, cik) {
-  if (!info || !info.name || info.name === 'Unknown') {
-    const res = await db.query(
-      `INSERT INTO companies (name, normalized_name, cik)
-       VALUES ('Unknown','unknown',$1)
-       ON CONFLICT (cik) WHERE cik IS NOT NULL DO UPDATE SET updated_at=NOW()
-       RETURNING id`, [cik || null]
-    );
-    return res.rows[0];
-  }
+  if (!info || !isReliableName(info.name)) return null;
   const normalized = normalizeName(info.name);
   if (cik) {
     const byCik = await db.query('SELECT id FROM companies WHERE cik=$1', [cik]);
@@ -320,13 +313,15 @@ async function upsertCompany(info, cik) {
 async function insertDeal(info) {
   const res = await db.query(`
     INSERT INTO deals (acquirer_id,target_id,headline,deal_type,status,announcement_date,
-      filing_date,sector,deal_value,source_confidence,extraction_method,needs_review)
-    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,'sec_filing',$11)
+      filing_date,sector,deal_value,source_confidence,extraction_method,needs_review,
+      extracted_acquirer_name,extracted_target_name,raw_extracted_snippet)
+    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,'sec_filing',$11,$12,$13,$14)
     RETURNING id
   `, [
     info.acquirer_id, info.target_id, info.headline, info.deal_type, info.status,
     info.announcement_date||null, info.filing_date||null, info.sector||null,
-    info.deal_value_cents||null, info.source_confidence||0.7, info.needs_review||true,
+    info.deal_value_cents||null, info.source_confidence||0.7, Boolean(info.needs_review),
+    trunc(info.extracted_acquirer_name,500), trunc(info.extracted_target_name,500), info.raw_extracted_snippet,
   ]);
   const dealId = res.rows[0].id;
   await db.query(
@@ -395,4 +390,8 @@ async function fetchJson(url) {
   });
 }
 
-run().catch(err => { console.error('[BACKFILL] Fatal:', err); db.end(); });
+module.exports = { run, ensureIngestionSchema };
+
+if (require.main === module) {
+  run().catch(err => { console.error('[BACKFILL] Fatal:', err); db.end(); process.exit(1); });
+}

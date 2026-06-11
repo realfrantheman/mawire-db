@@ -2,8 +2,14 @@
 
 const https    = require('https');
 const http     = require('http');
+const fs       = require('fs');
+const path     = require('path');
 const { URL }  = require('url');
 const { Pool } = require('pg');
+const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-extraction.js'))
+  ? '../shared/deal-extraction'
+  : './FIX-deal-extraction';
+const { withRetry } = require(sharedExtractionPath);
 
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -37,7 +43,7 @@ async function runEuMergerRegistry(stats) {
 
   let data;
   try {
-    data = await fetchJson(url);
+    data = await withRetry(() => fetchJson(url), { attempts: 4, baseDelayMs: 1000 });
   } catch (err) {
     console.error('[EU] Failed to fetch EU registry:', err.message);
     stats.failed++;
@@ -107,13 +113,13 @@ async function processEuCase(c) {
   const { acquirer, target } = parseEuCaseTitle(c.caseTitle);
   const announcementDate     = parseDateFlexible(c.notifDate);
 
-  const acquirerRec = await upsertCompany(db, { name: acquirer || 'Unknown' }, null);
+  const acquirerRec = acquirer ? await upsertCompany(db, { name: acquirer }, null) : null;
   const targetRec   = target
     ? await upsertCompany(db, { name: target }, null)
     : null;
 
   await insertDeal(db, {
-    acquirer_id:       acquirerRec.id,
+    acquirer_id:       acquirerRec?.id || null,
     target_id:         targetRec ? targetRec.id : null,
     headline:          trunc(c.caseTitle || `${acquirer} / ${target}`, 500),
     deal_type:         'Merger',
@@ -122,7 +128,7 @@ async function processEuCase(c) {
     filing_date:       announcementDate,
     deal_value:        null,
     sector:            null,
-    source_confidence: 0.8,
+    source_confidence: acquirer && target ? 0.8 : 0.65,
     extraction_method: 'eu_merger_registry',
     needs_review:      true,
     source_type:       'eu_merger_registry',
@@ -160,7 +166,7 @@ async function runUkCompaniesHouse(stats) {
 
   let data;
   try {
-    data = await fetchJson(url);
+    data = await withRetry(() => fetchJson(url), { attempts: 4, baseDelayMs: 1000 });
   } catch (err) {
     console.error('[EU] Failed to fetch UK Companies House:', err.message);
     stats.failed++;

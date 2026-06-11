@@ -22,12 +22,12 @@
   /* Text */
   --text:      #e2ddd6;
   --text2:     #a8a29e;
-  --muted:     #6b7280;
-  --muted2:    #353a44;
+  --muted:     #8b93a1;
+  --muted2:    #7b8493;
   --muted3:    #1e222a;
 
   /* Brand */
-  --red:       #c8102e;
+  --red:       #e54863;
   --red-dark:  #9b0d22;
   --red-glow:  rgba(200,16,46,0.15);
   --red-subtle:#1a0508;
@@ -80,6 +80,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; text-decoration: none; }
+p a, .form-note a, .info-value a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
 button { cursor: pointer; font-family: inherit; border: none; background: none; }
 input, select, textarea { font-family: inherit; }
 img { max-width: 100%; }
@@ -90,7 +95,7 @@ img { max-width: 100%; }
 /* ── ACCESSIBILITY ───────────────────────────────────────────── */
 .skip-link {
   position: fixed; top: -50px; left: 0; z-index: 10000;
-  background: var(--red); color: #fff; padding: 8px 16px;
+  background: var(--red-dark); color: #fff; padding: 8px 16px;
   font-family: var(--mono); font-size: 11px; letter-spacing: 1px;
   transition: top var(--t2);
 }
@@ -105,7 +110,7 @@ img { max-width: 100%; }
 .ticker-bar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: 28px;
-  background: var(--red);
+  background: var(--red-dark);
   display: flex; align-items: center; gap: 0;
   overflow: hidden;
 }
@@ -483,10 +488,11 @@ img { max-width: 100%; }
   transition: border-color var(--t2);
 }
 .hero-search:focus-within { border-color: var(--red); }
-.hero-search-inner {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px 16px;
+.hero-search-open {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 14px 16px; color: var(--muted); text-align: left;
 }
+.hero-search-open > span:nth-child(2) { flex: 1; font-size: 15px; }
 .hero-search-icon { color: var(--muted); font-size: 18px; flex-shrink: 0; }
 .hero-search-input {
   flex: 1;
@@ -1165,6 +1171,7 @@ img { max-width: 100%; }
   position: relative;
   overflow: hidden;
 }
+button.industry-card { width: 100%; text-align: left; color: inherit; }
 .industry-card:hover { border-color: var(--border3); background: var(--bg4); transform: translateY(-1px); }
 .industry-card-icon { font-size: 24px; margin-bottom: var(--s3); }
 .industry-card-name {
@@ -1908,7 +1915,7 @@ img { max-width: 100%; }
 .form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
 .form-select { cursor: pointer; }
 .form-submit {
-  width: 100%; background: var(--red); border: none;
+  width: 100%; background: var(--red-dark); border: none;
   color: #fff; padding: 12px 20px;
   font-family: var(--mono); font-size: 11px;
   letter-spacing: 2px; text-transform: uppercase;
@@ -1971,6 +1978,8 @@ img { max-width: 100%; }
 /* IPO page */
 .ipo-wrap { max-width: 1100px; margin: 0 auto; padding: 40px 0 80px; }
 .ipo-table { width: 100%; border-collapse: collapse; }
+.ipo-table-desktop { min-height: 560px; }
+.ipo-cards-mobile { min-height: 480px; }
 .ipo-table thead tr { border-bottom: 1px solid var(--border2); background: var(--bg4); }
 .ipo-table th {
   font-family: var(--mono); font-size: 8px;
