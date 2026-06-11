@@ -10,6 +10,7 @@
 const https    = require('https');
 const http     = require('http');
 const { Pool } = require('pg');
+const { extractParties, firstReliable, isReliableName, rawSnippet, withRetry } = require('../shared/deal-extraction');
 
 // ── CONFIG ────────────────────────────────────────────────────────
 const CONFIG = {
@@ -68,7 +69,10 @@ async function fetchRecentFilings(filingType) {
   dateFrom.setDate(dateFrom.getDate() - CONFIG.lookback_days);
   const dateStr  = dateFrom.toISOString().split('T')[0];
 
-  const data = await fetchJson(`https://efts.sec.gov/LATEST/search-index?forms=${encodeURIComponent(filingType)}&dateRange=custom&startdt=${dateStr}`);
+  const data = await withRetry(
+    () => fetchJson(`https://efts.sec.gov/LATEST/search-index?forms=${encodeURIComponent(filingType)}&dateRange=custom&startdt=${dateStr}`),
+    { attempts: 4, baseDelayMs: 1000 }
+  );
 
   if (!data || !data.hits || !data.hits.hits) return [];
 
@@ -121,29 +125,6 @@ function isFilingAgent(entityName) {
   return FILING_AGENT_PATTERNS.some(p => p.test(entityName));
 }
 
-// Keywords that confirm this document is about an M&A transaction
-const MA_KEYWORD_PATTERNS = [
-  /\b(?:merger|mergers)\b/i,
-  /\bacquisition\b/i,
-  /\bacquir(?:ed|es|ing)\b/i,
-  /\btender\s+offer\b/i,
-  /\bgoing.private\b/i,
-  /\bbuyout\b/i,
-  /\bagreement\s+and\s+plan\b/i,
-  /\bmerger\s+agreement\b/i,
-  /\bto\s+be\s+acquired\b/i,
-  /\bconsideration\s+per\s+share\b/i,
-  /\bper\s+share\s+(?:cash\s+)?(?:merger\s+)?consideration\b/i,
-  /\bcash\s+consideration\b/i,
-];
-
-// Returns false only when we have substantial document text with zero M&A keywords.
-// Short or empty text → allow through (can't determine from first chunk alone).
-function isMergerDocument(text) {
-  if (!text || text.length < 1000) return true;
-  return MA_KEYWORD_PATTERNS.some(p => p.test(text));
-}
-
 // ── PROCESS A SINGLE FILING ────────────────────────────────────────
 async function processFiling(filing, filingType) {
   // Skip known filing agents masquerading as deal entities
@@ -167,23 +148,17 @@ async function processFiling(filing, filingType) {
   const rawHtml = await fetchFilingText(detail?.document_url || '');
   const docText = rawHtml ? stripHtml(rawHtml) : '';
 
-  // Reject filings whose document text is substantial but contains no M&A language
-  if (!isMergerDocument(docText)) {
-    console.log(`[SEC] Skip non-M&A document (${filingType}): ${filing.entity_name}`);
-    return 'skip';
-  }
-
   // Extract deal info
   const dealInfo = extractDealInfo(filing, detail, filingType, docText);
 
   // Upsert company records
-  const acquirerResult = await upsertCompany(dealInfo.acquirer, filing.cik);
-  const targetResult   = await upsertCompany(dealInfo.target, null);
+  const acquirerResult = await upsertCompany(dealInfo.acquirer, dealInfo.acquirer_is_filer ? filing.cik : null);
+  const targetResult   = await upsertCompany(dealInfo.target, dealInfo.target_is_filer ? filing.cik : null);
 
   // Insert deal record
   const dealId = await insertDeal({
     ...dealInfo,
-    acquirer_id:       acquirerResult.id,
+    acquirer_id:       acquirerResult?.id || null,
     target_id:         targetResult?.id,
     extraction_method: 'sec_filing',
   });
@@ -195,7 +170,7 @@ async function processFiling(filing, filingType) {
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, true)
   `, [
     dealId,
-    acquirerResult.id,
+    (dealInfo.target_is_filer ? targetResult?.id : acquirerResult?.id) || null,
     filingType,
     trunc(detail?.document_url || filing.filing_url, 500),
     trunc(filing.filing_url, 500),
@@ -363,6 +338,7 @@ function extractDealValueCents(text) {
 function extractDealInfo(filing, detail, filingType, docText) {
   const companyName = detail?.company_name || filing.entity_name || 'Unknown';
   const otherParty  = extractOtherParty(docText, filingType);
+  const generic      = extractParties(docText);
   const dealValueCents = extractDealValueCents(docText);
 
   let acquirer, target, dealType, status;
@@ -371,20 +347,20 @@ function extractDealInfo(filing, detail, filingType, docText) {
     case 'DEFM14A':
     case 'DEFA14A':
       target   = companyName;
-      acquirer = otherParty || 'Acquirer (see filing)';
+      acquirer = firstReliable(otherParty, generic.acquirer);
       dealType = 'Merger';
       status   = 'Announced';
       break;
     case 'SC TO-T':
     case 'SC TO-T/A':
       acquirer = companyName;
-      target   = otherParty || 'Target (see filing)';
+      target   = firstReliable(otherParty, generic.target);
       dealType = 'Acquisition';
       status   = 'Announced';
       break;
     case 'S-4':
       acquirer = companyName;
-      target   = otherParty || 'Target (see filing)';
+      target   = firstReliable(otherParty, generic.target);
       dealType = 'Merger';
       status   = 'Announced';
       break;
@@ -397,15 +373,20 @@ function extractDealInfo(filing, detail, filingType, docText) {
       break;
     default:
       acquirer = companyName;
-      target   = otherParty || 'Unknown';
+      target   = firstReliable(otherParty, generic.target);
       dealType = 'Merger';
       status   = 'Announced';
   }
 
   return {
-    headline:       `${acquirer} / ${target}`,
-    acquirer:       { name: acquirer, cik: filing.cik },
-    target:         { name: target },
+    headline:       `${acquirer || 'Unknown acquirer'} / ${target || 'Unknown target'}`,
+    acquirer:       acquirer ? { name: acquirer, cik: filing.cik } : null,
+    target:         target ? { name: target } : null,
+    extracted_acquirer_name: acquirer,
+    extracted_target_name: target,
+    raw_extracted_snippet: rawSnippet(docText),
+    acquirer_is_filer: filingType !== 'DEFM14A' && filingType !== 'DEFA14A',
+    target_is_filer: filingType === 'DEFM14A' || filingType === 'DEFA14A',
     deal_type:      dealType,
     deal_value_cents: dealValueCents,
     status,
@@ -414,23 +395,14 @@ function extractDealInfo(filing, detail, filingType, docText) {
     announcement_date: filing.filing_date,
     source_url:     filing.filing_url,
     sector:         sicToSector(detail?.sic),
-    source_confidence: otherParty ? 0.8 : 0.7,
-    needs_review:   !otherParty,
+    source_confidence: otherParty ? 0.85 : (generic.confidence || 0.45),
+    needs_review:   !isReliableName(acquirer) || !isReliableName(target),
   };
 }
 
 // ── COMPANY UPSERT ─────────────────────────────────────────────────
 async function upsertCompany(info, cik) {
-  if (!info || !info.name || info.name === 'Unknown') {
-    const res = await db.query(
-      `INSERT INTO companies (name, normalized_name, cik)
-       VALUES ('Unknown', 'unknown', $1)
-       ON CONFLICT (cik) WHERE cik IS NOT NULL DO UPDATE SET updated_at = NOW()
-       RETURNING id`,
-      [cik || null]
-    );
-    return res.rows[0];
-  }
+  if (!info || !isReliableName(info.name)) return null;
 
   const normalized = normalizeName(info.name);
 
@@ -460,8 +432,9 @@ async function insertDeal(info) {
     INSERT INTO deals (
       acquirer_id, target_id, headline, deal_type, status,
       announcement_date, filing_date, sector, deal_value,
-      source_confidence, extraction_method, needs_review
-    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+      source_confidence, extraction_method, needs_review,
+      extracted_acquirer_name, extracted_target_name, raw_extracted_snippet
+    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
     RETURNING id
   `, [
     info.acquirer_id,
@@ -475,15 +448,18 @@ async function insertDeal(info) {
     info.deal_value_cents || null,
     info.source_confidence || 0.7,
     info.extraction_method || 'sec_filing',
-    info.needs_review || true,
+    Boolean(info.needs_review),
+    trunc(info.extracted_acquirer_name, 500),
+    trunc(info.extracted_target_name, 500),
+    info.raw_extracted_snippet,
   ]);
 
   const dealId = res.rows[0].id;
 
   await db.query(`
-    INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date)
-    VALUES ($1, 'sec_edgar', 'SEC EDGAR', $2, $3)
-  `, [dealId, trunc(info.source_url, 500), info.filing_date || null]);
+    INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date, raw_content, confidence)
+    VALUES ($1, 'sec_edgar', 'SEC EDGAR', $2, $3, $4, $5)
+  `, [dealId, trunc(info.source_url, 500), info.filing_date || null, info.raw_extracted_snippet, info.source_confidence]);
 
   return dealId;
 }
@@ -563,7 +539,7 @@ async function endLog(id, status, stats, error) {
 }
 
 // ── RUN ────────────────────────────────────────────────────────────
-module.exports = { run };
+module.exports = { run, extractDealInfo, extractOtherParty, extractDealValueCents };
 
 if (require.main === module) {
   run().then(() => db.end()).catch(e => { console.error(e); db.end(); process.exit(1); });

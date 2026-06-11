@@ -267,30 +267,27 @@ function performCmdSearch(q) {
 
 /* ── HERO SEARCH ─────────────────────────────────────────────── */
 function setupHeroSearch() {
-  var input = document.getElementById('heroSearchInput');
   var btn   = document.getElementById('heroSearchBtn');
   var chips = document.querySelectorAll('.hero-chip');
 
-  function doSearch() {
-    var q = input.value.trim();
-    if (!q) return;
-    saveRecentSearch(q);
-    state.search = q.toLowerCase();
-    document.getElementById('searchInput').value = q;
-    applyFilters();
-    document.getElementById('dealDatabaseSection').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  if (btn) btn.addEventListener('click', doSearch);
-  if (input) input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSearch(); });
+  if (btn) btn.addEventListener('click', openCmd);
 
   chips.forEach(function(chip) {
     chip.addEventListener('click', function() {
-      var q = chip.dataset.q;
-      input.value = q;
-      doSearch();
+      performCmdSearch(chip.dataset.q);
     });
   });
+}
+
+function reliablePartyName(value) {
+  if (!value || /^(unknown|undisclosed(?: buyer| acquirer| target)?|n\/a)$|see filing|disclosed in filing/i.test(value)) return null;
+  return value;
+}
+
+function normalizeDealParties(deal) {
+  deal.acquirer = reliablePartyName(deal.acquirer) || reliablePartyName(deal.extractedAcquirer) || 'Unknown acquirer';
+  deal.target = reliablePartyName(deal.target) || reliablePartyName(deal.extractedTarget) || 'Unknown target';
+  return deal;
 }
 
 /* ── DYNAMIC COUNT HELPER ────────────────────────────────────────── */
@@ -329,7 +326,7 @@ function loadDeals() {
         return true;
       });
 
-      allDeals = safe;
+      allDeals = safe.map(normalizeDealParties);
       onDealsLoaded();
     })
     .catch(function(err) {
@@ -346,15 +343,11 @@ function onDealsLoaded() {
   updateIndustryCounts();
   if (window.renderVolumeChart) window.renderVolumeChart(allDeals);
 
-  // Open deal from permalink /deal/{uuid}
+  // Open deal from permalink /deal/12345
   if (window._pendingDealId) {
     var deal = allDeals.find(function(d) { return d.id === window._pendingDealId; });
     window._pendingDealId = null;
-    if (deal) {
-      setTimeout(function() { openModal(deal); }, 50);
-    } else {
-      showDealNotFound();
-    }
+    if (deal) setTimeout(function() { openModal(deal); }, 50);
   }
 }
 
@@ -368,17 +361,6 @@ function showLoading() {
 function showError() {
   el('loadingState') && hide('loadingState');
   el('errorState')   && show('errorState');
-}
-function showDealNotFound() {
-  hide('loadingState');
-  hide('errorState');
-  hide('noResultsState');
-  el('dealTableWrap')    && hide('dealTableWrap');
-  el('dealCardsWrap')    && hide('dealCardsWrap');
-  el('loadMoreWrap')     && hide('loadMoreWrap');
-  show('dealNotFoundState');
-  history.replaceState(null, 'mergers.news', '/');
-  document.title = 'Deal Not Found | mergers.news';
 }
 function el(id) { return document.getElementById(id); }
 function show(id) { var e = el(id); if (e) e.style.display = ''; }
@@ -1147,20 +1129,9 @@ function handleUrlParams() {
     var si = el('searchInput');
     if (si) si.value = q;
   }
-  // /deal/{uuid} — open specific deal once data loads.
-  // Also check sessionStorage set by 404.html when Vercel routing falls back.
+  // /deal/{uuid} — open specific deal once data loads
   var m = window.location.pathname.match(/^\/deal\/([a-f0-9-]{30,40})$/i);
-  if (m) {
-    window._pendingDealId = m[1];
-  } else {
-    try {
-      var storedId = sessionStorage.getItem('pendingDealId');
-      if (storedId) {
-        sessionStorage.removeItem('pendingDealId');
-        window._pendingDealId = storedId;
-      }
-    } catch(e) {}
-  }
+  if (m) window._pendingDealId = m[1];
 }
 
 /* ── BROWSER BACK/FORWARD ───────────────────────────────────── */
@@ -1199,11 +1170,6 @@ document.addEventListener('DOMContentLoaded', function() {
   setupModal();
   handleUrlParams();
   loadDeals();
-  var dnfBtn = el('dealNotFoundBtn');
-  if (dnfBtn) dnfBtn.addEventListener('click', function() {
-    hide('dealNotFoundState');
-    applyFilters();
-  });
 });
 
 // Expose for inline handlers

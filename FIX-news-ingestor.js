@@ -3,6 +3,7 @@
 const https    = require('https');
 const http     = require('http');
 const { Pool } = require('pg');
+const { extractParties, isReliableName, rawSnippet, withRetry } = require('../shared/deal-extraction');
 
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -99,7 +100,7 @@ async function run() {
     for (const feed of RSS_FEEDS) {
       console.log(`[NEWS] Fetching feed: ${feed.name}`);
       try {
-        const xml   = await fetchText(feed.url);
+        const xml   = await withRetry(() => fetchText(feed.url), { attempts: 4, baseDelayMs: 1000 });
         const items = parseRssItems(xml);
         console.log(`[NEWS] Parsed ${items.length} items from ${feed.name}`);
         stats.fetched += items.length;
@@ -189,17 +190,21 @@ async function processNewsItem(item, feedName) {
   );
   if (existing.rows.length > 0) return 'skip';
 
-  const { acquirer, target } = extractEntities(item.title || '');
+  const text = `${item.title || ''} ${item.description || ''}`;
+  const specific = extractEntities(item.title || '');
+  const generic = extractParties(text);
+  const acquirer = specific.acquirer || generic.acquirer;
+  const target = specific.target || generic.target;
   const dealValue            = extractDealValue((item.title || '') + ' ' + (item.description || ''));
   const pubDate              = parseDateFlexible(item.pubDate);
 
-  const acquirerRec = await upsertCompany(db, { name: acquirer || 'Unknown' }, null);
+  const acquirerRec = acquirer ? await upsertCompany(db, { name: acquirer }, null) : null;
   const targetRec   = target
     ? await upsertCompany(db, { name: target }, null)
     : null;
 
   await insertDeal(db, {
-    acquirer_id:       acquirerRec.id,
+    acquirer_id:       acquirerRec?.id || null,
     target_id:         targetRec ? targetRec.id : null,
     headline:          trunc(item.title || `${acquirer} / ${target}`, 500),
     deal_type:         inferDealType(item.title || ''),
@@ -208,13 +213,16 @@ async function processNewsItem(item, feedName) {
     filing_date:       null,
     deal_value:        dealValue,
     sector:            null,
-    source_confidence: 0.5,
+    source_confidence: acquirer && target ? Math.max(0.65, generic.confidence || 0) : 0.45,
     extraction_method: 'news_rss',
     needs_review:      true,
     source_type:       'news_rss',
     source_name:       feedName,
     source_url:        sourceUrl,
     source_date:       pubDate,
+    extracted_acquirer_name: acquirer,
+    extracted_target_name: target,
+    raw_extracted_snippet: rawSnippet(text),
   });
 
   return 'new';
@@ -313,7 +321,8 @@ async function insertDeal(db, info) {
       acquirer_id, target_id, headline, deal_type, status,
       announcement_date, filing_date, deal_value, sector,
       source_confidence, extraction_method, needs_review
-    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+      , extracted_acquirer_name, extracted_target_name, raw_extracted_snippet
+    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
     RETURNING id
   `, [
     info.acquirer_id,
@@ -328,19 +337,24 @@ async function insertDeal(db, info) {
     info.source_confidence,
     trunc(info.extraction_method, 100),
     info.needs_review,
+    trunc(info.extracted_acquirer_name, 500),
+    trunc(info.extracted_target_name, 500),
+    info.raw_extracted_snippet,
   ]);
 
   const dealId = res.rows[0].id;
 
   await db.query(`
-    INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date, raw_content, confidence)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
   `, [
     dealId,
     trunc(info.source_type, 50),
     trunc(info.source_name, 100),
     trunc(info.source_url, 500),
     info.source_date || null,
+    info.raw_extracted_snippet,
+    info.source_confidence,
   ]);
 
   return dealId;

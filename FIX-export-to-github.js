@@ -24,6 +24,8 @@ async function run() {
       d.headline,
       a.name  AS acquirer,
       t.name  AS target,
+      d.extracted_acquirer_name AS "extractedAcquirer",
+      d.extracted_target_name AS "extractedTarget",
       d.deal_type        AS "dealType",
       d.status,
       d.deal_value       AS "dealValueCents",
@@ -85,10 +87,12 @@ async function run() {
   ]);
 
   const deals = res.rows.map(row => {
-    const acquirer = cleanCompanyName(row.acquirer, PLACEHOLDERS);
-    const target   = cleanCompanyName(row.target,   PLACEHOLDERS);
+    const acquirer = cleanCompanyName(row.acquirer, PLACEHOLDERS) || cleanCompanyName(row.extractedAcquirer, PLACEHOLDERS);
+    const target   = cleanCompanyName(row.target,   PLACEHOLDERS) || cleanCompanyName(row.extractedTarget, PLACEHOLDERS);
     const dealType   = row.dealType || 'Merger';
-    const headline   = row.headline || `${acquirer} / ${target}`;
+    const headline   = !row.headline || /see filing|^(unknown|undisclosed)/i.test(row.headline)
+      ? `${acquirer || 'Unknown acquirer'} / ${target || 'Unknown target'}`
+      : row.headline;
     const dateObj    = row.announcementDate ? new Date(row.announcementDate) : null;
     const dateStr    = dateObj ? dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : null;
     const year       = row.year || (dateObj ? dateObj.getFullYear() : null);
@@ -109,7 +113,9 @@ async function run() {
       headline,
       subheadline,
       acquirer,
+      extractedAcquirer: row.extractedAcquirer || null,
       target,
+      extractedTarget: row.extractedTarget || null,
       dealType,
       status:       row.status,
       dealValue:    row.dealValue,
@@ -161,22 +167,14 @@ async function run() {
   const deduped = Array.from(bestByHeadline.values());
   console.log(`[EXPORT] Deduped ${deals.length} → ${deduped.length} records (removed ${deals.length - deduped.length} duplicates)`);
 
-  // Drop records where both parties are unknown — no useful information for the user
-  const qualityFiltered = deduped.filter(d =>
-    !(d.acquirer === 'Undisclosed' && d.target === 'Undisclosed')
-  );
-  if (deduped.length !== qualityFiltered.length) {
-    console.log(`[EXPORT] Quality filter: removed ${deduped.length - qualityFiltered.length} no-party records`);
-  }
+  console.log(`[EXPORT] Exporting ${deduped.length} deals...`);
 
-  console.log(`[EXPORT] Exporting ${qualityFiltered.length} deals...`);
-
-  const json = JSON.stringify(qualityFiltered, null, 2);
+  const json = JSON.stringify(deduped, null, 2);
 
   // LOCAL_ONLY=true: write to disk only (workflow commits via git)
   if (process.env.LOCAL_ONLY === 'true') {
     require('fs').writeFileSync('deals.json', json + '\n');
-    console.log('[EXPORT] Wrote', qualityFiltered.length, 'deals to local deals.json');
+    console.log('[EXPORT] Wrote', deduped.length, 'deals to local deals.json');
     return;
   }
 
@@ -186,7 +184,7 @@ async function run() {
   console.log('[EXPORT] Current SHA:', sha || 'new file');
 
   await pushToGitHub(encoded, sha);
-  console.log('[EXPORT] Done! GitHub updated with', qualityFiltered.length, 'deals');
+  console.log('[EXPORT] Done! GitHub updated with', deduped.length, 'deals');
 }
 
 /* ── Summary generation (ported from generate-summaries.py) ─────────── */
