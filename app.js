@@ -287,6 +287,9 @@ function reliablePartyName(value) {
 function normalizeDealParties(deal) {
   deal.acquirer = reliablePartyName(deal.acquirer) || reliablePartyName(deal.extractedAcquirer) || 'Unknown acquirer';
   deal.target = reliablePartyName(deal.target) || reliablePartyName(deal.extractedTarget) || 'Unknown target';
+  if (!deal.headline || /see filing|disclosed in filing/i.test(deal.headline)) {
+    deal.headline = deal.acquirer + ' / ' + deal.target;
+  }
   return deal;
 }
 
