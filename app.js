@@ -267,10 +267,7 @@ function performCmdSearch(q) {
 
 /* ── HERO SEARCH ─────────────────────────────────────────────── */
 function setupHeroSearch() {
-  var btn   = document.getElementById('heroSearchBtn');
   var chips = document.querySelectorAll('.hero-chip');
-
-  if (btn) btn.addEventListener('click', openCmd);
 
   chips.forEach(function(chip) {
     chip.addEventListener('click', function() {
