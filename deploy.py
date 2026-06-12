@@ -57,6 +57,8 @@ MAPPINGS = [
     ('icon-192.png',                           'mawire-site', 'icon-192.png'),
     ('icon-512.png',                           'mawire-site', 'icon-512.png'),
     ('FIX-sw.js',                              'mawire-site', 'sw.js'),
+    ('DEPLOY-cache-control.js',                 'mawire-site', 'cache-control.js'),
+    ('DEPLOY-sector-deals.js',                  'mawire-site', 'sector-deals.js'),
     ('FIX-ipo-dynamic-loader.js',              'mawire-site', 'ipo.js'),
     ('app.js',                                 'mawire-site', 'app.js'),
     ('style.css',                              'mawire-site', 'style.css'),

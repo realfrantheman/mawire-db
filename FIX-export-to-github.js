@@ -16,6 +16,62 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = process.env.GITHUB_REPO || 'realfrantheman/mawire-db';
 const GITHUB_FILE  = process.env.GITHUB_FILE || 'deals.json';
 
+function normalizeIdentityPart(value) {
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function isReliableEntity(value) {
+  return !!value && !/^(unknown|undisclosed|n\/a|null)|see filing/i.test(String(value).trim());
+}
+
+function isSpecificSourceUrl(value) {
+  if (!value) return false;
+  return !/sec\.gov\/cgi-bin\/browse-edgar|efts\.sec\.gov\/LATEST\/search-index/i.test(value);
+}
+
+function identityKeys(deal) {
+  const keys = [];
+  if (deal.accessionNo) keys.push(`accession:${normalizeIdentityPart(deal.accessionNo)}`);
+  if (isSpecificSourceUrl(deal.sourceUrl)) keys.push(`source:${deal.sourceUrl.replace(/[?#].*$/, '').toLowerCase()}`);
+  if (isReliableEntity(deal.acquirer) && isReliableEntity(deal.target) && deal.dateISO) {
+    keys.push(`parties:${normalizeIdentityPart(deal.acquirer)}|${normalizeIdentityPart(deal.target)}|${String(deal.dateISO).slice(0, 10)}|${normalizeIdentityPart(deal.dealType)}`);
+  } else if ((isReliableEntity(deal.acquirer) || isReliableEntity(deal.target)) && deal.dateISO) {
+    keys.push(`partial:${normalizeIdentityPart(deal.acquirer)}|${normalizeIdentityPart(deal.target)}|${String(deal.dateISO).slice(0, 10)}|${normalizeIdentityPart(deal.dealType)}`);
+  }
+  if (deal.headline && deal.dateISO && !/^(unknown|undisclosed)|see filing/i.test(deal.headline)) {
+    keys.push(`headline:${normalizeIdentityPart(deal.headline)}|${String(deal.dateISO).slice(0, 10)}`);
+  }
+  return keys;
+}
+
+function recordScore(deal) {
+  let score = 0;
+  if (deal.sourceUrl) score += 3;
+  if (deal.filingType) score += 2;
+  if (isReliableEntity(deal.acquirer)) score += 2;
+  if (deal.dealValue && deal.dealValue !== 'Undisclosed') score += 2;
+  if (deal.edgarUrl) score += 1;
+  return score;
+}
+
+function deduplicateDeals(deals) {
+  const output = [];
+  const keyToIndex = new Map();
+  for (const deal of deals) {
+    if (!isReliableEntity(deal.acquirer) && !isReliableEntity(deal.target)) continue;
+    const keys = identityKeys(deal);
+    const existingIndex = keys.map(key => keyToIndex.get(key)).find(index => index !== undefined);
+    if (existingIndex === undefined) {
+      const index = output.push(deal) - 1;
+      keys.forEach(key => keyToIndex.set(key, index));
+      continue;
+    }
+    if (recordScore(deal) > recordScore(output[existingIndex])) output[existingIndex] = deal;
+    keys.forEach(key => keyToIndex.set(key, existingIndex));
+  }
+  return output;
+}
+
 async function run() {
   console.log('[EXPORT] Fetching deals from PostgreSQL...');
 
@@ -143,29 +199,15 @@ async function run() {
       extractionMethod: row.extractionMethod,
       sourceType:   row.sourceType,
       sourceName:   row.sourceName,
+      accessionNo:  row.accessionNo,
       confidence:   row.confidence,
       breaking,
       advisors:     null,
     };
   });
 
-  // Deduplicate by headline: keep the record with the most complete data
-  function recordScore(d) {
-    let s = 0;
-    if (d.sourceUrl)                                    s += 3;
-    if (d.filingType)                                   s += 2;
-    if (d.acquirer && !/undisclosed|see filing/i.test(d.acquirer)) s += 2;
-    if (d.dealValue && d.dealValue !== 'Undisclosed')   s += 2;
-    if (d.edgarUrl)                                     s += 1;
-    return s;
-  }
-  const bestByHeadline = new Map();
-  for (const d of deals) {
-    const key = d.headline || '';
-    const prev = bestByHeadline.get(key);
-    if (!prev || recordScore(d) > recordScore(prev)) bestByHeadline.set(key, d);
-  }
-  const deduped = Array.from(bestByHeadline.values());
+  // Deduplicate only when reliable source or transaction identity agrees.
+  const deduped = deduplicateDeals(deals);
   console.log(`[EXPORT] Deduped ${deals.length} → ${deduped.length} records (removed ${deals.length - deduped.length} duplicates)`);
 
   console.log(`[EXPORT] Exporting ${deduped.length} deals...`);
@@ -352,6 +394,7 @@ function buildSubheadline(row, acquirer, target, date) {
 
 function cleanCompanyName(name, placeholders) {
   if (!name || placeholders.has(name)) return 'Undisclosed';
+  if (/^(?:BCP Investment Corp|EDGARFILINGS LTD|Toppan Merrill\/FA|.*(?:Filing Services|Filing Agent)|Donnelley Financial.*)$/i.test(String(name).trim())) return 'Undisclosed';
   // Strip EDGAR annotations: "(CEPO)", "(CIK 0002027708)", extra whitespace
   return name
     .replace(/\s*\([A-Z]{1,5}\)\s*/g, ' ')        // ticker symbols
@@ -510,7 +553,7 @@ async function pushToGitHub(content, sha) {
   });
 }
 
-module.exports = { run };
+module.exports = { run, deduplicateDeals, identityKeys, isSpecificSourceUrl };
 
 if (require.main === module) {
   run().then(() => db.end()).catch(err => {

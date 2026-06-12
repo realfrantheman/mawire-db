@@ -123,6 +123,7 @@ const FILING_AGENT_PATTERNS = [
   /FILING SERVICES/i,
   /FILING AGENT/i,
   /DONNELLEY\s+FINANCIAL/i,
+  /^BCP INVESTMENT CORP\b/i,
 ];
 
 function isFilingAgent(entityName) {
@@ -341,7 +342,7 @@ function extractDealValueCents(text) {
 
 // ── EXTRACT DEAL INFO FROM FILING ─────────────────────────────────
 function extractDealInfo(filing, detail, filingType, docText) {
-  const companyName = detail?.company_name || filing.entity_name || 'Unknown';
+  const companyName = !isFilingAgent(filing.entity_name) ? filing.entity_name : (detail?.company_name || 'Unknown');
   const otherParty  = extractOtherParty(docText, filingType);
   const generic      = extractParties(docText);
   const dealValueCents = extractDealValueCents(docText);
@@ -412,8 +413,9 @@ async function upsertCompany(info, cik) {
   const normalized = normalizeName(info.name);
 
   if (cik) {
-    const byCik = await db.query('SELECT id FROM companies WHERE cik = $1', [cik]);
-    if (byCik.rows.length) return byCik.rows[0];
+    const byCik = await db.query('SELECT id, normalized_name FROM companies WHERE cik = $1', [cik]);
+    if (byCik.rows.length && byCik.rows[0].normalized_name === normalized) return byCik.rows[0];
+    if (byCik.rows.length) cik = null; // shared filing-agent CIK; never attach it to a different company
   }
 
   const byName = await db.query(

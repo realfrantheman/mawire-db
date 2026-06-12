@@ -1,10 +1,11 @@
 'use strict';
 
-var CACHE = 'mergers-news-v7';
+var CACHE_PREFIX = 'mergers-news-';
+var CACHE = CACHE_PREFIX + 'v9';
 var SHELL = [
   '/',
-  '/style.css?v=20260612-liquid-motion',
-  '/app.js?v=20260612-liquid-motion',
+  '/style.css?v=20260612-blue-performance',
+  '/app.js?v=20260612-blue-performance',
   '/charts.js',
   '/manifest.json',
   '/about',
@@ -28,7 +29,9 @@ self.addEventListener('activate', function(e) {
   e.waitUntil(
     caches.keys().then(function(keys) {
       return Promise.all(
-        keys.filter(function(k) { return k !== CACHE; })
+        keys.filter(function(k) {
+          return k.indexOf(CACHE_PREFIX) === 0 && k !== CACHE;
+        })
             .map(function(k) { return caches.delete(k); })
       );
     }).then(function() {
@@ -68,16 +71,31 @@ self.addEventListener('fetch', function(e) {
     return;
   }
 
-  // Static assets — cache first, update cache from network in background
+  // Static assets — network first so a hard refresh never renders stale CSS/JS.
   e.respondWith(
-    caches.match(req).then(function(cached) {
-      var network = fetch(req).then(function(res) {
+    fetch(req).then(function(res) {
         if (res && res.status === 200) {
           caches.open(CACHE).then(function(cache) { cache.put(req, res.clone()); });
         }
         return res;
-      });
-      return cached || network;
+      }).catch(function() {
+        return caches.match(req);
+      })
+  );
+});
+
+self.addEventListener('message', function(e) {
+  if (!e.data || e.data.type !== 'PURGE_STALE_CACHES') return;
+
+  e.waitUntil(
+    caches.keys().then(function(keys) {
+      return Promise.all(
+        keys.filter(function(k) {
+          return k.indexOf(CACHE_PREFIX) === 0 && k !== CACHE;
+        }).map(function(k) {
+          return caches.delete(k);
+        })
+      );
     })
   );
 });
