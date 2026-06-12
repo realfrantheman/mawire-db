@@ -6,6 +6,7 @@ var SHELL = [
   '/',
   '/style.css?v=20260612-blue-performance',
   '/app.js?v=20260612-blue-performance',
+  '/source-taxonomy.js?v=20260612-sources',
   '/charts.js',
   '/manifest.json',
   '/about',

@@ -4,13 +4,13 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <meta name="theme-color" content="#050811"/>
-  <meta name="description" content="Track 10,000+ mergers and acquisitions from SEC EDGAR filings. Search M&A deals by company, sector, value, and date. Free global M&A deal intelligence — no registration required."/>
+  <meta name="description" content="Track mergers and acquisitions from regulatory filings, company announcements, press releases, exchange notices, and reputable financial news. Search deals by company, sector, value, and date. Free global M&A deal intelligence — no registration required."/>
   <meta name="keywords" content="mergers and acquisitions, M&A deals, SEC filings, DEFM14A, SC TO-T, tender offer, merger database, acquisition news"/>
   <meta name="robots" content="index, follow"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="mergers.news"/>
   <meta property="og:title" content="mergers.news — Global M&A Deal Intelligence | 10,000+ Deals"/>
-  <meta property="og:description" content="Search 10,000+ mergers and acquisitions from SEC EDGAR filings. Free. No registration required."/>
+  <meta property="og:description" content="Search global M&A deals sourced from public filings, announcements, press releases, exchanges, and reputable news. Free. No registration required."/>
   <meta property="og:url" content="https://mergers.news/"/>
   <meta property="og:image" content="https://mergers.news/og-image.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -33,9 +33,9 @@
   <script defer src="/_vercel/insights/script.js"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
-    {"@type":"WebSite","@id":"https://mergers.news/#website","url":"https://mergers.news/","name":"mergers.news","description":"Global M&A deal intelligence platform tracking mergers, acquisitions, tender offers and corporate transactions from SEC EDGAR filings.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://mergers.news/?q={search_term_string}"},"query-input":"required name=search_term_string"}},
+    {"@type":"WebSite","@id":"https://mergers.news/#website","url":"https://mergers.news/","name":"mergers.news","description":"Global M&A deal intelligence platform tracking corporate transactions from verified public sources.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://mergers.news/?q={search_term_string}"},"query-input":"required name=search_term_string"}},
     {"@type":"Organization","@id":"https://mergers.news/#organization","name":"mergers.news","url":"https://mergers.news/","foundingDate":"2026","address":{"@type":"PostalAddress","addressLocality":"Concon","addressRegion":"Región de Valparaíso","addressCountry":"CL"},"contactPoint":{"@type":"ContactPoint","email":"contact@mergers.news","contactType":"customer service"}},
-    {"@type":"Dataset","name":"Global M&A Deals Database — mergers.news","description":"10,000+ mergers, acquisitions, tender offers, and going-private transactions sourced from SEC EDGAR regulatory filings spanning 1993 to present.","url":"https://mergers.news/","temporalCoverage":"1993/..","spatialCoverage":"Global"}
+    {"@type":"Dataset","name":"Global M&A Deals Database — mergers.news","description":"Mergers, acquisitions, tender offers, and going-private transactions sourced from global public disclosures spanning 1993 to present.","url":"https://mergers.news/","temporalCoverage":"1993/..","spatialCoverage":"Global"}
   ]}
   </script>
   <link rel="stylesheet" href="/style.css?v=20260612-liquid-motion"/>
@@ -54,13 +54,13 @@
       <span class="tick-item"><span class="tick-dot">▶</span> Private equity dry powder at record $1.4T globally</span>
       <span class="tick-item"><span class="tick-dot">▶</span> Cross-border deals account for 38% of global volume</span>
       <span class="tick-item"><span class="tick-dot">▶</span> Bristol-Myers / Celgene $74B — largest pharma deal ever</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> 10,000+ deals tracked directly from SEC EDGAR filings</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> 10,000+ deals tracked from global public sources</span>
       <span class="tick-item"><span class="tick-dot">▶</span> Tech M&A leads 2026 with $680B in transactions</span>
       <span class="tick-item"><span class="tick-dot">▶</span> Microsoft / Activision Blizzard $68.7B — largest gaming acquisition</span>
       <span class="tick-item"><span class="tick-dot">▶</span> Private equity dry powder at record $1.4T globally</span>
       <span class="tick-item"><span class="tick-dot">▶</span> Cross-border deals account for 38% of global volume</span>
       <span class="tick-item"><span class="tick-dot">▶</span> Bristol-Myers / Celgene $74B — largest pharma deal ever</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> 10,000+ deals tracked directly from SEC EDGAR filings</span>
+      <span class="tick-item"><span class="tick-dot">▶</span> 10,000+ deals tracked from global public sources</span>
     </div>
   </div>
 </div>
@@ -82,7 +82,7 @@
       <a href="/mergers/technology" class="nav-link">Technology</a>
       <a href="/mergers/healthcare" class="nav-link">Healthcare</a>
       <a href="/mergers/financial-services" class="nav-link">Financial</a>
-      <a href="/tender-offers" class="nav-link">Filings</a>
+      <a href="/tender-offers" class="nav-link">Tender Offers</a>
       <a href="/about" class="nav-link">About</a>
       <a href="/contact" class="nav-link">Contact</a>
     </nav>
@@ -180,7 +180,7 @@
               <span class="hero-search-icon">⌕</span>
               <span class="hero-search-copy">
                 <strong>Search the M&amp;A database</strong>
-                <small>Deals, companies, sectors, filings</small>
+                <small>Deals, companies, sectors, sources</small>
               </span>
               <span class="hero-search-btn">Search <kbd>⌘K</kbd></span>
             </button>
@@ -188,15 +188,15 @@
 
           <div class="hero-eyebrow">
             <span class="hero-eyebrow-line"></span>
-            SEC EDGAR · 1993 to Present
+            Global Public Sources · 1993 to Present
           </div>
           <h1 class="hero-title">
             The M&amp;A Intelligence<br/>
             Platform. <em>Free.</em>
           </h1>
           <p class="hero-subtitle">
-            <span id="heroSubtitleCount">10,000+</span> mergers and acquisitions sourced directly from SEC EDGAR regulatory filings.
-            Search by company, sector, value, or filing type — no registration required.
+            <span id="heroSubtitleCount">10,000+</span> mergers and acquisitions sourced from filings, company announcements, press releases, exchange notices, and reputable financial news.
+            Search by company, sector, value, or source — no registration required.
           </p>
 
           <div class="hero-stats">
@@ -213,8 +213,8 @@
               <div class="hero-stat-lbl">Total Value</div>
             </div>
             <div class="hero-stat">
-              <div class="hero-stat-num">4</div>
-              <div class="hero-stat-lbl">Filing Types</div>
+              <div class="hero-stat-num">5+</div>
+              <div class="hero-stat-lbl">Source Types</div>
             </div>
           </div>
         </div>
@@ -222,7 +222,7 @@
         <!-- Hero feed — recent deals -->
         <div class="hero-feed" aria-label="Recent deals">
           <div class="hero-feed-header">
-            <span class="hero-feed-title">Recent Filings</span>
+            <span class="hero-feed-title">Recent Deals</span>
             <span class="hero-feed-live"><span class="pulse-dot"></span> Live</span>
           </div>
           <div id="heroFeed">
@@ -268,9 +268,9 @@
           <div class="kpi-sub" id="kpiSectorSub">1,000+ deals</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Filing Types</div>
-          <div class="kpi-value">4</div>
-          <div class="kpi-sub">DEFM14A · SC TO-T · S-4 · 13E-3</div>
+          <div class="kpi-label">Source Types</div>
+          <div class="kpi-value">5+</div>
+          <div class="kpi-sub">filings · company · press · exchanges · news</div>
         </div>
       </div>
     </div>
@@ -382,7 +382,7 @@
 
         <div class="deal-count-bar">
           <span class="deal-count-text" id="dealCountText" aria-live="polite">Loading deals…</span>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted2)">SEC EDGAR · 1993–2026</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted2)">Global Sources · 1993–2026</div>
         </div>
 
         <!-- Loading state -->
@@ -520,44 +520,15 @@
     </div>
   </section>
 
-  <!-- ── FILING TYPES ────────────────────────────────────────── -->
-  <section class="section">
+  <!-- ── SOURCE TYPES ────────────────────────────────────────── -->
+  <section class="section" id="source-types">
     <div class="container">
-      <div class="section-header">
-        <div class="section-title">
-          <span class="section-title-text">SEC Filing Types</span>
-        </div>
-        <a href="/tender-offers" class="section-link">Browse filings →</a>
-      </div>
+      <div class="section-header"><div class="section-title"><span class="section-title-text">Source Types</span></div><a href="/about#sources" class="section-link">How sourcing works →</a></div>
       <div class="filing-grid">
-        <div class="filing-card" onclick="filterByType('Merger')">
-          <div class="filing-card-code">DEFM14A</div>
-          <div class="filing-card-name">Definitive Merger Proxy</div>
-          <div class="filing-card-desc">Filed by target companies seeking shareholder approval for a merger transaction.</div>
-          <div class="filing-card-count">3,100+</div>
-          <div class="filing-card-count-label">filings</div>
-        </div>
-        <div class="filing-card" onclick="filterByType('Acquisition')">
-          <div class="filing-card-code">SC TO-T</div>
-          <div class="filing-card-name">Tender Offer Statement</div>
-          <div class="filing-card-desc">Filed by acquirers making public cash offers directly to target shareholders.</div>
-          <div class="filing-card-count">1,200+</div>
-          <div class="filing-card-count-label">filings</div>
-        </div>
-        <div class="filing-card" onclick="filterByType('Merger')">
-          <div class="filing-card-code">S-4</div>
-          <div class="filing-card-name">Merger Registration</div>
-          <div class="filing-card-desc">Filed by acquirers issuing shares as consideration in stock-for-stock mergers.</div>
-          <div class="filing-card-count">700+</div>
-          <div class="filing-card-count-label">filings</div>
-        </div>
-        <div class="filing-card" onclick="filterByType('Going-Private')">
-          <div class="filing-card-code">SC 13E-3</div>
-          <div class="filing-card-name">Going-Private Transaction</div>
-          <div class="filing-card-desc">Filed for leveraged buyouts and management buyouts taking companies private.</div>
-          <div class="filing-card-count">250+</div>
-          <div class="filing-card-count-label">filings</div>
-        </div>
+        <div class="filing-card"><div class="filing-card-code">REGULATORY</div><div class="filing-card-name">Regulatory Filings</div><div class="filing-card-desc">SEC EDGAR, EU merger-control records, and official regulatory disclosures.</div><div class="filing-card-count" id="sourceCount-regulatory">—</div><div class="filing-card-count-label">deals sourced</div></div>
+        <div class="filing-card"><div class="filing-card-code">COMPANY</div><div class="filing-card-name">Company Announcements</div><div class="filing-card-desc">Investor-relations pages, company newsrooms, and direct corporate announcements.</div><div class="filing-card-count" id="sourceCount-company">—</div><div class="filing-card-count-label">deals sourced</div></div>
+        <div class="filing-card"><div class="filing-card-code">PRESS</div><div class="filing-card-name">Press Releases</div><div class="filing-card-desc">Newswire releases and transaction announcements distributed to the public.</div><div class="filing-card-count" id="sourceCount-press">—</div><div class="filing-card-count-label">deals sourced</div></div>
+        <div class="filing-card"><div class="filing-card-code">EXCHANGE + NEWS</div><div class="filing-card-name">Markets &amp; Financial News</div><div class="filing-card-desc">Exchange announcements and reputable reporting used for discovery and corroboration.</div><div class="filing-card-count"><span id="sourceCount-exchange">—</span> + <span id="sourceCount-news">—</span></div><div class="filing-card-count-label">deals sourced</div></div>
       </div>
     </div>
   </section>
@@ -570,15 +541,15 @@
           <div class="trust-item-icon">📄</div>
           <div class="trust-item-title">Primary Source Data</div>
           <div class="trust-item-text">
-            Every transaction is sourced directly from the SEC's EDGAR system — the authoritative US public filing database. We do not estimate, interpolate, or aggregate from secondary sources.
+            Every transaction links to a public source. We prioritize regulatory filings and company announcements, then use press releases, exchange notices, and reputable reporting for discovery and corroboration.
           </div>
-          <a href="https://www.sec.gov/cgi-bin/browse-edgar" target="_blank" rel="noopener" class="trust-item-link">SEC EDGAR →</a>
+          <a href="/about#sources" class="trust-item-link">Our source policy →</a>
         </div>
         <div class="trust-item">
           <div class="trust-item-icon">🔓</div>
           <div class="trust-item-title">Free. Always.</div>
           <div class="trust-item-text">
-            No registration. No subscription. No paywall. Bloomberg and PitchBook charge $20,000+ per year for M&A data. mergers.news provides direct SEC-sourced deal intelligence at $0.
+            No registration. No subscription. No paywall. mergers.news organizes global public-source deal intelligence and keeps the underlying source links accessible at $0.
           </div>
           <a href="/about" class="trust-item-link">Our mission →</a>
         </div>
@@ -644,7 +615,7 @@
         </a>
         <a href="/mergers/financial-services" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">Financial Services M&A</div>
-          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Track bank mergers and fintech acquisitions from the SEC EDGAR database spanning 1993 to present.</p>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Track bank mergers and fintech acquisitions from global public disclosures spanning 1993 to present.</p>
         </a>
         <a href="/tender-offers" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">Tender Offer Database</div>
@@ -656,7 +627,7 @@
         </a>
         <a href="/about" style="text-decoration:none;display:block;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--border3)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px">About mergers.news</div>
-          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Learn about our free M&A deal intelligence platform — data sourced from SEC EDGAR filings, no registration required.</p>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0">Learn about our free M&A deal intelligence platform — data sourced from verified public sources, no registration required.</p>
         </a>
       </div>
     </div>
@@ -802,10 +773,10 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">M<span>.NEWS</span></div>
-        <div class="footer-tagline">Global M&A deal intelligence. All data sourced directly from public SEC EDGAR regulatory filings. Not financial advice.</div>
+        <div class="footer-tagline">Global M&A deal intelligence sourced from public filings, announcements, press releases, and reputable news. Not financial advice.</div>
         <div class="footer-edgar">
           <span class="footer-edgar-dot"></span>
-          Powered by SEC EDGAR
+          Powered by Global Public Sources
         </div>
       </div>
       <div>
@@ -851,7 +822,7 @@
 <noscript>
   <div class="noscript-fallback">
     <h1>mergers.news — Global M&A Deal Intelligence</h1>
-    <p>mergers.news tracks 10,000+ mergers and acquisitions from SEC EDGAR regulatory filings spanning 1993 to present. Enable JavaScript to search and filter all deals.</p>
+    <p>mergers.news tracks mergers and acquisitions from verified public disclosures worldwide. Enable JavaScript to search and filter all deals.</p>
     <h2>Notable Deals in our Database</h2>
     <ul>
       <li>Microsoft / Activision Blizzard — $68.7B — Technology — 2023</li>
@@ -875,7 +846,8 @@
   updateBottomNav();
   window.addEventListener('resize', updateBottomNav);
 </script>
-<script defer src="/app.js?v=20260612-liquid-motion"></script>
+<script defer src="/source-taxonomy.js?v=20260612-sources"></script>
+<script defer src="/app.js?v=20260612-sources"></script>
 <script defer src="/charts.js"></script>
 <script defer src="/cache-control.js?v=20260612"></script>
 </body>
