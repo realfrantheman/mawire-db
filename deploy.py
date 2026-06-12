@@ -54,6 +54,8 @@ MAPPINGS = [
     ('DEPLOY-legal-disclaimer.html',           'mawire-site', 'legal/disclaimer.html'),
     ('DEPLOY-monitoring.html',                 'mawire-site', 'monitoring.html'),
     ('DEPLOY-manifest.json',                   'mawire-site', 'manifest.json'),
+    ('DEPLOY-feed.xml',                        'mawire-site', 'feed.xml'),
+    ('DEPLOY-rss.xml',                         'mawire-site', 'rss.xml'),
     ('icon-192.png',                           'mawire-site', 'icon-192.png'),
     ('icon-512.png',                           'mawire-site', 'icon-512.png'),
     ('FIX-sw.js',                              'mawire-site', 'sw.js'),

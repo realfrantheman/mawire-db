@@ -107,12 +107,16 @@ function reconcileLowConfidenceParties(deal) {
   return deal;
 }
 
-function repairSecSource(deal, suspiciousCiks = new Set(['1493152'])) {
+function repairSecSource(deal) {
   const url = String(deal.sourceUrl || deal.edgarUrl || '');
+  if (!/sec\.gov\/Archives\/edgar\/data\//i.test(url)) return deal;
+  const storedAccession = String(deal.accessionNo || '').match(/^(\d{10})-(\d{2})-(\d{6})/);
   const match = url.match(/sec\.gov\/Archives\/edgar\/data\/(\d+)\/(\d{18})(?:\/[^/?#]+)?/i);
-  if (!match || !suspiciousCiks.has(match[1])) return deal;
-  const folder = match[2];
-  const accession = `${folder.slice(0, 10)}-${folder.slice(10, 12)}-${folder.slice(12)}`;
+  if (!storedAccession && !match) return deal;
+  const folder = match?.[2];
+  const accession = storedAccession
+    ? `${storedAccession[1]}-${storedAccession[2]}-${storedAccession[3]}`
+    : `${folder.slice(0, 10)}-${folder.slice(10, 12)}-${folder.slice(12)}`;
   const fallback = `https://www.sec.gov/edgar/search/#/q=${accession}`;
   deal.sourceUrl = fallback;
   deal.edgarUrl = fallback;
@@ -161,7 +165,6 @@ function transactionKey(deal) {
 }
 
 function cleanup(deals) {
-  const suspiciousCiks = suspiciousArchiveCiks(deals);
   const repaired = deals
     .map(deal => clearSuspiciousNewsSource(reconcileLowConfidenceParties(recoverHeadlineParties(repairFilingAgentParties({ ...deal })))))
     .filter(deal => reliable(deal.acquirer) || reliable(deal.target));
@@ -184,7 +187,7 @@ function cleanup(deals) {
       output[index] = deal;
     }
   }
-  return output.map(deal => repairSecSource(deal, suspiciousCiks));
+  return output.map(deal => repairSecSource(deal));
 }
 
 if (require.main === module) {

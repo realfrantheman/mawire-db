@@ -407,62 +407,16 @@ function cleanCompanyName(name, placeholders) {
 }
 
 function reconstructEdgarUrl(row) {
-  const GOOD_EXTS = ['.htm', '.html', '.pdf', '.txt', '.xml'];
-  function isGoodExt(name) {
-    const lower = String(name || '').toLowerCase();
-    return GOOD_EXTS.some(e => lower.endsWith(e));
-  }
-
   const rawAcc = String(row.accessionNo || '');
   const accPart = rawAcc.split(':')[0];
   const accession = accPart.match(/^(\d{10})-(\d{2})-(\d{6})/);
-  const entityCik = `${row.extractedTarget || ''} ${row.extractedAcquirer || ''}`.match(/\(CIK\s+0*(\d+)\)/i);
-  const knownCik = String(row.filingCik || (entityCik && entityCik[1]) || '').replace(/^0+/, '');
   const searchFallback = accession
     ? `https://www.sec.gov/edgar/search/#/q=${accession[1]}-${accession[2]}-${accession[3]}`
     : null;
 
-  // Accession prefixes may belong to filing agents. Only construct an archive
-  // path when the filing/entity CIK is known independently.
-  if (rawAcc) {
-    const colonIdx = String(rawAcc).indexOf(':');
-    const fileName = colonIdx >= 0 ? String(rawAcc).slice(colonIdx + 1) : '';
-    if (accession && knownCik) {
-      const folder = accPart.replace(/-/g, '');
-      if (folder.length >= 18 && isGoodExt(fileName)) {
-        return `https://www.sec.gov/Archives/edgar/data/${knownCik}/${folder}/${fileName}`;
-      }
-    }
-  }
-
-  // Path 2: use edgar_url stored in filings table (complete URL from buildEdgarUrl)
-  const oldUrl = String(row.edgarUrl || '');
-  if (!oldUrl.includes('/Archives/edgar/data/')) return searchFallback;
-
-  // Old colon format: .../data/{accession}/{folder}:{filename}
-  const colonMatch = oldUrl.match(/\/Archives\/edgar\/data\/[^/]+\/(\d{18,20}):([^/?#]+)/);
-  if (colonMatch) {
-    const folder   = colonMatch[1];
-    const fileName = colonMatch[2] || '';
-    if (!knownCik) return searchFallback;
-    return isGoodExt(fileName)
-      ? `https://www.sec.gov/Archives/edgar/data/${knownCik}/${folder}/${fileName}`
-      : searchFallback;
-  }
-
-  // Current format: .../data/{cik}/{folder}/{filename}
-  const slashMatch = oldUrl.match(/\/Archives\/edgar\/data\/(\d+)\/(\d{18,20})(?:\/([^/?#]*))?/);
-  if (slashMatch) {
-    if (!knownCik) return searchFallback;
-    const cik      = knownCik;
-    const folder   = slashMatch[2];
-    const fileName = slashMatch[3] || '';
-    return isGoodExt(fileName)
-      ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
-      : searchFallback;
-  }
-
-  return searchFallback;
+  // EFTS accession prefixes often belong to filing agents rather than the
+  // issuer. Search remains durable without guessing an archive CIK.
+  return searchFallback || row.edgarUrl || null;
 }
 
 function resolveSourceName(row) {

@@ -28,7 +28,7 @@ test('recovers reliable parties from acquisition headlines', () => {
   assert.equal(result[0].target, 'SpiritBank');
 });
 
-test('replaces filing-agent archive paths with durable SEC accession search', () => {
+test('replaces SEC archive paths with durable SEC accession search', () => {
   const repaired = repairSecSource({
     sourceUrl: 'https://www.sec.gov/Archives/edgar/data/1493152/000149315226028363/formdefa14a.htm'
   });
