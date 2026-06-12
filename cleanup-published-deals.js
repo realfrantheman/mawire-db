@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const INPUT = process.env.DEALS_FILE || 'deals.json';
 const FILING_AGENT = /^(?:BCP Investment Corp|EDGARFILINGS LTD|Toppan Merrill\/FA|.*(?:Filing Services|Filing Agent)|Donnelley Financial.*)$/i;
-const UNKNOWN = /^(?:unknown(?: acquirer| target)?|undisclosed|null|n\/a)?$/i;
+const UNKNOWN = /^(?:unknown(?: acquirer| target)?|undisclosed|null|n\/a)(?:\b|$)/i;
 const STOP = new Set(['announces', 'announcement', 'acquisition', 'acquires', 'acquire', 'merger', 'with', 'the', 'and', 'for', 'inc', 'corp', 'corporation', 'company', 'ltd', 'llc', 'plc']);
 
 function reliable(value) {
@@ -161,13 +161,21 @@ function score(deal) {
 function transactionKey(deal) {
   const date = String(deal.dateISO || deal.date || '').slice(0, 10);
   if (!date || !reliable(deal.acquirer) && !reliable(deal.target)) return null;
-  return `${String(deal.acquirer || 'Undisclosed').toLowerCase()}|${String(deal.target || 'Undisclosed').toLowerCase()}|${date}`;
+  const acquirer = reliable(deal.acquirer) ? deal.acquirer : 'Undisclosed';
+  const target = reliable(deal.target) ? deal.target : 'Undisclosed';
+  return `${String(acquirer).toLowerCase()}|${String(target).toLowerCase()}|${date}`;
+}
+
+function isPublishableDeal(deal) {
+  const lowConfidenceNews = deal.sourceType === 'news_rss' && Number(deal.confidence) <= 0.5;
+  const promotionalTarget = /,\s+(?:bringing|creating|expanding|accelerating|transforming|strengthening)\b/i.test(String(deal.target || ''));
+  return !(lowConfidenceNews && promotionalTarget);
 }
 
 function cleanup(deals) {
   const repaired = deals
     .map(deal => clearSuspiciousNewsSource(reconcileLowConfidenceParties(recoverHeadlineParties(repairFilingAgentParties({ ...deal })))))
-    .filter(deal => reliable(deal.acquirer) || reliable(deal.target));
+    .filter(deal => (reliable(deal.acquirer) || reliable(deal.target)) && isPublishableDeal(deal));
   const output = [];
   const sourceIndex = new Map();
   const transactionIndex = new Map();
@@ -197,4 +205,4 @@ if (require.main === module) {
   console.log(`[CLEANUP] ${deals.length} -> ${cleaned.length}; removed ${deals.length - cleaned.length} duplicate or unpublishable records`);
 }
 
-module.exports = { cleanup, headlineEntity, extractHeadlineParties, repairFilingAgentParties, clearSuspiciousNewsSource, repairSecSource, suspiciousArchiveCiks, reconcileLowConfidenceParties };
+module.exports = { cleanup, headlineEntity, extractHeadlineParties, repairFilingAgentParties, clearSuspiciousNewsSource, repairSecSource, suspiciousArchiveCiks, reconcileLowConfidenceParties, isPublishableDeal };

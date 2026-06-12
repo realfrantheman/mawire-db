@@ -64,3 +64,11 @@ test('prefers a CIK-backed extracted target for a low-confidence conflict', () =
 test('does not publish records with no identifiable party', () => {
   assert.equal(cleanup([{ id: 'a', headline: 'Undisclosed / Undisclosed', acquirer: 'Undisclosed', target: 'Undisclosed', dateISO: '2026-06-10' }]).length, 0);
 });
+
+test('does not publish low-confidence news targets contaminated by promotional copy', () => {
+  assert.equal(cleanup([{
+    id: 'a', headline: 'Factua Acquires Intelsio', acquirer: 'Factua',
+    target: 'Intelsio, Bringing a Decade of Performance Marketing',
+    dateISO: '2026-06-09', sourceType: 'news_rss', confidence: 0.5
+  }]).length, 0);
+});

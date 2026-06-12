@@ -637,6 +637,7 @@ img { max-width: 100%; }
   color: rgba(255,255,255,0.68);
   font-size: 8px;
 }
+.mobile-primary-search { display: none; }
 .hero-search-chips {
   display: flex; flex-wrap: wrap; gap: 6px;
   padding: 0 18px 15px;
@@ -2780,7 +2781,21 @@ footer {
   .modal,
   .cmd-palette,
   .ipo-modal { border-radius: 26px; }
-  .hero-search-open { padding: 13px; gap: 10px; min-height: 70px; }
+  .hero-search-open { display: none; }
+  .mobile-primary-search {
+    display: block;
+    width: 100%;
+    min-height: 58px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    color: var(--text);
+    font: 600 14px/1.2 var(--sans);
+    outline: 1px solid rgba(255,255,255,.16);
+  }
+  .mobile-primary-search::placeholder { color: var(--text2); }
+  .mobile-primary-search:focus { outline-color: rgba(110,205,255,.7); }
   .hero-search-copy small,
   .hero-search-btn kbd { display: none; }
   .hero-search-btn { padding: 10px 12px; }

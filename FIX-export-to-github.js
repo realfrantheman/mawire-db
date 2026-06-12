@@ -29,6 +29,12 @@ function isSpecificSourceUrl(value) {
   return !/sec\.gov\/cgi-bin\/browse-edgar|efts\.sec\.gov\/LATEST\/search-index/i.test(value);
 }
 
+function isPublishableDeal(deal) {
+  const lowConfidenceNews = deal.sourceType === 'news_rss' && Number(deal.confidence) <= 0.5;
+  const promotionalTarget = /,\s+(?:bringing|creating|expanding|accelerating|transforming|strengthening)\b/i.test(String(deal.target || ''));
+  return !(lowConfidenceNews && promotionalTarget);
+}
+
 function identityKeys(deal) {
   const keys = [];
   if (deal.accessionNo) keys.push(`accession:${normalizeIdentityPart(deal.accessionNo)}`);
@@ -36,7 +42,9 @@ function identityKeys(deal) {
   if (isReliableEntity(deal.acquirer) && isReliableEntity(deal.target) && deal.dateISO) {
     keys.push(`parties:${normalizeIdentityPart(deal.acquirer)}|${normalizeIdentityPart(deal.target)}|${String(deal.dateISO).slice(0, 10)}|${normalizeIdentityPart(deal.dealType)}`);
   } else if ((isReliableEntity(deal.acquirer) || isReliableEntity(deal.target)) && deal.dateISO) {
-    keys.push(`partial:${normalizeIdentityPart(deal.acquirer)}|${normalizeIdentityPart(deal.target)}|${String(deal.dateISO).slice(0, 10)}|${normalizeIdentityPart(deal.dealType)}`);
+    const acquirer = isReliableEntity(deal.acquirer) ? deal.acquirer : '';
+    const target = isReliableEntity(deal.target) ? deal.target : '';
+    keys.push(`partial:${normalizeIdentityPart(acquirer)}|${normalizeIdentityPart(target)}|${String(deal.dateISO).slice(0, 10)}`);
   }
   if (deal.headline && deal.dateISO && !/^(unknown|undisclosed)|see filing/i.test(deal.headline)) {
     keys.push(`headline:${normalizeIdentityPart(deal.headline)}|${String(deal.dateISO).slice(0, 10)}`);
@@ -58,6 +66,7 @@ function deduplicateDeals(deals) {
   const output = [];
   const keyToIndex = new Map();
   for (const deal of deals) {
+    if (!isPublishableDeal(deal)) continue;
     if (!isReliableEntity(deal.acquirer) && !isReliableEntity(deal.target)) continue;
     const keys = identityKeys(deal);
     const existingIndex = keys.map(key => keyToIndex.get(key)).find(index => index !== undefined);
@@ -514,7 +523,7 @@ async function pushToGitHub(content, sha) {
   });
 }
 
-module.exports = { run, deduplicateDeals, identityKeys, isSpecificSourceUrl, reconstructEdgarUrl };
+module.exports = { run, deduplicateDeals, identityKeys, isSpecificSourceUrl, isPublishableDeal, reconstructEdgarUrl };
 
 if (require.main === module) {
   run().then(() => db.end()).catch(err => {

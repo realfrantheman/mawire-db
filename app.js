@@ -271,9 +271,11 @@ function performCmdSearch(q) {
 /* ── HERO SEARCH ─────────────────────────────────────────────── */
 function setupHeroSearch() {
   var btn   = document.getElementById('heroSearchBtn');
+  var mobileInput = document.getElementById('mobilePrimarySearch');
   var chips = document.querySelectorAll('.hero-chip');
 
   if (btn) btn.addEventListener('click', openCmd);
+  if (mobileInput) mobileInput.addEventListener('focus', openCmd);
 
   chips.forEach(function(chip) {
     chip.addEventListener('click', function() {
