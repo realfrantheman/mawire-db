@@ -3015,3 +3015,137 @@ body {
   .industry-card,
   .filing-card { animation: none !important; }
 }
+
+/* ── PERFORMANCE-TUNED DEEP BLUE GLASS ─────────────────────── */
+:root {
+  --bg: #030711;
+  --glass: rgba(9, 19, 36, 0.72);
+  --glass-strong: rgba(7, 15, 29, 0.88);
+  --glass-blur: blur(14px) saturate(145%);
+  --glass-shadow: 0 20px 56px rgba(0, 0, 0, 0.28);
+  --glass-shadow-hover: 0 26px 68px rgba(0, 0, 0, 0.34);
+}
+
+html { background: #030711; }
+body {
+  background:
+    radial-gradient(circle at 14% 5%, rgba(31, 83, 152, 0.17), transparent 31%),
+    radial-gradient(circle at 88% 24%, rgba(36, 57, 112, 0.13), transparent 29%),
+    linear-gradient(155deg, #030711 0%, #06101f 48%, #030812 100%);
+  background-attachment: scroll;
+  transition: none;
+}
+body::before,
+body::after { display: none; }
+.hero::before {
+  background:
+    radial-gradient(circle at 24% 32%, rgba(58, 117, 190, 0.09), transparent 30%),
+    radial-gradient(circle at 76% 36%, rgba(70, 84, 151, 0.065), transparent 29%);
+  animation: none;
+}
+
+.site-header,
+.ticker-bar,
+.hero-search,
+.hero-feed,
+.kpi-card,
+.industry-card,
+.filing-card { animation: none !important; }
+
+.site-header {
+  background: rgba(5, 13, 27, 0.86);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+.ticker-bar {
+  backdrop-filter: blur(10px) saturate(135%);
+  -webkit-backdrop-filter: blur(10px) saturate(135%);
+}
+
+.hero-search,
+.hero-feed,
+.chart-wrap,
+.deal-card,
+.industry-card,
+.filing-card,
+.learn-card,
+.a-card,
+.contact-type-card {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.018) 48%, rgba(64,120,188,.045)),
+    rgba(8, 18, 35, .74);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transform-style: flat;
+}
+
+.hero-search,
+.hero-feed,
+.chart-wrap,
+.deal-table-wrap,
+.modal,
+.cmd-palette,
+.ipo-modal,
+.contact-form-wrap,
+.contact-info,
+.trust-section,
+.site-footer,
+footer,
+.bottom-nav {
+  backdrop-filter: blur(14px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+}
+
+.hero-search::after,
+.hero-feed::after,
+.chart-wrap::after,
+.deal-card::after,
+.industry-card::after,
+.filing-card::after,
+.learn-card::after,
+.a-card::after,
+.contact-type-card::after {
+  background: linear-gradient(120deg, rgba(255,255,255,.11), transparent 24%, transparent 78%, rgba(111,177,238,.045));
+  opacity: .42;
+  mix-blend-mode: normal;
+  transition: opacity 220ms ease;
+}
+
+.hero-search:hover,
+.hero-feed:hover,
+.chart-wrap:hover,
+.deal-card:hover,
+.industry-card:hover,
+.filing-card:hover,
+.learn-card:hover,
+.a-card:hover,
+.contact-type-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(190, 224, 255, .28);
+  box-shadow: var(--glass-shadow-hover), inset 0 1px rgba(255,255,255,.16);
+}
+
+@media (max-width: 768px) {
+  :root { --glass-blur: blur(10px) saturate(135%); }
+  .site-header,
+  .hero-search,
+  .hero-feed,
+  .chart-wrap,
+  .deal-table-wrap,
+  .modal,
+  .cmd-palette,
+  .ipo-modal,
+  .bottom-nav {
+    backdrop-filter: blur(10px) saturate(135%);
+    -webkit-backdrop-filter: blur(10px) saturate(135%);
+  }
+  .deal-card,
+  .industry-card,
+  .filing-card,
+  .learn-card,
+  .a-card,
+  .contact-type-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

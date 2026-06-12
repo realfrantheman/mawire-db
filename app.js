@@ -1154,39 +1154,6 @@ function setupLogo() {
   btn.addEventListener('keydown', function(e) { if (e.key === 'Enter') window.location.href = '/'; });
 }
 
-/* ── LIQUID GLASS POINTER MOTION ────────────────────────────── */
-function setupLiquidMotion() {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
-
-  var selector = [
-    '.hero-search', '.hero-feed', '.kpi-card', '.chart-wrap', '.deal-card',
-    '.industry-card', '.filing-card', '.learn-card', '.a-card', '.contact-type-card'
-  ].join(',');
-
-  document.addEventListener('pointermove', function(e) {
-    document.documentElement.style.setProperty('--pointer-x', (e.clientX / window.innerWidth * 100).toFixed(2) + '%');
-    document.documentElement.style.setProperty('--pointer-y', (e.clientY / window.innerHeight * 100).toFixed(2) + '%');
-
-    var surface = e.target.closest && e.target.closest(selector);
-    if (!surface) return;
-    var rect = surface.getBoundingClientRect();
-    var x = Math.max(0, Math.min(100, (e.clientX - rect.left) / rect.width * 100));
-    var y = Math.max(0, Math.min(100, (e.clientY - rect.top) / rect.height * 100));
-    surface.style.setProperty('--glass-x', x.toFixed(1) + '%');
-    surface.style.setProperty('--glass-y', y.toFixed(1) + '%');
-    surface.style.setProperty('--tilt-x', ((50 - y) / 35).toFixed(2) + 'deg');
-    surface.style.setProperty('--tilt-y', ((x - 50) / 35).toFixed(2) + 'deg');
-  }, { passive: true });
-
-  document.addEventListener('pointerout', function(e) {
-    var surface = e.target.closest && e.target.closest(selector);
-    if (!surface || (e.relatedTarget && surface.contains(e.relatedTarget))) return;
-    surface.style.removeProperty('--tilt-x');
-    surface.style.removeProperty('--tilt-y');
-  }, { passive: true });
-}
-
 /* ── URL PARAMS ──────────────────────────────────────────────── */
 function handleUrlParams() {
   var params = new URLSearchParams(window.location.search);
@@ -1232,7 +1199,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filteredDeals.length) renderDeals();
   });
   setupLogo();
-  setupLiquidMotion();
   setupCmd();
   setupHeroSearch();
   setupFilters();
