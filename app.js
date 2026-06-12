@@ -94,9 +94,7 @@ function setupCmd() {
   var results  = document.getElementById('cmdResults');
   var body     = document.getElementById('cmdBody');
 
-  if (!trigger) return;
-
-  trigger.addEventListener('click', openCmd);
+  if (trigger) trigger.addEventListener('click', openCmd);
   if (closeBtn) closeBtn.addEventListener('click', closeCmd);
 
   overlay.addEventListener('click', function(e) {
@@ -267,7 +265,10 @@ function performCmdSearch(q) {
 
 /* ── HERO SEARCH ─────────────────────────────────────────────── */
 function setupHeroSearch() {
+  var btn   = document.getElementById('heroSearchBtn');
   var chips = document.querySelectorAll('.hero-chip');
+
+  if (btn) btn.addEventListener('click', openCmd);
 
   chips.forEach(function(chip) {
     chip.addEventListener('click', function() {
