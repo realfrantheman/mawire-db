@@ -126,7 +126,7 @@ async function fetchFilingsForPeriod(filingType, startdt, enddt) {
 }
 
 // Known filing agents — skip them (same filter as live ingestor)
-const FILING_AGENT_PATTERNS = [/\/FA$/i, /- FA$/i, /EDGARFILINGS/i, /FILING SERVICES/i, /FILING AGENT/i, /DONNELLEY\s+FINANCIAL/i];
+const FILING_AGENT_PATTERNS = [/\/FA$/i, /- FA$/i, /EDGARFILINGS/i, /FILING SERVICES/i, /FILING AGENT/i, /DONNELLEY\s+FINANCIAL/i, /^BCP INVESTMENT CORP\b/i];
 function isFilingAgent(name) { return name ? FILING_AGENT_PATTERNS.some(p => p.test(name)) : false; }
 
 async function processFiling(filing, filingType) {
@@ -255,7 +255,7 @@ function extractDealValueCents(text) {
 }
 
 function extractDealInfo(filing, detail, filingType, docText) {
-  const companyName = detail?.company_name || filing.entity_name || 'Unknown';
+  const companyName = !isFilingAgent(filing.entity_name) ? filing.entity_name : (detail?.company_name || 'Unknown');
   const otherParty  = extractOtherParty(docText, filingType);
   const generic = extractParties(docText);
   const dealValueCents = extractDealValueCents(docText);
@@ -298,8 +298,9 @@ async function upsertCompany(info, cik) {
   if (!info || !isReliableName(info.name)) return null;
   const normalized = normalizeName(info.name);
   if (cik) {
-    const byCik = await db.query('SELECT id FROM companies WHERE cik=$1', [cik]);
-    if (byCik.rows.length) return byCik.rows[0];
+    const byCik = await db.query('SELECT id, normalized_name FROM companies WHERE cik=$1', [cik]);
+    if (byCik.rows.length && byCik.rows[0].normalized_name === normalized) return byCik.rows[0];
+    if (byCik.rows.length) cik = null;
   }
   const byName = await db.query('SELECT id FROM companies WHERE normalized_name=$1 LIMIT 1', [normalized]);
   if (byName.rows.length) return byName.rows[0];

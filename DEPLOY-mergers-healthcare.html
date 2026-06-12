@@ -110,6 +110,9 @@
       </div>
       <div class="a-section">
         <div class="a-section-title">Browse Healthcare M&A Deals</div>
+        <div class="sector-deals-grid" id="sectorDealsList" data-sector="Healthcare" aria-live="polite">
+          <div class="sector-deals-error">Loading recent healthcare deals…</div>
+        </div>
         <p>Search and filter all healthcare M&A deals in the mergers.news database. Every deal links directly to the original SEC EDGAR filing.</p>
         <p style="margin-top:16px">
           <a href="/?sector=Healthcare" style="display:inline-block;background:var(--red);color:#fff;padding:10px 24px;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:2px">
@@ -255,5 +258,7 @@
     var _lb=document.getElementById('logoBtn'); if(_lb){_lb.addEventListener('click',function(){window.location.href='/';});_lb.addEventListener('keydown',function(e){if(e.key==='Enter')window.location.href='/';});}
     function _pad(){var h=document.getElementById('siteHeader'),m=document.getElementById('mainContent');if(h&&m)m.style.paddingTop=(h.offsetHeight+28+12)+'px';} _pad();setTimeout(_pad,200);window.addEventListener('resize',_pad);
   </script>
+  <script src="/sector-deals.js?v=20260612-audit-fixes"></script>
+<script defer src="/cache-control.js?v=20260612"></script>
 </body>
 </html>

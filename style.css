@@ -344,10 +344,13 @@ img { max-width: 100%; }
   backdrop-filter: blur(4px);
   display: flex; align-items: flex-start; justify-content: center;
   padding-top: 80px;
-  opacity: 0; pointer-events: none;
-  transition: opacity var(--t2);
+  opacity: 0; pointer-events: none; visibility: hidden;
+  transition: opacity var(--t2), visibility 0s linear var(--t2);
 }
-.cmd-overlay.open { opacity: 1; pointer-events: all; }
+.cmd-overlay.open {
+  opacity: 1; pointer-events: all; visibility: visible;
+  transition: opacity var(--t2), visibility 0s linear 0s;
+}
 .cmd-palette {
   width: 100%;
   max-width: 640px;
@@ -1725,6 +1728,21 @@ button.industry-card { width: 100%; text-align: left; color: inherit; }
   font-size: 9px;
   color: var(--muted);
 }
+.sector-deals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 22px;
+}
+.sector-deal-card { color: inherit; text-decoration: none; }
+.sector-deals-error {
+  grid-column: 1 / -1;
+  padding: 18px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r2);
+  color: var(--text2);
+}
+.sector-deals-error a { color: var(--red); }
 
 /* ── NOSCRIPT ────────────────────────────────────────────────── */
 .noscript-fallback {
@@ -1767,6 +1785,7 @@ button.industry-card { width: 100%; text-align: left; color: inherit; }
   .learn-grid    { grid-template-columns: 1fr; }
   .footer-grid   { grid-template-columns: 1fr; }
   .modal-grid    { grid-template-columns: 1fr; }
+  .sector-deals-grid { grid-template-columns: 1fr; }
 
   .hero { padding: 40px 0 32px; }
   .hero-stats { gap: var(--s5); }

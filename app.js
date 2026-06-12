@@ -70,6 +70,8 @@ function openCmd() {
   var overlay = document.getElementById('cmdOverlay');
   var input   = document.getElementById('cmdInput');
   if (!overlay || !input) return;
+  overlay.removeAttribute('inert');
+  overlay.setAttribute('aria-hidden', 'false');
   overlay.classList.add('open');
   cmdOpen = true;
   cmdSelected = -1;
@@ -80,6 +82,8 @@ function closeCmd() {
   var overlay = document.getElementById('cmdOverlay');
   if (!overlay) return;
   overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.setAttribute('inert', '');
   cmdOpen = false;
   cmdSelected = -1;
   document.getElementById('cmdInput').value = '';
