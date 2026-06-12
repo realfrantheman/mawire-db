@@ -891,7 +891,7 @@ function populateModal(d) {
     var filingUrl = safeUrl(d.sourceUrl || d.edgarUrl || '');
     actions.innerHTML =
       (filingUrl && filingUrl !== '#'
-        ? '<a href="' + filingUrl + '" target="_blank" rel="noopener" class="modal-action-btn primary">View SEC Filing ↗</a>'
+        ? '<a href="' + filingUrl + '" target="_blank" rel="noopener" class="modal-action-btn primary">View Source ↗</a>'
         : '<span class="modal-action-btn" style="opacity:0.4;cursor:default">No Filing URL</span>') +
       '<button class="modal-action-btn" onclick="shareModal()">Share</button>' +
       '<button class="modal-action-btn" onclick="exportModalCSV()">Export</button>';

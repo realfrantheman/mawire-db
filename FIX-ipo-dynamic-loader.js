@@ -194,7 +194,7 @@ function openIPOModal(c) {
   var st = STATUS_STYLES[c.status] || STATUS_STYLES['rumored'];
 
   var sourceLink = c.sourceUrl
-    ? '<div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)"><a href="' + c.sourceUrl + '" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:1px;text-transform:uppercase">View SEC Filing →</a></div>'
+    ? '<div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)"><a href="' + c.sourceUrl + '" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:1px;text-transform:uppercase">View Source →</a></div>'
     : '';
 
   content.innerHTML =
