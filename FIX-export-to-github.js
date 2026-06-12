@@ -113,7 +113,8 @@ async function run() {
       ds.source_date  AS "sourceDate",
       f.filing_type   AS "filingType",
       f.edgar_url     AS "edgarUrl",
-      f.accession_no  AS "accessionNo"
+      f.accession_no  AS "accessionNo",
+      f.cik           AS "filingCik"
     FROM deals d
     LEFT JOIN companies a     ON d.acquirer_id = a.id
     LEFT JOIN companies t     ON d.target_id   = t.id
@@ -125,7 +126,7 @@ async function run() {
       LIMIT 1
     ) ds ON true
     LEFT JOIN LATERAL (
-      SELECT filing_type, edgar_url, accession_no
+      SELECT filing_type, edgar_url, accession_no, cik
       FROM filings
       WHERE deal_id = d.id
       ORDER BY id
@@ -193,7 +194,9 @@ async function run() {
       body,
       summary,
       source,
-      sourceUrl:    row.sourceType === 'news_rss' ? row.sourceUrl : (reconstructEdgarUrl(row) || row.sourceUrl || row.edgarUrl),
+      sourceUrl:    row.sourceType === 'sec_edgar' || row.extractionMethod === 'sec_filing'
+        ? (reconstructEdgarUrl(row) || row.sourceUrl || row.edgarUrl)
+        : (row.sourceUrl || row.edgarUrl),
       filingType:   row.filingType,
       edgarUrl:     reconstructEdgarUrl(row) || row.edgarUrl,
       extractionMethod: row.extractionMethod,
@@ -410,52 +413,56 @@ function reconstructEdgarUrl(row) {
     return GOOD_EXTS.some(e => lower.endsWith(e));
   }
 
-  // Path 1: accession_no stored as "{accession}:{filename}" (may be truncated at 50 chars)
-  // Only use if the filename extension is valid — a truncated filename like ".ht" falls through
-  // to Path 2 which uses filings.edgar_url (the complete URL).
-  const rawAcc = row.accessionNo;
+  const rawAcc = String(row.accessionNo || '');
+  const accPart = rawAcc.split(':')[0];
+  const accession = accPart.match(/^(\d{10})-(\d{2})-(\d{6})/);
+  const entityCik = `${row.extractedTarget || ''} ${row.extractedAcquirer || ''}`.match(/\(CIK\s+0*(\d+)\)/i);
+  const knownCik = String(row.filingCik || (entityCik && entityCik[1]) || '').replace(/^0+/, '');
+  const searchFallback = accession
+    ? `https://www.sec.gov/edgar/search/#/q=${accession[1]}-${accession[2]}-${accession[3]}`
+    : null;
+
+  // Accession prefixes may belong to filing agents. Only construct an archive
+  // path when the filing/entity CIK is known independently.
   if (rawAcc) {
     const colonIdx = String(rawAcc).indexOf(':');
-    const accPart  = colonIdx >= 0 ? String(rawAcc).slice(0, colonIdx) : String(rawAcc);
     const fileName = colonIdx >= 0 ? String(rawAcc).slice(colonIdx + 1) : '';
-    const m = accPart.match(/^(\d{10})-\d{2}-\d{6}/);
-    if (m) {
-      const cik    = parseInt(m[1], 10).toString();
+    if (accession && knownCik) {
       const folder = accPart.replace(/-/g, '');
       if (folder.length >= 18 && isGoodExt(fileName)) {
-        return `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`;
+        return `https://www.sec.gov/Archives/edgar/data/${knownCik}/${folder}/${fileName}`;
       }
-      // Truncated / missing filename — fall through to Path 2
     }
   }
 
   // Path 2: use edgar_url stored in filings table (complete URL from buildEdgarUrl)
   const oldUrl = String(row.edgarUrl || '');
-  if (!oldUrl.includes('/Archives/edgar/data/')) return null;
+  if (!oldUrl.includes('/Archives/edgar/data/')) return searchFallback;
 
   // Old colon format: .../data/{accession}/{folder}:{filename}
   const colonMatch = oldUrl.match(/\/Archives\/edgar\/data\/[^/]+\/(\d{18,20}):([^/?#]+)/);
   if (colonMatch) {
     const folder   = colonMatch[1];
     const fileName = colonMatch[2] || '';
-    const cik      = parseInt(folder.slice(0, 10), 10).toString();
+    if (!knownCik) return searchFallback;
     return isGoodExt(fileName)
-      ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
-      : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
+      ? `https://www.sec.gov/Archives/edgar/data/${knownCik}/${folder}/${fileName}`
+      : searchFallback;
   }
 
   // Current format: .../data/{cik}/{folder}/{filename}
   const slashMatch = oldUrl.match(/\/Archives\/edgar\/data\/(\d+)\/(\d{18,20})(?:\/([^/?#]*))?/);
   if (slashMatch) {
-    const cik      = slashMatch[1];
+    if (!knownCik) return searchFallback;
+    const cik      = knownCik;
     const folder   = slashMatch[2];
     const fileName = slashMatch[3] || '';
     return isGoodExt(fileName)
       ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${fileName}`
-      : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/`;
+      : searchFallback;
   }
 
-  return null;
+  return searchFallback;
 }
 
 function resolveSourceName(row) {
@@ -553,7 +560,7 @@ async function pushToGitHub(content, sha) {
   });
 }
 
-module.exports = { run, deduplicateDeals, identityKeys, isSpecificSourceUrl };
+module.exports = { run, deduplicateDeals, identityKeys, isSpecificSourceUrl, reconstructEdgarUrl };
 
 if (require.main === module) {
   run().then(() => db.end()).catch(err => {

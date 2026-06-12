@@ -434,6 +434,21 @@ function updateKPIs() {
     if (kpiSector) kpiSector.textContent = topSector;
     if (kpiSectorSub) kpiSectorSub.textContent = sectorCount[topSector].toLocaleString() + ' deals';
   }
+  updateSourceTypeCounts();
+}
+
+function updateSourceTypeCounts() {
+  if (!window.MergersSourceTaxonomy) return;
+  var counts = {};
+  window.MergersSourceTaxonomy.categories.forEach(function(category) { counts[category.id] = 0; });
+  allDeals.forEach(function(deal) {
+    var category = window.MergersSourceTaxonomy.classify(deal);
+    counts[category] = (counts[category] || 0) + 1;
+  });
+  Object.keys(counts).forEach(function(key) {
+    var count = el('sourceCount-' + key);
+    if (count) count.textContent = counts[key].toLocaleString();
+  });
 }
 
 function updateIndustryCounts() {
@@ -1046,7 +1061,7 @@ function getFilingLabel(d) {
   if (st === 'hkex')                  return 'HKEX Filing';
   if (st === 'sgx')                   return 'SGX Filing';
   if (d.filingType)                   return d.filingType;
-  return d.dealType === 'Acquisition' ? 'SC TO-T' : 'DEFM14A';
+  return d.sourceName || d.source || 'Public Source';
 }
 
 function getFilingSourceLabel(d) {
@@ -1056,7 +1071,7 @@ function getFilingSourceLabel(d) {
   if (st === 'asx')                   return 'ASX ↗';
   if (st === 'hkex')                  return 'HKEX ↗';
   if (st === 'sgx')                   return 'SGX ↗';
-  return 'EDGAR ↗';
+  return 'Source ↗';
 }
 
 function getFilingDesc(d) {
@@ -1073,7 +1088,7 @@ function getFilingDesc(d) {
     'S-4':      'Merger registration — stock-for-stock merger consideration',
     'SC 13E-3': 'Going-private transaction — LBO or management buyout'
   };
-  return secDescs[label] || 'SEC regulatory filing';
+  return secDescs[label] || 'Public transaction source';
 }
 
 function findComparables(d) {

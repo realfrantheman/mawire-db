@@ -59,6 +59,7 @@ MAPPINGS = [
     ('FIX-sw.js',                              'mawire-site', 'sw.js'),
     ('DEPLOY-cache-control.js',                 'mawire-site', 'cache-control.js'),
     ('DEPLOY-sector-deals.js',                  'mawire-site', 'sector-deals.js'),
+    ('DEPLOY-source-taxonomy.js',               'mawire-site', 'source-taxonomy.js'),
     ('FIX-ipo-dynamic-loader.js',              'mawire-site', 'ipo.js'),
     ('app.js',                                 'mawire-site', 'app.js'),
     ('style.css',                              'mawire-site', 'style.css'),

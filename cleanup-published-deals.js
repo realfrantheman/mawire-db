@@ -68,9 +68,69 @@ function repairFilingAgentParties(deal) {
 
 function recoverHeadlineParties(deal) {
   const parties = extractHeadlineParties(deal.headline);
+  if (reliable(deal.acquirer) && deal.acquirer === deal.target && reliable(parties.target) && parties.target !== deal.target) {
+    deal.acquirer = 'Undisclosed';
+    deal.target = parties.target;
+    deal.headline = `Undisclosed / ${deal.target}`;
+    deal.needsReview = true;
+    return deal;
+  }
   if (!reliable(deal.acquirer) && reliable(parties.acquirer)) deal.acquirer = parties.acquirer;
   if (!reliable(deal.target) && reliable(parties.target)) deal.target = parties.target;
   return deal;
+}
+
+function cleanExtractedEntity(value) {
+  return String(value || '').replace(/\s*\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function reconcileLowConfidenceParties(deal) {
+  if (!deal.needsReview && Number(deal.confidence) > 0.5) return deal;
+  const extractedTarget = cleanExtractedEntity(deal.extractedTarget);
+  const extractedAcquirer = cleanExtractedEntity(deal.extractedAcquirer);
+  let changed = false;
+  if (/\(CIK\s+\d+\)/i.test(deal.extractedTarget || '') && reliable(extractedTarget) && extractedTarget !== deal.target) {
+    deal.target = extractedTarget;
+    changed = true;
+  }
+  if (/\(CIK\s+\d+\)/i.test(deal.extractedAcquirer || '') && reliable(extractedAcquirer) &&
+      (!reliable(deal.acquirer) || deal.acquirer === deal.target)) {
+    deal.acquirer = extractedAcquirer;
+    changed = true;
+  }
+  if (changed) {
+    deal.headline = `${deal.acquirer || 'Undisclosed'} / ${deal.target || 'Undisclosed'}`;
+    deal.summary = null;
+    deal.body = null;
+    deal.needsReview = true;
+  }
+  return deal;
+}
+
+function repairSecSource(deal, suspiciousCiks = new Set(['1493152'])) {
+  const url = String(deal.sourceUrl || deal.edgarUrl || '');
+  const match = url.match(/sec\.gov\/Archives\/edgar\/data\/(\d+)\/(\d{18})(?:\/[^/?#]+)?/i);
+  if (!match || !suspiciousCiks.has(match[1])) return deal;
+  const folder = match[2];
+  const accession = `${folder.slice(0, 10)}-${folder.slice(10, 12)}-${folder.slice(12)}`;
+  const fallback = `https://www.sec.gov/edgar/search/#/q=${accession}`;
+  deal.sourceUrl = fallback;
+  deal.edgarUrl = fallback;
+  deal.needsReview = true;
+  return deal;
+}
+
+function suspiciousArchiveCiks(deals) {
+  const stats = new Map();
+  for (const deal of deals) {
+    const match = String(deal.sourceUrl || deal.edgarUrl || '').match(/sec\.gov\/Archives\/edgar\/data\/(\d+)\//i);
+    if (!match) continue;
+    if (!stats.has(match[1])) stats.set(match[1], { count: 0, entities: new Set() });
+    const stat = stats.get(match[1]);
+    stat.count++;
+    if (reliable(deal.target)) stat.entities.add(String(deal.target).toLowerCase());
+  }
+  return new Set([...stats].filter(([, stat]) => stat.count >= 20 && stat.entities.size >= 20).map(([cik]) => cik));
 }
 
 function meaningfulTokens(value) {
@@ -101,15 +161,18 @@ function transactionKey(deal) {
 }
 
 function cleanup(deals) {
+  const suspiciousCiks = suspiciousArchiveCiks(deals);
   const repaired = deals
-    .map(deal => clearSuspiciousNewsSource(recoverHeadlineParties(repairFilingAgentParties({ ...deal }))))
+    .map(deal => clearSuspiciousNewsSource(reconcileLowConfidenceParties(recoverHeadlineParties(repairFilingAgentParties({ ...deal })))))
     .filter(deal => reliable(deal.acquirer) || reliable(deal.target));
   const output = [];
   const sourceIndex = new Map();
   const transactionIndex = new Map();
   for (const deal of repaired) {
     const source = deal.sourceUrl || deal.edgarUrl;
-    const sourceKey = source ? source.replace(/[?#].*$/, '').toLowerCase() : null;
+    const sourceKey = source && !/sec\.gov\/edgar\/search\/#\/q=/i.test(source)
+      ? source.replace(/[?#].*$/, '').toLowerCase()
+      : null;
     const dealKey = transactionKey(deal);
     const index = sourceKey && sourceIndex.has(sourceKey) ? sourceIndex.get(sourceKey) :
       dealKey && transactionIndex.has(dealKey) ? transactionIndex.get(dealKey) : undefined;
@@ -121,7 +184,7 @@ function cleanup(deals) {
       output[index] = deal;
     }
   }
-  return output;
+  return output.map(deal => repairSecSource(deal, suspiciousCiks));
 }
 
 if (require.main === module) {
@@ -131,4 +194,4 @@ if (require.main === module) {
   console.log(`[CLEANUP] ${deals.length} -> ${cleaned.length}; removed ${deals.length - cleaned.length} duplicate or unpublishable records`);
 }
 
-module.exports = { cleanup, headlineEntity, extractHeadlineParties, repairFilingAgentParties, clearSuspiciousNewsSource };
+module.exports = { cleanup, headlineEntity, extractHeadlineParties, repairFilingAgentParties, clearSuspiciousNewsSource, repairSecSource, suspiciousArchiveCiks, reconcileLowConfidenceParties };
