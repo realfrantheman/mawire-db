@@ -2819,3 +2819,199 @@ footer {
   .kpi-card:hover,
   .stat-box:hover { transform: none; }
 }
+
+/* ── LIQUID MOTION AND REFRACTION PASS ─────────────────────── */
+:root {
+  --pointer-x: 50%;
+  --pointer-y: 35%;
+  --glass-blur: blur(32px) saturate(185%);
+  --glass-edge: rgba(224, 241, 255, 0.23);
+  --glass-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+  --glass-shadow-hover: 0 42px 120px rgba(0, 0, 0, 0.42);
+}
+
+body {
+  background-image:
+    radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(132, 196, 255, 0.085), transparent 23%),
+    radial-gradient(circle at 12% 8%, rgba(76, 139, 255, 0.16), transparent 29%),
+    radial-gradient(circle at 87% 19%, rgba(158, 112, 255, 0.13), transparent 31%),
+    radial-gradient(circle at 44% 92%, rgba(41, 211, 187, 0.09), transparent 34%),
+    linear-gradient(155deg, #050811 0%, #080e1b 44%, #070a13 100%);
+  transition: background-position 400ms ease;
+}
+
+.hero-search,
+.hero-feed,
+.kpi-card,
+.chart-wrap,
+.deal-card,
+.industry-card,
+.filing-card,
+.learn-card,
+.a-card,
+.contact-type-card,
+.modal,
+.cmd-palette {
+  --glass-x: 50%;
+  --glass-y: 0%;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  transform-style: preserve-3d;
+}
+
+.hero-search,
+.hero-feed,
+.chart-wrap,
+.deal-card,
+.industry-card,
+.filing-card,
+.learn-card,
+.a-card,
+.contact-type-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-search,
+.hero-feed,
+.chart-wrap,
+.deal-card,
+.industry-card,
+.filing-card,
+.learn-card,
+.a-card,
+.contact-type-card {
+  background:
+    radial-gradient(circle at var(--glass-x) var(--glass-y), rgba(225, 243, 255, 0.18), transparent 28%),
+    linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.025) 48%, rgba(124,172,255,.06)),
+    rgba(12, 21, 38, 0.43);
+  backdrop-filter: blur(32px) saturate(185%);
+  -webkit-backdrop-filter: blur(32px) saturate(185%);
+}
+
+.hero-search::after,
+.hero-feed::after,
+.chart-wrap::after,
+.deal-card::after,
+.industry-card::after,
+.filing-card::after,
+.learn-card::after,
+.a-card::after,
+.contact-type-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,.19), transparent 20%, transparent 75%, rgba(143,199,255,.08)),
+    radial-gradient(circle at var(--glass-x) var(--glass-y), rgba(255,255,255,.17), transparent 24%);
+  opacity: .55;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: opacity var(--t3), background-position var(--t3);
+}
+
+.hero-search > *,
+.hero-feed > *,
+.chart-wrap > *,
+.deal-card > *,
+.industry-card > *,
+.filing-card > *,
+.learn-card > *,
+.a-card > *,
+.contact-type-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-search:hover,
+.hero-feed:hover,
+.chart-wrap:hover,
+.deal-card:hover,
+.industry-card:hover,
+.filing-card:hover,
+.learn-card:hover,
+.a-card:hover,
+.contact-type-card:hover {
+  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-6px) scale(1.008);
+  border-color: rgba(220, 242, 255, .38);
+  box-shadow:
+    var(--glass-shadow-hover),
+    0 0 60px rgba(109, 180, 255, .1),
+    inset 0 1px rgba(255,255,255,.23);
+}
+
+.hero-search:hover::after,
+.hero-feed:hover::after,
+.chart-wrap:hover::after,
+.deal-card:hover::after,
+.industry-card:hover::after,
+.filing-card:hover::after,
+.learn-card:hover::after,
+.a-card:hover::after,
+.contact-type-card:hover::after { opacity: .92; }
+
+.site-header {
+  background:
+    radial-gradient(circle at var(--pointer-x) 0%, rgba(205, 235, 255, .13), transparent 32%),
+    linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,255,255,.025) 46%),
+    rgba(7, 13, 25, .54);
+  backdrop-filter: blur(34px) saturate(195%);
+  -webkit-backdrop-filter: blur(34px) saturate(195%);
+  animation: nav-float 7s ease-in-out infinite alternate;
+}
+
+.ticker-bar { animation: ticker-shell-float 8s ease-in-out infinite alternate; }
+.hero-search { animation: liquid-float-a 7s ease-in-out infinite alternate; }
+.hero-feed { animation: liquid-float-b 8s ease-in-out infinite alternate; }
+.kpi-card:nth-child(2n),
+.industry-card:nth-child(2n),
+.filing-card:nth-child(2n) { animation: card-breathe 9s ease-in-out infinite alternate; }
+
+@keyframes nav-float {
+  to { translate: 0 2px; box-shadow: 0 24px 70px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.2); }
+}
+@keyframes ticker-shell-float { to { translate: 0 1px; } }
+@keyframes liquid-float-a { to { translate: 0 -5px; } }
+@keyframes liquid-float-b { to { translate: 0 5px; } }
+@keyframes card-breathe { to { box-shadow: 0 32px 100px rgba(0,0,0,.32), 0 0 44px rgba(109,180,255,.06), inset 0 1px rgba(255,255,255,.17); } }
+
+@media (max-width: 768px) {
+  :root { --glass-blur: blur(26px) saturate(175%); }
+  .hero-search,
+  .hero-feed,
+  .chart-wrap,
+  .deal-card,
+  .industry-card,
+  .filing-card,
+  .learn-card,
+  .a-card,
+  .contact-type-card {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(225,243,255,.16), transparent 34%),
+      linear-gradient(145deg, rgba(255,255,255,.105), rgba(255,255,255,.025) 52%, rgba(124,172,255,.055)),
+      rgba(12, 21, 38, .5);
+    backdrop-filter: blur(26px) saturate(175%);
+    -webkit-backdrop-filter: blur(26px) saturate(175%);
+  }
+  .hero-search:hover,
+  .hero-feed:hover,
+  .chart-wrap:hover,
+  .deal-card:hover,
+  .industry-card:hover,
+  .filing-card:hover,
+  .learn-card:hover,
+  .a-card:hover,
+  .contact-type-card:hover { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .ticker-bar,
+  .hero-search,
+  .hero-feed,
+  .kpi-card,
+  .industry-card,
+  .filing-card { animation: none !important; }
+}

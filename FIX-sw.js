@@ -1,10 +1,10 @@
 'use strict';
 
-var CACHE = 'mergers-news-v6';
+var CACHE = 'mergers-news-v7';
 var SHELL = [
   '/',
-  '/style.css',
-  '/app.js',
+  '/style.css?v=20260612-liquid-motion',
+  '/app.js?v=20260612-liquid-motion',
   '/charts.js',
   '/manifest.json',
   '/about',

@@ -1,0 +1,19 @@
+{
+  "name": "mergers.news — Global Deal Intelligence",
+  "short_name": "mergers.news",
+  "description": "Real-time M&A press releases, historic deals and transaction announcements globally",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050811",
+  "theme_color": "#050811",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["finance", "news", "business"],
+  "lang": "en",
+  "shortcuts": [
+    { "name": "Latest Deals", "url": "/", "description": "View latest M&A announcements" }
+  ]
+}

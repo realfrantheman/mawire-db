@@ -14,6 +14,7 @@ var filteredDeals = [];
 var currentPage   = 0;
 var currentDeal   = null;
 var searchTimer   = null;
+var BASE_PAGE_TITLE = document.title;
 
 var state = {
   search:   '',
@@ -344,12 +345,40 @@ function onDealsLoaded() {
   updateIndustryCounts();
   if (window.renderVolumeChart) window.renderVolumeChart(allDeals);
 
-  // Open deal from permalink /deal/12345
-  if (window._pendingDealId) {
-    var deal = allDeals.find(function(d) { return d.id === window._pendingDealId; });
-    window._pendingDealId = null;
+  // Open deal from a readable permalink or a legacy /deal/{id} URL.
+  if (window._pendingDealPath) {
+    var pendingPath = window._pendingDealPath;
+    var legacyId = decodeURIComponent(pendingPath.replace(/^\/deal\//, ''));
+    var deal = allDeals.find(function(d) {
+      return dealPermalink(d) === pendingPath || String(d.id) === legacyId;
+    });
+    window._pendingDealPath = null;
     if (deal) setTimeout(function() { openModal(deal); }, 50);
   }
+}
+
+function dealDisplayName(deal) {
+  if (!deal) return 'Deal';
+  if (deal.acquirer && deal.target) return deal.acquirer + ' / ' + deal.target;
+  return deal.headline || deal.acquirer || deal.target || 'Deal';
+}
+
+function slugifyDealPart(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 90);
+}
+
+function dealPermalink(deal) {
+  var readable = slugifyDealPart(dealDisplayName(deal)) || 'transaction';
+  return '/deal/' + readable + '--' + encodeURIComponent(deal.id);
+}
+
+function setDealBrowserIdentity(deal) {
+  document.title = 'mergers.news - ' + dealDisplayName(deal);
 }
 
 function showLoading() {
@@ -841,9 +870,13 @@ function openModal(deal) {
   document.body.style.overflow = 'hidden';
 
   // Push permalink URL so each deal is directly shareable
-  var slug = '/deal/' + deal.id;
-  history.pushState({ dealId: deal.id }, deal.headline || 'Deal', slug);
-  document.title = (deal.headline || 'Deal') + ' | mergers.news';
+  var slug = dealPermalink(deal);
+  if (window.location.pathname !== slug) {
+    history.pushState({ dealId: deal.id }, dealDisplayName(deal), slug);
+  } else {
+    history.replaceState({ dealId: deal.id }, dealDisplayName(deal), slug);
+  }
+  setDealBrowserIdentity(deal);
 }
 
 function closeModal() {
@@ -851,8 +884,8 @@ function closeModal() {
   if (overlay) overlay.classList.remove('open');
   document.body.style.overflow = '';
   currentDeal = null;
-  history.pushState(null, 'mergers.news — Global M&A Intelligence', '/');
-  document.title = 'mergers.news — Global M&A Deal Intelligence';
+  history.pushState(null, BASE_PAGE_TITLE, '/');
+  document.title = BASE_PAGE_TITLE;
 }
 
 /* ── SECTOR INFERENCE FROM KEYWORDS ─────────────────────── */
@@ -1056,7 +1089,7 @@ function findComparables(d) {
 
 function shareModal() {
   if (!currentDeal) return;
-  var url = window.location.origin + '/deal/' + currentDeal.id;
+  var url = window.location.origin + dealPermalink(currentDeal);
   if (navigator.clipboard) {
     navigator.clipboard.writeText(url).then(function() {
       var btn = document.querySelector('[onclick="shareModal()"]');
@@ -1121,6 +1154,39 @@ function setupLogo() {
   btn.addEventListener('keydown', function(e) { if (e.key === 'Enter') window.location.href = '/'; });
 }
 
+/* ── LIQUID GLASS POINTER MOTION ────────────────────────────── */
+function setupLiquidMotion() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
+
+  var selector = [
+    '.hero-search', '.hero-feed', '.kpi-card', '.chart-wrap', '.deal-card',
+    '.industry-card', '.filing-card', '.learn-card', '.a-card', '.contact-type-card'
+  ].join(',');
+
+  document.addEventListener('pointermove', function(e) {
+    document.documentElement.style.setProperty('--pointer-x', (e.clientX / window.innerWidth * 100).toFixed(2) + '%');
+    document.documentElement.style.setProperty('--pointer-y', (e.clientY / window.innerHeight * 100).toFixed(2) + '%');
+
+    var surface = e.target.closest && e.target.closest(selector);
+    if (!surface) return;
+    var rect = surface.getBoundingClientRect();
+    var x = Math.max(0, Math.min(100, (e.clientX - rect.left) / rect.width * 100));
+    var y = Math.max(0, Math.min(100, (e.clientY - rect.top) / rect.height * 100));
+    surface.style.setProperty('--glass-x', x.toFixed(1) + '%');
+    surface.style.setProperty('--glass-y', y.toFixed(1) + '%');
+    surface.style.setProperty('--tilt-x', ((50 - y) / 35).toFixed(2) + 'deg');
+    surface.style.setProperty('--tilt-y', ((x - 50) / 35).toFixed(2) + 'deg');
+  }, { passive: true });
+
+  document.addEventListener('pointerout', function(e) {
+    var surface = e.target.closest && e.target.closest(selector);
+    if (!surface || (e.relatedTarget && surface.contains(e.relatedTarget))) return;
+    surface.style.removeProperty('--tilt-x');
+    surface.style.removeProperty('--tilt-y');
+  }, { passive: true });
+}
+
 /* ── URL PARAMS ──────────────────────────────────────────────── */
 function handleUrlParams() {
   var params = new URLSearchParams(window.location.search);
@@ -1130,9 +1196,10 @@ function handleUrlParams() {
     var si = el('searchInput');
     if (si) si.value = q;
   }
-  // /deal/{uuid} — open specific deal once data loads
-  var m = window.location.pathname.match(/^\/deal\/([a-f0-9-]{30,40})$/i);
-  if (m) window._pendingDealId = m[1];
+  // Readable /deal/{acquirer-target}--{id} and legacy /deal/{id}.
+  if (/^\/deal\/[^/]+$/i.test(window.location.pathname)) {
+    window._pendingDealPath = window.location.pathname;
+  }
 }
 
 /* ── BROWSER BACK/FORWARD ───────────────────────────────────── */
@@ -1145,14 +1212,14 @@ window.addEventListener('popstate', function(e) {
       var ov = el('modalOverlay');
       if (ov) { ov.classList.add('open'); ov.focus(); }
       document.body.style.overflow = 'hidden';
-      document.title = (deal.headline || 'Deal') + ' | mergers.news';
+      setDealBrowserIdentity(deal);
     }
   } else {
     var ov = el('modalOverlay');
     if (ov) ov.classList.remove('open');
     document.body.style.overflow = '';
     currentDeal = null;
-    document.title = 'mergers.news — Global M&A Deal Intelligence';
+    document.title = BASE_PAGE_TITLE;
   }
 });
 
@@ -1165,6 +1232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filteredDeals.length) renderDeals();
   });
   setupLogo();
+  setupLiquidMotion();
   setupCmd();
   setupHeroSearch();
   setupFilters();
