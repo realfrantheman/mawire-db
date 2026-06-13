@@ -24,10 +24,6 @@ OWNER = 'realfrantheman'
 # ── FILE MAPPINGS ─────────────────────────────────────────────────
 # (source_file_in_mawire_db, target_repo, target_path)
 MAPPINGS = [
-    # ── mawire-monitor ───────────────────────────────────────────
-    ('MONITOR-index.js',     'mawire-monitor', 'index.js'),
-    ('MONITOR-pie.js',       'mawire-monitor', 'pie.js'),
-    ('MONITOR-synthetic.js', 'mawire-monitor', 'synthetic.js'),
     # ── mawire-platform ──────────────────────────────────────────
     ('FIX-scheduler-v2.js',          'mawire-platform', 'scheduler.js'),
     ('FIX-sec-ingestor-index.js',    'mawire-platform', 'services/sec-ingestor/index.js'),
