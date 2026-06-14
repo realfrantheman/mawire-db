@@ -138,6 +138,7 @@ async function checkRouteAvailability() {
       results.push({ route, status: 0, latencyMs: -1, ok: false, error: err.message });
       worstStatus = 'fail'; worstScore = 0;
     }
+    await new Promise(r => setTimeout(r, 300));
   }
 
   const failed = results.filter(r => !r.ok);
@@ -151,7 +152,7 @@ async function checkRouteAvailability() {
 
 // deals.json reachable, valid JSON, non-empty, sufficient size
 async function checkDealsJson() {
-  const url = SITE + '/deals.json';
+  const url = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals.json';
   const res = await httpGet(url, { timeout: 30000 });
 
   if (res.status !== 200) {
