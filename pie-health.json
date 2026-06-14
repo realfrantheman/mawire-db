@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-06-14T08:56:02.823Z",
-  "overallScore": 78,
-  "status": "degraded",
-  "durationMs": 1416,
+  "generatedAt": "2026-06-14T15:59:30.976Z",
+  "overallScore": 100,
+  "status": "healthy",
+  "durationMs": 2980,
   "categories": {
     "ingestion": {
-      "score": 78,
-      "status": "degraded",
+      "score": 100,
+      "status": "healthy",
       "checks": [
         {
           "name": "ingestion_freshness",
-          "status": "fail",
-          "score": 10,
-          "message": "Last deal ingested 11.7h ago"
+          "status": "pass",
+          "score": 100,
+          "message": "Last deal ingested 0.1h ago"
         },
         {
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "5241 deals last 24h · 33331 last 7d · 33762 last 30d"
+          "message": "6309 deals last 24h · 35338 last 7d · 35769 last 30d"
         },
         {
           "name": "source_diversity",
@@ -35,14 +35,14 @@
       ]
     },
     "pipeline": {
-      "score": 80,
-      "status": "degraded",
+      "score": 100,
+      "status": "healthy",
       "checks": [
         {
           "name": "export_freshness",
-          "status": "warn",
-          "score": 60,
-          "message": "deals.json last updated 11.7h ago (via deals.updated_at (proxy))"
+          "status": "pass",
+          "score": 100,
+          "message": "deals.json last updated 0.1h ago (via deals.updated_at (proxy))"
         },
         {
           "name": "review_queue",
@@ -57,16 +57,16 @@
     {
       "name": "ingestion_freshness",
       "category": "ingestion",
-      "status": "fail",
-      "score": 10,
-      "message": "Last deal ingested 11.7h ago"
+      "status": "pass",
+      "score": 100,
+      "message": "Last deal ingested 0.1h ago"
     },
     {
       "name": "ingestion_velocity",
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "5241 deals last 24h · 33331 last 7d · 33762 last 30d"
+      "message": "6309 deals last 24h · 35338 last 7d · 35769 last 30d"
     },
     {
       "name": "source_diversity",
@@ -113,9 +113,9 @@
     {
       "name": "export_freshness",
       "category": "pipeline",
-      "status": "warn",
-      "score": 60,
-      "message": "deals.json last updated 11.7h ago (via deals.updated_at (proxy))"
+      "status": "pass",
+      "score": 100,
+      "message": "deals.json last updated 0.1h ago (via deals.updated_at (proxy))"
     },
     {
       "name": "review_queue",
@@ -146,28 +146,13 @@
       "message": "Check error: column \"confidence\" does not exist"
     }
   ],
-  "alerts": [
-    {
-      "key": "pie:ingestion_freshness",
-      "severity": "critical",
-      "title": "FAIL: ingestion freshness",
-      "description": "Last deal ingested 11.7h ago",
-      "since": "2026-06-13T08:32:07.808Z"
-    },
-    {
-      "key": "pie:export_freshness",
-      "severity": "warning",
-      "title": "WARN: export freshness",
-      "description": "deals.json last updated 11.7h ago (via deals.updated_at (proxy))",
-      "since": "2026-06-13T08:32:08.248Z"
-    }
-  ],
+  "alerts": [],
   "summary": {
-    "pass": 4,
-    "warn": 1,
-    "fail": 1,
+    "pass": 6,
+    "warn": 0,
+    "fail": 0,
     "skip": 7,
-    "critical": 1,
-    "warnings": 1
+    "critical": 0,
+    "warnings": 0
   }
 }
