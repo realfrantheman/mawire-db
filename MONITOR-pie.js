@@ -382,7 +382,7 @@ async function checkGeographicCoverage() {
   if (total === 0) return notApplicable('geographic_coverage', 'coverage', 'No announced/pending deals');
   const coverageRatio = covered / total;
   let status = 'pass', score = Math.min(100, Math.round(coverageRatio * 100 * (regions >= 3 ? 1 : 0.7)));
-  if (regions < 2 || coverageRatio < 0.5) { status = 'warn'; score = Math.min(score, 60); if (score < 30) score = 30; }
+  if (regions < 2 || coverageRatio < 0.5) { status = 'warn'; score = Math.min(score, 60); }
   const topRes = await q(`
     SELECT d.region, COUNT(*) AS cnt FROM deals d
     WHERE ${ACTIVE_WHERE} AND d.region IS NOT NULL AND d.region <> ''

@@ -349,17 +349,17 @@ function render(data) {
   el('heroStatusText').textContent = data.status.charAt(0).toUpperCase() + data.status.slice(1);
   el('heroUpdated').textContent = 'Last checked ' + formatRelative(data.generatedAt);
   var s = data.summary || {};
-  el('sumPass').textContent   = (s.dataPass    || 0) + (s.productPass    || 0);
-  el('sumWarn').textContent   = (s.dataWarn    || 0) + (s.productWarn    || 0);
-  el('sumFail').textContent   = (s.dataFail    || 0) + (s.productFail    || 0);
-  el('sumAlerts').textContent = (data.alerts || []).length;
+  el('sumPass').textContent   = s.pass    || 0;
+  el('sumWarn').textContent   = s.warn    || 0;
+  el('sumFail').textContent   = s.fail    || 0;
+  el('sumAlerts').textContent = (s.critical || 0) + (s.warnings || 0);
 
   // Categories
   var catOrder = ['ingestion','quality','pipeline','coverage'];
   var catNames = { ingestion:'Ingestion', quality:'Quality', pipeline:'Pipeline', coverage:'Coverage' };
   var catHtml = '';
   catOrder.forEach(function(cat) {
-    var c = ((data.dataIntegrity || {}).categories || {})[cat];
+    var c = (data.categories || {})[cat];
     if (!c) return;
     var status = c.status;
     var checksHtml = (c.checks || []).map(function(ch) {
@@ -400,7 +400,7 @@ function render(data) {
   }
 
   // All checks grid
-  var checks = (data.dataIntegrity || {}).checks || [];
+  var checks = data.checks || [];
   el('checksCount').textContent = checks.length;
   el('checksGrid').innerHTML = checks.map(function(c) {
     var color = scoreColor(c.score);
