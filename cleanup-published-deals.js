@@ -109,18 +109,25 @@ function reconcileLowConfidenceParties(deal) {
 
 function repairSecSource(deal) {
   const url = String(deal.sourceUrl || deal.edgarUrl || '');
+  if (/sec\.gov\/edgar\/search|browse-edgar|search-index/i.test(url)) {
+    deal.sourceUrl = null;
+    deal.edgarUrl = null;
+    deal.needsReview = true;
+    return deal;
+  }
   if (!/sec\.gov\/Archives\/edgar\/data\//i.test(url)) return deal;
   const storedAccession = String(deal.accessionNo || '').match(/^(\d{10})-(\d{2})-(\d{6})/);
-  const match = url.match(/sec\.gov\/Archives\/edgar\/data\/(\d+)\/(\d{18})(?:\/[^/?#]+)?/i);
+  const match = url.match(/sec\.gov\/Archives\/edgar\/data\/(\d+)\/(\d{18})(?:\/([^/?#]+))?/i);
   if (!storedAccession && !match) return deal;
   const folder = match?.[2];
   const accession = storedAccession
     ? `${storedAccession[1]}-${storedAccession[2]}-${storedAccession[3]}`
     : `${folder.slice(0, 10)}-${folder.slice(10, 12)}-${folder.slice(12)}`;
-  const fallback = `https://www.sec.gov/edgar/search/#/q=${accession}`;
-  deal.sourceUrl = fallback;
-  deal.edgarUrl = fallback;
-  deal.needsReview = true;
+  const direct = match?.[3]
+    ? url
+    : `https://www.sec.gov/Archives/edgar/data/${match[1]}/${folder}/${accession}-index.html`;
+  deal.sourceUrl = direct;
+  deal.edgarUrl = direct;
   return deal;
 }
 
@@ -181,7 +188,7 @@ function cleanup(deals) {
   const transactionIndex = new Map();
   for (const deal of repaired) {
     const source = deal.sourceUrl || deal.edgarUrl;
-    const sourceKey = source && !/sec\.gov\/edgar\/search\/#\/q=/i.test(source)
+    const sourceKey = source && !/sec\.gov\/edgar\/search|browse-edgar|search-index/i.test(source)
       ? source.replace(/[?#].*$/, '').toLowerCase()
       : null;
     const dealKey = transactionKey(deal);

@@ -28,11 +28,20 @@ test('recovers reliable parties from acquisition headlines', () => {
   assert.equal(result[0].target, 'SpiritBank');
 });
 
-test('replaces SEC archive paths with durable SEC accession search', () => {
+test('preserves direct SEC filing documents', () => {
   const repaired = repairSecSource({
     sourceUrl: 'https://www.sec.gov/Archives/edgar/data/1493152/000149315226028363/formdefa14a.htm'
   });
-  assert.equal(repaired.sourceUrl, 'https://www.sec.gov/edgar/search/#/q=0001493152-26-028363');
+  assert.equal(repaired.sourceUrl, 'https://www.sec.gov/Archives/edgar/data/1493152/000149315226028363/formdefa14a.htm');
+  assert.equal(repaired.edgarUrl, repaired.sourceUrl);
+});
+
+test('removes generic SEC search links instead of publishing them as evidence', () => {
+  const repaired = repairSecSource({
+    sourceUrl: 'https://www.sec.gov/edgar/search/#/q=0001493152-26-028363'
+  });
+  assert.equal(repaired.sourceUrl, null);
+  assert.equal(repaired.edgarUrl, null);
   assert.equal(repaired.needsReview, true);
 });
 
