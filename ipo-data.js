@@ -92,6 +92,20 @@ function normalizeGraph(graph = {}) {
     publicCompaniesIPOCompanyDependsOn: dedupe((graph.publicCompaniesIPOCompanyDependsOn || []).map(edge => normalizeEdge(edge, 'outbound'))),
   };
 }
+function normalizeDependencyIngestion(value = {}) {
+  if (!value || typeof value !== 'object' || !value.attemptedAt) return null;
+  const attemptedAt = new Date(value.attemptedAt);
+  if (!Number.isFinite(attemptedAt.getTime())) return null;
+  return {
+    parserVersion: cleanText(value.parserVersion) || null,
+    attemptedAt: attemptedAt.toISOString(),
+    status: ['complete', 'no_evidence', 'no_sec_source', 'partial_error', 'fetch_failed'].includes(value.status) ? value.status : 'no_evidence',
+    sourceUrlsFound: Math.max(0, Number(value.sourceUrlsFound) || 0),
+    sourceUrlsAttempted: Math.max(0, Number(value.sourceUrlsAttempted) || 0),
+    edgesFound: Math.max(0, Number(value.edgesFound) || 0),
+    errors: (Array.isArray(value.errors) ? value.errors : []).map(cleanText).filter(Boolean).slice(0, 3),
+  };
+}
 function statusFromLifecycle(record, now = new Date()) {
   const explicit = { s1: 'filed', expected: record.filingType ? 'filed' : 'unknown' }[record.status] || record.status;
   const verifiedListing = record.ipoDate && record.ticker && record.exchange && (record.sources || []).some(source =>
@@ -150,6 +164,7 @@ function normalizeRecord(record, options = {}) {
     source: cleanText(record.source || sources[0]?.publisher || 'SEC'), sources,
     notes: cleanText(record.notes), tags: [...new Set((record.tags || []).map(cleanText).filter(Boolean))],
     dependencyGraph: normalizeGraph(record.dependencyGraph),
+    dependencyIngestion: normalizeDependencyIngestion(record.dependencyIngestion),
   };
   if ((status === 'completed' || status === 'listed') && !normalized.ipoDate) normalized.ipoDate = latestSourceDate || filingDate;
   return normalized;
@@ -165,7 +180,14 @@ function dedupeRecords(records) {
     const normalized = normalizeRecord(record);
     const key = recordKey(normalized);
     const current = winners.get(key);
-    if (!current || recordScore(normalized) > recordScore(current)) winners.set(key, normalized);
+    if (!current) { winners.set(key, normalized); continue; }
+    const winner = recordScore(normalized) > recordScore(current) ? normalized : current;
+    const other = winner === normalized ? current : normalized;
+    const winnerEdges = (winner.dependencyGraph?.publicCompaniesDependingOnIPO?.length || 0) + (winner.dependencyGraph?.publicCompaniesIPOCompanyDependsOn?.length || 0);
+    const otherEdges = (other.dependencyGraph?.publicCompaniesDependingOnIPO?.length || 0) + (other.dependencyGraph?.publicCompaniesIPOCompanyDependsOn?.length || 0);
+    if (!winnerEdges && otherEdges) winner.dependencyGraph = other.dependencyGraph;
+    if (!winner.dependencyIngestion || String(other.dependencyIngestion?.attemptedAt || '') > String(winner.dependencyIngestion.attemptedAt || '')) winner.dependencyIngestion = other.dependencyIngestion;
+    winners.set(key, winner);
   }
   const slugs = new Map();
   return [...winners.values()].map(record => {
@@ -181,5 +203,5 @@ function applyOverrides(records, overrides = []) {
 function isActive(record) { return ACTIVE_STATUSES.has(record.status); }
 
 module.exports = { VALID_STATUSES, ACTIVE_STATUSES, slugify, normalizedName, stableId, valuationNumber,
-  normalizeSource, normalizeEdge, normalizeGraph, statusFromLifecycle, statusLabel, normalizeRecord,
+  normalizeSource, normalizeEdge, normalizeGraph, normalizeDependencyIngestion, statusFromLifecycle, statusLabel, normalizeRecord,
   recordKey, dedupeRecords, applyOverrides, isActive };
