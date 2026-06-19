@@ -56,5 +56,8 @@ jobs:
       - name: Run IPO fetcher (S-1 filings — metadata only, no S-1 text download)
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
-          FETCH_S1_TEXT: 'false'
+          PUBLISH_IPOS: 'true'
+          IPO_LOOKBACK_YEARS: '3'
+          IPO_MAX_METADATA: '9000'
+          IPO_MAX_FULL_TEXT: '10'
         run: node fetch-ipos.js

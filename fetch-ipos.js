@@ -1,478 +1,261 @@
 #!/usr/bin/env node
-/*
-  mergers.news — fetch-ipos.js
-  Fetches S-1 IPO filings from SEC EDGAR and pushes ipos.json to mawire-db.
-  ipo.html will load this file dynamically to show more companies.
-
-  Usage:
-    GITHUB_TOKEN=ghp_xxx node fetch-ipos.js
-
-  Cost: $0 — SEC EDGAR full-text search API is completely free.
-  Rate limit: ~10 req/s per SEC guidelines. Script sleeps between calls.
-*/
-
 'use strict';
 
-const https        = require('https');
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN || 'PASTE_YOUR_GITHUB_TOKEN_HERE';
-const GITHUB_OWNER = 'realfrantheman';
-const GITHUB_REPO  = 'mawire-db';
-const GITHUB_FILE  = 'ipos.json';
+const fs = require('fs');
+const path = require('path');
+const https = require('https');
+const { applyOverrides, dedupeRecords, normalizeRecord, normalizedName, recordKey } = require('./ipo-data');
 
-// ── HTTP HELPER ───────────────────────────────────────────
-function get(url, asText) {
-  return new Promise(function(resolve, reject) {
-    https.get(url, {
-      headers: {
-        'User-Agent': 'mergers.news/ipos contact@mergers.news',
-        'Accept': asText ? 'text/html,text/plain' : 'application/json'
+const ROOT = __dirname;
+const OUTPUT = process.env.IPO_OUTPUT || path.join(ROOT, 'ipos.json');
+const SITE_OUTPUT = process.env.SITE_IPO_OUTPUT || null;
+const OVERRIDES = JSON.parse(fs.readFileSync(path.join(ROOT, 'ipo-overrides.json'), 'utf8'));
+const FORMS = ['S-1', 'S-1/A', 'F-1', 'F-1/A', '424B4', '424B1', 'EFFECT', 'RW', 'RW WD'];
+const CONFIG = {
+  lookbackYears: Number(process.env.IPO_LOOKBACK_YEARS || 8),
+  maxMetadata: Number(process.env.IPO_MAX_METADATA || 12000),
+  maxFullText: Number(process.env.IPO_MAX_FULL_TEXT || 40),
+  requestDelayMs: Number(process.env.IPO_REQUEST_DELAY_MS || 140),
+  timeoutMs: Number(process.env.IPO_REQUEST_TIMEOUT_MS || 20000),
+  maxBytes: Number(process.env.IPO_RESPONSE_MAX_BYTES || 6_000_000),
+};
+
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+function request(url, asText = false, redirects = 0) {
+  if (redirects > 4) return Promise.reject(new Error('redirect limit exceeded'));
+  return new Promise((resolve, reject) => {
+    const req = https.get(url, { headers: {
+      'User-Agent': 'mergers.news IPO lifecycle index contact@mergers.news',
+      Accept: asText ? 'text/html,text/plain' : 'application/json',
+    } }, res => {
+      if ([301, 302, 303, 307, 308].includes(res.statusCode)) {
+        res.resume();
+        return request(new URL(res.headers.location, url).toString(), asText, redirects + 1).then(resolve, reject);
       }
-    }, function(res) {
-      if (res.statusCode === 301 || res.statusCode === 302) {
-        return get(res.headers.location, asText).then(resolve).catch(reject);
+      if (res.statusCode < 200 || res.statusCode >= 300) {
+        res.resume(); return reject(new Error(`HTTP ${res.statusCode} for ${url}`));
       }
-      if (res.statusCode !== 200) {
-        return reject(new Error('HTTP ' + res.statusCode + ' for ' + url));
-      }
-      var data = '';
-      res.on('data', function(c) { data += c; });
-      res.on('end', function() {
-        if (asText) return resolve(data);
-        try { resolve(JSON.parse(data)); }
-        catch(e) { reject(new Error('JSON parse error')); }
+      const chunks = []; let size = 0;
+      res.on('data', chunk => {
+        size += chunk.length;
+        if (size > CONFIG.maxBytes) req.destroy(new Error('response size limit exceeded'));
+        else chunks.push(chunk);
       });
-    }).on('error', reject)
-      .setTimeout(20000, function() { reject(new Error('Timeout')); });
-  });
-}
-
-function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
-
-function extractName(display_names) {
-  var raw = Array.isArray(display_names) ? display_names[0] : (display_names || '');
-  return raw.replace(/\s*\(CIK\s+\d+\)\s*$/i, '').trim();
-}
-function extractCIK(display_names) {
-  var raw = Array.isArray(display_names) ? display_names[0] : (display_names || '');
-  var m = raw.match(/CIK\s+0*(\d+)/i);
-  return m ? m[1] : '';
-}
-
-// ── SIC → SECTOR ─────────────────────────────────────────
-function normaliseSIC(sics) {
-  if (!sics || !sics.length) return 'Technology';
-  var s = parseInt(sics[0]);
-  if (s >= 7370 && s <= 7379) return 'Technology';
-  if (s >= 3559 && s <= 3679) return 'Technology';
-  if (s >= 4800 && s <= 4899) return 'Telecommunications';
-  if (s >= 4900 && s <= 4999) return 'Energy';
-  if (s >= 2800 && s <= 2899) return 'Healthcare';
-  if (s >= 8000 && s <= 8099) return 'Healthcare';
-  if (s >= 6000 && s <= 6499) return 'Fintech';
-  if (s >= 6500 && s <= 6599) return 'Real Estate';
-  if (s >= 5000 && s <= 5999) return 'Consumer';
-  if (s >= 2000 && s <= 2199) return 'Consumer';
-  return 'Technology';
-}
-
-function sectorToTag(sector) {
-  var map = {
-    'Technology': 'tech', 'Telecommunications': 'tech',
-    'Healthcare': 'tech', 'Fintech': 'fintech',
-    'Consumer': 'consumer', 'Real Estate': 'consumer',
-    'Energy': 'tech', 'Industrials': 'tech'
-  };
-  return map[sector] || 'tech';
-}
-
-// ── PARSE OFFERING SIZE FROM S-1 TEXT ────────────────────
-function parseOffering(text) {
-  if (!text) return null;
-  var candidates = [];
-
-  var bPatterns = [
-    /aggregate(?:\s+\w+){0,4}\s+\$([\d,]+(?:\.\d+)?)\s*billion/gi,
-    /total\s+(?:gross\s+)?proceeds\s+of\s+(?:approximately\s+)?\$([\d,]+(?:\.\d+)?)\s*billion/gi,
-    /offering\s+of\s+(?:up\s+to\s+)?(?:approximately\s+)?\$([\d,]+(?:\.\d+)?)\s*billion/gi,
-    /\$([\d,]+(?:\.\d+)?)\s*billion\s+(?:in\s+)?(?:gross\s+)?proceeds/gi,
-  ];
-  var mPatterns = [
-    /aggregate(?:\s+\w+){0,4}\s+\$([\d,]+(?:\.\d+)?)\s*million/gi,
-    /total\s+(?:gross\s+)?proceeds\s+of\s+(?:approximately\s+)?\$([\d,]+(?:\.\d+)?)\s*million/gi,
-    /offering\s+of\s+(?:up\s+to\s+)?(?:approximately\s+)?\$([\d,]+(?:\.\d+)?)\s*million/gi,
-    /\$([\d,]+(?:\.\d+)?)\s*million\s+(?:in\s+)?(?:gross\s+)?proceeds/gi,
-    /maximum\s+aggregate\s+offering\s+price[^$]*\$([\d,]+(?:\.\d+)?)\s*million/gi,
-  ];
-
-  bPatterns.forEach(function(p) {
-    p.lastIndex = 0;
-    var m;
-    while ((m = p.exec(text)) !== null) {
-      var v = parseFloat(m[1].replace(/,/g, '')) * 1000;
-      if (!isNaN(v) && v >= 10 && v < 500000) candidates.push(v);
-    }
-  });
-  mPatterns.forEach(function(p) {
-    p.lastIndex = 0;
-    var m;
-    while ((m = p.exec(text)) !== null) {
-      var v = parseFloat(m[1].replace(/,/g, ''));
-      if (!isNaN(v) && v >= 1 && v < 500000) candidates.push(v);
-    }
-  });
-
-  if (!candidates.length) return null;
-  var best = Math.max.apply(null, candidates);
-  if (best >= 1000) return '$' + (best / 1000).toFixed(1).replace('.0', '') + 'B';
-  return '$' + Math.round(best) + 'M';
-}
-
-// ── PARSE EXCHANGE FROM S-1 TEXT ─────────────────────────
-function parseExchange(text) {
-  if (!text) return '—';
-  if (/nasdaq\s+global\s+select/i.test(text)) return 'NASDAQ';
-  if (/nasdaq/i.test(text)) return 'NASDAQ';
-  if (/new\s+york\s+stock\s+exchange|nyse/i.test(text)) return 'NYSE';
-  if (/nyse\s+american/i.test(text)) return 'NYSE American';
-  return '—';
-}
-
-// ── PARSE BUSINESS DESCRIPTION FROM S-1 ──────────────────
-function parseDescription(text, companyName) {
-  if (!text) return companyName + ' filed an S-1 registration statement with the SEC.';
-
-  // Look for "We are a ..." or "Company is a ..." type sentences
-  var patterns = [
-    new RegExp('We\\s+are\\s+(?:a|an|the)\\s+[^.]{20,200}\\.', 'i'),
-    new RegExp(companyName.replace(/[^a-zA-Z0-9 ]/g, '.') + '\\s+is\\s+(?:a|an|the)\\s+[^.]{20,200}\\.', 'i'),
-    /Our\s+(?:company|business)\s+(?:is|provides|develops|offers)\s+[^.]{20,200}\./i,
-    /(?:provider|developer|manufacturer|operator)\s+of\s+[^.]{20,200}\./i,
-  ];
-
-  for (var i = 0; i < patterns.length; i++) {
-    var m = text.match(patterns[i]);
-    if (m && m[0] && m[0].length > 30 && m[0].length < 300) {
-      return m[0].trim().replace(/\s+/g, ' ');
-    }
-  }
-
-  // Fallback: find first substantive sentence
-  var sentences = text.replace(/\s+/g, ' ').match(/[A-Z][^.!?]{40,200}[.!?]/g) || [];
-  for (var j = 0; j < Math.min(sentences.length, 20); j++) {
-    var s = sentences[j].trim();
-    if (s.indexOf(companyName) !== -1 || /company|business|product|service|platform/i.test(s)) {
-      if (s.length > 40 && s.length < 300) return s;
-    }
-  }
-
-  return companyName + ' filed an S-1 registration statement with the SEC seeking to list on a U.S. exchange.';
-}
-
-// ── DETERMINE IPO STATUS FROM FILING TYPE ────────────────
-function determineStatus(formType, filingDate) {
-  var yr = parseInt((filingDate || '').slice(0, 4));
-  var now = new Date().getFullYear();
-  if (formType === 'S-1/A') return { status: 'expected', label: 'S-1 Filed' };
-  if (formType === 'S-1')   return { status: 's1',       label: 'S-1 Filed' };
-  if (yr < now - 1)         return { status: 'completed', label: 'Completed' };
-  return { status: 's1', label: 'S-1 Filed' };
-}
-
-// ── FETCH S-1 DOCUMENT TEXT ───────────────────────────────
-async function fetchS1Text(cik, hitId) {
-  if (!cik || !hitId) return '';
-  try {
-    var parts     = hitId.split(':');
-    var accPart   = parts[0] || '';
-    var fileName  = parts[1] || '';
-    var accNoDash = accPart.replace(/-/g, '');
-    if (!accNoDash) return '';
-
-    var url;
-    if (fileName) {
-      url = 'https://www.sec.gov/Archives/edgar/data/' + cik + '/' + accNoDash + '/' + fileName;
-    } else {
-      var accFormatted = accNoDash.slice(0,10) + '-' + accNoDash.slice(10,12) + '-' + accNoDash.slice(12);
-      var idx = await get('https://www.sec.gov/Archives/edgar/data/' + cik + '/' + accNoDash + '/' + accFormatted + '-index.htm', true);
-      var docMatch = idx.match(/href="(\/Archives\/edgar\/data\/[^"]+\.htm)"/i);
-      if (!docMatch) return '';
-      url = 'https://www.sec.gov' + docMatch[1];
-    }
-
-    var html = await get(url, true);
-    return html
-      .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ')
-      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-      .replace(/&#\d+;/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 40000);
-  } catch(e) {
-    return '';
-  }
-}
-
-// ── BUILD IPO COMPANY OBJECT ──────────────────────────────
-async function buildIPO(hit, formType, fetchText) {
-  // Allow workflow to disable S-1 text fetching via env var for speed
-  if (process.env.FETCH_S1_TEXT === 'false') fetchText = false;
-  var src  = hit._source || {};
-  var name = extractName(src.display_names);
-  var cik  = extractCIK(src.display_names) || src.entity_id || '';
-  var date = (src.file_date || '').slice(0, 10);
-
-  if (!name || name.length < 2) return null;
-
-  var sector  = normaliseSIC(src.sics);
-  var tag     = sectorToTag(sector);
-  var st      = determineStatus(formType, date);
-  var yr      = (date || '').slice(0, 4);
-  var expected = yr ? yr : '2025-2026';
-
-  var text        = fetchText !== false ? await fetchS1Text(cik, hit._id || '') : '';
-  var valuation   = parseOffering(text) || '—';
-  var exchange    = parseExchange(text);
-  var description = parseDescription(text, name);
-
-  // Build source URL
-  var parts     = (hit._id || '').split(':');
-  var accPart   = parts[0] || '';
-  var fileName  = parts[1] || '';
-  var accNoDash = accPart.replace(/-/g, '');
-  var sourceUrl = '';
-  if (cik && accNoDash && fileName) {
-    sourceUrl = 'https://www.sec.gov/Archives/edgar/data/' + cik + '/' + accNoDash + '/' + fileName;
-  } else if (cik && accNoDash) {
-    var accFormatted = accNoDash.slice(0,10) + '-' + accNoDash.slice(10,12) + '-' + accNoDash.slice(12);
-    sourceUrl = 'https://www.sec.gov/Archives/edgar/data/' + cik + '/' + accNoDash + '/' + accFormatted + '-index.htm';
-  }
-
-  return {
-    name:        name,
-    sector:      sector,
-    valuation:   valuation,
-    status:      st.status,
-    statusLabel: st.label,
-    exchange:    exchange,
-    expected:    expected,
-    notes:       description,
-    tags:        [tag],
-    cik:         cik,
-    filingDate:  date,
-    filingType:  formType,
-    sourceUrl:   sourceUrl,
-    source:      'SEC EDGAR'
-  };
-}
-
-// ── EDGAR FULL-TEXT SEARCH ────────────────────────────────
-async function edgarSearch(form, startDt, endDt, from) {
-  // No q= filter: fetch ALL filings of this form type in the date range.
-  // A text-match on "IPO" was the original bug that capped results at ~40
-  // because most S-1 filings don't contain that exact phrase in the indexed text.
-  var url = 'https://efts.sec.gov/LATEST/search-index' +
-    '?forms=' + encodeURIComponent(form) +
-    '&dateRange=custom&startdt=' + startDt + '&enddt=' + endDt +
-    '&from=' + (from || 0);
-  try {
-    var res = await get(url);
-    return (res.hits && res.hits.hits) ? res.hits.hits : [];
-  } catch(e) {
-    console.log('  EDGAR error:', e.message);
-    return [];
-  }
-}
-
-// ── FETCH ALL S-1 FILINGS ─────────────────────────────────
-async function fetchAllS1s() {
-  var ipos = [];
-  // Expanded to 8 years; each 2-year window keeps per-query hit counts manageable
-  var periods = [
-    ['2025-01-01', '2026-12-31'],
-    ['2023-01-01', '2024-12-31'],
-    ['2021-01-01', '2022-12-31'],
-    ['2019-01-01', '2020-12-31'],
-  ];
-  // S-1/S-1/A: US domestic IPOs
-  // F-1/F-1/A: Foreign private issuers (UK, EU, Asia, LatAm listing in US)
-  var forms = ['S-1', 'S-1/A', 'F-1', 'F-1/A'];
-  var MAX_IPOS = 1200;
-  var nowYear  = new Date().getFullYear();
-
-  outer:
-  for (var f = 0; f < forms.length; f++) {
-    var form = forms[f];
-    for (var p = 0; p < periods.length; p++) {
-      var start = periods[p][0], end = periods[p][1];
-      console.log('[EDGAR] ' + form + ' ' + start.slice(0,4) + '-' + end.slice(0,4) + '...');
-
-      var pageSize = null; // auto-detected from first response
-
-      for (var from = 0; ; from += (pageSize || 10)) {
-        var hits = await edgarSearch(form, start, end, from);
-        if (!hits.length) break;
-
-        // Detect actual page size from first response
-        if (pageSize === null) pageSize = hits.length;
-
-        var periodYear = parseInt(end.slice(0, 4));
-        var fetchText  = (nowYear - periodYear) < 2; // only fetch full text for recent filings
-
-        for (var i = 0; i < hits.length; i++) {
-          try {
-            var ipo = await buildIPO(hits[i], form, fetchText);
-            if (ipo) { ipos.push(ipo); process.stdout.write('.'); }
-          } catch(e) { /* skip */ }
-          await sleep(fetchText ? 120 : 50); // lighter rate-limit for metadata-only
-        }
-
-        console.log('\n  ' + form + ' ' + start.slice(0,4) + ' from=' + from + ': ' + hits.length + ' hits → ' + ipos.length + ' total');
-        await sleep(400);
-
-        if (hits.length < pageSize) break; // last page
-        if (ipos.length >= MAX_IPOS) break outer;
-      }
-
-      if (ipos.length >= MAX_IPOS) break outer;
-    }
-  }
-
-  return ipos;
-}
-
-// ── DEDUPLICATE ───────────────────────────────────────────
-function dedupe(ipos) {
-  var seen = new Set();
-  return ipos.filter(function(c) {
-    // Normalise: lowercase, strip legal suffixes
-    var key = c.name.toLowerCase()
-      .replace(/\s*(inc\.?|corp\.?|llc\.?|ltd\.?|plc\.?|co\.?|group|holdings?|corporation|company)\s*$/i, '')
-      .replace(/[^a-z0-9]/g, '')
-      .slice(0, 30);
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
-// ── LOAD EXISTING FROM GITHUB ─────────────────────────────
-async function loadExisting() {
-  try {
-    var url = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/' + GITHUB_FILE + '?t=' + Date.now();
-    var data = await get(url);
-    if (Array.isArray(data)) {
-      console.log('[GitHub] Loaded', data.length, 'existing IPO entries');
-      return data;
-    }
-  } catch(e) {
-    console.log('[GitHub] No existing ipos.json — will create new');
-  }
-  return [];
-}
-
-// ── COMMIT TO GITHUB ──────────────────────────────────────
-async function commit(ipos) {
-  console.log('\n[GitHub] Committing', ipos.length, 'IPO entries...');
-
-  var sha = null;
-  try {
-    var info = await new Promise(function(resolve) {
-      https.get('https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + GITHUB_FILE, {
-        headers: {
-          'Authorization': 'Bearer ' + GITHUB_TOKEN,
-          'Accept': 'application/vnd.github+json',
-          'User-Agent': 'mergers.news/ipos',
-          'X-GitHub-Api-Version': '2022-11-28'
-        }
-      }, function(res) {
-        var d = '';
-        res.on('data', function(c) { d += c; });
-        res.on('end', function() { try { resolve(JSON.parse(d)); } catch(e) { resolve({}); } });
-      }).on('error', function() { resolve({}); });
-    });
-    sha = info.sha || null;
-    console.log('[GitHub] SHA:', sha ? sha.slice(0, 8) : 'new file');
-  } catch(e) {}
-
-  var payload = JSON.stringify({
-    message: 'IPO data: ' + ipos.length + ' companies from EDGAR S-1 filings',
-    content: Buffer.from(JSON.stringify(ipos, null, 2)).toString('base64'),
-    ...(sha ? { sha } : {})
-  });
-
-  return new Promise(function(resolve, reject) {
-    var req = https.request({
-      hostname: 'api.github.com',
-      path: '/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + GITHUB_FILE,
-      method: 'PUT',
-      headers: {
-        'Authorization': 'Bearer ' + GITHUB_TOKEN,
-        'Accept': 'application/vnd.github+json',
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(payload),
-        'User-Agent': 'mergers.news/ipos',
-        'X-GitHub-Api-Version': '2022-11-28'
-      }
-    }, function(res) {
-      var d = '';
-      res.on('data', function(c) { d += c; });
-      res.on('end', function() {
-        if (res.statusCode === 200 || res.statusCode === 201) {
-          console.log('[GitHub] ✓ Committed', ipos.length, 'IPO entries');
-          resolve(ipos.length);
-        } else {
-          console.error('[GitHub] Error', res.statusCode, d.slice(0, 200));
-          reject(new Error('HTTP ' + res.statusCode));
-        }
+      res.on('end', () => {
+        const body = Buffer.concat(chunks).toString('utf8');
+        if (asText) return resolve(body);
+        try { resolve(JSON.parse(body)); } catch { reject(new Error(`invalid JSON from ${url}`)); }
       });
     });
+    req.setTimeout(CONFIG.timeoutMs, () => req.destroy(new Error(`timeout for ${url}`)));
     req.on('error', reject);
-    req.write(payload);
-    req.end();
   });
 }
-
-// ── MAIN ──────────────────────────────────────────────────
-async function main() {
-  console.log('='.repeat(60));
-  console.log('mergers.news — IPO Data Fetcher');
-  console.log('Source: SEC EDGAR S-1 filings (completely free)');
-  console.log('Output: ipos.json pushed to mawire-db');
-  console.log('='.repeat(60));
-
-  if (GITHUB_TOKEN === 'PASTE_YOUR_GITHUB_TOKEN_HERE') {
-    console.error('\n❌  Set your token: GITHUB_TOKEN=ghp_xxx node fetch-ipos.js\n');
-    process.exit(1);
+async function requestWithRetry(url, asText = false, attempts = 3) {
+  let lastError;
+  for (let attempt = 0; attempt < attempts; attempt++) {
+    try { return await request(url, asText); }
+    catch (error) {
+      lastError = error;
+      if (!/HTTP (?:429|5\d\d)|timeout/i.test(error.message) || attempt === attempts - 1) throw error;
+      await sleep(CONFIG.requestDelayMs * Math.pow(2, attempt + 2));
+    }
   }
-
-  var existing = await loadExisting();
-  var fetched  = await fetchAllS1s();
-  console.log('\n[Fetched] Raw S-1 filings:', fetched.length);
-
-  // Merge: keep existing entries, add new ones not already present
-  var existingNames = new Set(existing.map(function(c) {
-    return c.name.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30);
-  }));
-  var newEntries = fetched.filter(function(c) {
-    var key = c.name.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30);
-    return !existingNames.has(key);
-  });
-
-  var merged = dedupe(existing.concat(newEntries));
-
-  // Sort: S-1 filed first, then expected, then by filing date desc
-  var order = { s1: 0, expected: 1, rumored: 2, completed: 3 };
-  merged.sort(function(a, b) {
-    var os = (order[a.status] || 0) - (order[b.status] || 0);
-    if (os !== 0) return os;
-    return (b.filingDate || '').localeCompare(a.filingDate || '');
-  });
-
-  console.log('[Merged] Existing:', existing.length, '| New:', newEntries.length, '| Total:', merged.length);
-  await commit(merged);
-
-  console.log('\n✓ Done. ipos.json is now live at:');
-  console.log('  https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/ipos.json');
-  console.log('\nNow update ipo.html to load this file dynamically (see instructions).');
+  throw lastError;
 }
 
-main().catch(function(e) { console.error('Fatal:', e.message); process.exit(1); });
+function cleanName(source = {}) {
+  const raw = Array.isArray(source.display_names) ? source.display_names[0] : source.display_names || source.entity_name || '';
+  return String(raw).replace(/\s*\([^)]*CIK\s+\d+[^)]*\)\s*$/i, '').replace(/\s{2,}/g, ' ').trim();
+}
+function hitCik(hit) {
+  const source = hit._source || {};
+  const candidate = source.ciks?.[0] || source.entity_id || String(source.display_names?.[0] || '').match(/CIK\s+0*(\d+)/i)?.[1];
+  return String(candidate || '').replace(/^0+/, '');
+}
+function directFilingUrl(hit) {
+  const [accession = '', filename = ''] = String(hit._id || '').split(':');
+  const cik = hitCik(hit);
+  if (!cik || !/^\d{10}-\d{2}-\d{6}$/.test(accession)) return null;
+  const folder = accession.replace(/-/g, '');
+  return filename
+    ? `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${filename}`
+    : `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${accession}-index.html`;
+}
+function sectorFromSic(value) {
+  const sic = Number(Array.isArray(value) ? value[0] : value);
+  if (sic >= 2800 && sic <= 2899 || sic >= 8000 && sic <= 8099) return 'Healthcare';
+  if (sic >= 6000 && sic <= 6499) return 'Financial Services';
+  if (sic >= 6500 && sic <= 6799) return 'Real Estate';
+  if (sic >= 4800 && sic <= 4899) return 'Telecommunications';
+  if (sic >= 4900 && sic <= 4999) return 'Energy';
+  if (sic >= 2000 && sic <= 3999) return 'Industrials';
+  if (sic >= 5000 && sic <= 5999) return 'Consumer';
+  if (sic >= 7300 && sic <= 7399) return 'Technology';
+  return 'Other';
+}
+function hitToCandidate(hit, form) {
+  const source = hit._source || {};
+  const name = cleanName(source);
+  const date = String(source.file_date || '').slice(0, 10) || null;
+  const url = directFilingUrl(hit);
+  const accession = String(hit._id || '').split(':')[0] || null;
+  if (!name || !date || !url) return null;
+  return {
+    name, legalName: name, sector: sectorFromSic(source.sics), industry: source.sic_description || null,
+    cik: hitCik(hit) || null, filingDate: date, latestUpdateDate: date, filingType: form,
+    sourceUrl: url, source: 'SEC', accession,
+    notes: `${name} filed ${form} with the SEC on ${date}.`, tags: [],
+    lifecycleFilings: [{ form, date, url, accession }],
+    sources: [{ title: `${name} ${form}`, url, publisher: 'SEC', date, type: 'filing', confidence: 1 }],
+  };
+}
+function mergeLifecycle(records) {
+  const groups = new Map();
+  for (const record of records) {
+    const key = record.cik ? `cik:${record.cik}` : `name:${normalizedName(record.name)}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(record);
+  }
+  return [...groups.values()].map(group => {
+    group.sort((a, b) => String(b.filingDate || '').localeCompare(String(a.filingDate || '')));
+    const latest = group[0];
+    const lifecycleFilings = group.flatMap(item => item.lifecycleFilings || []).sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    const seen = new Set();
+    const sources = group.flatMap(item => item.sources || []).filter(source => {
+      if (seen.has(source.url)) return false; seen.add(source.url); return true;
+    });
+    return normalizeRecord({ ...latest, lifecycleFilings, sources, latestUpdateDate: lifecycleFilings[0]?.date || latest.latestUpdateDate });
+  });
+}
+function parseTextMetadata(text) {
+  const plain = String(text || '').replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ').replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ').replace(/&amp;/gi, '&').replace(/\s+/g, ' ');
+  const ticker = plain.match(/(?:ticker|trading|symbol)\s+(?:symbol\s+)?[“"']?([A-Z][A-Z0-9.]{0,5})[”"']?/i)?.[1] || null;
+  const exchange = /nasdaq/i.test(plain) ? 'Nasdaq' : /nyse american/i.test(plain) ? 'NYSE American' : /new york stock exchange|\bnyse\b/i.test(plain) ? 'NYSE' : null;
+  const offering = plain.match(/(?:aggregate offering|offering price|proceeds)[^$]{0,80}\$\s*([\d,.]+)\s*(billion|million)?/i);
+  let valuationNum = null;
+  if (offering) valuationNum = Number(offering[1].replace(/,/g, '')) * (/billion/i.test(offering[2] || '') ? 1e9 : /million/i.test(offering[2] || '') ? 1e6 : 1);
+  return { ticker, exchange, valuationNum: Number.isFinite(valuationNum) ? valuationNum : null };
+}
+function humanValue(value) {
+  if (!Number.isFinite(value)) return null;
+  if (value >= 1e12) return `$${(value / 1e12).toFixed(1).replace(/\.0$/, '')}T`;
+  if (value >= 1e9) return `$${(value / 1e9).toFixed(1).replace(/\.0$/, '')}B`;
+  if (value >= 1e6) return `$${Math.round(value / 1e6)}M`;
+  return `$${Math.round(value).toLocaleString('en-US')}`;
+}
+
+async function searchForm(form, start, end, stats, formBudget) {
+  const output = [];
+  for (let from = 0; output.length < formBudget && stats.metadata < CONFIG.maxMetadata; from += 100) {
+    const url = `https://efts.sec.gov/LATEST/search-index?forms=${encodeURIComponent(form)}&dateRange=custom&startdt=${start}&enddt=${end}&from=${from}&size=100`;
+    let data;
+    try { data = await requestWithRetry(url); } catch (error) { stats.errors.push({ form, start, message: error.message }); break; }
+    const hits = data?.hits?.hits || [];
+    for (const hit of hits) {
+      const candidate = hitToCandidate(hit, form);
+      if (candidate) output.push(candidate);
+    }
+    stats.metadata += hits.length;
+    if (hits.length < 100 || !hits.length || stats.metadata >= CONFIG.maxMetadata || output.length >= formBudget) break;
+    await sleep(CONFIG.requestDelayMs);
+  }
+  return output;
+}
+async function fetchLifecycleCandidates() {
+  const year = new Date().getUTCFullYear();
+  const stats = { metadata: 0, fullText: 0, errors: [] };
+  const records = [];
+  const formBudget = Math.max(100, Math.floor(CONFIG.maxMetadata / FORMS.length));
+  for (const form of FORMS) {
+    for (let current = year; current >= year - CONFIG.lookbackYears + 1 && stats.metadata < CONFIG.maxMetadata; current--) {
+      records.push(...await searchForm(form, `${current}-01-01`, `${current}-12-31`, stats, formBudget - records.filter(record => record.filingType === form).length));
+      await sleep(CONFIG.requestDelayMs);
+    }
+  }
+  let merged = mergeLifecycle(records);
+  const enrichable = merged.filter(record => ['filed', 'amended', 'priced'].includes(record.status)).slice(0, CONFIG.maxFullText);
+  for (const record of enrichable) {
+    try {
+      const html = await requestWithRetry(record.sourceUrl, true, 2);
+      const parsed = parseTextMetadata(html);
+      Object.assign(record, {
+        ticker: parsed.ticker || record.ticker, exchange: parsed.exchange || record.exchange,
+        valuationNum: parsed.valuationNum || record.valuationNum,
+        valuation: humanValue(parsed.valuationNum) || record.valuation,
+      });
+      stats.fullText++;
+    } catch (error) { stats.errors.push({ cik: record.cik, message: error.message }); }
+    await sleep(CONFIG.requestDelayMs);
+  }
+  return { records: merged, stats };
+}
+function readExisting() {
+  if (!fs.existsSync(OUTPUT)) return [];
+  const payload = JSON.parse(fs.readFileSync(OUTPUT, 'utf8'));
+  return Array.isArray(payload) ? payload : [];
+}
+function buildArtifact(existing, fetched = []) {
+  const fetchedKeys = new Set(fetched.map(record => recordKey(record)));
+  const preserved = existing.filter(record => !fetchedKeys.has(recordKey(normalizeRecord(record))));
+  const records = applyOverrides(dedupeRecords(preserved.concat(fetched)), OVERRIDES);
+  const order = { priced: 0, amended: 1, filed: 2, delayed: 3, private: 4, rumored: 5, listed: 6, completed: 7, withdrawn: 8, unknown: 9 };
+  return records.sort((a, b) => (order[a.status] ?? 99) - (order[b.status] ?? 99) || String(b.latestUpdateDate).localeCompare(String(a.latestUpdateDate)) || a.name.localeCompare(b.name));
+}
+function validateArtifact(records) {
+  const errors = []; const ids = new Set(); const slugs = new Set();
+  for (const [index, record] of records.entries()) {
+    for (const key of ['id', 'slug', 'name', 'status', 'latestUpdateDate']) if (!record[key]) errors.push(`${index}: missing ${key}`);
+    if (!record.sourceUrl && !record.sources?.length) errors.push(`${record.slug}: missing sources`);
+    if (ids.has(record.id)) errors.push(`${record.slug}: duplicate id`); ids.add(record.id);
+    if (slugs.has(record.slug)) errors.push(`${record.slug}: duplicate slug`); slugs.add(record.slug);
+    if (record.sources?.some(source => !/^https?:\/\//i.test(source.url))) errors.push(`${record.slug}: unsafe source`);
+    for (const edge of [...(record.dependencyGraph?.publicCompaniesDependingOnIPO || []), ...(record.dependencyGraph?.publicCompaniesIPOCompanyDependsOn || [])]) {
+      if (!edge.company || !edge.relationship || !edge.sourceUrl || Number(edge.confidence) < 0.6) errors.push(`${record.slug}: invalid dependency edge`);
+    }
+  }
+  const spacex = records.find(record => record.cik === '1181412' || /^spacex$/i.test(record.name));
+  if (spacex && !['listed', 'completed'].includes(spacex.status)) errors.push('SpaceX must not be active after verified Nasdaq listing');
+  if (errors.length) throw new Error(`IPO validation failed:\n${errors.slice(0, 50).join('\n')}`);
+  return { count: records.length, active: records.filter(record => ['rumored', 'filed', 'amended', 'priced', 'delayed', 'private'].includes(record.status)).length };
+}
+function writeArtifact(records) {
+  const json = `${JSON.stringify(records, null, 2)}\n`;
+  fs.writeFileSync(OUTPUT, json);
+  if (SITE_OUTPUT) fs.writeFileSync(SITE_OUTPUT, json);
+}
+async function publishArtifact(records) {
+  const token = process.env.GITHUB_TOKEN || process.env.MAWIRE_TOKEN;
+  if (!token || process.env.PUBLISH_IPOS !== 'true') return;
+  const owner = process.env.GITHUB_OWNER || 'realfrantheman';
+  const repo = process.env.GITHUB_REPO || 'mawire-db';
+  const apiPath = `/repos/${owner}/${repo}/contents/ipos.json`;
+  const api = (method, body) => new Promise((resolve, reject) => {
+    const payload = body ? JSON.stringify(body) : null;
+    const req = https.request({ hostname: 'api.github.com', path: apiPath, method, headers: {
+      Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'User-Agent': 'mergers.news/ipos',
+      ...(payload ? { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) } : {}),
+    } }, res => { let data = ''; res.on('data', chunk => data += chunk); res.on('end', () => res.statusCode < 300 ? resolve(JSON.parse(data)) : reject(new Error(`GitHub ${res.statusCode}: ${data.slice(0, 200)}`))); });
+    req.on('error', reject); if (payload) req.write(payload); req.end();
+  });
+  const current = await api('GET');
+  await api('PUT', { message: `IPO lifecycle data: ${records.length} verified records`, sha: current.sha,
+    content: Buffer.from(`${JSON.stringify(records, null, 2)}\n`).toString('base64'), branch: 'main' });
+}
+
+async function main() {
+  const normalizeOnly = process.argv.includes('--normalize-existing');
+  const existing = readExisting();
+  const fetched = normalizeOnly ? { records: [], stats: { metadata: 0, fullText: 0, errors: [] } } : await fetchLifecycleCandidates();
+  const records = buildArtifact(existing, fetched.records);
+  const summary = validateArtifact(records);
+  if (process.env.IPO_DRY_RUN !== 'true') writeArtifact(records);
+  await publishArtifact(records);
+  console.log(JSON.stringify({ mode: normalizeOnly ? 'normalize-existing' : 'fetch', ...summary, ...fetched.stats, output: OUTPUT, siteOutput: SITE_OUTPUT }, null, 2));
+}
+
+module.exports = { FORMS, CONFIG, cleanName, hitCik, directFilingUrl, sectorFromSic, hitToCandidate,
+  mergeLifecycle, parseTextMetadata, buildArtifact, validateArtifact, fetchLifecycleCandidates };
+
+if (require.main === module) main().catch(error => { console.error(error.stack || error.message); process.exit(1); });

@@ -1,0 +1,53 @@
+[
+  {
+    "name": "SpaceX",
+    "legalName": "Space Exploration Technologies Corp.",
+    "sector": "Technology",
+    "industry": "Aerospace and communications infrastructure",
+    "valuation": "$1.77T",
+    "valuationNum": 1770000000000,
+    "status": "completed",
+    "exchange": "Nasdaq",
+    "ticker": "SPCX",
+    "expected": null,
+    "ipoDate": "2026-06-12",
+    "filingDate": "2026-06-03",
+    "latestUpdateDate": "2026-06-12",
+    "filingType": "S-1",
+    "cik": "1181412",
+    "sourceUrl": "https://www.nasdaq.com/newsroom/spacex-ipo-rocket-company-launches-historic-ipo",
+    "source": "Nasdaq",
+    "sources": [
+      {
+        "title": "SpaceX (SPCX): Rocket Company Launches Historic IPO",
+        "url": "https://www.nasdaq.com/newsroom/spacex-ipo-rocket-company-launches-historic-ipo",
+        "publisher": "Nasdaq",
+        "date": "2026-06-12",
+        "type": "exchange",
+        "confidence": 1
+      },
+      {
+        "title": "Space Exploration Technologies Corp. Announces Pricing of Initial Public Offering",
+        "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Pricing-of-Initial-Public-Offering/default.aspx",
+        "publisher": "SpaceX",
+        "date": "2026-06-11",
+        "type": "company",
+        "confidence": 0.98
+      },
+      {
+        "title": "Space Exploration Technologies Corp. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/spaceexplorationtechnologib.htm",
+        "publisher": "SEC",
+        "date": "2026-06-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "SpaceX completed its IPO and began trading on Nasdaq under SPCX on June 12, 2026.",
+    "tags": ["Space", "Aerospace", "Satellite communications"],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    }
+  }
+]
