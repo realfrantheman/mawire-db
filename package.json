@@ -5,7 +5,10 @@
   "type": "commonjs",
   "scripts": {
     "test": "node --test test/*.test.js",
-    "cleanup:deals": "node cleanup-published-deals.js"
+    "cleanup:deals": "node cleanup-published-deals.js",
+    "ipos:refresh": "node fetch-ipos.js",
+    "ipos:normalize": "node fetch-ipos.js --normalize-existing",
+    "ipos:dependencies": "node build-ipo-dependency-graphs.js"
   },
   "dependencies": {
     "pg": "^8.11.3"
