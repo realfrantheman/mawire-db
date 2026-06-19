@@ -214,6 +214,10 @@ function validateArtifact(records) {
     for (const edge of [...(record.dependencyGraph?.publicCompaniesDependingOnIPO || []), ...(record.dependencyGraph?.publicCompaniesIPOCompanyDependsOn || [])]) {
       if (!edge.company || !edge.relationship || !edge.sourceUrl || Number(edge.confidence) < 0.6) errors.push(`${record.slug}: invalid dependency edge`);
     }
+    if (record.dependencyIngestion && (!record.dependencyIngestion.parserVersion || !record.dependencyIngestion.attemptedAt ||
+        !['complete', 'no_evidence', 'no_sec_source', 'partial_error', 'fetch_failed'].includes(record.dependencyIngestion.status))) {
+      errors.push(`${record.slug}: invalid dependency ingestion telemetry`);
+    }
   }
   const spacex = records.find(record => record.cik === '1181412' || /^spacex$/i.test(record.name));
   if (spacex && !['listed', 'completed'].includes(spacex.status)) errors.push('SpaceX must not be active after verified Nasdaq listing');

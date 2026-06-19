@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const overrides = require('../ipo-overrides.json');
 const { normalizeRecord, dedupeRecords, applyOverrides, normalizeGraph, isActive } = require('../ipo-data');
 const { FORMS, directFilingUrl, buildArtifact, validateArtifact } = require('../fetch-ipos');
-const { extractEdgesFromFiling } = require('../build-ipo-dependency-graphs');
+const { PARSER_VERSION, registryFromSec, extractEdgesFromFiling, secUrls, needsAttempt } = require('../build-ipo-dependency-graphs');
 
 test('generator covers the SEC IPO lifecycle form family', () => {
   for (const form of ['S-1', 'S-1/A', 'F-1', 'F-1/A', '424B4', '424B1', 'EFFECT', 'RW', 'RW WD']) assert.ok(FORMS.includes(form));
@@ -63,8 +63,61 @@ test('dependency extraction rejects aspirational marketing references', () => {
   assert.equal(graph.publicCompaniesIPOCompanyDependsOn.length, 0);
 });
 
+test('SEC registry enables material dependencies beyond the seed companies', () => {
+  const registry = [{ company: 'Acme Public Corporation', ticker: 'ACME', aliases: ['Acme Public'], providerRelationship: null }];
+  const graph = extractEdgesFromFiling(
+    { name: 'Example Co' },
+    'We depend on Acme Public for the supply of critical components used in all of our products.',
+    'https://www.sec.gov/Archives/edgar/data/1/example.htm',
+    registry,
+  );
+  assert.equal(graph.publicCompaniesIPOCompanyDependsOn[0].ticker, 'ACME');
+  assert.equal(graph.publicCompaniesIPOCompanyDependsOn[0].extractionMethod, PARSER_VERSION);
+});
+
+test('dynamic registry names do not match ordinary lowercase industry phrases', () => {
+  const registry = [{ company: 'Financial Institutions Inc', ticker: 'FISI', aliases: ['Financial Institutions'] }];
+  const graph = extractEdgesFromFiling(
+    { name: 'Example Co' },
+    'We rely on loans from financial institutions to finance our operations.',
+    'https://www.sec.gov/Archives/edgar/data/1/example.htm',
+    registry,
+  );
+  assert.equal(graph.publicCompaniesIPOCompanyDependsOn.length, 0);
+});
+
+test('revenue concentration and explicit platform use produce directional edges', () => {
+  const registry = [{ company: 'Acme Public Corporation', ticker: 'ACME', aliases: ['Acme Public'] }];
+  const outbound = extractEdgesFromFiling({ name: 'Example Co' }, 'Acme Public accounted for 32% of our revenue.', 'https://www.sec.gov/Archives/edgar/data/1/a.htm', registry);
+  assert.equal(outbound.publicCompaniesIPOCompanyDependsOn[0].relationship, 'key customer');
+  const inbound = extractEdgesFromFiling({ name: 'Example Co' }, 'Acme Public uses our platform to process its customer orders.', 'https://www.sec.gov/Archives/edgar/data/1/b.htm', registry);
+  assert.equal(inbound.publicCompaniesDependingOnIPO[0].dependencyType, 'depends_on_ipo_company');
+});
+
+test('dependency ingestion discovers all direct SEC sources and resumes oldest attempts', () => {
+  const record = { sourceUrl: 'https://www.sec.gov/Archives/a.htm', sources: [{ url: 'https://www.sec.gov/Archives/b.htm' }, { url: 'https://example.com/news' }] };
+  assert.deepEqual(secUrls(record), ['https://www.sec.gov/Archives/a.htm', 'https://www.sec.gov/Archives/b.htm']);
+  assert.equal(needsAttempt(record, 90, false), true);
+  assert.equal(needsAttempt({ dependencyIngestion: { attemptedAt: new Date().toISOString() } }, 90, false), false);
+});
+
+test('SEC registry payload is normalized into listed-company candidates', () => {
+  const rows = registryFromSec({ fields: ['cik', 'name', 'ticker', 'exchange'], data: [[1, 'Acme Public Corp', 'ACME', 'Nasdaq']] });
+  assert.deepEqual(rows[0], { company: 'Acme Public Corp', ticker: 'ACME', aliases: ['Acme Public Corp'], exchange: 'Nasdaq' });
+});
+
+test('dependency attempt telemetry survives normalization and deduplication', () => {
+  const attemptedAt = '2026-06-19T00:00:00.000Z';
+  const [record] = dedupeRecords([
+    { name: 'Atlas', cik: '100', sourceUrl: 'https://sec.gov/a', dependencyIngestion: { parserVersion: PARSER_VERSION, attemptedAt, status: 'no_evidence' } },
+    { name: 'Atlas Corp', cik: '100', sourceUrl: 'https://sec.gov/b' },
+  ]);
+  assert.equal(record.dependencyIngestion.attemptedAt, attemptedAt);
+});
+
 test('artifact validation requires stable fields and verified SpaceX status', () => {
   const records = buildArtifact([], overrides);
   assert.doesNotThrow(() => validateArtifact(records));
   assert.throws(() => validateArtifact([{ ...records[0], status: 'filed' }]), /SpaceX/);
+  assert.throws(() => validateArtifact([{ ...records[0], dependencyIngestion: { status: 'complete' } }]), /dependency ingestion telemetry/);
 });
