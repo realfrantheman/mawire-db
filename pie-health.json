@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-06-20T20:56:42.697Z",
-  "overallScore": 100,
+  "generatedAt": "2026-06-21T10:52:45.306Z",
+  "overallScore": 92,
   "status": "healthy",
-  "durationMs": 3786,
+  "durationMs": 2230,
   "categories": {
     "ingestion": {
-      "score": 100,
+      "score": 88,
       "status": "healthy",
       "checks": [
         {
@@ -18,13 +18,13 @@
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "5106 deals last 24h · 28326 last 7d · 60819 last 30d"
+          "message": "3806 deals last 24h · 28953 last 7d · 63413 last 30d"
         },
         {
           "name": "source_diversity",
-          "status": "pass",
-          "score": 100,
-          "message": "2 source type(s) active in last 48h"
+          "status": "warn",
+          "score": 50,
+          "message": "1 source type(s) active in last 48h"
         },
         {
           "name": "filing_coverage",
@@ -66,14 +66,14 @@
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "5106 deals last 24h · 28326 last 7d · 60819 last 30d"
+      "message": "3806 deals last 24h · 28953 last 7d · 63413 last 30d"
     },
     {
       "name": "source_diversity",
       "category": "ingestion",
-      "status": "pass",
-      "score": 100,
-      "message": "2 source type(s) active in last 48h"
+      "status": "warn",
+      "score": 50,
+      "message": "1 source type(s) active in last 48h"
     },
     {
       "name": "filing_coverage",
@@ -153,14 +153,21 @@
       "title": "ERROR: ingestion efficiency",
       "description": "Check error: column \"candidates\" does not exist",
       "since": "2026-06-18T23:13:08.242Z"
+    },
+    {
+      "key": "pie:source_diversity",
+      "severity": "warning",
+      "title": "WARN: source diversity",
+      "description": "1 source type(s) active in last 48h",
+      "since": "2026-06-20T23:55:25.373Z"
     }
   ],
   "summary": {
-    "pass": 6,
-    "warn": 0,
+    "pass": 5,
+    "warn": 1,
     "fail": 0,
     "skip": 7,
     "critical": 1,
-    "warnings": 0
+    "warnings": 1
   }
 }
