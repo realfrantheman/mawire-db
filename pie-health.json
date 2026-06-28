@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-28T19:59:03.765Z",
+  "generatedAt": "2026-06-28T21:45:00.305Z",
   "overallScore": 92,
   "status": "healthy",
-  "durationMs": 8596,
+  "durationMs": 7784,
   "categories": {
     "ingestion": {
       "score": 88,
@@ -12,13 +12,13 @@
           "name": "ingestion_freshness",
           "status": "pass",
           "score": 100,
-          "message": "Last deal ingested 0.6h ago"
+          "message": "Last deal ingested 0.7h ago"
         },
         {
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "17912 deals last 24h · 88945 last 7d · 156091 last 30d"
+          "message": "18867 deals last 24h · 88823 last 7d · 157870 last 30d"
         },
         {
           "name": "source_diversity",
@@ -42,7 +42,7 @@
           "name": "export_freshness",
           "status": "pass",
           "score": 100,
-          "message": "deals.json last updated 0.6h ago (via deals.updated_at (proxy))"
+          "message": "deals.json last updated 0.7h ago (via deals.updated_at (proxy))"
         },
         {
           "name": "review_queue",
@@ -59,14 +59,14 @@
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "Last deal ingested 0.6h ago"
+      "message": "Last deal ingested 0.7h ago"
     },
     {
       "name": "ingestion_velocity",
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "17912 deals last 24h · 88945 last 7d · 156091 last 30d"
+      "message": "18867 deals last 24h · 88823 last 7d · 157870 last 30d"
     },
     {
       "name": "source_diversity",
@@ -115,7 +115,7 @@
       "category": "pipeline",
       "status": "pass",
       "score": 100,
-      "message": "deals.json last updated 0.6h ago (via deals.updated_at (proxy))"
+      "message": "deals.json last updated 0.7h ago (via deals.updated_at (proxy))"
     },
     {
       "name": "review_queue",
