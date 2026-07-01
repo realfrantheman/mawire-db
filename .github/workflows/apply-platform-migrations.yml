@@ -1,0 +1,36 @@
+name: Apply mawire-platform migrations
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: mawire-platform-production-migrations
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout mawire-platform
+        uses: actions/checkout@v4
+        with:
+          repository: realfrantheman/mawire-platform
+          path: mawire-platform
+          token: ${{ secrets.MAWIRE_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install platform dependencies
+        working-directory: mawire-platform
+        run: npm ci
+
+      - name: Apply canonical platform migrations
+        working-directory: mawire-platform
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npm run migrate
