@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-01T10:56:50.179Z",
+  "generatedAt": "2026-07-01T13:54:01.042Z",
   "overallScore": 92,
   "status": "healthy",
-  "durationMs": 5796,
+  "durationMs": 6233,
   "categories": {
     "ingestion": {
       "score": 88,
@@ -18,7 +18,7 @@
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "14806 deals last 24h · 117936 last 7d · 195970 last 30d"
+          "message": "14789 deals last 24h · 117877 last 7d · 197815 last 30d"
         },
         {
           "name": "source_diversity",
@@ -66,7 +66,7 @@
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "14806 deals last 24h · 117936 last 7d · 195970 last 30d"
+      "message": "14789 deals last 24h · 117877 last 7d · 197815 last 30d"
     },
     {
       "name": "source_diversity",
