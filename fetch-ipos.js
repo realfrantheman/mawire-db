@@ -18,6 +18,7 @@ const CONFIG = {
   requestDelayMs: Number(process.env.IPO_REQUEST_DELAY_MS || 140),
   timeoutMs: Number(process.env.IPO_REQUEST_TIMEOUT_MS || 20000),
   maxBytes: Number(process.env.IPO_RESPONSE_MAX_BYTES || 6_000_000),
+  publishRetries: Number(process.env.IPO_PUBLISH_RETRIES || 4),
 };
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
@@ -229,6 +230,12 @@ function writeArtifact(records) {
   fs.writeFileSync(OUTPUT, json);
   if (SITE_OUTPUT) fs.writeFileSync(SITE_OUTPUT, json);
 }
+function remoteContentMatches(current, content) {
+  return Boolean(current?.content && String(current.content).replace(/\s/g, '') === content);
+}
+function shouldRetryGithubPublish(error, attempt, maxAttempts = CONFIG.publishRetries) {
+  return Number(error?.statusCode) === 409 && attempt < maxAttempts;
+}
 async function publishArtifact(records) {
   const token = process.env.GITHUB_TOKEN || process.env.MAWIRE_TOKEN;
   if (!token || process.env.PUBLISH_IPOS !== 'true') return;
@@ -240,12 +247,46 @@ async function publishArtifact(records) {
     const req = https.request({ hostname: 'api.github.com', path: apiPath, method, headers: {
       Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'User-Agent': 'mergers.news/ipos',
       ...(payload ? { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) } : {}),
-    } }, res => { let data = ''; res.on('data', chunk => data += chunk); res.on('end', () => res.statusCode < 300 ? resolve(JSON.parse(data)) : reject(new Error(`GitHub ${res.statusCode}: ${data.slice(0, 200)}`))); });
+    } }, res => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        let json = null;
+        try { json = data ? JSON.parse(data) : null; } catch { json = { raw: data }; }
+        if (res.statusCode < 300) return resolve(json);
+        const error = new Error(`GitHub ${res.statusCode}: ${data.slice(0, 500)}`);
+        error.statusCode = res.statusCode;
+        error.body = json;
+        reject(error);
+      });
+    });
     req.on('error', reject); if (payload) req.write(payload); req.end();
   });
-  const current = await api('GET');
-  await api('PUT', { message: `IPO lifecycle data: ${records.length} verified records`, sha: current.sha,
-    content: Buffer.from(`${JSON.stringify(records, null, 2)}\n`).toString('base64'), branch: 'main' });
+  const content = Buffer.from(`${JSON.stringify(records, null, 2)}\n`).toString('base64');
+  let lastError = null;
+  for (let attempt = 1; attempt <= CONFIG.publishRetries; attempt++) {
+    const current = await api('GET');
+    if (remoteContentMatches(current, content)) {
+      console.log('[IPO] Remote ipos.json already matches generated artifact');
+      return;
+    }
+    try {
+      await api('PUT', {
+        message: `IPO lifecycle data: ${records.length} verified records`,
+        sha: current.sha,
+        content,
+        branch: 'main',
+      });
+      return;
+    } catch (error) {
+      lastError = error;
+      if (!shouldRetryGithubPublish(error, attempt)) throw error;
+      const delay = Math.min(5000, 500 * Math.pow(2, attempt - 1));
+      console.warn(`[IPO] GitHub content SHA conflict while publishing ipos.json; retry ${attempt}/${CONFIG.publishRetries} after ${delay}ms`);
+      await sleep(delay);
+    }
+  }
+  if (lastError) throw lastError;
 }
 
 async function main() {
@@ -260,6 +301,7 @@ async function main() {
 }
 
 module.exports = { FORMS, CONFIG, cleanName, hitCik, directFilingUrl, sectorFromSic, hitToCandidate,
-  mergeLifecycle, parseTextMetadata, buildArtifact, validateArtifact, fetchLifecycleCandidates };
+  mergeLifecycle, parseTextMetadata, buildArtifact, validateArtifact, fetchLifecycleCandidates, publishArtifact,
+  remoteContentMatches, shouldRetryGithubPublish };
 
 if (require.main === module) main().catch(error => { console.error(error.stack || error.message); process.exit(1); });

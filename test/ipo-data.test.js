@@ -4,7 +4,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const overrides = require('../ipo-overrides.json');
 const { normalizeRecord, dedupeRecords, applyOverrides, normalizeGraph, isActive } = require('../ipo-data');
-const { FORMS, directFilingUrl, buildArtifact, validateArtifact } = require('../fetch-ipos');
+const { FORMS, directFilingUrl, buildArtifact, validateArtifact, remoteContentMatches, shouldRetryGithubPublish } = require('../fetch-ipos');
 const { PARSER_VERSION, registryFromSec, extractEdgesFromFiling, secUrls, needsAttempt } = require('../build-ipo-dependency-graphs');
 
 test('generator covers the SEC IPO lifecycle form family', () => {
@@ -14,6 +14,14 @@ test('generator covers the SEC IPO lifecycle form family', () => {
 test('direct SEC filing URL uses issuer CIK rather than accession prefix', () => {
   const hit = { _id: '0001193125-26-123456:prospectus.htm', _source: { ciks: ['0001181412'] } };
   assert.equal(directFilingUrl(hit), 'https://www.sec.gov/Archives/edgar/data/1181412/000119312526123456/prospectus.htm');
+});
+
+test('GitHub IPO artifact publishing retries stale SHA conflicts only', () => {
+  const artifact = Buffer.from('{"ok":true}\n').toString('base64');
+  assert.equal(remoteContentMatches({ content: `${artifact.slice(0, 8)}\n${artifact.slice(8)}` }, artifact), true);
+  assert.equal(shouldRetryGithubPublish({ statusCode: 409 }, 1, 4), true);
+  assert.equal(shouldRetryGithubPublish({ statusCode: 409 }, 4, 4), false);
+  assert.equal(shouldRetryGithubPublish({ statusCode: 500 }, 1, 4), false);
 });
 
 test('lifecycle forms classify completed and withdrawn records', () => {
