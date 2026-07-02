@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-07-02T00:30:17.222Z",
-  "sourceDatabaseTimestamp": "2026-07-02T00:29:27.296Z",
-  "canonicalDealCount": 197471,
-  "publishedDealCount": 0,
-  "skippedCount": 197471,
+  "generatedAt": "2026-07-02T16:30:17.055Z",
+  "sourceDatabaseTimestamp": "2026-07-02T16:00:03.633Z",
+  "canonicalDealCount": 205802,
+  "publishedDealCount": 2,
+  "skippedCount": 205800,
   "skippedByReason": {
-    "needs_review": 194478,
+    "needs_review": 202807,
     "low_confidence": 605,
-    "possible_duplicate": 2327,
-    "extraction_failed": 60,
+    "possible_duplicate": 848,
+    "extraction_failed": 1539,
     "needs_party_resolution": 1
   },
   "skippedBySourceReason": {
     "sec_edgar": {
-      "needs_review": 22183,
+      "needs_review": 22349,
       "low_confidence": 81,
-      "possible_duplicate": 132,
-      "extraction_failed": 43,
+      "possible_duplicate": 67,
+      "extraction_failed": 108,
       "needs_party_resolution": 1
     },
     "news_rss": {
@@ -25,12 +25,15 @@
     },
     "sec_filing": {
       "low_confidence": 516,
-      "possible_duplicate": 2195,
-      "needs_review": 172263,
-      "extraction_failed": 17
+      "extraction_failed": 1431,
+      "needs_review": 180426,
+      "possible_duplicate": 781
     }
   },
-  "publishedBySource": {},
+  "publishedBySource": {
+    "news_rss": 1,
+    "sec_edgar": 1
+  },
   "duplicateCollapsedCount": 0,
   "exportScriptVersion": "export-v3.0.1",
   "commitSha": null
