@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-02T13:21:25.262Z",
+  "generatedAt": "2026-07-02T15:55:06.909Z",
   "overallScore": 92,
   "status": "healthy",
-  "durationMs": 4015,
+  "durationMs": 1926,
   "categories": {
     "ingestion": {
       "score": 88,
@@ -18,7 +18,7 @@
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "17162 deals last 24h · 118346 last 7d · 214220 last 30d"
+          "message": "17299 deals last 24h · 117339 last 7d · 215116 last 30d"
         },
         {
           "name": "source_diversity",
@@ -66,7 +66,7 @@
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "17162 deals last 24h · 118346 last 7d · 214220 last 30d"
+      "message": "17299 deals last 24h · 117339 last 7d · 215116 last 30d"
     },
     {
       "name": "source_diversity",
@@ -151,7 +151,7 @@
       "key": "pie:ingestion_efficiency",
       "severity": "critical",
       "title": "FAIL: ingestion efficiency",
-      "description": "0.0% yield · 3360.0 full-text fetches/published · 86.7% generic URLs",
+      "description": "0.0% yield · 3960.0 full-text fetches/published · 86.8% generic URLs",
       "since": "2026-06-18T23:13:08.242Z"
     },
     {
