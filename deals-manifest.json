@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-07-02T00:30:17.222Z",
+  "sourceDatabaseTimestamp": "2026-07-02T00:29:27.296Z",
+  "canonicalDealCount": 197471,
+  "publishedDealCount": 0,
+  "skippedCount": 197471,
+  "skippedByReason": {
+    "needs_review": 194478,
+    "low_confidence": 605,
+    "possible_duplicate": 2327,
+    "extraction_failed": 60,
+    "needs_party_resolution": 1
+  },
+  "skippedBySourceReason": {
+    "sec_edgar": {
+      "needs_review": 22183,
+      "low_confidence": 81,
+      "possible_duplicate": 132,
+      "extraction_failed": 43,
+      "needs_party_resolution": 1
+    },
+    "news_rss": {
+      "needs_review": 32,
+      "low_confidence": 8
+    },
+    "sec_filing": {
+      "low_confidence": 516,
+      "possible_duplicate": 2195,
+      "needs_review": 172263,
+      "extraction_failed": 17
+    }
+  },
+  "publishedBySource": {},
+  "duplicateCollapsedCount": 0,
+  "exportScriptVersion": "export-v3.0.1",
+  "commitSha": null
+}
