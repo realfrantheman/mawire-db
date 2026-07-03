@@ -2,8 +2,9 @@ name: Refresh deals.json from SEC EDGAR
 
 on:
   schedule:
-    # Every 30 minutes
-    - cron: '*/30 * * * *'
+    # Every 4 hours. Full artifact export reads the database and must not burn
+    # Supabase egress every 30 minutes.
+    - cron: '12 */4 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -33,7 +34,7 @@ jobs:
       - name: Ingest new SEC filings (last 8 days)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          LOOKBACK_DAYS: '8'
+          LOOKBACK_DAYS: '2'
         run: node FIX-sec-ingestor-index.js
 
       - name: Export full DB → deals.json
@@ -62,6 +63,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
           PUBLISH_IPOS: 'true'
           IPO_LOOKBACK_YEARS: '3'
-          IPO_MAX_METADATA: '9000'
-          IPO_MAX_FULL_TEXT: '10'
+          IPO_MAX_METADATA: '3000'
+          IPO_MAX_FULL_TEXT: '5'
         run: node fetch-ipos.js

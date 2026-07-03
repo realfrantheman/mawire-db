@@ -1,8 +1,6 @@
-name: Auto Backfill — 1993 to 2024 (runs every 30 min)
+name: Auto Backfill — 1993 to 2024 (manual only)
 
 on:
-  schedule:
-    - cron: '*/30 * * * *'   # every 30 minutes
   workflow_dispatch:
 
 concurrency:
@@ -34,7 +32,7 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           BACKFILL_START_YEAR: '1993'
           BACKFILL_END_YEAR: '2024'
-          BACKFILL_TIME_LIMIT_MINUTES: '25'
+          BACKFILL_TIME_LIMIT_MINUTES: '10'
         run: node FIX-historical-backfill.js
 
       - name: Export full DB → deals.json

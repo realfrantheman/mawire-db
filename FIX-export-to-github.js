@@ -121,6 +121,7 @@ async function run() {
       ds.source_url   AS "sourceUrl",
       ds.source_date  AS "sourceDate",
       f.filing_type   AS "filingType",
+      f.document_url  AS "documentUrl",
       f.edgar_url     AS "edgarUrl",
       f.accession_no  AS "accessionNo",
       f.cik           AS "filingCik"
@@ -135,7 +136,7 @@ async function run() {
       LIMIT 1
     ) ds ON true
     LEFT JOIN LATERAL (
-      SELECT filing_type, edgar_url, accession_no, cik
+      SELECT filing_type, document_url, edgar_url, accession_no, cik
       FROM filings
       WHERE deal_id = d.id
       ORDER BY id
@@ -204,7 +205,7 @@ async function run() {
       summary,
       source,
       sourceUrl:    row.sourceType === 'sec_edgar' || row.extractionMethod === 'sec_filing'
-        ? (reconstructEdgarUrl(row) || row.sourceUrl || row.edgarUrl)
+        ? (reconstructEdgarUrl(row) || row.sourceUrl || row.edgarUrl || row.documentUrl)
         : (row.sourceUrl || row.edgarUrl),
       filingType:   row.filingType,
       edgarUrl:     reconstructEdgarUrl(row) || row.edgarUrl,
@@ -416,16 +417,30 @@ function cleanCompanyName(name, placeholders) {
 }
 
 function reconstructEdgarUrl(row) {
+  const direct = firstDirectSecArchiveUrl(row.documentUrl, row.edgarUrl, row.sourceUrl);
+  if (direct) return direct;
+
   const rawAcc = String(row.accessionNo || '');
   const accPart = rawAcc.split(':')[0];
   const accession = accPart.match(/^(\d{10})-(\d{2})-(\d{6})/);
-  const searchFallback = accession
-    ? `https://www.sec.gov/edgar/search/#/q=${accession[1]}-${accession[2]}-${accession[3]}`
-    : null;
+  const cik = String(row.filingCik || '').replace(/\D/g, '').replace(/^0+/, '');
 
-  // EFTS accession prefixes often belong to filing agents rather than the
-  // issuer. Search remains durable without guessing an archive CIK.
-  return searchFallback || row.edgarUrl || null;
+  if (accession && cik) {
+    const folder = `${accession[1]}${accession[2]}${accession[3]}`;
+    return `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${accession[1]}-${accession[2]}-${accession[3]}-index.html`;
+  }
+
+  return null;
+}
+
+function firstDirectSecArchiveUrl(...urls) {
+  for (const url of urls) {
+    const value = String(url || '').trim();
+    if (/^https:\/\/www\.sec\.gov\/Archives\/edgar\/data\/\d+\/\d+\/[^?#\s]+/i.test(value)) {
+      return value;
+    }
+  }
+  return null;
 }
 
 function resolveSourceName(row) {
