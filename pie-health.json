@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-03T05:35:18.379Z",
+  "generatedAt": "2026-07-03T08:39:34.865Z",
   "overallScore": 100,
   "status": "healthy",
-  "durationMs": 2347,
+  "durationMs": 9304,
   "categories": {
     "ingestion": {
       "score": 100,
@@ -12,13 +12,13 @@
           "name": "ingestion_freshness",
           "status": "pass",
           "score": 100,
-          "message": "Last deal ingested 0.1h ago"
+          "message": "Last deal ingested 0.0h ago"
         },
         {
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "17941 deals last 24h · 119343 last 7d · 226628 last 30d"
+          "message": "16749 deals last 24h · 117816 last 7d · 227002 last 30d"
         },
         {
           "name": "source_diversity",
@@ -59,14 +59,14 @@
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "Last deal ingested 0.1h ago"
+      "message": "Last deal ingested 0.0h ago"
     },
     {
       "name": "ingestion_velocity",
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "17941 deals last 24h · 119343 last 7d · 226628 last 30d"
+      "message": "16749 deals last 24h · 117816 last 7d · 227002 last 30d"
     },
     {
       "name": "source_diversity",
@@ -151,7 +151,7 @@
       "key": "pie:ingestion_efficiency",
       "severity": "critical",
       "title": "FAIL: ingestion efficiency",
-      "description": "0.0% yield · 7080.0 full-text fetches/published · 87.4% generic URLs",
+      "description": "0.0% yield · 7920.0 full-text fetches/published · 87.5% generic URLs",
       "since": "2026-06-18T23:13:08.242Z"
     }
   ],
