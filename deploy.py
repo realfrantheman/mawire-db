@@ -20,6 +20,7 @@ if not TOKEN:
     sys.exit(1)
 
 OWNER = 'realfrantheman'
+DEPLOY_PLATFORM_FIXES = os.environ.get('DEPLOY_PLATFORM_FIXES') == 'true'
 
 # ── FILE MAPPINGS ─────────────────────────────────────────────────
 # (source_file_in_mawire_db, target_repo, target_path)
@@ -121,6 +122,9 @@ def main():
     platform_err = 0  # mawire-platform failures → warning only
 
     for src, repo, dest in MAPPINGS:
+        if repo == 'mawire-platform' and not DEPLOY_PLATFORM_FIXES:
+            print(f'  SKIP  {repo}/{dest} (platform FIX deploy disabled; set DEPLOY_PLATFORM_FIXES=true to override)')
+            continue
         if not os.path.exists(src):
             print(f'  SKIP  {src} (not found)')
             continue

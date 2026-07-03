@@ -6,9 +6,12 @@ on:
       - main
       - 'claude/**'
     paths:
-      - 'FIX-*.js'
       - 'DEPLOY-*.html'
+      - 'DEPLOY-*.js'
       - 'DEPLOY-vercel.json'
+      - 'DEPLOY-*.json'
+      - 'FIX-sw.js'
+      - 'FIX-ipo-dynamic-loader.js'
       - 'app.js'
       - 'style.css'
       - 'deploy.py'
