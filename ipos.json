@@ -1,44 +1,5 @@
 [
   {
-    "id": "ipo-6d4916f8ecc1e1ae",
-    "slug": "mercator-acquisition-corp-mrco",
-    "name": "Mercator Acquisition Corp. (MRCO)",
-    "legalName": "Mercator Acquisition Corp. (MRCO)",
-    "sector": "Real Estate",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-02",
-    "latestUpdateDate": "2026-07-02",
-    "filingType": "S-1/A",
-    "cik": "2106436",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2106436/000121390026074947/ea0277572-04.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Mercator Acquisition Corp. (MRCO) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2106436/000121390026074947/ea0277572-04.htm",
-        "publisher": "SEC",
-        "date": "2026-07-02",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Mercator Acquisition Corp. (MRCO) filed S-1/A with the SEC on 2026-07-02.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-ca2dc3e2ac16a335",
     "slug": "pruco-life-insurance-co",
     "name": "PRUCO LIFE INSURANCE CO",
@@ -10696,8 +10657,8 @@
     "valuationNum": null,
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "NYSE",
-    "ticker": "symbol",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-07-02",
@@ -11139,6 +11100,45 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-6d4916f8ecc1e1ae",
+    "slug": "mercator-acquisition-corp-mrco",
+    "name": "Mercator Acquisition Corp. (MRCO)",
+    "legalName": "Mercator Acquisition Corp. (MRCO)",
+    "sector": "Real Estate",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-02",
+    "latestUpdateDate": "2026-07-02",
+    "filingType": "S-1",
+    "cik": "2106436",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2106436/000121390026074947/ea0277572-04.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Mercator Acquisition Corp. (MRCO) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2106436/000121390026074947/ea0277572-04.htm",
+        "publisher": "SEC",
+        "date": "2026-07-02",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Mercator Acquisition Corp. (MRCO) filed S-1 with the SEC on 2026-07-02.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-28c3567c09208317",
     "slug": "peraso-inc-prso",
     "name": "Peraso Inc. (PRSO)",
@@ -11506,12 +11506,12 @@
     "legalName": "Asia AI Group Inc",
     "sector": "Other",
     "industry": null,
-    "valuation": "$5",
-    "valuationNum": 5,
+    "valuation": null,
+    "valuationNum": null,
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "symbol",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-07-01",
