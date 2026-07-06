@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-07-06T06:09:39.037Z",
-  "overallScore": 84,
-  "status": "degraded",
-  "durationMs": 6499,
+  "generatedAt": "2026-07-06T11:16:22.223Z",
+  "overallScore": 92,
+  "status": "healthy",
+  "durationMs": 2046,
   "categories": {
     "ingestion": {
-      "score": 75,
-      "status": "degraded",
+      "score": 88,
+      "status": "healthy",
       "checks": [
         {
           "name": "ingestion_freshness",
           "status": "pass",
           "score": 100,
-          "message": "Last deal ingested 0.2h ago"
+          "message": "Last deal ingested 3.3h ago"
         },
         {
           "name": "ingestion_velocity",
-          "status": "warn",
-          "score": 50,
-          "message": "2 deals last 24h · 74857 last 7d · 239132 last 30d"
+          "status": "pass",
+          "score": 100,
+          "message": "4 deals last 24h · 74148 last 7d · 239134 last 30d"
         },
         {
           "name": "source_diversity",
@@ -42,7 +42,7 @@
           "name": "export_freshness",
           "status": "pass",
           "score": 100,
-          "message": "deals.json last updated 0.2h ago (via deals.updated_at (proxy))"
+          "message": "deals.json last updated 3.3h ago (via deals.updated_at (proxy))"
         },
         {
           "name": "review_queue",
@@ -59,14 +59,14 @@
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "Last deal ingested 0.2h ago"
+      "message": "Last deal ingested 3.3h ago"
     },
     {
       "name": "ingestion_velocity",
       "category": "ingestion",
-      "status": "warn",
-      "score": 50,
-      "message": "2 deals last 24h · 74857 last 7d · 239132 last 30d"
+      "status": "pass",
+      "score": 100,
+      "message": "4 deals last 24h · 74148 last 7d · 239134 last 30d"
     },
     {
       "name": "source_diversity",
@@ -115,7 +115,7 @@
       "category": "pipeline",
       "status": "pass",
       "score": 100,
-      "message": "deals.json last updated 0.2h ago (via deals.updated_at (proxy))"
+      "message": "deals.json last updated 3.3h ago (via deals.updated_at (proxy))"
     },
     {
       "name": "review_queue",
@@ -155,26 +155,19 @@
       "since": "2026-06-20T23:55:25.373Z"
     },
     {
-      "key": "pie:ingestion_velocity",
-      "severity": "warning",
-      "title": "FAIL: ingestion velocity",
-      "description": "2 deals last 24h · 74857 last 7d · 239132 last 30d",
-      "since": "2026-07-01T22:11:40.059Z"
-    },
-    {
       "key": "pie:ingestion_efficiency",
       "severity": "warning",
       "title": "WARN: ingestion efficiency",
-      "description": "0.0% yield · 208.5 full-text fetches/published · 17.5% generic URLs",
+      "description": "0.0% yield · 208.0 full-text fetches/published · 17.5% generic URLs",
       "since": "2026-06-18T23:13:08.242Z"
     }
   ],
   "summary": {
-    "pass": 4,
-    "warn": 2,
+    "pass": 5,
+    "warn": 1,
     "fail": 0,
     "skip": 7,
     "critical": 0,
-    "warnings": 3
+    "warnings": 2
   }
 }
