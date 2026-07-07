@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-07T10:14:24.688Z",
+  "generatedAt": "2026-07-07T13:04:09.799Z",
   "overallScore": 100,
   "status": "healthy",
-  "durationMs": 15262,
+  "durationMs": 4670,
   "categories": {
     "ingestion": {
       "score": 100,
@@ -12,13 +12,13 @@
           "name": "ingestion_freshness",
           "status": "pass",
           "score": 100,
-          "message": "Last deal ingested 2.2h ago"
+          "message": "Last deal ingested 1.8h ago"
         },
         {
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "25 deals last 24h · 59119 last 7d · 238875 last 30d"
+          "message": "25 deals last 24h · 56281 last 7d · 238876 last 30d"
         },
         {
           "name": "source_diversity",
@@ -42,7 +42,7 @@
           "name": "export_freshness",
           "status": "pass",
           "score": 100,
-          "message": "deals.json last updated 2.2h ago (via deals.updated_at (proxy))"
+          "message": "deals.json last updated 1.8h ago (via deals.updated_at (proxy))"
         },
         {
           "name": "review_queue",
@@ -59,14 +59,14 @@
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "Last deal ingested 2.2h ago"
+      "message": "Last deal ingested 1.8h ago"
     },
     {
       "name": "ingestion_velocity",
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "25 deals last 24h · 59119 last 7d · 238875 last 30d"
+      "message": "25 deals last 24h · 56281 last 7d · 238876 last 30d"
     },
     {
       "name": "source_diversity",
@@ -115,7 +115,7 @@
       "category": "pipeline",
       "status": "pass",
       "score": 100,
-      "message": "deals.json last updated 2.2h ago (via deals.updated_at (proxy))"
+      "message": "deals.json last updated 1.8h ago (via deals.updated_at (proxy))"
     },
     {
       "name": "review_queue",
@@ -151,7 +151,7 @@
       "key": "pie:ingestion_efficiency",
       "severity": "warning",
       "title": "WARN: ingestion efficiency",
-      "description": "0.0% yield · 289.8 full-text fetches/published · 17.5% generic URLs",
+      "description": "0.0% yield · 295.0 full-text fetches/published · 0.0% generic URLs",
       "since": "2026-06-18T23:13:08.242Z"
     }
   ],
