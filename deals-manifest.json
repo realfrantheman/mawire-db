@@ -1,38 +1,41 @@
 {
-  "generatedAt": "2026-07-03T00:30:19.442Z",
-  "sourceDatabaseTimestamp": "2026-07-03T00:25:05.175Z",
-  "canonicalDealCount": 214051,
-  "publishedDealCount": 2,
-  "skippedCount": 214049,
+  "generatedAt": "2026-07-07T08:30:21.544Z",
+  "sourceDatabaseTimestamp": "2026-07-07T08:00:03.593Z",
+  "canonicalDealCount": 229988,
+  "publishedDealCount": 7,
+  "skippedCount": 229981,
   "skippedByReason": {
-    "needs_review": 211056,
+    "needs_party_resolution": 2,
+    "needs_review": 226986,
+    "missing_evidence": 1,
     "low_confidence": 605,
     "possible_duplicate": 848,
-    "extraction_failed": 1539,
-    "needs_party_resolution": 1
+    "extraction_failed": 1539
   },
   "skippedBySourceReason": {
+    "news_rss": {
+      "needs_party_resolution": 1,
+      "missing_evidence": 1,
+      "needs_review": 32,
+      "low_confidence": 8
+    },
     "sec_edgar": {
-      "needs_review": 22363,
+      "needs_review": 23113,
       "low_confidence": 81,
       "possible_duplicate": 67,
       "extraction_failed": 108,
       "needs_party_resolution": 1
     },
-    "news_rss": {
-      "needs_review": 32,
-      "low_confidence": 8
-    },
     "sec_filing": {
       "low_confidence": 516,
       "extraction_failed": 1431,
-      "needs_review": 188661,
+      "needs_review": 203841,
       "possible_duplicate": 781
     }
   },
   "publishedBySource": {
-    "sec_edgar": 1,
-    "news_rss": 1
+    "news_rss": 6,
+    "sec_edgar": 1
   },
   "duplicateCollapsedCount": 0,
   "exportScriptVersion": "export-v3.0.1",
