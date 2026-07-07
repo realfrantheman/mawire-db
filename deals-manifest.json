@@ -1,12 +1,13 @@
 {
-  "generatedAt": "2026-07-07T08:30:21.544Z",
-  "sourceDatabaseTimestamp": "2026-07-07T08:00:03.593Z",
-  "canonicalDealCount": 229988,
-  "publishedDealCount": 7,
-  "skippedCount": 229981,
+  "generatedAt": "2026-07-07T18:30:18.716Z",
+  "sourceDatabaseTimestamp": "2026-07-07T18:00:05.233Z",
+  "canonicalDealCount": 229997,
+  "publishedDealCount": 8,
+  "skippedCount": 229989,
   "skippedByReason": {
+    "unreliable_party": 2,
     "needs_party_resolution": 2,
-    "needs_review": 226986,
+    "needs_review": 226992,
     "missing_evidence": 1,
     "low_confidence": 605,
     "possible_duplicate": 848,
@@ -14,13 +15,14 @@
   },
   "skippedBySourceReason": {
     "news_rss": {
+      "unreliable_party": 2,
       "needs_party_resolution": 1,
       "missing_evidence": 1,
       "needs_review": 32,
       "low_confidence": 8
     },
     "sec_edgar": {
-      "needs_review": 23113,
+      "needs_review": 23119,
       "low_confidence": 81,
       "possible_duplicate": 67,
       "extraction_failed": 108,
@@ -34,7 +36,7 @@
     }
   },
   "publishedBySource": {
-    "news_rss": 6,
+    "news_rss": 7,
     "sec_edgar": 1
   },
   "duplicateCollapsedCount": 0,
