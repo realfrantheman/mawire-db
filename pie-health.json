@@ -1,30 +1,30 @@
 {
-  "generatedAt": "2026-07-10T16:05:50.716Z",
-  "overallScore": 100,
+  "generatedAt": "2026-07-10T18:11:21.931Z",
+  "overallScore": 92,
   "status": "healthy",
-  "durationMs": 8270,
+  "durationMs": 5707,
   "categories": {
     "ingestion": {
-      "score": 100,
+      "score": 88,
       "status": "healthy",
       "checks": [
         {
           "name": "ingestion_freshness",
           "status": "pass",
           "score": 100,
-          "message": "Last deal ingested 1.2h ago"
+          "message": "Last deal ingested 0.2h ago"
         },
         {
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "32 deals last 24h · 6824 last 7d · 228342 last 30d"
+          "message": "34 deals last 24h · 4683 last 7d · 225765 last 30d"
         },
         {
           "name": "source_diversity",
-          "status": "pass",
-          "score": 100,
-          "message": "2 source type(s) active in last 48h"
+          "status": "warn",
+          "score": 50,
+          "message": "1 source type(s) active in last 48h"
         },
         {
           "name": "filing_coverage",
@@ -42,7 +42,7 @@
           "name": "export_freshness",
           "status": "pass",
           "score": 100,
-          "message": "deals.json last updated 1.2h ago (via deals.updated_at (proxy))"
+          "message": "deals.json last updated 0.2h ago (via deals.updated_at (proxy))"
         },
         {
           "name": "review_queue",
@@ -59,21 +59,21 @@
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "Last deal ingested 1.2h ago"
+      "message": "Last deal ingested 0.2h ago"
     },
     {
       "name": "ingestion_velocity",
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "32 deals last 24h · 6824 last 7d · 228342 last 30d"
+      "message": "34 deals last 24h · 4683 last 7d · 225765 last 30d"
     },
     {
       "name": "source_diversity",
       "category": "ingestion",
-      "status": "pass",
-      "score": 100,
-      "message": "2 source type(s) active in last 48h"
+      "status": "warn",
+      "score": 50,
+      "message": "1 source type(s) active in last 48h"
     },
     {
       "name": "filing_coverage",
@@ -115,7 +115,7 @@
       "category": "pipeline",
       "status": "pass",
       "score": 100,
-      "message": "deals.json last updated 1.2h ago (via deals.updated_at (proxy))"
+      "message": "deals.json last updated 0.2h ago (via deals.updated_at (proxy))"
     },
     {
       "name": "review_queue",
@@ -148,19 +148,26 @@
   ],
   "alerts": [
     {
+      "key": "pie:source_diversity",
+      "severity": "warning",
+      "title": "WARN: source diversity",
+      "description": "1 source type(s) active in last 48h",
+      "since": "2026-06-20T23:55:25.373Z"
+    },
+    {
       "key": "pie:ingestion_efficiency",
       "severity": "warning",
       "title": "WARN: ingestion efficiency",
-      "description": "0.0% yield · 361.2 full-text fetches/published · 17.4% generic URLs",
+      "description": "0.0% yield · 343.2 full-text fetches/published · 17.4% generic URLs",
       "since": "2026-06-18T23:13:08.242Z"
     }
   ],
   "summary": {
-    "pass": 6,
-    "warn": 0,
+    "pass": 5,
+    "warn": 1,
     "fail": 0,
     "skip": 7,
     "critical": 0,
-    "warnings": 1
+    "warnings": 2
   }
 }
