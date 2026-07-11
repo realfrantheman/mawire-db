@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-11T17:40:10.551Z",
-  "overallScore": 70,
+  "generatedAt": "2026-07-11T18:34:51.978Z",
+  "overallScore": 61,
   "status": "degraded",
-  "durationMs": 9586,
+  "durationMs": 9653,
   "categories": {
     "ingestion": {
       "score": 65,
@@ -12,13 +12,13 @@
           "name": "ingestion_freshness",
           "status": "fail",
           "score": 10,
-          "message": "Last deal ingested 14.0h ago"
+          "message": "Last deal ingested 14.9h ago"
         },
         {
           "name": "ingestion_velocity",
           "status": "pass",
           "score": 100,
-          "message": "13 deals last 24h · 111 last 7d · 221611 last 30d"
+          "message": "9 deals last 24h · 111 last 7d · 221606 last 30d"
         },
         {
           "name": "source_diversity",
@@ -35,14 +35,14 @@
       ]
     },
     "pipeline": {
-      "score": 80,
-      "status": "degraded",
+      "score": 55,
+      "status": "critical",
       "checks": [
         {
           "name": "export_freshness",
-          "status": "warn",
-          "score": 60,
-          "message": "deals.json last updated 14.0h ago (via deals.updated_at (proxy))"
+          "status": "fail",
+          "score": 10,
+          "message": "deals.json last updated 14.9h ago (via deals.updated_at (proxy))"
         },
         {
           "name": "review_queue",
@@ -59,14 +59,14 @@
       "category": "ingestion",
       "status": "fail",
       "score": 10,
-      "message": "Last deal ingested 14.0h ago"
+      "message": "Last deal ingested 14.9h ago"
     },
     {
       "name": "ingestion_velocity",
       "category": "ingestion",
       "status": "pass",
       "score": 100,
-      "message": "13 deals last 24h · 111 last 7d · 221611 last 30d"
+      "message": "9 deals last 24h · 111 last 7d · 221606 last 30d"
     },
     {
       "name": "source_diversity",
@@ -113,9 +113,9 @@
     {
       "name": "export_freshness",
       "category": "pipeline",
-      "status": "warn",
-      "score": 60,
-      "message": "deals.json last updated 14.0h ago (via deals.updated_at (proxy))"
+      "status": "fail",
+      "score": 10,
+      "message": "deals.json last updated 14.9h ago (via deals.updated_at (proxy))"
     },
     {
       "name": "review_queue",
@@ -148,18 +148,18 @@
   ],
   "alerts": [
     {
+      "key": "pie:export_freshness",
+      "severity": "critical",
+      "title": "WARN: export freshness",
+      "description": "deals.json last updated 14.9h ago (via deals.updated_at (proxy))",
+      "since": "2026-06-13T08:32:08.248Z"
+    },
+    {
       "key": "pie:ingestion_freshness",
       "severity": "critical",
       "title": "WARN: ingestion freshness",
-      "description": "Last deal ingested 14.0h ago",
+      "description": "Last deal ingested 14.9h ago",
       "since": "2026-06-13T08:32:07.808Z"
-    },
-    {
-      "key": "pie:export_freshness",
-      "severity": "warning",
-      "title": "WARN: export freshness",
-      "description": "deals.json last updated 14.0h ago (via deals.updated_at (proxy))",
-      "since": "2026-06-13T08:32:08.248Z"
     },
     {
       "key": "pie:source_diversity",
@@ -172,16 +172,16 @@
       "key": "pie:ingestion_efficiency",
       "severity": "warning",
       "title": "WARN: ingestion efficiency",
-      "description": "0.0% yield · 258.4 full-text fetches/published · 17.5% generic URLs",
+      "description": "0.0% yield · 257.3 full-text fetches/published · 17.4% generic URLs",
       "since": "2026-06-18T23:13:08.242Z"
     }
   ],
   "summary": {
     "pass": 3,
-    "warn": 2,
-    "fail": 1,
+    "warn": 1,
+    "fail": 2,
     "skip": 7,
-    "critical": 1,
-    "warnings": 3
+    "critical": 2,
+    "warnings": 2
   }
 }
