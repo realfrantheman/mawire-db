@@ -1718,6 +1718,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-141baae24ee118fa",
+    "slug": "dbim-holdings-ltd-dbim",
+    "name": "Dbim Holdings Ltd (DBIM)",
+    "legalName": "Dbim Holdings Ltd (DBIM)",
+    "sector": "Technology",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-02-06",
+    "latestUpdateDate": "2026-02-06",
+    "filingType": "F-1/A",
+    "cik": "2057757",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2057757/000192998026000037/dbim_f1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Dbim Holdings Ltd (DBIM) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2057757/000192998026000037/dbim_f1a.htm",
+        "publisher": "SEC",
+        "date": "2026-02-06",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Dbim Holdings Ltd (DBIM) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2057757/000192998026000023/dbim_f1a.htm",
+        "publisher": "SEC",
+        "date": "2026-01-27",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Dbim Holdings Ltd (DBIM) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2057757/000192998025000691/dbim_f1a.htm",
+        "publisher": "SEC",
+        "date": "2025-11-05",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Dbim Holdings Ltd (DBIM) filed F-1/A with the SEC on 2026-02-06.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-3929aa32be1b8582",
     "slug": "faraday-future-intelligent-electric-inc-ffai-ffaiw",
     "name": "FARADAY FUTURE INTELLIGENT ELECTRIC INC. (FFAI, FFAIW)",
@@ -15470,7 +15525,7 @@
         "confidence": 1
       },
       {
-        "title": "Unitrend Entertainment Group Ltd (INHI) F-1/A",
+        "title": "Unitrend Entertainment Group Ltd (INHI) F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1997950/000121390026026043/ea0273689-02.htm",
         "publisher": "SEC",
         "date": "2026-03-11",
@@ -19974,7 +20029,7 @@
         "confidence": 1
       },
       {
-        "title": "Starrygazey Inc. (MARH) F-1/A",
+        "title": "Starrygazey Inc. (MARH) F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226009512/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-03-10",
@@ -19990,7 +20045,7 @@
         "confidence": 1
       },
       {
-        "title": "Starrygazey Inc. (MARH) F-1",
+        "title": "Starrygazey Inc. (MARH) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226005736/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-02-09",
@@ -20065,14 +20120,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2084806/000149315226008823/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-03-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Gravity AI F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2084806/000149315226005514/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-02-06",
         "type": "filing",
         "confidence": 1
       }
@@ -21908,6 +21955,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1712178/000118518526001481/naastechf1a1042126.htm",
         "publisher": "SEC",
         "date": "2026-04-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "NaaS Technology Inc. (NAAS) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1712178/000118518526000842/naastechf1012826.htm",
+        "publisher": "SEC",
+        "date": "2026-03-11",
         "type": "filing",
         "confidence": 1
       }
@@ -27850,61 +27905,6 @@
       }
     ],
     "notes": "Xinzi filed F-1 with the SEC on 2026-02-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-141baae24ee118fa",
-    "slug": "dbim-holdings-ltd-dbim",
-    "name": "Dbim Holdings Ltd (DBIM)",
-    "legalName": "Dbim Holdings Ltd (DBIM)",
-    "sector": "Technology",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-02-06",
-    "latestUpdateDate": "2026-02-06",
-    "filingType": "F-1",
-    "cik": "2057757",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2057757/000192998026000037/dbim_f1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Dbim Holdings Ltd (DBIM) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2057757/000192998026000037/dbim_f1a.htm",
-        "publisher": "SEC",
-        "date": "2026-02-06",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Dbim Holdings Ltd (DBIM) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2057757/000192998026000023/dbim_f1a.htm",
-        "publisher": "SEC",
-        "date": "2026-01-27",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Dbim Holdings Ltd (DBIM) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2057757/000192998025000691/dbim_f1a.htm",
-        "publisher": "SEC",
-        "date": "2025-11-05",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Dbim Holdings Ltd (DBIM) filed F-1 with the SEC on 2026-02-06.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -72432,7 +72432,7 @@
         "confidence": 1
       },
       {
-        "title": "Metals Royalty Co Inc. F-1/A",
+        "title": "Metals Royalty Co Inc. F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926026481/tm2526563-13_f1a.htm",
         "publisher": "SEC",
         "date": "2026-03-11",
@@ -84480,7 +84480,7 @@
         "confidence": 1
       },
       {
-        "title": "Innovation Beverage Group Ltd (IBG) F-1/A",
+        "title": "Innovation Beverage Group Ltd (IBG) F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1924482/000173112226000366/e7413_f1a.htm",
         "publisher": "SEC",
         "date": "2026-03-10",
@@ -85484,14 +85484,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1759136/000173112226000275/e7353_424b4.htm",
         "publisher": "SEC",
         "date": "2026-02-23",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Blue Hat Interactive Entertainment Technology (BHAT) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1759136/000173112226000202/e7307_f-1.htm",
-        "publisher": "SEC",
-        "date": "2026-02-09",
         "type": "filing",
         "confidence": 1
       }
@@ -112092,6 +112084,14 @@
         "date": "2026-03-30",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "VISTEK LTD (VTEK) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2013100/000149315226009574/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-03-10",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "VISTEK LTD (VTEK) filed RW with the SEC on 2026-05-20.",
@@ -114054,14 +114054,6 @@
         "date": "2026-02-23",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Yimutian Inc. (YMT) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1991605/000121390026013763/ea0275599-f1_yimutian.htm",
-        "publisher": "SEC",
-        "date": "2026-02-09",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Yimutian Inc. (YMT) filed RW with the SEC on 2026-03-25.",
@@ -114275,7 +114267,7 @@
         "confidence": 1
       },
       {
-        "title": "Horizon Thread (PTY) Ltd F-1",
+        "title": "Horizon Thread (PTY) Ltd F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2088800/000208880026000004/horizonthreadform1-a-a-2.htm",
         "publisher": "SEC",
         "date": "2026-02-09",
