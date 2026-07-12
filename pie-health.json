@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-12T04:58:50.799Z",
+  "generatedAt": "2026-07-12T07:48:29.314Z",
   "overallScore": 46,
   "status": "critical",
-  "durationMs": 6643,
+  "durationMs": 7171,
   "categories": {
     "ingestion": {
       "score": 41,
@@ -12,7 +12,7 @@
           "name": "ingestion_freshness",
           "status": "fail",
           "score": 10,
-          "message": "Last deal ingested 25.3h ago"
+          "message": "Last deal ingested 28.1h ago"
         },
         {
           "name": "ingestion_velocity",
@@ -42,7 +42,7 @@
           "name": "export_freshness",
           "status": "fail",
           "score": 10,
-          "message": "deals.json last updated 25.3h ago (via deals.updated_at (proxy))"
+          "message": "deals.json last updated 28.1h ago (via deals.updated_at (proxy))"
         },
         {
           "name": "review_queue",
@@ -59,7 +59,7 @@
       "category": "ingestion",
       "status": "fail",
       "score": 10,
-      "message": "Last deal ingested 25.3h ago"
+      "message": "Last deal ingested 28.1h ago"
     },
     {
       "name": "ingestion_velocity",
@@ -115,7 +115,7 @@
       "category": "pipeline",
       "status": "fail",
       "score": 10,
-      "message": "deals.json last updated 25.3h ago (via deals.updated_at (proxy))"
+      "message": "deals.json last updated 28.1h ago (via deals.updated_at (proxy))"
     },
     {
       "name": "review_queue",
@@ -151,7 +151,7 @@
       "key": "pie:export_freshness",
       "severity": "critical",
       "title": "WARN: export freshness",
-      "description": "deals.json last updated 25.3h ago (via deals.updated_at (proxy))",
+      "description": "deals.json last updated 28.1h ago (via deals.updated_at (proxy))",
       "since": "2026-06-13T08:32:08.248Z"
     },
     {
@@ -165,7 +165,7 @@
       "key": "pie:ingestion_freshness",
       "severity": "critical",
       "title": "WARN: ingestion freshness",
-      "description": "Last deal ingested 25.3h ago",
+      "description": "Last deal ingested 28.1h ago",
       "since": "2026-06-13T08:32:07.808Z"
     },
     {
@@ -179,7 +179,7 @@
       "key": "pie:ingestion_efficiency",
       "severity": "warning",
       "title": "WARN: ingestion efficiency",
-      "description": "0.0% yield · 235.7 full-text fetches/published · 17.5% generic URLs",
+      "description": "0.0% yield · 229.2 full-text fetches/published · 17.5% generic URLs",
       "since": "2026-06-18T23:13:08.242Z"
     }
   ],
