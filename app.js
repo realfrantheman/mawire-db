@@ -285,15 +285,26 @@ function setupHeroSearch() {
 }
 
 function reliablePartyName(value) {
-  if (!value || /^(unknown|undisclosed(?: buyer| acquirer| target)?|n\/a)$|see filing|disclosed in filing/i.test(value)) return null;
-  return value;
+  if (!value) return null;
+  var name = String(value).trim();
+  if (!name || /^(?:unknown(?: buyer| seller| acquirer| acquiror| target| company| party)?|undisclosed(?: buyer| seller| acquirer| acquiror| target| company| party)?|not disclosed|n\/a|null|none|tbd)$/i.test(name)) return null;
+  if (/see filing|disclosed in filing|public company target/i.test(name)) return null;
+  return name;
+}
+
+function partyIdentity(value) {
+  return String(value || '').toLowerCase().replace(/&amp;/g, '&').replace(/\b(?:incorporated|corporation|corp|company|co|limited|ltd|llc|plc|holdings?|group|the)\b/g, ' ').replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function normalizeDealParties(deal) {
-  deal.acquirer = reliablePartyName(deal.acquirer) || reliablePartyName(deal.extractedAcquirer) || 'Unknown acquirer';
-  deal.target = reliablePartyName(deal.target) || reliablePartyName(deal.extractedTarget) || 'Unknown target';
-  if (!deal.headline || /see filing|disclosed in filing/i.test(deal.headline)) {
-    deal.headline = deal.acquirer + ' / ' + deal.target;
+  var acquirer = reliablePartyName(deal.acquirer) || reliablePartyName(deal.extractedAcquirer);
+  var target = reliablePartyName(deal.target) || reliablePartyName(deal.extractedTarget);
+  if (!acquirer || !target) return null;
+  if (partyIdentity(acquirer) === partyIdentity(target)) return null;
+  deal.acquirer = acquirer;
+  deal.target = target;
+  if (!deal.headline || /see filing|disclosed in filing|^(?:unknown|undisclosed)\b/i.test(deal.headline)) {
+    deal.headline = acquirer + ' / ' + target;
   }
   return deal;
 }
@@ -334,7 +345,8 @@ function loadDeals() {
         return true;
       });
 
-      allDeals = safe.map(normalizeDealParties);
+      allDeals = safe.map(normalizeDealParties).filter(Boolean);
+      if (!allDeals.length) throw new Error('No transactions with two verified party names');
       onDealsLoaded();
     })
     .catch(function(err) {
