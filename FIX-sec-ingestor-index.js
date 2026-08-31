@@ -25,7 +25,7 @@ const CONFIG = {
   lookback_days: parseInt(process.env.LOOKBACK_DAYS || '2', 10),
 };
 
-const db = new Pool({ connectionString: CONFIG.db_url, ssl: { rejectUnauthorized: false } });
+const db = new Pool({ connectionString: CONFIG.db_url, ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true } });
 
 // ── MAIN ──────────────────────────────────────────────────────────
 async function run() {

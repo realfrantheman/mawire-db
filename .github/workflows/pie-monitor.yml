@@ -2,34 +2,28 @@ name: Platform Integrity Engine
 
 on:
   schedule:
-    # Every hour at :45
     - cron: '45 * * * *'
   workflow_dispatch:
+
+concurrency:
+  group: pie-monitor
+  cancel-in-progress: true
 
 jobs:
   pie:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
-    permissions:
-      contents: write
-
+    timeout-minutes: 15
     steps:
-      - name: Checkout mawire-db
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: realfrantheman/mawire-db
           token: ${{ secrets.MAWIRE_TOKEN }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install dependencies
-        run: npm install pg
-
-      - name: Run PIE monitor
+          cache: npm
+      - run: npm ci
+      - name: Run fail-closed integrity checks
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           MAWIRE_TOKEN: ${{ secrets.MAWIRE_TOKEN }}

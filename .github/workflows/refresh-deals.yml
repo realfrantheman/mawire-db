@@ -1,9 +1,7 @@
-name: Refresh deals.json from SEC EDGAR
+name: Refresh public M&A data
 
 on:
   schedule:
-    # Every 4 hours. Full artifact export reads the database and must not burn
-    # Supabase egress every 30 minutes.
     - cron: '12 */4 * * *'
   workflow_dispatch:
 
@@ -14,51 +12,52 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-
+    timeout-minutes: 75
     steps:
-      - name: Checkout mawire-db
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: realfrantheman/mawire-db
           token: ${{ secrets.MAWIRE_TOKEN }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install Node.js dependencies
-        run: npm install pg
-
-      - name: Ingest new SEC filings (last 8 days)
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Backfill missing direct SEC source documents
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SOURCE_BACKFILL_LIMIT: '200'
+        run: node FIX-source-url-backfill.js
+      - name: Ingest new SEC filings
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           LOOKBACK_DAYS: '2'
         run: node FIX-sec-ingestor-index.js
-
-      - name: Export full DB → deals.json
+      - name: Export database
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           LOCAL_ONLY: 'true'
         run: node FIX-export-to-github.js
-
-      - name: Commit and push deals.json
+      - name: Build compact public index and detail shards
+        run: node build-public-artifacts.js deals.json
+      - name: Validate source URLs
+        run: node validate-source-urls.js deals-index.json
+      - name: Commit public data artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add deals.json
+          git add deals.json deals-index.json deals-public-manifest.json deals-details/
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: refresh deals.json [skip ci]"
+            git commit -m "chore: refresh public M&A data [skip ci]"
             git pull --rebase https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git main
             git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main
           fi
-
-      - name: Run IPO fetcher (S-1 filings — metadata only, no S-1 text download)
+      - name: Refresh IPO metadata
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
           PUBLISH_IPOS: 'true'

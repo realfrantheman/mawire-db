@@ -19,7 +19,7 @@
 const https    = require('https');
 const { Pool } = require('pg');
 
-const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true } });
 
 const BATCH   = parseInt(process.env.BATCH || '200', 10);
 const DELAY   = 700; // ms between filing fetches — SEC rate limit

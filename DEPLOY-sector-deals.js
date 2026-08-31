@@ -5,7 +5,7 @@
   if (!root) return;
 
   var sector = root.getAttribute('data-sector') || '';
-  var source = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals.json?t=' + Date.now();
+  var source = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals-index.json';
 
   function esc(value) {
     return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
@@ -14,7 +14,7 @@
   }
 
   function matchesSector(deal) {
-    var haystack = [deal.sector, deal.headline, deal.summary].join(' ').toLowerCase();
+    var haystack = [deal.sector, deal.headline, deal.acquirer, deal.target].join(' ').toLowerCase();
     var aliases = sector === 'Financial Services' ? ['financial', 'bank', 'insurance', 'fintech'] :
       sector === 'Technology' ? ['technology', 'software', 'semiconductor', 'cyber', 'cloud', 'ai'] :
       ['healthcare', 'pharma', 'biotech', 'medical', 'therapeutic'];

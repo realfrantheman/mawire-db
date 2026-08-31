@@ -6,11 +6,16 @@
 
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
+const sourceUrlPath = fs.existsSync(path.join(__dirname, '../services/shared/source-url.js')) ? '../services/shared/source-url' : './FIX-source-url';
+const { canonicalPrimarySourceUrl } = require(sourceUrlPath);
+
 const https    = require('https');
 const { execFileSync } = require('child_process');
 const { Pool } = require('pg');
 
-const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true } });
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = process.env.GITHUB_REPO || 'realfrantheman/mawire-db';
@@ -204,11 +209,9 @@ async function run() {
       body,
       summary,
       source,
-      sourceUrl:    row.sourceType === 'sec_edgar' || row.extractionMethod === 'sec_filing'
-        ? (reconstructEdgarUrl(row) || row.sourceUrl || row.edgarUrl || row.documentUrl)
-        : (row.sourceUrl || row.edgarUrl),
+      sourceUrl:    canonicalPrimarySourceUrl(row),
       filingType:   row.filingType,
-      edgarUrl:     reconstructEdgarUrl(row) || row.edgarUrl,
+      edgarUrl:     canonicalPrimarySourceUrl(row) || reconstructEdgarUrl(row) || row.edgarUrl,
       extractionMethod: row.extractionMethod,
       sourceType:   row.sourceType,
       sourceName:   row.sourceName,
@@ -263,106 +266,25 @@ function cleanName(name) {
 
 function buildSummary(row, acquirerRaw, targetRaw, dealType, date, dealValue, body) {
   const source = resolveSourceName(row);
-
-  // For news/exchange items: use first sentence of body if available
-  if (source !== 'SEC Filing' && body) {
-    const first = body.split(/(?<=[a-z])\.\s+(?=[A-Z])/)[0].replace(/\.$/, '');
-    if (first && first.length > 30) return first + '.';
-  }
-
-  const acquirer = cleanName(acquirerRaw);
-  const target   = cleanName(targetRaw);
-  const val      = dealValue && dealValue !== 'Undisclosed' ? dealValue : null;
-  const valStr   = val ? ` valued at ${val}` : '';
-
-  const isPlaceholderAcquirer = !acquirer || acquirer === 'Undisclosed' || /acquirer.*filing/i.test(acquirer);
-  const isPlaceholderTarget   = !target   || target   === 'Undisclosed' || /target.*filing/i.test(target);
-  const hasAcquirer = !isPlaceholderAcquirer;
-  const hasTarget   = !isPlaceholderTarget;
-
-  // EU Merger Registry
-  if (source === 'EU Merger Registry') {
-    const a = hasAcquirer ? acquirer : 'A company';
-    const t = hasTarget   ? ` regarding ${target}` : '';
-    return `${a} filed a merger notification with the European Commission${t}${valStr}. The transaction is subject to EU merger regulation review.`;
-  }
-
-  // Exchange filings (HKEX, ASX, SGX)
-  if (/HKEX|ASX|SGX/.test(source)) {
-    if (hasAcquirer && hasTarget)
-      return `${acquirer} announced a ${dealType.toLowerCase()} involving ${target}${valStr}. The transaction was disclosed via ${source} on ${date}.`;
-    const co = hasAcquirer ? acquirer : (hasTarget ? target : 'A company');
-    return `${co} disclosed a ${dealType.toLowerCase()}${valStr} via ${source} on ${date}.`;
-  }
-
-  if (dealType === 'Merger') {
-    if (hasAcquirer && hasTarget)
-      return `${acquirer} agreed to acquire ${target} in a transaction${valStr}. The merger requires shareholder approval following an SEC proxy filing on ${date}.`;
-    if (hasTarget)
-      return `${target} shareholders are voting on a proposed merger${val ? ` in a ${val} deal` : ''}. The definitive proxy statement was filed with the SEC on ${date}.`;
-    if (hasAcquirer)
-      return `${acquirer} filed a merger proxy with the SEC on ${date}. The transaction${valStr} is pending shareholder approval.`;
-  }
-
-  if (dealType === 'Acquisition') {
-    if (hasAcquirer && hasTarget)
-      return `${acquirer} launched a tender offer to acquire ${target}${valStr}. The formal SC TO-T filing was submitted to the SEC on ${date}.`;
-    if (hasAcquirer)
-      return `${acquirer} launched a formal tender offer to acquire a publicly traded company. The SC TO-T filing was submitted to the SEC on ${date}.`;
-    if (hasTarget)
-      return `A formal tender offer has been launched to acquire ${target}${valStr}. The offer was filed with the SEC on ${date}.`;
-  }
-
-  if (dealType === 'Going-Private') {
-    const company = hasAcquirer ? acquirer : (hasTarget ? target : 'A company');
-    return `${company} filed a going-private transaction${valStr} with the SEC on ${date}.`;
-  }
-
-  if (dealType === 'Tender Offer') {
-    if (hasAcquirer && hasTarget)
-      return `${acquirer} launched a tender offer for ${target}${valStr}.`;
-    if (hasAcquirer)
-      return `${acquirer} launched a tender offer${valStr} on ${date}.`;
-  }
-
-  if (body) {
-    const first = body.split(/(?<=[a-z])\.\s+(?=[A-Z])/)[0].replace(/\.$/, '');
-    if (first && first.length > 30) return first + '.';
-  }
-
-  const desc = hasAcquirer && hasTarget
-    ? `${acquirer} and ${target}`
-    : (hasAcquirer ? acquirer : (hasTarget ? target : 'A company'));
-  const typeWord = (dealType || 'transaction').toLowerCase();
-  const article  = /^[aeiou]/i.test(typeWord) ? 'an' : 'a';
-  return `${desc} announced ${article} ${typeWord}${valStr} on ${date}.`;
+  if (source !== 'SEC Filing' && body) { const first=body.split(/(?<=[a-z])\.\s+(?=[A-Z])/)[0].replace(/\.$/,''); if(first&&first.length>30)return first+'.'; }
+  const acquirer=cleanName(acquirerRaw), target=cleanName(targetRaw); const val=dealValue&&dealValue!=='Undisclosed'?dealValue:null; const valStr=val?' valued at '+val:''; const form=String(row.filingType||'').toUpperCase();
+  const parties=acquirer&&target?acquirer+' and '+target:(acquirer||target||'The transaction parties');
+  if (form==='SC TO-T'||form==='SC TO-T/A') return parties+' are the subject of a tender offer statement filed with the SEC on '+date+valStr+'.';
+  if (form==='DEFM14A') return parties+' are described in a definitive merger proxy statement filed with the SEC on '+date+valStr+'.';
+  if (form==='PREM14A'||form==='DEFA14A') return parties+' are described in proxy materials filed with the SEC on '+date+valStr+'.';
+  if (form==='S-4'||form==='S-4/A') return parties+' are described in an SEC registration statement concerning a proposed transaction filed on '+date+valStr+'.';
+  if (form==='SC 13E-3'||form==='SC 13E-3/A') return parties+' are described in an SEC going-private transaction statement filed on '+date+valStr+'.';
+  if (source==='SEC Filing') return parties+' are described in an SEC filing'+(form?' (Form '+form+')':'')+' filed on '+date+valStr+'.';
+  if (acquirer&&target) return acquirer+' announced a '+String(dealType||'transaction').toLowerCase()+' involving '+target+valStr+(date?' on '+date:'')+'.';
+  return (row.headline||'Transaction')+(date?' — '+date:'')+'.';
 }
 
 function buildBody(row, acquirer, target, dealType, date, perShare) {
-  const val        = row.dealValue && row.dealValue !== 'Undisclosed' ? row.dealValue : null;
-  const valStr     = val ? ` at ${val}` : '';
-  const shareStr   = perShare ? ` (${perShare} per share)` : '';
-  const filingType = row.filingType || '';
-  const source     = resolveSourceName(row);
-
-  if (source === 'SEC Filing' && filingType) {
-    const formDesc = SEC_FORM_DESC[filingType] || `${filingType} filing`;
-    return `${acquirer} filed a ${formDesc} (Form ${filingType}) with the SEC on ${date}, ` +
-      `${formDesc.includes('tender') ? `launching a formal offer to acquire shares of ${target}${valStr}${shareStr}` : `related to a proposed ${dealType.toLowerCase()} involving ${target}`}.\n\n` +
-      `Form ${filingType} is required under Section 14 of the Securities Exchange Act of 1934.`;
-  }
-
-  if (source.includes('EU') || source.includes('European')) {
-    return `The European Commission has been notified of a proposed merger between ${acquirer} and ${target}. ` +
-      `The transaction is subject to EU merger regulation review.`;
-  }
-
-  if (source.includes('HKEX') || source.includes('Hong Kong') || source.includes('ASX') || source.includes('SGX')) {
-    return `${acquirer} announced a ${dealType.toLowerCase()} involving ${target}${valStr}. ` +
-      `The transaction was disclosed in an exchange announcement on ${date}.`;
-  }
-
-  return `${acquirer} announced a ${dealType.toLowerCase()} involving ${target}${valStr} on ${date}.`;
+  const val=row.dealValue&&row.dealValue!=='Undisclosed'?' at '+row.dealValue:''; const form=String(row.filingType||'').toUpperCase(); const source=resolveSourceName(row); const parties=[acquirer,target].filter(Boolean).join(' and ')||'The transaction';
+  if(source==='SEC Filing') return parties+' is documented in '+(form?'Form '+form:'an SEC filing')+(date?' filed on '+date:'')+val+'. The source link points directly to the filing document.';
+  if(source==='EU Merger Registry') return parties+' is documented in the European Commission merger-control source'+(date?' dated '+date:'')+'.';
+  if(/HKEX|ASX|SGX/.test(source)) return parties+' is documented in a '+source+' company announcement'+(date?' dated '+date:'')+'.';
+  return parties+' announced a '+String(dealType||'transaction').toLowerCase()+val+(date?' on '+date:'')+'.';
 }
 
 const SEC_FORM_DESC = {

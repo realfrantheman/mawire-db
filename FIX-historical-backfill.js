@@ -17,7 +17,7 @@ const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../services/sha
   : './FIX-deal-extraction';
 const { extractParties, firstReliable, isReliableName, rawSnippet } = require(sharedExtractionPath);
 
-const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true } });
 
 const FILING_TYPES  = ['DEFM14A', 'SC TO-T', 'S-4', 'SC 13E-3', 'DEFA14A', 'SC TO-T/A', 'PREM14A', 'SC 13E-3/A'];
 const START_YEAR    = parseInt(process.env.BACKFILL_START_YEAR || '1993', 10);

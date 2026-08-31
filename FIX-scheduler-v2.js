@@ -11,7 +11,7 @@ const { Pool } = require('pg');
 
 console.log('[SCHEDULER] Modules loaded.');
 
-const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true } });
 
 let secRunning    = false;
 let gdeltRunning  = false;

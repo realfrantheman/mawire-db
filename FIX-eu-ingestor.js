@@ -10,10 +10,12 @@ const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-
   ? '../shared/deal-extraction'
   : './FIX-deal-extraction';
 const { withRetry } = require(sharedExtractionPath);
+const sourceUrlPath = fs.existsSync(path.join(__dirname, '../shared/source-url.js')) ? '../shared/source-url' : './FIX-source-url';
+const { resolvePrimaryHttpUrl } = require(sourceUrlPath);
 
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true },
 });
 
 async function run() {
@@ -83,6 +85,7 @@ function parseEuJsonCases(data) {
       caseTitle:  String(caseTitle).trim(),
       notifDate:  String(notifDate).trim(),
       status:     normalizeEuStatus(String(statusRaw)),
+      sourceUrl: String(item.documentUrl || item.document_url || item.url || item.caseUrl || item.case_url || '').trim(),
     });
   }
   return cases;
@@ -99,10 +102,8 @@ function normalizeEuStatus(raw) {
 async function processEuCase(c) {
   const caseNum   = c.caseNumber.replace(/[^A-Z0-9._-]/gi, '');
   const caseId    = caseNum.replace('M.', '');
-  const sourceUrl = trunc(
-    `https://ec.europa.eu/competition/elojade/isef/case_details.cfm?proc_code=2_M_${caseId}`,
-    500
-  );
+  const registryUrl = c.sourceUrl || `https://ec.europa.eu/competition/elojade/isef/case_details.cfm?proc_code=2_M_${caseId}`;
+  const sourceUrl = trunc(await resolvePrimaryHttpUrl(registryUrl) || registryUrl, 500);
 
   const existing = await db.query(
     'SELECT id FROM deal_sources WHERE source_url = $1 LIMIT 1',

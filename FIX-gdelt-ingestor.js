@@ -24,7 +24,7 @@ const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-
   : './FIX-deal-extraction';
 const { rawSnippet, withRetry } = require(sharedExtractionPath);
 
-const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true } });
 
 // GDELT GKG 2.0 fields we care about
 const GKG_FIELDS = {

@@ -10,10 +10,12 @@ const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-
   ? '../shared/deal-extraction'
   : './FIX-deal-extraction';
 const { extractParties, rawSnippet, withRetry } = require(sharedExtractionPath);
+const sourceUrlPath = fs.existsSync(path.join(__dirname, '../shared/source-url.js')) ? '../shared/source-url' : './FIX-source-url';
+const { resolvePrimaryHttpUrl } = require(sourceUrlPath);
 
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true },
 });
 
 const APAC_MA_KEYWORDS = [
@@ -124,7 +126,7 @@ function parseHkexAnnouncements(html, dateStr) {
 }
 
 async function processHkexAnnouncement(ann) {
-  const sourceUrl = trunc(ann.url, 500);
+  const sourceUrl = trunc(await resolvePrimaryHttpUrl(ann.url) || ann.url, 500);
   if (!sourceUrl) return 'skip';
 
   const existing = await db.query(
@@ -243,7 +245,8 @@ function parseAsxAnnouncements(html, maTypes) {
 }
 
 async function processAsxAnnouncement(ann) {
-  const sourceUrl = trunc(ann.url || `https://announcements.asx.com.au/?ticker=${ann.ticker}&t=${Date.now()}`, 500);
+  if (!ann.url) return 'skip';
+  const sourceUrl = trunc(await resolvePrimaryHttpUrl(ann.url) || ann.url, 500);
 
   const existing = await db.query(
     'SELECT id FROM deal_sources WHERE source_url = $1 LIMIT 1',

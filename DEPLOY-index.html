@@ -48,22 +48,7 @@
 <div class="ticker-bar" id="tickerBar" aria-hidden="true">
   <div class="ticker-label">LIVE</div>
   <div class="ticker-track">
-    <div class="ticker-content" id="tickerContent">
-      <span class="tick-item"><span class="tick-dot">▶</span> Tech M&A leads 2026 with $680B in transactions</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Microsoft / Activision Blizzard $68.7B — largest gaming acquisition</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Private equity dry powder at record $1.4T globally</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Cross-border deals account for 38% of global volume</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Bristol-Myers / Celgene $74B — largest pharma deal ever</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> 10,000+ deals tracked from global public sources</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Tech M&A leads 2026 with $680B in transactions</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Microsoft / Activision Blizzard $68.7B — largest gaming acquisition</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Private equity dry powder at record $1.4T globally</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Cross-border deals account for 38% of global volume</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> Bristol-Myers / Celgene $74B — largest pharma deal ever</span>
-      <span class="tick-item"><span class="tick-dot">▶</span> 10,000+ deals tracked from global public sources</span>
-    </div>
-  </div>
-</div>
+    <div class="ticker-content" id="tickerContent"><span class="tick-item"><span class="tick-dot">▶</span> Regulatory filings · company announcements · press releases · exchange notices</span><span class="tick-item"><span class="tick-dot">▶</span> Direct links to primary source documents where available</span></div></div></div>
 
 <!-- ── HEADER ─────────────────────────────────────────────── -->
 <header class="site-header" id="siteHeader">
@@ -368,6 +353,18 @@
               </div>
             </div>
             <div>
+              <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Type</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap" id="typeFilters">
+                <button class="filter-pill active" data-filter="type-all">All</button>
+                <button class="filter-pill" data-filter="type-Merger">Merger</button>
+                <button class="filter-pill" data-filter="type-Acquisition">Acquisition</button>
+                <button class="filter-pill" data-filter="type-Tender Offer">Tender Offer</button>
+                <button class="filter-pill" data-filter="type-Going-Private">Going-Private</button>
+                <button class="filter-pill" data-filter="type-Buyout">Buyout</button>
+                <button class="filter-pill" data-filter="type-Divestiture">Divestiture</button>
+              </div>
+            </div>
+            <div>
               <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Sort</div>
               <div style="display:flex;gap:6px;flex-wrap:wrap" id="sortFilters">
                 <button class="filter-pill active" data-filter="sort-newest">Newest</button>
@@ -544,7 +541,7 @@
           <div class="trust-item-icon">📄</div>
           <div class="trust-item-title">Primary Source Data</div>
           <div class="trust-item-text">
-            Every transaction links to a public source. We prioritize regulatory filings and company announcements, then use press releases, exchange notices, and reputable reporting for discovery and corroboration.
+            Published records with a verified source link directly to the primary filing, company announcement, press release, exchange notice, or originating report. Unresolved legacy sources are not guessed.
           </div>
           <a href="/about#sources" class="trust-item-link">Our source policy →</a>
         </div>
@@ -639,7 +636,7 @@
 </main>
 
 <!-- ── DEAL MODAL ──────────────────────────────────────────── -->
-<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Deal details">
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Deal details" tabindex="-1">
   <div class="modal" id="modal">
     <div class="modal-hero">
       <button class="modal-close" id="modalClose" aria-label="Close deal details">✕</button>
@@ -659,7 +656,7 @@
         <div class="modal-timeline" id="modalTimelineItems"></div>
       </div>
       <div class="modal-section" id="modalDocs">
-        <div class="modal-section-title">SEC Documents</div>
+        <div class="modal-section-title">Source Documents</div>
         <div class="modal-docs" id="modalDocItems"></div>
       </div>
       <div class="modal-section" id="modalComparables">
@@ -851,6 +848,7 @@
 </script>
 <script defer src="/source-taxonomy.js?v=20260612-sources"></script>
 <script defer src="/app.js?v=20260612-sources"></script>
+  <script defer src="/quality-hardening.js?v=20260831"></script>
 <script defer src="/charts.js"></script>
 <script defer src="/cache-control.js?v=20260612"></script>
 </body>
