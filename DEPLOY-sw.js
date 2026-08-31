@@ -1,6 +1,6 @@
 'use strict';
 
-var CACHE = 'mergers-news-v5';
+var CACHE = 'mergers-news-v6';
 var SHELL = [
   '/index.html',
   '/style.css',
