@@ -23,16 +23,19 @@ jobs:
       - name: Backfill direct SEC sources
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           SOURCE_BACKFILL_LIMIT: '250'
         run: node FIX-source-url-backfill.js
       - name: Ingest SEC candidates
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           LOOKBACK_DAYS: '3'
         run: node FIX-sec-ingestor-index.js
       - name: Verify transactions against primary sources
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
           TRANSACTION_REVIEW_LIMIT: '30000'
           TRANSACTION_REVIEW_CONCURRENCY: '4'
@@ -41,6 +44,7 @@ jobs:
       - name: Export verified transactions only
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           LOCAL_ONLY: 'true'
           TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
         run: node FIX-export-to-github.js
