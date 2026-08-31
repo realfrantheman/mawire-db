@@ -1,0 +1,2 @@
+'use strict';const fs=require('fs');const a=JSON.parse(fs.readFileSync('ipos.json','utf8')),active=new Set(['rumored','filed','amended','priced','delayed','private']),dates=a.map(x=>x.latestUpdateDate||x.filingDate).filter(Boolean).sort();fs.writeFileSync('ipo-freshness.json',JSON.stringify({generatedAt:new Date().toISOString(),recordCount:a.length,activeCount:a.filter(x=>active.has(x.status)).length,newestSourceUpdate:dates.at(-1)||null,oldestSourceUpdate:dates[0]||null,freshnessSlaMinutes:120},null,2)+'
+');

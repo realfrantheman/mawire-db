@@ -20,6 +20,7 @@ const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.e
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = process.env.GITHUB_REPO || 'realfrantheman/mawire-db';
 const GITHUB_FILE  = process.env.GITHUB_FILE || 'deals.json';
+const TRANSACTION_REVIEW_RULE_VERSION = process.env.TRANSACTION_REVIEW_RULE_VERSION || 'strict-control-v3';
 
 function normalizeIdentityPart(value) {
   return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -121,6 +122,7 @@ async function run() {
       d.ai_summary        AS "aiSummary",
       d.source_confidence AS confidence,
       d.extraction_method AS "extractionMethod",
+      tr.status AS "reviewStatus", tr.transaction_type AS "reviewedDealType", tr.rule_version AS "reviewRuleVersion", tr.evidence_url AS "reviewEvidenceUrl", tr.reviewed_at AS "reviewedAt",
       ds.source_type  AS "sourceType",
       ds.source_name  AS "sourceName",
       ds.source_url   AS "sourceUrl",
@@ -133,6 +135,7 @@ async function run() {
     FROM deals d
     LEFT JOIN companies a     ON d.acquirer_id = a.id
     LEFT JOIN companies t     ON d.target_id   = t.id
+    JOIN deal_transaction_reviews tr ON tr.deal_id=d.id AND tr.status='verified' AND tr.rule_version=$1
     LEFT JOIN LATERAL (
       SELECT source_type, source_name, source_url, source_date
       FROM deal_sources
@@ -148,7 +151,7 @@ async function run() {
       LIMIT 1
     ) f ON true
     ORDER BY d.announcement_date DESC NULLS LAST
-  `);
+  `, [TRANSACTION_REVIEW_RULE_VERSION]);
 
   const now = new Date();
 
@@ -162,7 +165,7 @@ async function run() {
   const deals = res.rows.map(row => {
     const acquirer = cleanCompanyName(row.acquirer, PLACEHOLDERS) || cleanCompanyName(row.extractedAcquirer, PLACEHOLDERS);
     const target   = cleanCompanyName(row.target,   PLACEHOLDERS) || cleanCompanyName(row.extractedTarget, PLACEHOLDERS);
-    const dealType   = row.dealType || 'Merger';
+    const dealType   = row.reviewedDealType || row.dealType || 'Merger';
     const headline   = !row.headline || /see filing|^(unknown|undisclosed)/i.test(row.headline)
       ? `${acquirer || 'Unknown acquirer'} / ${target || 'Unknown target'}`
       : row.headline;
@@ -209,7 +212,7 @@ async function run() {
       body,
       summary,
       source,
-      sourceUrl:    canonicalPrimarySourceUrl(row),
+      sourceUrl:    row.reviewEvidenceUrl || canonicalPrimarySourceUrl(row),
       filingType:   row.filingType,
       edgarUrl:     canonicalPrimarySourceUrl(row) || reconstructEdgarUrl(row) || row.edgarUrl,
       extractionMethod: row.extractionMethod,
@@ -217,6 +220,7 @@ async function run() {
       sourceName:   row.sourceName,
       accessionNo:  row.accessionNo,
       confidence:   row.confidence,
+      reviewStatus: row.reviewStatus, reviewRuleVersion: row.reviewRuleVersion, reviewedAt: row.reviewedAt,
       breaking,
       advisors:     null,
     };
@@ -232,7 +236,6 @@ async function run() {
 
   // LOCAL_ONLY=true: write to disk only (workflow commits via git)
   if (process.env.LOCAL_ONLY === 'true') {
-    syncActionsCheckout();
     require('fs').writeFileSync('deals.json', json + '\n');
     console.log('[EXPORT] Wrote', deduped.length, 'deals to local deals.json');
     return;

@@ -1,24 +1,12 @@
 name: Deploy to mawire-platform and mawire-site
-
 on:
   push:
     branches: [main]
-    paths:
-      - 'DEPLOY-*'
-      - 'FIX-*.js'
-      - 'app.js'
-      - 'style.css'
-      - 'deploy.py'
-      - 'test/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/deploy.yml'
+    paths: ['DEPLOY-*','FIX-*.js','app.js','style.css','deploy.py','test/**','package.json','package-lock.json','.github/workflows/deploy.yml']
   workflow_dispatch:
-
 concurrency:
   group: deploy-mawire
   cancel-in-progress: false
-
 jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
@@ -29,17 +17,14 @@ jobs:
         with:
           node-version: '20'
           cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Run test suite
-        run: npm test
-      - name: Validate deployment sources
+      - run: npm ci
+      - run: npm test
+      - name: Validate strict release
         run: |
-          node --check app.js
+          node --check FIX-transaction-review.js
+          node --check build-public-artifacts.js
           node --check FIX-quality-hardening.js
-          node --check FIX-source-url.js
           node --check FIX-export-to-github.js
-          node --check FIX-pie-monitor.js
           python3 -m py_compile deploy.py
       - name: Atomic deploy
         env:

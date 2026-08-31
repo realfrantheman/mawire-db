@@ -1,67 +1,62 @@
-name: Refresh public M&A data
-
+name: Refresh verified public M&A data
 on:
   schedule:
-    - cron: '12 */4 * * *'
+    - cron: '12 * * * *'
   workflow_dispatch:
-
 concurrency:
   group: mawire-db-artifact-writes
   cancel-in-progress: false
-
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: realfrantheman/mawire-db
           token: ${{ secrets.MAWIRE_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Backfill missing direct SEC source documents
+      - run: npm ci
+      - run: npm test
+      - name: Backfill direct SEC sources
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          SOURCE_BACKFILL_LIMIT: '200'
+          SOURCE_BACKFILL_LIMIT: '250'
         run: node FIX-source-url-backfill.js
-      - name: Ingest new SEC filings
+      - name: Ingest SEC candidates
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          LOOKBACK_DAYS: '2'
+          LOOKBACK_DAYS: '3'
         run: node FIX-sec-ingestor-index.js
-      - name: Export database
+      - name: Verify transactions against primary sources
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
+          TRANSACTION_REVIEW_LIMIT: '30000'
+          TRANSACTION_REVIEW_CONCURRENCY: '4'
+          TRANSACTION_REVIEW_POLITENESS_MS: '400'
+        run: node FIX-transaction-review.js
+      - name: Export verified transactions only
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           LOCAL_ONLY: 'true'
+          TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
         run: node FIX-export-to-github.js
-      - name: Build compact public index and detail shards
-        run: node build-public-artifacts.js deals.json
-      - name: Validate source URLs
-        run: node validate-source-urls.js deals-index.json
-      - name: Commit public data artifacts
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
+      - run: node build-public-artifacts.js deals.json
+      - run: node validate-source-urls.js deals-index.json
+      - name: Verify publication gate
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add deals.json deals-index.json deals-public-manifest.json deals-details/
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: refresh public M&A data [skip ci]"
-            git pull --rebase https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git main
-            git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main
-          fi
-      - name: Refresh IPO metadata
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
-          PUBLISH_IPOS: 'true'
-          IPO_LOOKBACK_YEARS: '3'
-          IPO_MAX_METADATA: '3000'
-          IPO_MAX_FULL_TEXT: '5'
-        run: node fetch-ipos.js
+          node - <<'NODE'
+          const a=JSON.parse(require('fs').readFileSync('deals-index.json','utf8'));const b=a.filter(d=>d.reviewStatus!=='verified'||d.reviewRuleVersion!=='strict-control-v3'||!d.acquirer||!d.target||/^(unknown|undisclosed)/i.test(d.acquirer)||/^(unknown|undisclosed)/i.test(d.target)||!/^https?:\/\//.test(d.sourceUrl||''));if(b.length)throw Error('unverified rows escaped: '+b.length);if(a.some(d=>/dynatrace/i.test(d.target||'')&&/undisclosed/i.test(d.acquirer||'')))throw Error('Dynatrace regression');console.log('VERIFIED_PUBLIC_RECORDS='+a.length)
+          NODE
+      - name: Commit verified artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add deals.json deals-index.json deals-public-manifest.json deal-review-manifest.json deals-details/
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore: publish verified M&A transactions [skip ci]'
+          git pull --rebase https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git main
+          git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main

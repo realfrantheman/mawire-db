@@ -1,0 +1,38 @@
+name: Refresh IPO lifecycle data
+on:
+  schedule:
+    - cron: '25 * * * *'
+  workflow_dispatch:
+concurrency:
+  group: mawire-db-artifact-writes
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.MAWIRE_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Refresh SEC IPO lifecycle records
+        env:
+          IPO_LOOKBACK_YEARS: '3'
+          IPO_MAX_METADATA: '3000'
+          IPO_MAX_FULL_TEXT: '5'
+        run: node fetch-ipos.js
+      - run: npm test
+      - run: node build-ipo-freshness.js
+      - name: Publish IPO data atomically
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ipos.json ipo-freshness.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore: refresh IPO lifecycle data [skip ci]'
+          git pull --rebase https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git main
+          git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main

@@ -3,7 +3,6 @@
 
   var ROOT = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/';
   var INDEX_URL = ROOT + 'deals-index.json';
-  var LEGACY_URL = ROOT + 'deals.json';
   var DETAIL_ROOT = ROOT + 'deals-details/';
   var detailCache = Object.create(null);
   var lastModalFocus = null;
@@ -59,8 +58,11 @@
 
   function isMA(d) {
     if (!d || typeof d.headline !== 'string') return false;
-    if (d.dealType === 'Funding Round' || d.dealType === 'Strategic Investment') return false;
-    return !/\bearnings?\b|\bquarterly results?\b|\bannual results?\b|\bproduct launch\b|\bIPO priced\b|\bjoint venture\b|\bpartnership agreement\b|\blicen(?:se|sing) agreement\b/i.test(d.headline);
+    if (d.reviewStatus !== 'verified' || d.reviewRuleVersion !== 'strict-control-v3') return false;
+    if (!d.acquirer || !d.target || !d.sourceUrl) return false;
+    if (/^(?:unknown|undisclosed)/i.test(d.acquirer) || /^(?:unknown|undisclosed)/i.test(d.target)) return false;
+    if (String(d.acquirer).toLowerCase() === String(d.target).toLowerCase()) return false;
+    return true;
   }
 
   function fetchJson(url) {
@@ -74,7 +76,7 @@
 
   loadDeals = function () {
     showLoading();
-    fetchJson(INDEX_URL).catch(function () { return fetchJson(LEGACY_URL); }).then(function (data) {
+    fetchJson(INDEX_URL).then(function (data) {
       if (!Array.isArray(data) || !data.length) throw new Error('Empty deal index');
       allDeals = data.filter(isMA).map(normalizeDeal);
       window.allDeals = allDeals;
