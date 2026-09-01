@@ -5363,45 +5363,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-cf55c98442656899",
-    "slug": "hornbeck-offshore-services-inc-la",
-    "name": "HORNBECK OFFSHORE SERVICES INC /LA",
-    "legalName": "HORNBECK OFFSHORE SERVICES INC /LA",
-    "sector": "Other",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-01-13",
-    "latestUpdateDate": "2026-01-13",
-    "filingType": "S-1/A",
-    "cik": "1131227",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1131227/000119312526011912/d66194ds1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "HORNBECK OFFSHORE SERVICES INC /LA S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1131227/000119312526011912/d66194ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-01-13",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "HORNBECK OFFSHORE SERVICES INC /LA filed S-1/A with the SEC on 2026-01-13.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-68b1f8a31d39f6fa",
     "slug": "graphjet-technology-gtijf",
     "name": "GRAPHJET TECHNOLOGY (GTIJF)",
@@ -11961,6 +11922,45 @@
     "tags": [
       "tech"
     ],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-f9c3aed7fad1c7b8",
+    "slug": "bogd-ft-ltd",
+    "name": "Bogd FT Ltd",
+    "legalName": "Bogd FT Ltd",
+    "sector": "Financial Services",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "F-1",
+    "cik": "2113733",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2113733/000121390026096115/ea0303823-f1_bogdft.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Bogd FT Ltd F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2113733/000121390026096115/ea0303823-f1_bogdft.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Bogd FT Ltd filed F-1 with the SEC on 2026-09-01.",
+    "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
@@ -26380,7 +26380,7 @@
         "confidence": 1
       },
       {
-        "title": "FG Holdings Ltd (FGO) F-1",
+        "title": "FG Holdings Ltd (FGO) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2004385/000121390026028995/ea0201827-36.htm",
         "publisher": "SEC",
         "date": "2026-03-17",
@@ -111873,6 +111873,45 @@
       }
     ],
     "notes": "Bend NovaTech Group Ltd filed RW with the SEC on 2026-09-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-cf55c98442656899",
+    "slug": "hercules-sub-llc",
+    "name": "Hercules Sub LLC",
+    "legalName": "Hercules Sub LLC",
+    "sector": "Other",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "RW",
+    "cik": "1131227",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1131227/000119312526377906/d170840drw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Hercules Sub LLC RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1131227/000119312526377906/d170840drw.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Hercules Sub LLC filed RW with the SEC on 2026-09-01.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
