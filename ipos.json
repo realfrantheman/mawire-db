@@ -968,14 +968,6 @@
         "date": "2026-05-29",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "BIOVENTRIX, INC. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1283259/000149315226023752/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-15",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "BIOVENTRIX, INC. filed S-1/A with the SEC on 2026-05-29.",
@@ -11968,6 +11960,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-d0506cd982dfb055",
+    "slug": "cyabra-inc-cyab",
+    "name": "CYABRA, INC. (CYAB)",
+    "legalName": "CYABRA, INC. (CYAB)",
+    "sector": "Technology",
+    "industry": null,
+    "valuation": "$1M",
+    "valuationNum": 1117222,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "system",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "S-1",
+    "cik": "2032341",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2032341/000121390026096300/ea0304131-s1a1_cyabra.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "CYABRA, INC. (CYAB) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2032341/000121390026096300/ea0304131-s1a1_cyabra.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "CYABRA, INC. (CYAB) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2032341/000121390026083475/ea0299303-s1_cyabra.htm",
+        "publisher": "SEC",
+        "date": "2026-07-31",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "CYABRA, INC. (CYAB) filed S-1 with the SEC on 2026-09-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-089a98df13c4f87c",
     "slug": "entrata-inc-ent",
     "name": "ENTRATA, INC. (ENT)",
@@ -12015,6 +12054,45 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-3c91818953f80634",
+    "slug": "fingermotion-inc-fngr",
+    "name": "FingerMotion, Inc. (FNGR)",
+    "legalName": "FingerMotion, Inc. (FNGR)",
+    "sector": "Technology",
+    "industry": null,
+    "valuation": "$4M",
+    "valuationNum": 4000000,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "day",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "S-1",
+    "cik": "1602409",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1602409/000149315226041059/forms-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "FingerMotion, Inc. (FNGR) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1602409/000149315226041059/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "FingerMotion, Inc. (FNGR) filed S-1 with the SEC on 2026-09-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-ae053d1befd6f4f7",
     "slug": "glghk-ltd",
     "name": "GLGHK Ltd",
@@ -12046,6 +12124,61 @@
       }
     ],
     "notes": "GLGHK Ltd filed F-1 with the SEC on 2026-09-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-ed55c760ff9fd663",
+    "slug": "newgenivf-group-ltd-nivf-nivfw",
+    "name": "NewGenIvf Group Ltd (NIVF, NIVFW)",
+    "legalName": "NewGenIvf Group Ltd (NIVF, NIVFW)",
+    "sector": "Healthcare",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "F-1",
+    "cik": "1981662",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1981662/000121390026096245/ea0304196-f1a1_newgenivf.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "NewGenIvf Group Ltd (NIVF, NIVFW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1981662/000121390026096245/ea0304196-f1a1_newgenivf.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "NewGenIvf Group Ltd (NIVF, NIVFW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1981662/000121390026091922/ea0301325-f1_newgenivf.htm",
+        "publisher": "SEC",
+        "date": "2026-08-20",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "NewGenIvf Group Ltd (NIVF, NIVFW) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1981662/000121390026055052/ea0290294-rw_newgen.htm",
+        "publisher": "SEC",
+        "date": "2026-05-12",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "NewGenIvf Group Ltd (NIVF, NIVFW) filed F-1 with the SEC on 2026-09-01.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -12216,12 +12349,12 @@
     "legalName": "La Beaute Inc.",
     "sector": "Other",
     "industry": null,
-    "valuation": "$5",
-    "valuationNum": 5,
+    "valuation": null,
+    "valuationNum": null,
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "symbol",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-31",
@@ -13293,14 +13426,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1779977/000121390026095144/ea0303705-rw_seeqc.htm",
         "publisher": "SEC",
         "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "SeeQC, Inc. (SEQC) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1779977/000121390026073222/ea0288470-02.htm",
-        "publisher": "SEC",
-        "date": "2026-06-29",
         "type": "filing",
         "confidence": 1
       }
@@ -15533,53 +15658,6 @@
       }
     ],
     "notes": "Chilwa Minerals Ltd (CHWM) filed F-1 with the SEC on 2026-08-20.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-ed55c760ff9fd663",
-    "slug": "newgenivf-group-ltd-nivf-nivfw",
-    "name": "NewGenIvf Group Ltd (NIVF, NIVFW)",
-    "legalName": "NewGenIvf Group Ltd (NIVF, NIVFW)",
-    "sector": "Healthcare",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-20",
-    "latestUpdateDate": "2026-08-20",
-    "filingType": "F-1",
-    "cik": "1981662",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1981662/000121390026091922/ea0301325-f1_newgenivf.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "NewGenIvf Group Ltd (NIVF, NIVFW) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1981662/000121390026091922/ea0301325-f1_newgenivf.htm",
-        "publisher": "SEC",
-        "date": "2026-08-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "NewGenIvf Group Ltd (NIVF, NIVFW) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1981662/000121390026055052/ea0290294-rw_newgen.htm",
-        "publisher": "SEC",
-        "date": "2026-05-12",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "NewGenIvf Group Ltd (NIVF, NIVFW) filed F-1 with the SEC on 2026-08-20.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -18283,45 +18361,6 @@
       }
     ],
     "notes": "Suchness Tech Ltd (SUCH) filed F-1 with the SEC on 2026-08-03.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-d0506cd982dfb055",
-    "slug": "cyabra-inc-cyab",
-    "name": "CYABRA, INC. (CYAB)",
-    "legalName": "CYABRA, INC. (CYAB)",
-    "sector": "Technology",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-31",
-    "latestUpdateDate": "2026-07-31",
-    "filingType": "S-1",
-    "cik": "2032341",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2032341/000121390026083475/ea0299303-s1_cyabra.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "CYABRA, INC. (CYAB) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2032341/000121390026083475/ea0299303-s1_cyabra.htm",
-        "publisher": "SEC",
-        "date": "2026-07-31",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "CYABRA, INC. (CYAB) filed S-1 with the SEC on 2026-07-31.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -72742,6 +72781,69 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-5e99aacd42c7a8fe",
+    "slug": "three-lions-acquisition-corp-tlac",
+    "name": "Three Lions Acquisition Corp. (TLAC)",
+    "legalName": "Three Lions Acquisition Corp. (TLAC)",
+    "sector": "Real Estate",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-09-01",
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "424B4",
+    "cik": "2128462",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2128462/000119312526378248/d142823d424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Three Lions Acquisition Corp. (TLAC) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2128462/000119312526378248/d142823d424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Three Lions Acquisition Corp. (TLAC) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/2128462/999999999526002831/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-31",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Three Lions Acquisition Corp. (TLAC) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2128462/000119312526361172/d142823ds1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Three Lions Acquisition Corp. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2128462/000119312526290930/d142823ds1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Three Lions Acquisition Corp. (TLAC) filed 424B4 with the SEC on 2026-09-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-f0ccf0913870aa35",
     "slug": "first-breach-inc-fbdt",
     "name": "First Breach, Inc. (FBDT)",
@@ -73549,14 +73651,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1912884/000121390026035446/ea0282024-02.htm",
         "publisher": "SEC",
         "date": "2026-03-27",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Republic Power Group Ltd (RPGL) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1912884/000121390026030971/ea0282024-01.htm",
-        "publisher": "SEC",
-        "date": "2026-03-18",
         "type": "filing",
         "confidence": 1
       },
@@ -78073,7 +78167,7 @@
         "confidence": 1
       },
       {
-        "title": "AMR Resources Acquisition Corp. S-1",
+        "title": "AMR Resources Acquisition Corp. S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2110119/000121390026073226/ea0274132-03.htm",
         "publisher": "SEC",
         "date": "2026-06-29",
@@ -136880,61 +136974,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-5e99aacd42c7a8fe",
-    "slug": "three-lions-acquisition-corp-tlac",
-    "name": "Three Lions Acquisition Corp. (TLAC)",
-    "legalName": "Three Lions Acquisition Corp. (TLAC)",
-    "sector": "Real Estate",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-31",
-    "latestUpdateDate": "2026-08-31",
-    "filingType": "EFFECT",
-    "cik": "2128462",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2128462/999999999526002831/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Three Lions Acquisition Corp. (TLAC) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2128462/999999999526002831/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-31",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Three Lions Acquisition Corp. (TLAC) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2128462/000119312526361172/d142823ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-21",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Three Lions Acquisition Corp. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2128462/000119312526290930/d142823ds1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-01",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Three Lions Acquisition Corp. (TLAC) filed EFFECT with the SEC on 2026-08-31.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-f9050dcc553b8559",
     "slug": "viking-acquisition-corp-i-vaci-vaci-un-vaci-wt",
     "name": "Viking Acquisition Corp I (VACI, VACI-UN, VACI-WT)",
@@ -151888,53 +151927,6 @@
       }
     ],
     "notes": "TOYO Co., Ltd (TOYO, TOYWF) filed EFFECT with the SEC on 2026-06-23.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-3c91818953f80634",
-    "slug": "fingermotion-inc-fngr",
-    "name": "FingerMotion, Inc. (FNGR)",
-    "legalName": "FingerMotion, Inc. (FNGR)",
-    "sector": "Technology",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-22",
-    "latestUpdateDate": "2026-06-22",
-    "filingType": "EFFECT",
-    "cik": "1602409",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1602409/999999999526002080/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "FingerMotion, Inc. (FNGR) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1602409/999999999526002080/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-06-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "FingerMotion, Inc. (FNGR) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1602409/000152013826000232/fngr-06112026_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-11",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "FingerMotion, Inc. (FNGR) filed EFFECT with the SEC on 2026-06-22.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
