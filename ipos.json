@@ -12054,6 +12054,45 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-cdf75d9a06c9396e",
+    "slug": "rainrock-acquisition-corp",
+    "name": "RainRock Acquisition Corp.",
+    "legalName": "RainRock Acquisition Corp.",
+    "sector": "Real Estate",
+    "industry": null,
+    "valuation": "$10",
+    "valuationNum": 10,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "on",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "S-1",
+    "cik": "2089787",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2089787/000121390026095969/ea0271266-02.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "RainRock Acquisition Corp. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089787/000121390026095969/ea0271266-02.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "RainRock Acquisition Corp. filed S-1 with the SEC on 2026-09-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-4ed3135d5fa78aee",
     "slug": "sb-energy-inc",
     "name": "SB Energy, Inc.",
@@ -12216,12 +12255,12 @@
     "legalName": "LOGOOM TECHNOLOGIES, INC.",
     "sector": "Technology",
     "industry": null,
-    "valuation": "$120,000",
-    "valuationNum": 120000,
+    "valuation": null,
+    "valuationNum": null,
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "market",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-31",
@@ -31541,69 +31580,6 @@
       }
     ],
     "notes": "Alaunos Therapeutics, Inc. (TCRT) filed S-1 with the SEC on 2025-10-22.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-3b671c9e0ad4f88e",
-    "slug": "bend-novatech-group-ltd-benn",
-    "name": "Bend NovaTech Group Ltd (BENN)",
-    "legalName": "Bend NovaTech Group Ltd (BENN)",
-    "sector": "Industrials",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2025-10-22",
-    "latestUpdateDate": "2025-10-22",
-    "filingType": "F-1",
-    "cik": "2072315",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2072315/000121390025101276/ea0262041-f1a3_bend.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Bend NovaTech Group Ltd (BENN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2072315/000121390025101276/ea0262041-f1a3_bend.htm",
-        "publisher": "SEC",
-        "date": "2025-10-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bend NovaTech Group Ltd (BENN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2072315/000121390025086757/ea0256938-f1a2_bend.htm",
-        "publisher": "SEC",
-        "date": "2025-09-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bend NovaTech Group Ltd (BENN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2072315/000121390025083300/ea0255487-f1a1_bend.htm",
-        "publisher": "SEC",
-        "date": "2025-09-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bend NovaTech Group Ltd F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2072315/000121390025073768/ea0252160-f1_bend.htm",
-        "publisher": "SEC",
-        "date": "2025-08-08",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Bend NovaTech Group Ltd (BENN) filed F-1 with the SEC on 2025-10-22.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -72568,6 +72544,77 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-796c5a666412a9a0",
+    "slug": "advance-jv-group-ltd",
+    "name": "Advance JV Group Ltd",
+    "legalName": "Advance JV Group Ltd",
+    "sector": "Other",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-09-01",
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "424B4",
+    "cik": "2089447",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2089447/000149315226040933/form424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Advance JV Group Ltd 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089447/000149315226040933/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Advance JV Group Ltd EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089447/999999999526002832/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-31",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Advance JV Group Ltd F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089447/000149315226040360/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-27",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Advance JV Group Ltd F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089447/000149315226037633/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-13",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Advance JV Group Ltd F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089447/000149315226033873/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-20",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Advance JV Group Ltd filed 424B4 with the SEC on 2026-09-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-6699532e5a4c94d7",
     "slug": "elong-power-holding-ltd-elpw",
     "name": "Elong Power Holding Ltd. (ELPW)",
@@ -111795,6 +111842,45 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-3b671c9e0ad4f88e",
+    "slug": "bend-novatech-group-ltd",
+    "name": "Bend NovaTech Group Ltd",
+    "legalName": "Bend NovaTech Group Ltd",
+    "sector": "Industrials",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-01",
+    "latestUpdateDate": "2026-09-01",
+    "filingType": "RW",
+    "cik": "2072315",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2072315/000121390026096006/ea0304172-rw_bend.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Bend NovaTech Group Ltd RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/2072315/000121390026096006/ea0304172-rw_bend.htm",
+        "publisher": "SEC",
+        "date": "2026-09-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Bend NovaTech Group Ltd filed RW with the SEC on 2026-09-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-b4abaef765c711f4",
     "slug": "coolbit-technologies-ltd-cbai",
     "name": "Coolbit Technologies Ltd (CBAI)",
@@ -136347,69 +136433,6 @@
       }
     ],
     "notes": "Hypebeast Ltd filed RW with the SEC on 2024-01-02.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-796c5a666412a9a0",
-    "slug": "advance-jv-group-ltd",
-    "name": "Advance JV Group Ltd",
-    "legalName": "Advance JV Group Ltd",
-    "sector": "Other",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-31",
-    "latestUpdateDate": "2026-08-31",
-    "filingType": "EFFECT",
-    "cik": "2089447",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2089447/999999999526002832/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Advance JV Group Ltd EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2089447/999999999526002832/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-31",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Advance JV Group Ltd F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2089447/000149315226040360/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-27",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Advance JV Group Ltd F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2089447/000149315226037633/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-13",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Advance JV Group Ltd F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2089447/000149315226033873/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-20",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Advance JV Group Ltd filed EFFECT with the SEC on 2026-08-31.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
