@@ -22,10 +22,20 @@ function extractAccession(...values) {
   return null;
 }
 
-function secSubmissionUrl(accession) {
+function normalizeCik(value) {
+  const digits = String(value || '').replace(/\D/g, '').replace(/^0+/, '');
+  return digits || null;
+}
+
+/**
+ * Build a direct SEC submission URL. The archive owner CIK is not always the
+ * first ten digits of the accession (for example, submissions made through a
+ * filing agent), so callers should pass the issuer/filer CIK when available.
+ */
+function secSubmissionUrl(accession, cikOverride = null) {
   const match = String(accession || '').match(/^(\d{10})-(\d{2})-(\d{6})$/);
   if (!match) return null;
-  const cik = String(parseInt(match[1], 10));
+  const cik = normalizeCik(cikOverride) || String(parseInt(match[1], 10));
   const folder = accession.replace(/-/g, '');
   return `https://www.sec.gov/Archives/edgar/data/${cik}/${folder}/${accession}.txt`;
 }
@@ -43,7 +53,7 @@ function canonicalSecDocumentUrl(record = {}) {
     if (isDirectSecArchiveFile(candidate)) return cleanHttpUrl(candidate);
   }
   const accession = extractAccession(record.accessionNo, ...candidates);
-  return secSubmissionUrl(accession);
+  return secSubmissionUrl(accession, record.filingCik || record.cik);
 }
 
 function isLandingPage(value) {
@@ -104,6 +114,7 @@ async function resolvePrimaryHttpUrl(input) {
 module.exports = {
   cleanHttpUrl,
   extractAccession,
+  normalizeCik,
   secSubmissionUrl,
   isDirectSecArchiveFile,
   canonicalSecDocumentUrl,
