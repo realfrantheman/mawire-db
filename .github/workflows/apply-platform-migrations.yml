@@ -33,4 +33,6 @@ jobs:
         working-directory: mawire-platform
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
+          NODE_ENV: production
         run: npm run migrate
