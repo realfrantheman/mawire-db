@@ -20,6 +20,10 @@ if not TOKEN:
 
 OWNER = 'realfrantheman'
 MAPPINGS = [
+    # Platform deployment/runtime entrypoint
+    ('DEPLOY-platform-package.json', 'mawire-platform', 'package.json'),
+    ('DEPLOY-platform-nixpacks.toml', 'mawire-platform', 'nixpacks.toml'),
+
     # Platform runtime
     ('FIX-scheduler-v2.js', 'mawire-platform', 'scheduler.js'),
     ('FIX-sec-ingestor-index.js', 'mawire-platform', 'services/sec-ingestor/index.js'),
