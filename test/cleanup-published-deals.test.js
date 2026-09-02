@@ -21,49 +21,76 @@ test('keeps one best record per exact transaction source', () => {
 });
 
 test('clears unrelated PR Newswire links', () => {
-  const deal = clearSuspiciousNewsSource({ sourceUrl: 'https://www.prnewswire.com/news-releases/unrelated-301.html', source: 'PR Newswire' });
+  const deal = clearSuspiciousNewsSource({ headline: 'BancFirst Announces Acquisition of SpiritBank', sourceUrl: 'https://www.prnewswire.com/news-releases/sony-semiconductor-releases-x-ray-sensor-123.html' });
   assert.equal(deal.sourceUrl, null);
 });
 
 test('recovers reliable parties from acquisition headlines', () => {
-  const deal = repairFilingAgentParties({ headline: 'Buyer Inc. to acquire Target Corp.', acquirer: 'Unknown', target: 'Unknown' });
-  assert.equal(deal.acquirer, 'Buyer Inc.');
-  assert.equal(deal.target, 'Target Corp.');
+  const result = cleanup([{ id: 'a', headline: 'BancFirst Corporation Announces Acquisition of SpiritBank', acquirer: 'Undisclosed', target: 'Undisclosed', dateISO: '2026-06-10' }]);
+  assert.equal(result[0].acquirer, 'BancFirst Corporation');
+  assert.equal(result[0].target, 'SpiritBank');
 });
 
 test('preserves direct SEC filing documents', () => {
-  const url = 'https://www.sec.gov/Archives/edgar/data/123/456789/example.htm';
-  const deal = repairSecSource({ sourceUrl: url, filingType: 'DEFM14A' });
-  assert.equal(deal.sourceUrl, url);
+  const repaired = repairSecSource({
+    sourceUrl: 'https://www.sec.gov/Archives/edgar/data/1493152/000149315226028363/formdefa14a.htm'
+  });
+  assert.equal(repaired.sourceUrl, 'https://www.sec.gov/Archives/edgar/data/1493152/000149315226028363/formdefa14a.htm');
+  assert.equal(repaired.edgarUrl, repaired.sourceUrl);
 });
 
 test('removes generic SEC search links instead of publishing them as evidence', () => {
-  const deal = repairSecSource({ sourceUrl: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany', filingType: 'DEFM14A' });
-  assert.equal(deal.sourceUrl, null);
+  const repaired = repairSecSource({
+    sourceUrl: 'https://www.sec.gov/edgar/search/#/q=0001493152-26-028363'
+  });
+  assert.equal(repaired.sourceUrl, null);
+  assert.equal(repaired.edgarUrl, null);
+  assert.equal(repaired.needsReview, true);
 });
 
 test('export reconstructs direct SEC Archives filing index URL from CIK and accession', () => {
-  const url = reconstructEdgarUrl({ filingCik: '123456', accessionNo: '0000123456-26-000001' });
-  assert.match(url, /^https:\/\/www\.sec\.gov\/Archives\/edgar\/data\/123456\/000012345626000001\//);
+  const url = reconstructEdgarUrl({
+    accessionNo: '0001829126-26-007124',
+    filingCik: '0002109869',
+    sourceUrl: 'https://www.sec.gov/edgar/search/#/q=0001829126-26-007124',
+  });
+
+  assert.equal(url, 'https://www.sec.gov/Archives/edgar/data/2109869/000182912626007124/0001829126-26-007124-index.html');
 });
 
 test('repairs repeated self-party contamination from the headline', () => {
-  const deal = repairFilingAgentParties({ headline: 'Buyer Corp to acquire Target Inc.', acquirer: 'Buyer Corp', target: 'Buyer Corp' });
-  assert.equal(deal.acquirer, 'Buyer Corp');
-  assert.equal(deal.target, 'Target Inc.');
+  const [repaired] = cleanup([{
+    headline: 'OVERSEAS SHIPHOLDING GROUP INC / MOBIX LABS, INC',
+    acquirer: 'OVERSEAS SHIPHOLDING GROUP INC',
+    target: 'OVERSEAS SHIPHOLDING GROUP INC',
+    dateISO: '2026-06-10'
+  }]);
+  assert.equal(repaired.acquirer, 'Undisclosed');
+  assert.equal(repaired.target, 'MOBIX LABS, INC');
 });
 
 test('prefers a CIK-backed extracted target for a low-confidence conflict', () => {
-  const deal = repairFilingAgentParties({ headline: 'Buyer Corp to acquire Target Inc.', acquirer: 'Buyer Corp', target: 'Wrong Target', targetCik: null, extractedTarget: 'Target Inc.', confidence: 0.4 });
-  assert.ok(deal.target);
+  const [repaired] = cleanup([{
+    headline: 'Undisclosed / OVERSEAS SHIPHOLDING GROUP INC',
+    acquirer: 'Undisclosed',
+    target: 'OVERSEAS SHIPHOLDING GROUP INC',
+    extractedTarget: 'PERMA FIX ENVIRONMENTAL SERVICES INC (PESI) (CIK 0000891532)',
+    confidence: 0.45,
+    needsReview: true,
+    dateISO: '2026-06-12'
+  }]);
+  assert.equal(repaired.target, 'PERMA FIX ENVIRONMENTAL SERVICES INC');
+  assert.equal(repaired.headline, 'Undisclosed / PERMA FIX ENVIRONMENTAL SERVICES INC');
 });
 
 test('does not publish records with no identifiable party', () => {
-  const result = cleanup([{ id: 'a', headline: 'Transaction update', acquirer: 'Unknown', target: 'Unknown', sourceUrl: 'https://example.com/deal' }]);
-  assert.equal(result.length, 0);
+  assert.equal(cleanup([{ id: 'a', headline: 'Undisclosed / Undisclosed', acquirer: 'Undisclosed', target: 'Undisclosed', dateISO: '2026-06-10' }]).length, 0);
 });
 
 test('does not publish low-confidence news targets contaminated by promotional copy', () => {
-  const result = cleanup([{ id: 'a', headline: 'Buyer acquires Target', acquirer: 'Buyer', target: 'Target, creating a leader', sourceType: 'news_rss', confidence: 0.4, sourceUrl: 'https://example.com/deal' }]);
-  assert.equal(result.length, 0);
+  assert.equal(cleanup([{
+    id: 'a', headline: 'Factua Acquires Intelsio', acquirer: 'Factua',
+    target: 'Intelsio, Bringing a Decade of Performance Marketing',
+    dateISO: '2026-06-09', sourceType: 'news_rss', confidence: 0.5
+  }]).length, 0);
 });
