@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: pie-monitor
-  cancel-in-progress: true
+  group: mawire-db-artifact-writes
+  cancel-in-progress: false
 
 jobs:
   pie:
@@ -23,8 +23,9 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
-      - name: Run fail-closed integrity checks
+      - name: Run platform integrity checks
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           MAWIRE_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
         run: node FIX-pie-monitor.js
