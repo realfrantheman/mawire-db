@@ -8,6 +8,10 @@ on:
         required: false
         default: '500'
 
+concurrency:
+  group: mawire-platform-enrichment
+  cancel-in-progress: false
+
 jobs:
   enrich:
     runs-on: ubuntu-latest
@@ -16,19 +20,22 @@ jobs:
     steps:
       - name: Checkout mawire-db
         uses: actions/checkout@v4
-        env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
 
-      - name: Install pg
-        run: npm install pg
+      - name: Install dependencies
+        run: npm ci
 
       - name: Run deal enrichment
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           BATCH: ${{ github.event.inputs.batch || '500' }}
         run: node FIX-enrich-deals.js
+
+      - name: Publication ownership
+        run: echo "Enrichment complete. The hourly verified refresh workflow is the sole publisher of public deal artifacts."

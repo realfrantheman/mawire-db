@@ -1,440 +1,243 @@
 'use strict';
 
-const https    = require('https');
-const http     = require('http');
-const fs       = require('fs');
-const path     = require('path');
+/**
+ * Press-release/RSS M&A ingestion.
+ *
+ * This source is intentionally a candidate source only. Every inserted record
+ * remains needs_review=true and must pass strict-control-v3 before publication.
+ */
+
+const fs = require('fs');
+const path = require('path');
 const { Pool } = require('pg');
-const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-extraction.js'))
+
+if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is required');
+
+const extractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-extraction.js'))
   ? '../shared/deal-extraction'
   : './FIX-deal-extraction';
-const { extractParties, rawSnippet, withRetry } = require(sharedExtractionPath);
-const sourceUrlPath = fs.existsSync(path.join(__dirname, '../shared/source-url.js')) ? '../shared/source-url' : './FIX-source-url';
+const { extractDeal, distinctParties, normalizeName, rawSnippet, withRetry } = require(extractionPath);
+
+const sourceUrlPath = fs.existsSync(path.join(__dirname, '../shared/source-url.js'))
+  ? '../shared/source-url'
+  : './FIX-source-url';
 const { resolvePrimaryHttpUrl } = require(sourceUrlPath);
 
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true },
+  ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true'
+    ? { rejectUnauthorized: false }
+    : { rejectUnauthorized: true },
+  max: 4,
+  statement_timeout: 60000,
 });
 
+db.on('error', error => console.error('[NEWS] idle DB client error:', error.message));
+
 const RSS_FEEDS = [
-  {
-    name: 'GlobeNewswire M&A',
-    url:  'https://www.globenewswire.com/RssFeed/subjectcode/30-Merger,Acquisitions',
-  },
-  {
-    name: 'PR Newswire M&A',
-    url:  'https://www.prnewswire.com/rss/news-releases-list.rss?category=mergers-acquisitions-alliances',
-  },
-  {
-    name: 'Business Wire M&A',
-    url:  'https://feed.businesswire.com/rss/home/?rss=G22',
-  },
-  {
-    name: 'GlobeNewswire IPO',
-    url:  'https://www.globenewswire.com/RssFeed/subjectcode/26-Initial%20Public%20Offering%20%28IPO%29',
-  },
+  { name: 'GlobeNewswire M&A', url: 'https://www.globenewswire.com/RssFeed/subjectcode/30-Merger,Acquisitions' },
+  { name: 'PR Newswire M&A', url: 'https://www.prnewswire.com/rss/news-releases-list.rss?category=mergers-acquisitions-alliances' },
+  { name: 'Business Wire M&A', url: 'https://feed.businesswire.com/rss/home/?rss=G22' },
 ];
 
-// Unambiguous M&A signals — a match alone is sufficient
-const STRONG_MA_KEYWORDS = [
-  'to acquire ', 'agrees to acquire', 'acquisition of ',
-  'completing acquisition', 'complete acquisition', 'completed acquisition',
-  'announces acquisition', 'announces merger', 'merger with ',
-  'to merge with', 'agrees to merge',
-  'tender offer', 'going-private', 'going private',
-  'buyout of', 'take private', 'taken private',
-  'to be acquired by', 'acquired by ',
-  'definitive agreement to ', 'signs definitive agreement',
-  'enters into definitive agreement', 'enters definitive agreement',
-  'merger agreement', 'definitive merger agreement',
-  'scheme of arrangement', 'recommended offer', 'recommended cash offer',
-  'all-cash acquisition', 'all-stock merger', 'all cash deal',
-  'to acquire all outstanding', 'acquire all shares',
-];
+const EXCLUDE_RE = /\b(?:minority investment|minority stake|non-controlling stake|strategic investment|joint venture|partnership|series [a-f]|seed round|funding round|credit facility|refinanc(?:ing|e)|share buyback|stock buyback|repurchase|initial public offering|\bipo\b|license agreement|licensing agreement|distribution agreement|supply agreement|wins contract|contract award)\b/i;
+const CONTROL_HINT_RE = /\b(?:agreed to acquire|agrees to acquire|to acquire|acquires|acquisition of|to be acquired by|merger with|to merge with|merger agreement|tender offer|going[- ]private|take[- ]private|scheme of arrangement|recommended (?:cash )?offer|buyout of)\b/i;
 
-// Weaker signals — valid only when entity extraction also succeeds
-const WEAK_MA_KEYWORDS = [
-  'acquires ', 'acquisition', 'merger', 'takeover', 'to buy ', 'bid for ',
-];
-
-// Disqualifiers — block the item even if an MA keyword matched
-const EXCLUDE_KEYWORDS = [
-  'acquires rights', 'acquires license', 'acquires content', 'acquires land',
-  'acquires property', 'acquires building', 'acquires office',
-  'acquires minority', 'acquires equity stake', 'acquires stake in',
-  'minority stake', 'minority investment', 'strategic investment',
-  'strategic alliance', 'partnership agreement', 'joint venture',
-  'series a ', 'series b ', 'series c ', 'series d ', 'series e ', 'series f ',
-  'seed round', 'funding round', 'raises $', 'raised $', 'raises funding', 'secures funding',
-  'licensing agreement', 'license agreement', 'distribution agreement',
-  'content deal', 'marketing agreement', 'supply agreement',
-  'wins contract', 'awarded contract', 'contract award',
-  'credit facility', 'loan agreement', 'refinanc',
-  'ipo ', 'initial public offering', 'ipo priced', 'prices its ipo',
-  'real estate', 'acquires hotel', 'acquires portfolio',
-  'buys back', 'share buyback', 'stock buyback', 'repurchase',
-  // Earnings / financial results — never M&A
-  'quarterly earnings', 'quarterly results', 'annual results', 'full year results',
-  'q1 results', 'q2 results', 'q3 results', 'q4 results',
-  'q1 earnings', 'q2 earnings', 'q3 earnings', 'q4 earnings',
-  'reports financial results', 'announces financial results', 'announces results',
-  'first quarter results', 'second quarter results', 'third quarter results', 'fourth quarter results',
-  'earnings per share', 'reports revenue', 'revenue grew',
-  // Executive appointments
-  'appoints new ceo', 'appoints new cfo', 'appoints new coo', 'appoints new president',
-  'names new ceo', 'names new cfo', 'names new coo', 'names new president',
-  'appoints chief executive', 'names chief executive',
-  // Product / technology announcements
-  'product launch', 'launches new product', 'unveils new', 'introduces new',
-];
-
-const ENTITY_PATTERNS = [
-  /^(.+?)\s+(?:agrees\s+to\s+buy|to\s+acquire)\s+(.+?)\s+for\s+\$[\d,.]+/i,
-  /^(.+?)\s+acquires\s+(.+?)(?:\s+for\s+\$[\d,.]+)?$/i,
-  /^(.+?)\s+and\s+(.+?)\s+to\s+merge/i,
-  /^(.+?)\s+launches\s+bid\s+for\s+(.+?)(?:\s|$)/i,
-  /^(.+?)\s+agrees\s+to\s+buy\s+(.+?)(?:\s+for\s+\$[\d,.]+)?$/i,
-];
-
-async function run() {
-  const logId = await startLog('news_rss');
-  const stats  = { fetched: 0, new: 0, updated: 0, failed: 0 };
-
-  try {
-    console.log('[NEWS] Starting ingestion run at', new Date().toISOString());
-
-    for (const feed of RSS_FEEDS) {
-      console.log(`[NEWS] Fetching feed: ${feed.name}`);
-      try {
-        const xml   = await withRetry(() => fetchText(feed.url), { attempts: 4, baseDelayMs: 1000 });
-        const items = parseRssItems(xml);
-        console.log(`[NEWS] Parsed ${items.length} items from ${feed.name}`);
-        stats.fetched += items.length;
-
-        for (const item of items) {
-          try {
-            if (!isMaDeal(item)) continue;
-            const result = await processNewsItem(item, feed.name);
-            if (result === 'new') stats.new++;
-          } catch (err) {
-            stats.failed++;
-            console.error(`[NEWS] Error processing item "${trunc(item.title, 80)}":`, err.message);
-          }
-        }
-      } catch (err) {
-        stats.failed++;
-        console.error(`[NEWS] Error fetching ${feed.name}:`, err.message);
-      }
-
-      await sleep(1500);
-    }
-
-    await endLog(logId, 'success', stats);
-    console.log('[NEWS] Run complete:', stats);
-  } catch (err) {
-    await endLog(logId, 'failed', stats, err.message);
-    console.error('[NEWS] Fatal error:', err);
-  }
+function trunc(value, length) {
+  return value == null ? value : String(value).slice(0, length);
 }
 
-function parseRssItems(xml) {
-  if (!xml) return [];
-  const items    = [];
-  const itemRegex = /<item[^>]*>([\s\S]*?)<\/item>/gi;
-  let match;
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
-  while ((match = itemRegex.exec(xml)) !== null) {
-    const block = match[1];
-    items.push({
-      title:       extractTag(block, 'title'),
-      link:        extractTag(block, 'link'),
-      pubDate:     extractTag(block, 'pubDate'),
-      description: extractTag(block, 'description'),
-    });
-  }
-
-  return items;
-}
-
-function extractTag(xml, tag) {
-  const cdataRe = new RegExp(`<${tag}[^>]*>\\s*<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>\\s*<\\/${tag}>`, 'i');
-  const plainRe = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'i');
-  const cdata   = cdataRe.exec(xml);
-  if (cdata) return cdata[1].trim();
-  const plain   = plainRe.exec(xml);
-  if (plain)  return plain[1]
-    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
-  return '';
-}
-
-function isMaDeal(item) {
-  const text = ((item.title || '') + ' ' + (item.description || '')).toLowerCase();
-
-  // Hard exclusions first — these are never M&A regardless of other keywords
-  if (EXCLUDE_KEYWORDS.some(kw => text.includes(kw))) return false;
-
-  // Strong signal alone is sufficient
-  if (STRONG_MA_KEYWORDS.some(kw => text.includes(kw))) return true;
-
-  // Weak signal only qualifies if we can also extract two distinct parties
-  if (WEAK_MA_KEYWORDS.some(kw => text.includes(kw))) {
-    const { acquirer, target } = extractEntities(item.title || '');
-    return !!(acquirer && target);
-  }
-
-  return false;
-}
-
-async function processNewsItem(item, feedName) {
-  const sourceUrl = trunc(await resolvePrimaryHttpUrl(item.link || '') || item.link || '', 500);
-  if (!sourceUrl) return 'skip';
-
-  const existing = await db.query(
-    'SELECT id FROM deal_sources WHERE source_url = $1 LIMIT 1',
-    [sourceUrl]
-  );
-  if (existing.rows.length > 0) return 'skip';
-
-  const text = `${item.title || ''} ${item.description || ''}`;
-  const specific = extractEntities(item.title || '');
-  const generic = extractParties(text);
-  const acquirer = specific.acquirer || generic.acquirer;
-  const target = specific.target || generic.target;
-  const dealValue            = extractDealValue((item.title || '') + ' ' + (item.description || ''));
-  const pubDate              = parseDateFlexible(item.pubDate);
-
-  const acquirerRec = acquirer ? await upsertCompany(db, { name: acquirer }, null) : null;
-  const targetRec   = target
-    ? await upsertCompany(db, { name: target }, null)
-    : null;
-
-  await insertDeal(db, {
-    acquirer_id:       acquirerRec?.id || null,
-    target_id:         targetRec ? targetRec.id : null,
-    headline:          trunc(item.title || `${acquirer} / ${target}`, 500),
-    deal_type:         inferDealType(item.title || ''),
-    status:            'Announced',
-    announcement_date: pubDate,
-    filing_date:       null,
-    deal_value:        dealValue,
-    sector:            null,
-    source_confidence: acquirer && target ? Math.max(0.65, generic.confidence || 0) : 0.45,
-    extraction_method: 'news_rss',
-    needs_review:      true,
-    source_type:       'news_rss',
-    source_name:       feedName,
-    source_url:        sourceUrl,
-    source_date:       pubDate,
-    extracted_acquirer_name: acquirer,
-    extracted_target_name: target,
-    raw_extracted_snippet: rawSnippet(text),
-  });
-
-  return 'new';
-}
-
-function extractEntities(title) {
-  for (const pattern of ENTITY_PATTERNS) {
-    const m = pattern.exec(title);
-    if (m) {
-      return {
-        acquirer: cleanCompanyName(m[1]),
-        target:   cleanCompanyName(m[2]),
-      };
-    }
-  }
-  return { acquirer: null, target: null };
-}
-
-function cleanCompanyName(name) {
-  if (!name) return null;
-  return name.replace(/^\s+|\s+$/g, '').replace(/\s{2,}/g, ' ').slice(0, 200) || null;
-}
-
-function extractDealValue(text) {
-  const m = /(\d[\d,.]*)\s*(billion|million|bn|mn|B\b|M\b)/i.exec(text);
-  if (!m) return null;
-  const num  = parseFloat(m[1].replace(/,/g, ''));
-  const unit = m[2].toLowerCase();
-  if (unit === 'billion' || unit === 'bn' || unit === 'b') return Math.round(num * 1e9 * 100);
-  if (unit === 'million' || unit === 'mn' || unit === 'm') return Math.round(num * 1e6 * 100);
-  return null;
-}
-
-function inferDealType(title) {
-  const t = title.toLowerCase();
-  if (/tender\s+offer/.test(t))                                      return 'Tender Offer';
-  if (/going.private|take\s+private|taken\s+private/.test(t))       return 'Going-Private';
-  if (/buyout/.test(t))                                              return 'Buyout';
-  if (/merger|to\s+merge/.test(t))                                   return 'Merger';
-  if (/acquires|acquisition|to\s+buy|agrees\s+to\s+buy/.test(t))    return 'Acquisition';
-  return 'Acquisition';
-}
-
-function parseDateFlexible(str) {
-  if (!str) return null;
-  const ddmmyyyy = /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/.exec(str.trim());
-  if (ddmmyyyy) {
-    return `${ddmmyyyy[3]}-${ddmmyyyy[2].padStart(2, '0')}-${ddmmyyyy[1].padStart(2, '0')}`;
-  }
-  try {
-    const d = new Date(str);
-    if (!isNaN(d.getTime())) return d.toISOString().split('T')[0];
-  } catch {}
-  return null;
-}
-
-function trunc(str, len) {
-  return str ? String(str).slice(0, len) : str;
-}
-
-function normalizeName(name) {
-  return String(name)
-    .toLowerCase()
-    .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '')
-    .replace(/\s+/g, ' ')
-    .replace(/\b(inc|corp|llc|ltd|plc|co|company|corporation|incorporated|limited|sa|ag|nv|bv|se)\b/g, '')
+function decodeXml(value) {
+  return String(value || '')
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
     .trim();
 }
 
-async function upsertCompany(db, info, cik) {
-  const name       = (info && info.name) ? info.name : 'Unknown';
-  const normalized = normalizeName(name);
+function extractTag(block, tag) {
+  const match = String(block || '').match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'i'));
+  return match ? decodeXml(match[1]) : '';
+}
 
-  if (cik) {
-    const byCik = await db.query('SELECT id FROM companies WHERE cik = $1 LIMIT 1', [cik]);
-    if (byCik.rows.length) return byCik.rows[0];
+function stripHtml(value) {
+  return decodeXml(value)
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function parseRssItems(xml) {
+  const items = [];
+  const re = /<item\b[^>]*>([\s\S]*?)<\/item>/gi;
+  let match;
+  while ((match = re.exec(String(xml || ''))) !== null) {
+    const block = match[1];
+    const title = stripHtml(extractTag(block, 'title'));
+    const description = stripHtml(extractTag(block, 'description'));
+    const link = extractTag(block, 'link') || extractTag(block, 'guid');
+    const pubDate = extractTag(block, 'pubDate') || extractTag(block, 'dc:date');
+    if (title || link) items.push({ title, description, link, pubDate });
   }
-
-  const byName = await db.query(
-    'SELECT id FROM companies WHERE normalized_name = $1 LIMIT 1',
-    [trunc(normalized, 500)]
-  );
-  if (byName.rows.length) return byName.rows[0];
-
-  const res = await db.query(
-    `INSERT INTO companies (name, normalized_name, cik)
-     VALUES ($1, $2, $3) RETURNING id`,
-    [trunc(name, 500), trunc(normalized, 500), cik || null]
-  );
-  return res.rows[0];
+  return items;
 }
 
-async function insertDeal(db, info) {
-  const res = await db.query(`
-    INSERT INTO deals (
-      acquirer_id, target_id, headline, deal_type, status,
-      announcement_date, filing_date, deal_value, sector,
-      source_confidence, extraction_method, needs_review
-      , extracted_acquirer_name, extracted_target_name, raw_extracted_snippet
-    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
-    RETURNING id
-  `, [
-    info.acquirer_id,
-    info.target_id         || null,
-    trunc(info.headline, 500),
-    trunc(info.deal_type, 100),
-    trunc(info.status, 50),
-    info.announcement_date || null,
-    info.filing_date       || null,
-    info.deal_value        || null,
-    trunc(info.sector, 100) || null,
-    info.source_confidence,
-    trunc(info.extraction_method, 100),
-    info.needs_review,
-    trunc(info.extracted_acquirer_name, 500),
-    trunc(info.extracted_target_name, 500),
-    info.raw_extracted_snippet,
-  ]);
+function parseDate(value) {
+  if (!value) return null;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString().slice(0, 10);
+}
 
-  const dealId = res.rows[0].id;
+async function fetchFeed(url) {
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': 'mergers.news contact@mergers.news',
+      Accept: 'application/rss+xml,application/xml,text/xml;q=0.9,*/*;q=0.5',
+    },
+    redirect: 'follow',
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status} fetching ${url}`);
+  const body = await response.text();
+  if (!/<(?:rss|feed|item)\b/i.test(body)) throw new Error(`Non-RSS response from ${url}`);
+  return body;
+}
 
+function candidateFromItem(item) {
+  const combined = `${item.title || ''}. ${item.description || ''}`.replace(/\s+/g, ' ').trim();
+  if (!combined || EXCLUDE_RE.test(combined) || !CONTROL_HINT_RE.test(combined)) return null;
+  const extracted = extractDeal(combined, { sourceReliability: 12, dedupCertainty: 2 });
+  if (!distinctParties(extracted.acquirer, extracted.target)) return null;
+  if (extracted.disposition === 'rejected') return null;
+  return { combined, extracted };
+}
+
+async function upsertCompany(client, name) {
+  const normalized = normalizeName(name);
+  if (!normalized) throw new Error(`Invalid company name: ${name}`);
+  const existing = await client.query('SELECT id FROM companies WHERE normalized_name=$1 ORDER BY id LIMIT 1', [trunc(normalized, 500)]);
+  if (existing.rows.length) return existing.rows[0].id;
+  const inserted = await client.query(
+    'INSERT INTO companies(name,normalized_name) VALUES($1,$2) RETURNING id',
+    [trunc(name, 500), trunc(normalized, 500)]
+  );
+  return inserted.rows[0].id;
+}
+
+async function processItem(item, feedName) {
+  const candidate = candidateFromItem(item);
+  if (!candidate) return 'skip';
+
+  const sourceUrl = trunc(await resolvePrimaryHttpUrl(item.link || '') || item.link || '', 500);
+  if (!sourceUrl) return 'skip';
+  const duplicate = await db.query('SELECT 1 FROM deal_sources WHERE source_url=$1 LIMIT 1', [sourceUrl]);
+  if (duplicate.rows.length) return 'skip';
+
+  const { extracted, combined } = candidate;
+  const announcementDate = parseDate(item.pubDate) || new Date().toISOString().slice(0, 10);
+  const valueCents = extracted.value ? Math.round(Number(extracted.value) * 100) : null;
+  const client = await db.connect();
+  try {
+    await client.query('BEGIN');
+    const acquirerId = await upsertCompany(client, extracted.acquirer);
+    const targetId = await upsertCompany(client, extracted.target);
+    const deal = await client.query(`
+      INSERT INTO deals(
+        acquirer_id,target_id,headline,deal_type,status,announcement_date,filing_date,
+        deal_value,per_share_value,premium_pct,sector,source_confidence,extraction_method,
+        needs_review,extracted_acquirer_name,extracted_target_name,raw_extracted_snippet
+      ) VALUES($1,$2,$3,$4,'Announced',$5,NULL,$6,$7,$8,NULL,$9,'news_rss',true,$10,$11,$12)
+      RETURNING id
+    `, [
+      acquirerId,targetId,trunc(item.title || combined, 500),
+      extracted.dealType || 'Acquisition',announcementDate,valueCents,
+      extracted.perShare || null,extracted.premium || null,
+      Math.max(0.55, Math.min(0.8, Number(extracted.confidence) || 0.55)),
+      extracted.acquirer,extracted.target,rawSnippet(combined),
+    ]);
+    await client.query(`
+      INSERT INTO deal_sources(deal_id,source_type,source_name,source_url,source_date,raw_content,confidence)
+      VALUES($1,'news_rss',$2,$3,$4,$5,$6)
+    `, [
+      deal.rows[0].id,trunc(feedName, 100),sourceUrl,announcementDate,
+      rawSnippet(combined),Math.max(0.55, Math.min(0.8, Number(extracted.confidence) || 0.55)),
+    ]);
+    await client.query('COMMIT');
+    return 'new';
+  } catch (error) {
+    await client.query('ROLLBACK').catch(() => {});
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
+async function startLog() {
+  const result = await db.query("INSERT INTO ingestion_log(source,run_started_at,status) VALUES('news_rss',NOW(),'running') RETURNING id");
+  return result.rows[0].id;
+}
+
+async function endLog(id, status, stats, errorMessage) {
   await db.query(`
-    INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date, raw_content, confidence)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
-  `, [
-    dealId,
-    trunc(info.source_type, 50),
-    trunc(info.source_name, 100),
-    trunc(info.source_url, 500),
-    info.source_date || null,
-    info.raw_extracted_snippet,
-    info.source_confidence,
-  ]);
-
-  return dealId;
+    UPDATE ingestion_log SET run_ended_at=NOW(),status=$1,records_fetched=$2,
+      records_new=$3,records_updated=0,records_failed=$4,error_message=$5
+    WHERE id=$6
+  `, [status, stats.fetched, stats.new, stats.failed, errorMessage || null, id]);
 }
 
-async function startLog(source) {
-  const res = await db.query(
-    `INSERT INTO ingestion_log (source, run_started_at, status)
-     VALUES ($1, NOW(), 'running') RETURNING id`,
-    [source]
-  );
-  return res.rows[0].id;
-}
-
-async function endLog(id, status, stats, error) {
-  await db.query(
-    `UPDATE ingestion_log SET
-       run_ended_at    = NOW(),
-       status          = $1,
-       records_fetched = $2,
-       records_new     = $3,
-       records_updated = $4,
-       records_failed  = $5,
-       error_message   = $6
-     WHERE id = $7`,
-    [status, stats.fetched, stats.new, stats.updated, stats.failed, error || null, id]
-  );
-}
-
-function fetchText(url, redirectDepth) {
-  redirectDepth = redirectDepth || 0;
-  if (redirectDepth > 5) return Promise.reject(new Error('Too many redirects'));
-  return new Promise((resolve, reject) => {
-    const parsedUrl = new (require('url').URL)(url);
-    const client    = parsedUrl.protocol === 'https:' ? https : http;
-    const options   = {
-      hostname: parsedUrl.hostname,
-      path:     parsedUrl.pathname + parsedUrl.search,
-      headers: {
-        'User-Agent': 'mergers.news contact@mergers.news',
-        'Accept':     'application/rss+xml, application/xml, text/xml, text/html, */*',
-      },
-    };
-    const req = client.get(options, res => {
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        const location = res.headers.location.startsWith('http')
-          ? res.headers.location
-          : `${parsedUrl.protocol}//${parsedUrl.host}${res.headers.location}`;
-        res.resume();
-        return fetchText(location, redirectDepth + 1).then(resolve).catch(reject);
+async function run() {
+  const logId = await startLog();
+  const stats = { fetched: 0, new: 0, failed: 0, feedsSucceeded: 0, feedsFailed: 0 };
+  const feedErrors = [];
+  try {
+    for (const feed of RSS_FEEDS) {
+      try {
+        const xml = await withRetry(() => fetchFeed(feed.url), { attempts: 3, baseDelayMs: 1000 });
+        const items = parseRssItems(xml);
+        if (!items.length) throw new Error('Feed parsed zero RSS items');
+        stats.feedsSucceeded++;
+        stats.fetched += items.length;
+        for (const item of items) {
+          try {
+            if (await processItem(item, feed.name) === 'new') stats.new++;
+          } catch (error) {
+            stats.failed++;
+            console.error(`[NEWS] ${trunc(item.title, 80)}: ${error.message}`);
+          }
+        }
+      } catch (error) {
+        stats.feedsFailed++;
+        feedErrors.push(`${feed.name}: ${error.message}`);
+        console.error('[NEWS]', feedErrors[feedErrors.length - 1]);
       }
-      const chunks = [];
-      res.on('data', chunk => chunks.push(chunk));
-      res.on('end',  ()    => resolve(Buffer.concat(chunks).toString('utf8')));
-      res.on('error', reject);
-    });
-    req.on('error', reject);
-    req.setTimeout(30000, () => { req.destroy(); reject(new Error('Timeout')); });
-  });
+      await sleep(750);
+    }
+
+    if (!stats.feedsSucceeded) throw new Error(`All RSS feeds failed (${feedErrors.join('; ')})`);
+    await endLog(logId, 'success', stats, feedErrors.length ? feedErrors.join('; ').slice(0, 1000) : null);
+    console.log('[NEWS] Complete', stats);
+    return stats;
+  } catch (error) {
+    await endLog(logId, 'failed', stats, error.message).catch(() => {});
+    throw error;
+  }
 }
 
-function fetchJson(url) {
-  return fetchText(url).then(text => {
-    try { return JSON.parse(text); } catch { return null; }
-  });
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-module.exports = { run };
+module.exports = { run, parseRssItems, candidateFromItem };
 
 if (require.main === module) {
-  run().catch(console.error);
+  run()
+    .then(() => db.end())
+    .catch(async error => {
+      console.error('[NEWS] Fatal:', error);
+      await db.end().catch(() => {});
+      process.exitCode = 1;
+    });
 }

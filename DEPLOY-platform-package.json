@@ -1,0 +1,33 @@
+{
+  "name": "mergers-news-platform",
+  "version": "1.0.0",
+  "description": "mergers.news data platform",
+  "private": true,
+  "scripts": {
+    "start": "npm run start:scheduler",
+    "start:scheduler": "node scripts/migrate.js && node scheduler.js",
+    "migrate": "node scripts/migrate.js",
+    "sec": "node services/sec-ingestor/index.js",
+    "gdelt": "node services/gdelt-ingestor/index.js",
+    "extract": "node services/ai-extraction/extractor.js",
+    "dedup": "node services/deduplication/index.js",
+    "recover": "node services/recovery/index.js",
+    "rescore": "node scripts/rescore-deals.js",
+    "api": "node services/api/index.js",
+    "export": "node scripts/export-to-github.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "@aws-sdk/client-s3": "^3.400.0",
+    "express-rate-limit": "^7.1.5",
+    "cors": "^2.8.5",
+    "compression": "^1.7.4",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

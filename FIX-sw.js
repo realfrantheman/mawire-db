@@ -1,7 +1,7 @@
 'use strict';
 
 var CACHE_PREFIX = 'mergers-news-';
-var CACHE = CACHE_PREFIX + 'v9';
+var CACHE = CACHE_PREFIX + 'v10';
 var SHELL = [
   '/',
   '/style.css?v=20260612-blue-performance',
@@ -19,7 +19,12 @@ var SHELL = [
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(CACHE).then(function(cache) {
-      return cache.addAll(SHELL);
+      return Promise.all(SHELL.map(function(asset) {
+        return fetch(asset, { cache: 'reload' }).then(function(response) {
+          if (!response.ok) throw new Error('Failed to precache ' + asset + ': HTTP ' + response.status);
+          return cache.put(asset, response);
+        });
+      }));
     }).then(function() {
       return self.skipWaiting();
     })
@@ -32,8 +37,7 @@ self.addEventListener('activate', function(e) {
       return Promise.all(
         keys.filter(function(k) {
           return k.indexOf(CACHE_PREFIX) === 0 && k !== CACHE;
-        })
-            .map(function(k) { return caches.delete(k); })
+        }).map(function(k) { return caches.delete(k); })
       );
     }).then(function() {
       return self.clients.claim();
@@ -47,41 +51,57 @@ self.addEventListener('fetch', function(e) {
 
   if (req.method !== 'GET') return;
 
-  // GitHub raw data — network only, JSON array fallback
+  // Public deal artifacts must never be converted into a successful empty dataset.
+  // Preserve upstream failures as failures so the UI can show an actionable error.
   if (url.hostname === 'raw.githubusercontent.com') {
     e.respondWith(
-      fetch(req).catch(function() {
-        return new Response('[]', { headers: { 'Content-Type': 'application/json' } });
+      fetch(req, { cache: 'no-store' }).then(function(response) {
+        if (!response.ok) return response;
+        return response;
+      }).catch(function(err) {
+        return new Response(JSON.stringify({
+          error: 'deal_data_unavailable',
+          message: String(err && err.message || 'Unable to reach deal data source')
+        }), {
+          status: 503,
+          statusText: 'Deal data unavailable',
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store'
+          }
+        });
       })
     );
     return;
   }
 
-  // Formspree form submissions — pass through
   if (url.hostname === 'formspree.io') return;
 
-  // HTML navigation — always network first; SW never intercepts nav on the
-  // same URL twice in quick succession to prevent the double-click download bug.
   if (req.mode === 'navigate') {
     e.respondWith(
       fetch(req).catch(function() {
-        return caches.match(req)
-          .then(function(c) { return c || caches.match('/'); });
+        return caches.match(req).then(function(cached) {
+          return cached || caches.match('/');
+        });
       })
     );
     return;
   }
 
-  // Static assets — network first so a hard refresh never renders stale CSS/JS.
   e.respondWith(
     fetch(req).then(function(res) {
-        if (res && res.status === 200) {
-          caches.open(CACHE).then(function(cache) { cache.put(req, res.clone()); });
-        }
-        return res;
-      }).catch(function() {
-        return caches.match(req);
-      })
+      if (res && res.status === 200) {
+        e.waitUntil(caches.open(CACHE).then(function(cache) {
+          return cache.put(req, res.clone());
+        }));
+      }
+      return res;
+    }).catch(function() {
+      return caches.match(req).then(function(cached) {
+        if (cached) return cached;
+        return new Response('Offline', { status: 503, headers: { 'Cache-Control': 'no-store' } });
+      });
+    })
   );
 });
 

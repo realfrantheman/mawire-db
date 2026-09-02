@@ -2,7 +2,6 @@ name: Historical M&A Backfill
 
 on:
   schedule:
-    # 1st of every month at 03:00 UTC — auto-fills last 2 years
     - cron: '0 3 1 * *'
   workflow_dispatch:
     inputs:
@@ -11,9 +10,13 @@ on:
         required: false
         default: ''
       end_year:
-        description: 'End year (e.g. 2024) — leave blank to auto (current year)'
+        description: 'End year (e.g. 2026) — leave blank to auto (current year)'
         required: false
         default: ''
+
+concurrency:
+  group: mawire-platform-backfill
+  cancel-in-progress: false
 
 jobs:
   backfill:
@@ -31,9 +34,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
 
-      - name: Install Node.js dependencies
-        run: npm install pg
+      - name: Install dependencies
+        run: npm ci
 
       - name: Resolve backfill year range
         id: years
@@ -42,29 +46,16 @@ jobs:
           PREV=$((YEAR - 1))
           START="${{ github.event.inputs.start_year }}"
           END="${{ github.event.inputs.end_year }}"
-          echo "start_year=${START:-$PREV}" >> $GITHUB_OUTPUT
-          echo "end_year=${END:-$YEAR}"     >> $GITHUB_OUTPUT
+          echo "start_year=${START:-$PREV}" >> "$GITHUB_OUTPUT"
+          echo "end_year=${END:-$YEAR}" >> "$GITHUB_OUTPUT"
 
       - name: Run historical backfill (${{ steps.years.outputs.start_year }}–${{ steps.years.outputs.end_year }})
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           BACKFILL_START_YEAR: ${{ steps.years.outputs.start_year }}
           BACKFILL_END_YEAR: ${{ steps.years.outputs.end_year }}
         run: node FIX-historical-backfill.js
 
-      - name: Export full DB → deals.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          LOCAL_ONLY: 'true'
-        run: node FIX-export-to-github.js
-
-      - name: Commit and push deals.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add deals.json
-          git diff --cached --quiet && echo "No changes to commit" || \
-            git commit -m "chore: backfill deals.json ${{ github.event.inputs.start_year }}-${{ github.event.inputs.end_year }} [skip ci]"
-          git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main
+      - name: Publication ownership
+        run: echo "Historical database backfill complete. The hourly verified refresh workflow is the sole publisher of public deal artifacts."

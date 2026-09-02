@@ -1,9 +1,11 @@
 'use strict';
 
+process.env.DATABASE_URL ||= 'postgres://test:test@127.0.0.1:5432/test';
+
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { cleanup, repairFilingAgentParties, clearSuspiciousNewsSource, repairSecSource } = require('../cleanup-published-deals');
-const { reconstructEdgarUrl } = require('../FIX-export-to-github');
+const { canonicalPrimarySourceUrl } = require('../FIX-source-url');
 
 test('removes filing agents from deal parties without inventing a buyer', () => {
   const deal = repairFilingAgentParties({ headline: 'Organon & Co. / Unknown target', acquirer: 'BCP Investment Corp', target: 'Organon & Co.', filingType: 'DEFA14A' });
@@ -46,14 +48,15 @@ test('removes generic SEC search links instead of publishing them as evidence', 
   assert.equal(repaired.needsReview, true);
 });
 
-test('export reconstructs direct SEC Archives filing index URL from CIK and accession', () => {
-  const url = reconstructEdgarUrl({
+test('SEC export source reconstruction uses issuer CIK rather than accession prefix', () => {
+  const url = canonicalPrimarySourceUrl({
     accessionNo: '0001829126-26-007124',
     filingCik: '0002109869',
+    sourceType: 'sec_edgar',
     sourceUrl: 'https://www.sec.gov/edgar/search/#/q=0001829126-26-007124',
   });
 
-  assert.equal(url, 'https://www.sec.gov/Archives/edgar/data/2109869/000182912626007124/0001829126-26-007124-index.html');
+  assert.equal(url, 'https://www.sec.gov/Archives/edgar/data/2109869/000182912626007124/0001829126-26-007124.txt');
 });
 
 test('repairs repeated self-party contamination from the headline', () => {
