@@ -39,7 +39,11 @@ jobs:
         run: |
           set -euo pipefail
           while IFS= read -r -d '' file; do
-            node --check "$file"
+            if grep -Eq '^[[:space:]]*(import|export)\b' "$file"; then
+              node --input-type=module --check < "$file"
+            else
+              node --check "$file"
+            fi
           done < <(find . -maxdepth 1 -type f \( -name 'FIX-*.js' -o -name 'DEPLOY-*.js' -o -name '*.js' \) -print0)
       - name: Validate deployment controller
         run: python3 -m py_compile deploy.py
