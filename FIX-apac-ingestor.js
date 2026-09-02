@@ -1,622 +1,306 @@
 'use strict';
 
-const https    = require('https');
-const http     = require('http');
-const fs       = require('fs');
-const path     = require('path');
-const { URL }  = require('url');
+/**
+ * APAC exchange announcement ingestion.
+ *
+ * Uses current official exchange announcement surfaces, inserts only candidates
+ * with two distinct transaction parties, stores APAC in region (never sector),
+ * and leaves every record behind the strict publication review gate.
+ */
+
+const fs = require('fs');
+const path = require('path');
 const { Pool } = require('pg');
-const sharedExtractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-extraction.js'))
+
+if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is required');
+
+const extractionPath = fs.existsSync(path.join(__dirname, '../shared/deal-extraction.js'))
   ? '../shared/deal-extraction'
   : './FIX-deal-extraction';
-const { extractParties, rawSnippet, withRetry } = require(sharedExtractionPath);
-const sourceUrlPath = fs.existsSync(path.join(__dirname, '../shared/source-url.js')) ? '../shared/source-url' : './FIX-source-url';
+const { extractDeal, distinctParties, normalizeName, rawSnippet, withRetry } = require(extractionPath);
+
+const sourceUrlPath = fs.existsSync(path.join(__dirname, '../shared/source-url.js'))
+  ? '../shared/source-url'
+  : './FIX-source-url';
 const { resolvePrimaryHttpUrl } = require(sourceUrlPath);
 
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true },
+  ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true'
+    ? { rejectUnauthorized: false }
+    : { rejectUnauthorized: true },
+  max: 4,
+  statement_timeout: 60000,
 });
 
-const APAC_MA_KEYWORDS = [
-  'takeover', 'merger', 'acquisition', 'offer',
-  'scheme of arrangement', 'privatization', 'privatisation',
-  'acquires', 'to acquire', 'to merge', 'bid for',
-  'tender offer', 'going private', 'going-private',
-];
+db.on('error', error => console.error('[APAC] idle DB client error:', error.message));
+
+const CONTROL_HINT_RE = /\b(?:acqui(?:re|res|red|sition)|merger|merge|takeover|scheme of arrangement|scheme implementation|tender offer|going[- ]private|privati[sz]ation|recommended (?:cash )?offer|bid for|buyout)\b/i;
+const NON_CONTROL_RE = /\b(?:minority stake|minority investment|strategic investment|joint venture|partnership|share buyback|stock buyback|repurchase|placement|rights issue|capital raising|funding round)\b/i;
+
+function trunc(value, length) {
+  return value == null ? value : String(value).slice(0, length);
+}
+
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+function decodeHtml(value) {
+  return String(value || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&nbsp;|&#160;/gi, ' ')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+async function fetchHtml(url) {
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': 'mergers.news contact@mergers.news',
+      Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.5',
+    },
+    redirect: 'follow',
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status} fetching ${url}`);
+  const html = await response.text();
+  if (!/<(?:html|table|a|tr)\b/i.test(html)) throw new Error(`Unexpected response from ${url}`);
+  return html;
+}
+
+function absoluteUrl(href, base) {
+  try { return new URL(String(href || '').replace(/&amp;/g, '&'), base).href; }
+  catch { return null; }
+}
+
+function todayYYYYMMDD(offsetDays = 0) {
+  const date = new Date(Date.now() + offsetDays * 86400000);
+  return date.toISOString().slice(0, 10).replace(/-/g, '');
+}
+
+function parseDate(value) {
+  if (!value) return null;
+  const raw = String(value).trim();
+  let match = raw.match(/\b(\d{1,2})\/(\d{1,2})\/(20\d{2})\b/);
+  if (match) return `${match[3]}-${match[2].padStart(2, '0')}-${match[1].padStart(2, '0')}`;
+  match = raw.match(/\b(20\d{2})-(\d{1,2})-(\d{1,2})\b/);
+  if (match) return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString().slice(0, 10);
+}
+
+function candidate(title, sourceUrl, sourceType, sourceName, sourceDate, context = '') {
+  const combined = `${title || ''}. ${context || ''}`.replace(/\s+/g, ' ').trim();
+  if (!combined || NON_CONTROL_RE.test(combined) || !CONTROL_HINT_RE.test(combined)) return null;
+  const extracted = extractDeal(combined, { sourceReliability: 16, dedupCertainty: 2 });
+  if (!distinctParties(extracted.acquirer, extracted.target)) return null;
+  if (extracted.disposition === 'rejected') return null;
+  return {
+    title: trunc(title || combined, 500),
+    sourceUrl,
+    sourceType,
+    sourceName,
+    sourceDate,
+    combined,
+    extracted,
+  };
+}
+
+function parseRows(html, baseUrl, sourceType, sourceName, defaultDate) {
+  const results = [];
+  const rows = String(html || '').match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || [];
+  for (const row of rows) {
+    const rowText = decodeHtml(row);
+    if (!CONTROL_HINT_RE.test(rowText) || NON_CONTROL_RE.test(rowText)) continue;
+    const links = Array.from(row.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi));
+    if (!links.length) continue;
+    // Prefer document/PDF links; fall back to the last meaningful anchor.
+    const selected = links.find(link => /\.pdf(?:[?#]|$)|announcement|document|display/i.test(link[1])) || links[links.length - 1];
+    const href = absoluteUrl(selected[1], baseUrl);
+    const anchorText = decodeHtml(selected[2]);
+    const title = anchorText && CONTROL_HINT_RE.test(anchorText) ? anchorText : rowText;
+    const sourceDate = parseDate(rowText) || defaultDate;
+    if (href) results.push({ title: trunc(title, 500), url: href, sourceType, sourceName, sourceDate, context: rowText });
+  }
+  return results;
+}
+
+async function loadAsx() {
+  const url = 'https://www.asx.com.au/asx/v2/statistics/todayAnns.do';
+  const html = await withRetry(() => fetchHtml(url), { attempts: 3, baseDelayMs: 1000 });
+  return parseRows(html, url, 'asx', 'ASX Company Announcements', new Date().toISOString().slice(0, 10));
+}
+
+async function loadHkex() {
+  const records = [];
+  for (const offset of [0, -1]) {
+    const yyyymmdd = todayYYYYMMDD(offset);
+    const year = yyyymmdd.slice(0, 4);
+    const mmdd = yyyymmdd.slice(4);
+    const url = `https://www.hkexnews.hk/listedco/listconews/sehk/${year}/${mmdd}/LIST.HTM`;
+    try {
+      const html = await withRetry(() => fetchHtml(url), { attempts: 2, baseDelayMs: 750 });
+      records.push(...parseRows(html, 'https://www1.hkexnews.hk/', 'hkex', 'HKEX News', `${year}-${mmdd.slice(0, 2)}-${mmdd.slice(2)}`));
+    } catch (error) {
+      // One non-trading date should not hide a reachable adjacent-day source.
+      if (offset === -1 && !records.length) throw error;
+      console.warn(`[APAC/HKEX] ${yyyymmdd}: ${error.message}`);
+    }
+  }
+  return records;
+}
+
+function parseSgxLinks(html) {
+  const url = 'https://www.sgx.com/securities/company-announcements';
+  const output = [];
+  const seen = new Set();
+  for (const match of String(html || '').matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const title = decodeHtml(match[2]);
+    if (!CONTROL_HINT_RE.test(title) || NON_CONTROL_RE.test(title)) continue;
+    const href = absoluteUrl(match[1], url);
+    if (!href || seen.has(href)) continue;
+    seen.add(href);
+    output.push({
+      title: trunc(title, 500),url: href,sourceType: 'sgx',sourceName: 'SGX Company Announcements',
+      sourceDate: new Date().toISOString().slice(0, 10),context: title,
+    });
+  }
+  return output;
+}
+
+async function loadSgx() {
+  const url = 'https://www.sgx.com/securities/company-announcements';
+  const html = await withRetry(() => fetchHtml(url), { attempts: 3, baseDelayMs: 1000 });
+  return parseSgxLinks(html);
+}
+
+async function upsertCompany(client, name) {
+  const normalized = normalizeName(name);
+  if (!normalized) throw new Error(`Invalid company name: ${name}`);
+  const existing = await client.query('SELECT id FROM companies WHERE normalized_name=$1 ORDER BY id LIMIT 1', [trunc(normalized, 500)]);
+  if (existing.rows.length) return existing.rows[0].id;
+  const inserted = await client.query(
+    'INSERT INTO companies(name,normalized_name) VALUES($1,$2) RETURNING id',
+    [trunc(name, 500),trunc(normalized, 500)]
+  );
+  return inserted.rows[0].id;
+}
+
+async function processAnnouncement(record) {
+  const item = candidate(record.title, record.url, record.sourceType, record.sourceName, record.sourceDate, record.context);
+  if (!item) return 'skip';
+  const sourceUrl = trunc(await resolvePrimaryHttpUrl(item.sourceUrl) || item.sourceUrl, 500);
+  if (!sourceUrl) return 'skip';
+  const duplicate = await db.query('SELECT 1 FROM deal_sources WHERE source_url=$1 LIMIT 1', [sourceUrl]);
+  if (duplicate.rows.length) return 'skip';
+
+  const { extracted } = item;
+  const valueCents = extracted.value ? Math.round(Number(extracted.value) * 100) : null;
+  const client = await db.connect();
+  try {
+    await client.query('BEGIN');
+    const acquirerId = await upsertCompany(client, extracted.acquirer);
+    const targetId = await upsertCompany(client, extracted.target);
+    const deal = await client.query(`
+      INSERT INTO deals(
+        acquirer_id,target_id,headline,deal_type,status,announcement_date,filing_date,
+        deal_value,per_share_value,premium_pct,sector,region,source_confidence,
+        extraction_method,needs_review,extracted_acquirer_name,extracted_target_name,
+        raw_extracted_snippet
+      ) VALUES($1,$2,$3,$4,'Announced',$5,$5,$6,$7,$8,NULL,'APAC',$9,$10,true,$11,$12,$13)
+      RETURNING id
+    `, [
+      acquirerId,targetId,item.title,extracted.dealType || 'Acquisition',item.sourceDate,
+      valueCents,extracted.perShare || null,extracted.premium || null,
+      Math.max(0.65, Math.min(0.9, Number(extracted.confidence) || 0.65)),
+      `${item.sourceType}_announcement`,extracted.acquirer,extracted.target,rawSnippet(item.combined),
+    ]);
+    await client.query(`
+      INSERT INTO deal_sources(deal_id,source_type,source_name,source_url,source_date,raw_content,confidence)
+      VALUES($1,$2,$3,$4,$5,$6,$7)
+    `, [
+      deal.rows[0].id,item.sourceType,trunc(item.sourceName, 100),sourceUrl,item.sourceDate,
+      rawSnippet(item.combined),Math.max(0.7, Math.min(0.95, Number(extracted.confidence) || 0.7)),
+    ]);
+    await client.query('COMMIT');
+    return 'new';
+  } catch (error) {
+    await client.query('ROLLBACK').catch(() => {});
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
+async function startLog() {
+  const result = await db.query("INSERT INTO ingestion_log(source,run_started_at,status) VALUES('apac',NOW(),'running') RETURNING id");
+  return result.rows[0].id;
+}
+
+async function endLog(id, status, stats, errorMessage) {
+  await db.query(`
+    UPDATE ingestion_log SET run_ended_at=NOW(),status=$1,records_fetched=$2,
+      records_new=$3,records_updated=0,records_failed=$4,error_message=$5
+    WHERE id=$6
+  `, [status,stats.fetched,stats.new,stats.failed,errorMessage || null,id]);
+}
 
 async function run() {
-  const logId = await startLog('apac');
-  const stats  = { fetched: 0, new: 0, updated: 0, failed: 0 };
-
+  const logId = await startLog();
+  const stats = { fetched: 0, new: 0, failed: 0, sourcesSucceeded: 0, sourcesFailed: 0 };
+  const errors = [];
   try {
-    console.log('[APAC] Starting ingestion run at', new Date().toISOString());
-
-    await runHkex(stats);
-    await sleep(2000);
-    await runAsx(stats);
-    await sleep(2000);
-    await runSgx(stats);
-
-    await endLog(logId, 'success', stats);
-    console.log('[APAC] Run complete:', stats);
-  } catch (err) {
-    await endLog(logId, 'failed', stats, err.message);
-    console.error('[APAC] Fatal error:', err);
-  }
-}
-
-function hkexListUrl(yyyymmdd) {
-  const year = yyyymmdd.slice(0, 4);
-  const mmdd = yyyymmdd.slice(4, 8);
-  return `https://www.hkexnews.hk/listedco/listconews/sehk/${year}/${mmdd}/LIST.HTM`;
-}
-
-async function runHkex(stats) {
-  const dates = [todayStr(), yesterdayStr()];
-  console.log('[APAC/HKEX] Fetching announcements for', dates.join(', '));
-
-  for (const dateStr of dates) {
-    try {
-      const url  = hkexListUrl(dateStr);
-      const html = await withRetry(() => fetchText(url), { attempts: 4, baseDelayMs: 1000 });
-      const announcements = parseHkexAnnouncements(html, dateStr);
-
-      console.log(`[APAC/HKEX] Found ${announcements.length} M&A announcements on ${dateStr}`);
-      stats.fetched += announcements.length;
-
-      for (const ann of announcements) {
-        try {
-          const result = await processHkexAnnouncement(ann);
-          if (result === 'new') stats.new++;
-        } catch (err) {
-          stats.failed++;
-          console.error(`[APAC/HKEX] Error processing announcement "${trunc(ann.title, 80)}":`, err.message);
+    const adapters = [
+      ['HKEX', loadHkex],
+      ['ASX', loadAsx],
+      ['SGX', loadSgx],
+    ];
+    for (const [name, load] of adapters) {
+      try {
+        const records = await load();
+        stats.sourcesSucceeded++;
+        stats.fetched += records.length;
+        console.log(`[APAC/${name}] ${records.length} M&A candidate announcement(s)`);
+        for (const record of records) {
+          try {
+            if (await processAnnouncement(record) === 'new') stats.new++;
+          } catch (error) {
+            stats.failed++;
+            console.error(`[APAC/${name}] ${trunc(record.title, 80)}: ${error.message}`);
+          }
         }
+      } catch (error) {
+        stats.sourcesFailed++;
+        errors.push(`${name}: ${error.message}`);
+        console.error('[APAC]', errors[errors.length - 1]);
       }
-    } catch (err) {
-      stats.failed++;
-      console.error(`[APAC/HKEX] Error fetching date ${dateStr}:`, err.message);
+      await sleep(500);
     }
 
-    await sleep(1500);
+    if (!stats.sourcesSucceeded) throw new Error(`All APAC exchange sources failed (${errors.join('; ')})`);
+    await endLog(logId, 'success', stats, errors.length ? errors.join('; ').slice(0, 1000) : null);
+    console.log('[APAC] Complete', stats);
+    return stats;
+  } catch (error) {
+    await endLog(logId, 'failed', stats, error.message).catch(() => {});
+    throw error;
   }
 }
 
-function parseHkexAnnouncements(html, dateStr) {
-  if (!html) return [];
-  const results = [];
-
-  const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
-  let rowMatch;
-
-  while ((rowMatch = rowRegex.exec(html)) !== null) {
-    const row = rowMatch[1];
-
-    const linkMatch = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/i.exec(row);
-    if (!linkMatch) continue;
-
-    const href  = linkMatch[1];
-    const title = stripHtml(linkMatch[2]).trim();
-
-    if (!title || !isMaKeyword(title)) continue;
-
-    const cells = [];
-    const tdRe  = /<td[^>]*>([\s\S]*?)<\/td>/gi;
-    let tdMatch;
-    while ((tdMatch = tdRe.exec(row)) !== null) {
-      cells.push(stripHtml(tdMatch[1]).trim());
-    }
-
-    const companyName = cells[0] || '';
-    const fullUrl     = href.startsWith('http')
-      ? href
-      : `https://www1.hkexnews.hk${href.startsWith('/') ? '' : '/'}${href}`;
-
-    results.push({
-      title:       title,
-      companyName: companyName,
-      url:         fullUrl,
-      dateStr:     dateStr,
-      dealType:    inferApacDealType(title),
-    });
-  }
-
-  return results;
-}
-
-async function processHkexAnnouncement(ann) {
-  const sourceUrl = trunc(await resolvePrimaryHttpUrl(ann.url) || ann.url, 500);
-  if (!sourceUrl) return 'skip';
-
-  const existing = await db.query(
-    'SELECT id FROM deal_sources WHERE source_url = $1 LIMIT 1',
-    [sourceUrl]
-  );
-  if (existing.rows.length > 0) return 'skip';
-
-  const parties = extractParties(ann.title);
-  const companyName = parties.acquirer || ann.companyName || extractCompanyFromTitle(ann.title) || null;
-  const companyRec  = companyName ? await upsertCompany(db, { name: companyName }, null) : null;
-  const targetRec = parties.target ? await upsertCompany(db, { name: parties.target }, null) : null;
-  const annoDate    = parseDateFromYYYYMMDD(ann.dateStr);
-
-  await insertDeal(db, {
-    acquirer_id:       companyRec?.id || null,
-    target_id:         targetRec?.id || null,
-    headline:          trunc(ann.title, 500),
-    deal_type:         ann.dealType,
-    status:            'Announced',
-    announcement_date: annoDate,
-    filing_date:       annoDate,
-    deal_value:        null,
-    sector:            'Asia Pacific',
-    source_confidence: 0.7,
-    extraction_method: 'hkex_html',
-    needs_review:      true,
-    source_type:       'hkex',
-    source_name:       'HKEX News',
-    source_url:        sourceUrl,
-    source_date:       annoDate,
-    extracted_acquirer_name: parties.acquirer || companyName,
-    extracted_target_name: parties.target,
-    raw_extracted_snippet: rawSnippet(ann.title),
-  });
-
-  return 'new';
-}
-
-async function runAsx(stats) {
-  console.log('[APAC/ASX] Fetching ASX announcements');
-
-  const MA_TYPES = ['Takeover Bid', 'Merger', 'Scheme of Arrangement', 'Off-market Takeover'];
-
-  const url  = 'https://announcements.asx.com.au/asxannouncements.asx';
-
-  let html;
-  try {
-    html = await withRetry(() => fetchText(url), { attempts: 4, baseDelayMs: 1000 });
-  } catch (err) {
-    console.error('[APAC/ASX] Failed to fetch ASX announcements:', err.message);
-    stats.failed++;
-    return;
-  }
-
-  const announcements = parseAsxAnnouncements(html, MA_TYPES);
-  console.log(`[APAC/ASX] Found ${announcements.length} M&A announcements`);
-  stats.fetched += announcements.length;
-
-  for (const ann of announcements) {
-    try {
-      const result = await processAsxAnnouncement(ann);
-      if (result === 'new') stats.new++;
-    } catch (err) {
-      stats.failed++;
-      console.error(`[APAC/ASX] Error processing announcement "${trunc(ann.title, 80)}":`, err.message);
-    }
-  }
-}
-
-function parseAsxAnnouncements(html, maTypes) {
-  if (!html) return [];
-  const results = [];
-
-  const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
-  let rowMatch;
-
-  while ((rowMatch = rowRegex.exec(html)) !== null) {
-    const row   = rowMatch[1];
-    const cells = [];
-    const tdRe  = /<td[^>]*>([\s\S]*?)<\/td>/gi;
-    let tdMatch;
-
-    while ((tdMatch = tdRe.exec(row)) !== null) {
-      cells.push(stripHtml(tdMatch[1]).trim());
-    }
-
-    if (cells.length < 2) continue;
-
-    const rowText = cells.join(' ').toLowerCase();
-    const isMA    = maTypes.some(t => rowText.includes(t.toLowerCase())) || isMaKeyword(rowText);
-    if (!isMA) continue;
-
-    const linkMatch = /<a[^>]+href=["']([^"']+)["'][^>]*>/i.exec(row);
-    const href      = linkMatch ? linkMatch[1] : '';
-    const fullUrl   = href.startsWith('http')
-      ? href
-      : href
-        ? `https://announcements.asx.com.au${href.startsWith('/') ? '' : '/'}${href}`
-        : '';
-
-    const title    = cells[1] || cells[0] || rowText.slice(0, 200);
-    const ticker   = cells[0] || '';
-    const dateStr  = cells[cells.length - 1] || '';
-
-    results.push({
-      title:    title,
-      ticker:   ticker,
-      url:      fullUrl,
-      dateStr:  dateStr,
-      dealType: inferApacDealType(title + ' ' + rowText),
-    });
-  }
-
-  return results;
-}
-
-async function processAsxAnnouncement(ann) {
-  if (!ann.url) return 'skip';
-  const sourceUrl = trunc(await resolvePrimaryHttpUrl(ann.url) || ann.url, 500);
-
-  const existing = await db.query(
-    'SELECT id FROM deal_sources WHERE source_url = $1 LIMIT 1',
-    [sourceUrl]
-  );
-  if (existing.rows.length > 0) return 'skip';
-
-  const parties = extractParties(ann.title);
-  const companyName = parties.acquirer || (ann.ticker ? `${ann.ticker} (ASX)` : extractCompanyFromTitle(ann.title) || null);
-  const companyRec  = companyName ? await upsertCompany(db, { name: companyName }, null) : null;
-  const targetRec = parties.target ? await upsertCompany(db, { name: parties.target }, null) : null;
-  const annoDate    = parseDateFlexible(ann.dateStr);
-  const dealValue   = extractDealValue(ann.title);
-
-  await insertDeal(db, {
-    acquirer_id:       companyRec?.id || null,
-    target_id:         targetRec?.id || null,
-    headline:          trunc(ann.title, 500),
-    deal_type:         ann.dealType,
-    status:            'Announced',
-    announcement_date: annoDate,
-    filing_date:       annoDate,
-    deal_value:        dealValue,
-    sector:            'Asia Pacific',
-    source_confidence: 0.7,
-    extraction_method: 'asx_html',
-    needs_review:      true,
-    source_type:       'asx',
-    source_name:       'ASX Announcements',
-    source_url:        sourceUrl,
-    source_date:       annoDate,
-    extracted_acquirer_name: parties.acquirer || companyName,
-    extracted_target_name: parties.target,
-    raw_extracted_snippet: rawSnippet(ann.title),
-  });
-
-  return 'new';
-}
-
-async function runSgx(stats) {
-  console.log('[APAC/SGX] Fetching SGX company announcements');
-
-  const url = 'https://www.sgx.com/securities/company-announcements';
-
-  let html;
-  try {
-    html = await withRetry(() => fetchText(url), { attempts: 4, baseDelayMs: 1000 });
-  } catch (err) {
-    console.error('[APAC/SGX] Failed to fetch SGX announcements:', err.message);
-    stats.failed++;
-    return;
-  }
-
-  const announcements = parseSgxAnnouncements(html);
-  console.log(`[APAC/SGX] Found ${announcements.length} M&A announcements`);
-  stats.fetched += announcements.length;
-
-  for (const ann of announcements) {
-    try {
-      const result = await processSgxAnnouncement(ann);
-      if (result === 'new') stats.new++;
-    } catch (err) {
-      stats.failed++;
-      console.error(`[APAC/SGX] Error processing announcement "${trunc(ann.title, 80)}":`, err.message);
-    }
-  }
-}
-
-function parseSgxAnnouncements(html) {
-  if (!html) return [];
-  const results = [];
-
-  const entryRegex = /<(?:tr|div|li)[^>]*>([\s\S]*?)<\/(?:tr|div|li)>/gi;
-  let entryMatch;
-
-  while ((entryMatch = entryRegex.exec(html)) !== null) {
-    const block = entryMatch[1];
-    const text  = stripHtml(block).trim();
-
-    if (!text || !isMaKeyword(text)) continue;
-
-    const linkMatch = /<a[^>]+href=["']([^"']+)["'][^>]*>/i.exec(block);
-    const href      = linkMatch ? linkMatch[1] : '';
-    const fullUrl   = href.startsWith('http')
-      ? href
-      : href
-        ? `https://www.sgx.com${href.startsWith('/') ? '' : '/'}${href}`
-        : '';
-
-    if (!fullUrl) continue;
-
-    const alreadyAdded = results.some(r => r.url === fullUrl);
-    if (alreadyAdded) continue;
-
-    results.push({
-      title:    trunc(text, 300),
-      url:      fullUrl,
-      dealType: inferApacDealType(text),
-    });
-  }
-
-  return results;
-}
-
-async function processSgxAnnouncement(ann) {
-  const sourceUrl = trunc(ann.url, 500);
-  if (!sourceUrl) return 'skip';
-
-  const existing = await db.query(
-    'SELECT id FROM deal_sources WHERE source_url = $1 LIMIT 1',
-    [sourceUrl]
-  );
-  if (existing.rows.length > 0) return 'skip';
-
-  const parties = extractParties(ann.title);
-  const companyName = parties.acquirer || extractCompanyFromTitle(ann.title) || null;
-  const companyRec  = companyName ? await upsertCompany(db, { name: companyName }, null) : null;
-  const targetRec = parties.target ? await upsertCompany(db, { name: parties.target }, null) : null;
-  const dealValue   = extractDealValue(ann.title);
-  const today       = new Date().toISOString().split('T')[0];
-
-  await insertDeal(db, {
-    acquirer_id:       companyRec?.id || null,
-    target_id:         targetRec?.id || null,
-    headline:          trunc(ann.title, 500),
-    deal_type:         ann.dealType,
-    status:            'Announced',
-    announcement_date: today,
-    filing_date:       today,
-    deal_value:        dealValue,
-    sector:            'Asia Pacific',
-    source_confidence: 0.65,
-    extraction_method: 'sgx_html',
-    needs_review:      true,
-    source_type:       'sgx',
-    source_name:       'SGX Company Announcements',
-    source_url:        sourceUrl,
-    source_date:       today,
-    extracted_acquirer_name: parties.acquirer || companyName,
-    extracted_target_name: parties.target,
-    raw_extracted_snippet: rawSnippet(ann.title),
-  });
-
-  return 'new';
-}
-
-function isMaKeyword(text) {
-  const t = text.toLowerCase();
-  return APAC_MA_KEYWORDS.some(kw => t.includes(kw));
-}
-
-function inferApacDealType(text) {
-  const t = (text || '').toLowerCase();
-  if (/scheme\s+of\s+arrangement/.test(t))                          return 'Merger';
-  if (/tender\s+offer|off.market\s+takeover/.test(t))               return 'Tender Offer';
-  if (/going.private|privatiz|privatis/.test(t))                    return 'Going-Private';
-  if (/takeover|bid\s+for/.test(t))                                 return 'Acquisition';
-  if (/merger|to\s+merge/.test(t))                                  return 'Merger';
-  if (/acquires|acquisition|to\s+acquire/.test(t))                  return 'Acquisition';
-  return 'Acquisition';
-}
-
-function extractCompanyFromTitle(title) {
-  if (!title) return null;
-  const m = /^([A-Z][A-Za-z0-9\s&,.'()-]{2,60}?)(?:\s+[-–—:]\s+|\s+to\s+|\s+acqui|\s+launch|\s+bid\s)/i.exec(title);
-  if (m) return m[1].trim().slice(0, 200);
-  return title.split(/[-–—:]/)[0].trim().slice(0, 200) || null;
-}
-
-function extractDealValue(text) {
-  if (!text) return null;
-  const m = /(\d[\d,.]*)\s*(billion|million|bn|mn|B\b|M\b)/i.exec(text);
-  if (!m) return null;
-  const num  = parseFloat(m[1].replace(/,/g, ''));
-  const unit = m[2].toLowerCase();
-  if (unit === 'billion' || unit === 'bn' || unit === 'b') return Math.round(num * 1e9 * 100);
-  if (unit === 'million' || unit === 'mn' || unit === 'm') return Math.round(num * 1e6 * 100);
-  return null;
-}
-
-function todayStr() {
-  return new Date().toISOString().slice(0, 10).replace(/-/g, '');
-}
-
-function yesterdayStr() {
-  const d = new Date();
-  d.setDate(d.getDate() - 1);
-  return d.toISOString().slice(0, 10).replace(/-/g, '');
-}
-
-function parseDateFromYYYYMMDD(str) {
-  if (!str || str.length !== 8) return null;
-  return `${str.slice(0, 4)}-${str.slice(4, 6)}-${str.slice(6, 8)}`;
-}
-
-function parseDateFlexible(str) {
-  if (!str) return null;
-  const ddmmyyyy = /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/.exec(str.trim());
-  if (ddmmyyyy) {
-    return `${ddmmyyyy[3]}-${ddmmyyyy[2].padStart(2, '0')}-${ddmmyyyy[1].padStart(2, '0')}`;
-  }
-  const yyyymmdd = /^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/.exec(str.trim());
-  if (yyyymmdd) {
-    return `${yyyymmdd[1]}-${yyyymmdd[2].padStart(2, '0')}-${yyyymmdd[3].padStart(2, '0')}`;
-  }
-  try {
-    const d = new Date(str);
-    if (!isNaN(d.getTime())) return d.toISOString().split('T')[0];
-  } catch {}
-  return null;
-}
-
-function stripHtml(str) {
-  return (str || '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
-    .replace(/\s{2,}/g, ' ')
-    .trim();
-}
-
-function trunc(str, len) {
-  return str ? String(str).slice(0, len) : str;
-}
-
-function normalizeName(name) {
-  return String(name)
-    .toLowerCase()
-    .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '')
-    .replace(/\s+/g, ' ')
-    .replace(/\b(inc|corp|llc|ltd|plc|co|company|corporation|incorporated|limited|sa|ag|nv|bv|se)\b/g, '')
-    .trim();
-}
-
-async function upsertCompany(db, info, cik) {
-  const name       = (info && info.name) ? info.name : 'Unknown';
-  const normalized = normalizeName(name);
-
-  if (cik) {
-    const byCik = await db.query('SELECT id FROM companies WHERE cik = $1 LIMIT 1', [cik]);
-    if (byCik.rows.length) return byCik.rows[0];
-  }
-
-  const byName = await db.query(
-    'SELECT id FROM companies WHERE normalized_name = $1 LIMIT 1',
-    [trunc(normalized, 500)]
-  );
-  if (byName.rows.length) return byName.rows[0];
-
-  const res = await db.query(
-    `INSERT INTO companies (name, normalized_name, cik)
-     VALUES ($1, $2, $3) RETURNING id`,
-    [trunc(name, 500), trunc(normalized, 500), cik || null]
-  );
-  return res.rows[0];
-}
-
-async function insertDeal(db, info) {
-  const res = await db.query(`
-    INSERT INTO deals (
-      acquirer_id, target_id, headline, deal_type, status,
-      announcement_date, filing_date, deal_value, sector,
-      source_confidence, extraction_method, needs_review,
-      extracted_acquirer_name, extracted_target_name, raw_extracted_snippet
-    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
-    RETURNING id
-  `, [
-    info.acquirer_id,
-    info.target_id         || null,
-    trunc(info.headline, 500),
-    trunc(info.deal_type, 100),
-    trunc(info.status, 50),
-    info.announcement_date || null,
-    info.filing_date       || null,
-    info.deal_value        || null,
-    trunc(info.sector, 100) || null,
-    info.source_confidence,
-    trunc(info.extraction_method, 100),
-    info.needs_review,
-    trunc(info.extracted_acquirer_name, 500),
-    trunc(info.extracted_target_name, 500),
-    info.raw_extracted_snippet,
-  ]);
-
-  const dealId = res.rows[0].id;
-
-  await db.query(`
-    INSERT INTO deal_sources (deal_id, source_type, source_name, source_url, source_date, raw_content, confidence)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
-  `, [
-    dealId,
-    trunc(info.source_type, 50),
-    trunc(info.source_name, 100),
-    trunc(info.source_url, 500),
-    info.source_date || null,
-    info.raw_extracted_snippet,
-    info.source_confidence,
-  ]);
-
-  return dealId;
-}
-
-async function startLog(source) {
-  const res = await db.query(
-    `INSERT INTO ingestion_log (source, run_started_at, status)
-     VALUES ($1, NOW(), 'running') RETURNING id`,
-    [source]
-  );
-  return res.rows[0].id;
-}
-
-async function endLog(id, status, stats, error) {
-  await db.query(
-    `UPDATE ingestion_log SET
-       run_ended_at    = NOW(),
-       status          = $1,
-       records_fetched = $2,
-       records_new     = $3,
-       records_updated = $4,
-       records_failed  = $5,
-       error_message   = $6
-     WHERE id = $7`,
-    [status, stats.fetched, stats.new, stats.updated, stats.failed, error || null, id]
-  );
-}
-
-function fetchText(url, redirectDepth) {
-  redirectDepth = redirectDepth || 0;
-  if (redirectDepth > 5) return Promise.reject(new Error('Too many redirects'));
-  return new Promise((resolve, reject) => {
-    const parsedUrl = new URL(url);
-    const client    = parsedUrl.protocol === 'https:' ? https : http;
-    const options   = {
-      hostname: parsedUrl.hostname,
-      path:     parsedUrl.pathname + parsedUrl.search,
-      headers: {
-        'User-Agent': 'mergers.news contact@mergers.news',
-        'Accept':     'text/html, application/xhtml+xml, application/json, */*',
-      },
-    };
-    const req = client.get(options, res => {
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        const location = res.headers.location.startsWith('http')
-          ? res.headers.location
-          : `${parsedUrl.protocol}//${parsedUrl.host}${res.headers.location}`;
-        res.resume();
-        return fetchText(location, redirectDepth + 1).then(resolve).catch(reject);
-      }
-      const chunks = [];
-      res.on('data',  chunk => chunks.push(chunk));
-      res.on('end',   ()    => resolve(Buffer.concat(chunks).toString('utf8')));
-      res.on('error', reject);
-    });
-    req.on('error', reject);
-    req.setTimeout(30000, () => { req.destroy(); reject(new Error('Timeout')); });
-  });
-}
-
-function fetchJson(url) {
-  return fetchText(url).then(text => {
-    try { return JSON.parse(text); } catch { return null; }
-  });
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-module.exports = { run };
+module.exports = {
+  run,candidate,parseRows,parseSgxLinks,parseDate,
+};
 
 if (require.main === module) {
-  run().catch(console.error);
+  run()
+    .then(() => db.end())
+    .catch(async error => {
+      console.error('[APAC] Fatal:', error);
+      await db.end().catch(() => {});
+      process.exitCode = 1;
+    });
 }
