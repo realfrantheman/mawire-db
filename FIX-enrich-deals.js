@@ -1,224 +1,234 @@
 /**
- * mergers.news — Deal Enrichment Script
- * Fixes existing DB records that have placeholder acquirer/target names.
+ * mergers.news — deterministic deal enrichment
  *
- * Queries deals where companies.name IN ('Disclosed in filing',
- * 'Public company target (see filing)', 'Acquirer (see filing)',
- * 'Target (see filing)', 'Unknown') then fetches + parses the
- * filing document to extract the real party name and deal value.
- *
- * Run on Railway as a one-time job:
- *   node scripts/enrich-deals.js
- *
- * Or run in batches to avoid hitting SEC rate limits:
- *   BATCH=100 node scripts/enrich-deals.js
+ * Repairs placeholder party names and missing value fields from source filings.
+ * Enrichment never marks a deal reviewed; the strict transaction-review engine is
+ * the only component allowed to clear publication review requirements.
  */
 
 'use strict';
 
-const https    = require('https');
+const fs = require('fs');
+const path = require('path');
+const https = require('https');
 const { Pool } = require('pg');
 
-const db = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true' ? { rejectUnauthorized: false } : { rejectUnauthorized: true } });
+if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is required');
 
-const BATCH   = parseInt(process.env.BATCH || '200', 10);
-const DELAY   = 700; // ms between filing fetches — SEC rate limit
+const sharedPath = fs.existsSync(path.join(__dirname, '../services/shared/deal-extraction.js'))
+  ? '../services/shared/deal-extraction'
+  : './FIX-deal-extraction';
+const { extractDeal, distinctParties, normalizeName } = require(sharedPath);
 
-const PLACEHOLDER_NAMES = [
-  'Disclosed in filing',
-  'Public company target (see filing)',
-  'Acquirer (see filing)',
-  'Target (see filing)',
-  'Unknown',
-  'Acquirer (see Filing)',
-  'Target (see Filing)',
-];
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true'
+    ? { rejectUnauthorized: false }
+    : { rejectUnauthorized: true },
+  max: 3,
+  statement_timeout: 60000,
+});
 
-// ── HTTP FETCH (text) ─────────────────────────────────────────────
-function fetchText(url) {
-  return new Promise((resolve) => {
+const BATCH = Math.max(1, Math.min(5000, Number.parseInt(process.env.BATCH || '200', 10) || 200));
+const DELAY = Math.max(100, Number.parseInt(process.env.ENRICH_DELAY_MS || '700', 10) || 700);
+const PLACEHOLDER_RE = /^(?:disclosed in filing|public company target \(see filing\)|acquirer \(see filing\)|target \(see filing\)|unknown|undisclosed|n\/a)$/i;
+
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+function isPlaceholder(value) {
+  return !value || PLACEHOLDER_RE.test(String(value).trim());
+}
+
+function fetchText(url, redirects = 0) {
+  if (!url || !/^https:\/\//i.test(url)) return Promise.resolve('');
+  if (redirects > 5) return Promise.reject(new Error('Too many redirects'));
+  return new Promise((resolve, reject) => {
     const req = https.get(url, {
-      headers: { 'User-Agent': 'mergers.news contact@mergers.news', 'Accept': 'text/html,text/plain' }
-    }, res => {
-      if (res.statusCode === 301 || res.statusCode === 302) {
-        req.destroy();
-        return fetchText(res.headers.location).then(resolve);
+      headers: {
+        'User-Agent': 'mergers.news contact@mergers.news',
+        Accept: 'text/html,text/plain,application/xhtml+xml;q=0.9,*/*;q=0.5',
+      },
+    }, response => {
+      if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
+        response.resume();
+        const next = new URL(response.headers.location, url).href;
+        return fetchText(next, redirects + 1).then(resolve, reject);
       }
-      let data = '';
-      res.on('data', c => {
-        data += c;
-        if (data.length > 40000) { req.destroy(); resolve(data.slice(0, 40000)); }
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        response.resume();
+        return reject(new Error(`HTTP ${response.statusCode} fetching ${url}`));
+      }
+      const chunks = [];
+      let bytes = 0;
+      response.on('data', chunk => {
+        if (bytes >= 2_000_000) return;
+        const remaining = 2_000_000 - bytes;
+        const part = chunk.length > remaining ? chunk.subarray(0, remaining) : chunk;
+        chunks.push(part);
+        bytes += part.length;
       });
-      res.on('end', () => resolve(data.slice(0, 40000)));
+      response.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+      response.on('error', reject);
     });
-    req.on('error', () => resolve(''));
-    req.setTimeout(15000, () => { req.destroy(); resolve(''); });
+    req.on('error', reject);
+    req.setTimeout(20000, () => req.destroy(new Error('Source fetch timeout')));
   });
 }
 
 function stripHtml(html) {
-  return html
+  return String(html || '')
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ')
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
     .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&#\d+;/g, ' ')
-    .replace(/\s+/g, ' ').trim();
-}
-
-// ── EXTRACTION ────────────────────────────────────────────────────
-function extractOtherParty(text, filingType) {
-  if (!text || text.length < 100) return null;
-
-  const pDEFM = [
-    /to\s+be\s+acquired\s+by\s+([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
-    /merger\s+with\s+(?:and\s+into\s+)?([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
-    /acquisition\s+by\s+([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
-    /PROPOSED\s+MERGER\s+WITH\s+([A-Z][A-Za-z0-9\s,\.&'-]{2,60})/i,
-    /Agreement\s+and\s+Plan\s+of\s+Merger.{0,200}(?:and\s+)([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?)?)/i,
-  ];
-  const pSCTOT = [
-    /Offer\s+to\s+Purchase\s+(?:All\s+)?(?:Outstanding\s+)?(?:Shares|Stock)\s+of\s+(?:Common\s+Stock\s+of\s+)?([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
-    /(?:acquire|purchase)\s+(?:all\s+)?(?:outstanding\s+)?(?:shares|stock)\s+of\s+([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
-    /tender\s+offer\s+for\s+(?:all\s+)?(?:shares\s+of\s+)?([A-Z][A-Za-z0-9\s,\.&'-]{2,60}(?:Inc\.?|Corp\.?|LLC\.?|Ltd\.?|Co\.?|Plc\.?)?)/i,
-  ];
-
-  const ft = (filingType || '').toUpperCase();
-  const patterns = (ft.includes('DEFM14A') || ft.includes('PREM14A') || ft.includes('DEFA14A') || ft === 'S-4')
-    ? pDEFM
-    : (ft.includes('SC TO-T') ? pSCTOT : [...pDEFM, ...pSCTOT]);
-
-  for (const p of patterns) {
-    const m = text.match(p);
-    if (m?.[1]) {
-      const name = m[1].trim().replace(/\s+/g, ' ');
-      if (name.length >= 3 && name.length <= 80 && !/^(the|a|an|all|any|this|each)\b/i.test(name)) {
-        return name;
-      }
-    }
-  }
-  return null;
-}
-
-function extractDealValueCents(text) {
-  if (!text) return null;
-  const candidates = [];
-  const bpat = /(?:aggregate|total|transaction)\s+(?:consideration|value)\s+of\s+(?:approximately\s+)?\$\s*([\d,]+(?:\.\d+)?)\s*billion/gi;
-  const mpat = /(?:aggregate|total|transaction)\s+(?:consideration|value)\s+of\s+(?:approximately\s+)?\$\s*([\d,]+(?:\.\d+)?)\s*million/gi;
-  let m;
-  while ((m = bpat.exec(text)) !== null) { const v = parseFloat(m[1].replace(/,/g, '')) * 1e9; if (!isNaN(v) && v >= 1e7) candidates.push(v); }
-  while ((m = mpat.exec(text)) !== null) { const v = parseFloat(m[1].replace(/,/g, '')) * 1e6; if (!isNaN(v) && v >= 1e6) candidates.push(v); }
-  if (!candidates.length) return null;
-  return Math.round(Math.max(...candidates) * 100);
-}
-
-function normalizeName(name) {
-  return String(name).toLowerCase()
-    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&#\d+;/g, ' ')
     .replace(/\s+/g, ' ')
-    .replace(/\b(inc|corp|llc|ltd|plc|co|company|corporation|incorporated|limited)\b/g, '')
     .trim();
 }
 
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-// ── UPSERT COMPANY (returns id) ───────────────────────────────────
-async function upsertCompany(name) {
+async function upsertCompany(client, name) {
   const normalized = normalizeName(name);
-  const byName = await db.query('SELECT id FROM companies WHERE normalized_name = $1 LIMIT 1', [normalized]);
-  if (byName.rows.length) return byName.rows[0].id;
-  const res = await db.query(
-    'INSERT INTO companies (name, normalized_name) VALUES ($1, $2) RETURNING id',
-    [name.slice(0, 500), normalized.slice(0, 500)]
+  if (!normalized) throw new Error(`Invalid company name: ${name}`);
+  const existing = await client.query(
+    'SELECT id FROM companies WHERE normalized_name=$1 ORDER BY created_at NULLS LAST,id LIMIT 1',
+    [normalized.slice(0, 500)]
   );
-  return res.rows[0].id;
+  if (existing.rows.length) return existing.rows[0].id;
+  const inserted = await client.query(
+    'INSERT INTO companies(name,normalized_name) VALUES($1,$2) RETURNING id',
+    [String(name).slice(0, 500), normalized.slice(0, 500)]
+  );
+  return inserted.rows[0].id;
 }
 
-// ── MAIN ──────────────────────────────────────────────────────────
-async function run() {
-  const placeholders = PLACEHOLDER_NAMES.map((_, i) => `$${i + 1}`).join(',');
-
-  // Find deals where acquirer OR target is a placeholder
-  const query = await db.query(`
-    SELECT
-      d.id           AS deal_id,
-      d.deal_type,
-      d.deal_value,
-      a.name         AS acquirer_name,
-      a.id           AS acquirer_id,
-      t.name         AS target_name,
-      t.id           AS target_id,
-      f.filing_type,
-      f.document_url,
-      f.edgar_url
+async function candidateRows() {
+  return (await db.query(`
+    SELECT DISTINCT ON (d.id)
+      d.id AS deal_id,d.deal_value,d.headline,d.extracted_acquirer_name,d.extracted_target_name,
+      a.name AS acquirer_name,a.id AS acquirer_id,t.name AS target_name,t.id AS target_id,
+      f.filing_type,f.document_url,f.edgar_url,
+      COALESCE(f.document_url,f.edgar_url,ds.source_url) AS source_url
     FROM deals d
-    LEFT JOIN companies a  ON d.acquirer_id = a.id
-    LEFT JOIN companies t  ON d.target_id   = t.id
-    LEFT JOIN filings   f  ON f.deal_id     = d.id
-    WHERE (a.name = ANY($1) OR t.name = ANY($1))
-      AND d.canonical_id IS NULL
-    ORDER BY d.announcement_date DESC NULLS LAST
+    LEFT JOIN companies a ON a.id=d.acquirer_id
+    LEFT JOIN companies t ON t.id=d.target_id
+    LEFT JOIN filings f ON f.deal_id=d.id
+    LEFT JOIN deal_sources ds ON ds.deal_id=d.id
+    WHERE d.canonical_id IS NULL
+      AND (
+        a.id IS NULL OR t.id IS NULL OR
+        COALESCE(a.name,'') ~* $1 OR COALESCE(t.name,'') ~* $1 OR
+        d.deal_value IS NULL
+      )
+    ORDER BY d.id,
+      CASE WHEN f.document_url IS NOT NULL THEN 0 WHEN f.edgar_url IS NOT NULL THEN 1 ELSE 2 END,
+      f.filing_date DESC NULLS LAST,ds.source_date DESC NULLS LAST
     LIMIT $2
-  `, [PLACEHOLDER_NAMES, BATCH]);
+  `, ['^(disclosed in filing|public company target \\(see filing\\)|acquirer \\(see filing\\)|target \\(see filing\\)|unknown|undisclosed|n/a)$', BATCH])).rows;
+}
 
-  console.log(`[ENRICH] Found ${query.rows.length} deals with placeholder names (batch=${BATCH})`);
+async function enrichRow(row) {
+  if (!row.source_url) return 'skipped';
+  const source = stripHtml(await fetchText(row.source_url));
+  if (source.length < 100) return 'skipped';
 
-  let enriched = 0, skipped = 0, failed = 0;
+  const extracted = extractDeal(source, {
+    filingType: row.filing_type,
+    issuer: !isPlaceholder(row.target_name) ? row.target_name : (!isPlaceholder(row.acquirer_name) ? row.acquirer_name : null),
+  });
 
-  for (const row of query.rows) {
-    try {
-      const docUrl = row.document_url || row.edgar_url;
-      if (!docUrl) { skipped++; continue; }
+  const currentAcquirer = isPlaceholder(row.acquirer_name) ? null : row.acquirer_name;
+  const currentTarget = isPlaceholder(row.target_name) ? null : row.target_name;
+  const acquirerName = currentAcquirer || extracted.acquirer || null;
+  const targetName = currentTarget || extracted.target || null;
 
-      const html    = await fetchText(docUrl);
-      const text    = html ? stripHtml(html) : '';
-      const ft      = row.filing_type || '';
-
-      let updated = false;
-
-      // Fix acquirer
-      if (PLACEHOLDER_NAMES.includes(row.acquirer_name)) {
-        const extracted = extractOtherParty(text, ft);
-        if (extracted) {
-          const newId = await upsertCompany(extracted);
-          await db.query('UPDATE deals SET acquirer_id = $1, needs_review = false WHERE id = $2', [newId, row.deal_id]);
-          console.log(`[ENRICH] Deal ${row.deal_id}: acquirer "${row.acquirer_name}" → "${extracted}"`);
-          updated = true;
-        }
-      }
-
-      // Fix target
-      if (PLACEHOLDER_NAMES.includes(row.target_name)) {
-        const extracted = extractOtherParty(text, ft);
-        if (extracted) {
-          const newId = await upsertCompany(extracted);
-          await db.query('UPDATE deals SET target_id = $1, needs_review = false WHERE id = $2', [newId, row.deal_id]);
-          console.log(`[ENRICH] Deal ${row.deal_id}: target "${row.target_name}" → "${extracted}"`);
-          updated = true;
-        }
-      }
-
-      // Backfill deal value if missing
-      if (!row.deal_value && text) {
-        const cents = extractDealValueCents(text);
-        if (cents) {
-          await db.query('UPDATE deals SET deal_value = $1 WHERE id = $2', [cents, row.deal_id]);
-          console.log(`[ENRICH] Deal ${row.deal_id}: deal_value → ${cents / 100}`);
-          updated = true;
-        }
-      }
-
-      if (updated) enriched++; else skipped++;
-
-      await sleep(DELAY);
-    } catch (err) {
-      failed++;
-      console.error(`[ENRICH] Deal ${row.deal_id} error:`, err.message);
-    }
+  // Never apply the same generic extracted party to both roles.
+  if (acquirerName && targetName && !distinctParties(acquirerName, targetName)) {
+    return 'skipped';
   }
 
-  console.log(`\n[ENRICH] Done: ${enriched} enriched, ${skipped} skipped, ${failed} failed`);
-  console.log('[ENRICH] Run again to process next batch, or increase BATCH= env var.');
-  await db.end();
+  const client = await db.connect();
+  try {
+    await client.query('BEGIN');
+    let changed = false;
+    let acquirerId = row.acquirer_id;
+    let targetId = row.target_id;
+
+    if (!currentAcquirer && extracted.acquirer) {
+      acquirerId = await upsertCompany(client, extracted.acquirer);
+      changed = true;
+    }
+    if (!currentTarget && extracted.target) {
+      targetId = await upsertCompany(client, extracted.target);
+      changed = true;
+    }
+
+    const valueCents = !row.deal_value && extracted.dealValue
+      ? Math.round(Number(extracted.dealValue) * 100)
+      : null;
+    if (valueCents && Number.isSafeInteger(valueCents) && valueCents > 0) changed = true;
+
+    if (changed) {
+      await client.query(`
+        UPDATE deals SET
+          acquirer_id=$1,
+          target_id=$2,
+          extracted_acquirer_name=COALESCE($3,extracted_acquirer_name),
+          extracted_target_name=COALESCE($4,extracted_target_name),
+          deal_value=COALESCE($5,deal_value),
+          needs_review=true,
+          review_status='pending',
+          next_review_at=NOW(),
+          updated_at=NOW()
+        WHERE id=$6
+      `, [
+        acquirerId || null,targetId || null,
+        extracted.acquirer || null,extracted.target || null,
+        valueCents,row.deal_id,
+      ]);
+    }
+
+    await client.query('COMMIT');
+    return changed ? 'enriched' : 'skipped';
+  } catch (error) {
+    await client.query('ROLLBACK').catch(() => {});
+    throw error;
+  } finally {
+    client.release();
+  }
 }
 
-run().catch(err => { console.error('[ENRICH] Fatal:', err); db.end(); process.exit(1); });
+async function run() {
+  const rows = await candidateRows();
+  console.log(`[ENRICH] ${rows.length} candidate deal(s); batch=${BATCH}`);
+  const stats = { enriched: 0, skipped: 0, failed: 0 };
+
+  for (const row of rows) {
+    try {
+      const status = await enrichRow(row);
+      stats[status]++;
+    } catch (error) {
+      stats.failed++;
+      console.error(`[ENRICH] ${row.deal_id}: ${error.message}`);
+    }
+    await sleep(DELAY);
+  }
+
+  console.log('[ENRICH] Complete', stats);
+  if (stats.failed && stats.failed === rows.length && rows.length) {
+    throw new Error('Every enrichment candidate failed');
+  }
+  return stats;
+}
+
+module.exports = { run, enrichRow, isPlaceholder };
+
+if (require.main === module) {
+  run()
+    .then(() => db.end())
+    .catch(async error => {
+      console.error('[ENRICH] Fatal:', error);
+      await db.end().catch(() => {});
+      process.exitCode = 1;
+    });
+}
