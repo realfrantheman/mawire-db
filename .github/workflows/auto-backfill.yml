@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: auto-backfill
-  cancel-in-progress: false  # never cancel a running backfill
+  group: mawire-platform-backfill
+  cancel-in-progress: false
 
 jobs:
   backfill:
@@ -23,35 +23,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
 
-      - name: Install Node.js dependencies
-        run: npm install pg
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Backfill 1993–2024 (stops gracefully at 25 min)
+      - name: Backfill 1993–2024 (stops gracefully at 10 min)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           BACKFILL_START_YEAR: '1993'
           BACKFILL_END_YEAR: '2024'
           BACKFILL_TIME_LIMIT_MINUTES: '10'
         run: node FIX-historical-backfill.js
 
-      - name: Export full DB → deals.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          LOCAL_ONLY: 'true'
-        run: node FIX-export-to-github.js
-
-      - name: Commit and push deals.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add deals.json
-          if git diff --cached --quiet; then
-            echo "No new deals — nothing to commit"
-          else
-            git commit -m "chore: backfill deals.json [skip ci]"
-            git pull --rebase https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git main
-            git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main
-          fi
+      - name: Publication ownership
+        run: echo "Database backfill complete. The hourly verified refresh workflow is the sole publisher of public deal artifacts."
