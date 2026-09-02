@@ -1,0 +1,92 @@
+name: Repair validation
+
+on:
+  push:
+    branches:
+      - 'repair/**'
+  workflow_dispatch:
+
+concurrency:
+  group: repair-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Syntax-check deployed JavaScript
+        run: |
+          set -euo pipefail
+          for file in \
+            FIX-scheduler-v2.js \
+            FIX-sec-ingestor-index.js \
+            FIX-historical-backfill.js \
+            FIX-export-to-github.js \
+            FIX-eu-ingestor.js \
+            FIX-apac-ingestor.js \
+            FIX-news-ingestor.js \
+            FIX-gdelt-ingestor.js \
+            FIX-deal-extraction.js \
+            FIX-source-url.js \
+            FIX-source-url-backfill.js \
+            FIX-api-service.js \
+            FIX-enrich-deals.js \
+            FIX-transaction-review.js \
+            FIX-pie-monitor.js \
+            FIX-quality-hardening.js \
+            FIX-sw.js \
+            DEPLOY-cache-control.js \
+            DEPLOY-sector-deals.js \
+            DEPLOY-source-taxonomy.js \
+            FIX-ipo-dynamic-loader.js \
+            DEPLOY-charts.js \
+            DEPLOY-about.js \
+            app.js \
+            build-public-artifacts.js \
+            validate-source-urls.js; do
+            node --check "$file"
+          done
+          python3 -m py_compile deploy.py
+      - name: Read-only database schema smoke test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
+        run: |
+          node - <<'NODE'
+          const { Pool } = require('pg');
+          const db = new Pool({
+            connectionString: process.env.DATABASE_URL,
+            ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true'
+              ? { rejectUnauthorized: false }
+              : { rejectUnauthorized: true },
+          });
+          (async () => {
+            const required = {
+              deals: ['id','acquirer_id','target_id','announcement_date','filing_date','deal_value','sector','region','source_confidence','needs_review','canonical_id','created_at'],
+              companies: ['id','name','normalized_name','cik'],
+              deal_sources: ['id','deal_id','source_type','source_url','source_date','confidence','created_at'],
+              filings: ['id','deal_id','filing_type','document_url','accession_no','cik','filing_date','created_at'],
+            };
+            const { rows } = await db.query(`SELECT table_name,column_name FROM information_schema.columns WHERE table_schema='public' AND table_name = ANY($1::text[])`, [Object.keys(required)]);
+            const found = new Map();
+            for (const r of rows) {
+              if (!found.has(r.table_name)) found.set(r.table_name, new Set());
+              found.get(r.table_name).add(r.column_name);
+            }
+            const missing = [];
+            for (const [table, cols] of Object.entries(required)) {
+              for (const col of cols) if (!found.get(table)?.has(col)) missing.push(`${table}.${col}`);
+            }
+            if (missing.length) throw new Error(`Missing production schema columns: ${missing.join(', ')}`);
+            await db.query(`EXPLAIN SELECT d.id, d.deal_type, d.filing_date, d.announcement_date, a.cik AS acquirer_cik, t.cik AS target_cik FROM deals d LEFT JOIN companies a ON a.id=d.acquirer_id LEFT JOIN companies t ON t.id=d.target_id LEFT JOIN LATERAL (SELECT * FROM filings f WHERE f.deal_id=d.id ORDER BY f.created_at LIMIT 1) f ON true LEFT JOIN LATERAL (SELECT * FROM deal_sources ds WHERE ds.deal_id=d.id ORDER BY ds.created_at LIMIT 1) ds ON true WHERE d.extraction_method='sec_filing' AND (COALESCE(f.document_url,'')='' OR f.document_url ~ '-index\\.html$' OR f.document_url ~ '/data/[0-9]{12,}/') AND COALESCE(ds.source_url,'')='' ORDER BY COALESCE(d.filing_date,d.announcement_date) DESC NULLS LAST LIMIT 1`);
+            console.log('PRODUCTION_SCHEMA_SMOKE=ok');
+          })().finally(() => db.end()).catch(err => { console.error(err); process.exitCode = 1; });
+          NODE
