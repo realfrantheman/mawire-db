@@ -1,194 +1,25 @@
 {
-  "generatedAt": "2026-07-12T21:31:47.105Z",
-  "overallScore": 46,
+  "generatedAt": "2026-09-02T15:18:39.687Z",
+  "overallScore": 0,
   "status": "critical",
-  "durationMs": 9460,
-  "categories": {
-    "ingestion": {
-      "score": 41,
-      "status": "critical",
-      "checks": [
-        {
-          "name": "ingestion_freshness",
-          "status": "fail",
-          "score": 10,
-          "message": "Last deal ingested 41.8h ago"
-        },
-        {
-          "name": "ingestion_velocity",
-          "status": "fail",
-          "score": 5,
-          "message": "0 deals last 24h · 111 last 7d · 211668 last 30d"
-        },
-        {
-          "name": "source_diversity",
-          "status": "warn",
-          "score": 50,
-          "message": "1 source type(s) active in last 48h"
-        },
-        {
-          "name": "filing_coverage",
-          "status": "pass",
-          "score": 100,
-          "message": "All 4 key filing types seen in last 7d"
-        }
-      ]
-    },
-    "pipeline": {
-      "score": 55,
-      "status": "critical",
-      "checks": [
-        {
-          "name": "export_freshness",
-          "status": "fail",
-          "score": 10,
-          "message": "deals.json last updated 41.9h ago (via deals.updated_at (proxy))"
-        },
-        {
-          "name": "review_queue",
-          "status": "pass",
-          "score": 100,
-          "message": "0 of 0 active deals need review"
-        }
-      ]
-    }
-  },
+  "hardFailureCount": 1,
+  "warningCount": 0,
   "checks": [
     {
-      "name": "ingestion_freshness",
-      "category": "ingestion",
+      "name": "database_connectivity",
+      "category": "infrastructure",
       "status": "fail",
-      "score": 10,
-      "message": "Last deal ingested 41.8h ago"
-    },
-    {
-      "name": "ingestion_velocity",
-      "category": "ingestion",
-      "status": "fail",
-      "score": 5,
-      "message": "0 deals last 24h · 111 last 7d · 211668 last 30d"
-    },
-    {
-      "name": "source_diversity",
-      "category": "ingestion",
-      "status": "warn",
-      "score": 50,
-      "message": "1 source type(s) active in last 48h"
-    },
-    {
-      "name": "filing_coverage",
-      "category": "ingestion",
-      "status": "pass",
-      "score": 100,
-      "message": "All 4 key filing types seen in last 7d"
-    },
-    {
-      "name": "name_quality",
-      "category": "unknown",
-      "status": "skip",
-      "score": 50,
-      "message": "Check error: column \"acquirer\" does not exist"
-    },
-    {
-      "name": "value_completeness",
-      "category": "quality",
-      "status": "skip",
-      "score": 100,
-      "message": "No active deals"
-    },
-    {
-      "name": "data_completeness",
-      "category": "quality",
-      "status": "skip",
-      "score": 100,
-      "message": "No active deals"
-    },
-    {
-      "name": "dedup_health",
-      "category": "unknown",
-      "status": "skip",
-      "score": 50,
-      "message": "Check error: column a.acquirer does not exist"
-    },
-    {
-      "name": "export_freshness",
-      "category": "pipeline",
-      "status": "fail",
-      "score": 10,
-      "message": "deals.json last updated 41.9h ago (via deals.updated_at (proxy))"
-    },
-    {
-      "name": "review_queue",
-      "category": "pipeline",
-      "status": "pass",
-      "score": 100,
-      "message": "0 of 0 active deals need review"
-    },
-    {
-      "name": "geographic_coverage",
-      "category": "coverage",
-      "status": "skip",
-      "score": 100,
-      "message": "No active deals"
-    },
-    {
-      "name": "sector_coverage",
-      "category": "coverage",
-      "status": "skip",
-      "score": 100,
-      "message": "No active deals"
-    },
-    {
-      "name": "confidence_distribution",
-      "category": "unknown",
-      "status": "skip",
-      "score": 50,
-      "message": "Check error: column \"confidence\" does not exist"
+      "score": 0,
+      "message": "Database unavailable: (ENOTFOUND) tenant/user postgres.vhbjjrjbzsqgerrfugrm not found",
+      "hard": true
     }
   ],
   "alerts": [
     {
-      "key": "pie:export_freshness",
+      "key": "check:database_connectivity",
       "severity": "critical",
-      "title": "WARN: export freshness",
-      "description": "deals.json last updated 41.9h ago (via deals.updated_at (proxy))",
-      "since": "2026-06-13T08:32:08.248Z"
-    },
-    {
-      "key": "pie:ingestion_freshness",
-      "severity": "critical",
-      "title": "WARN: ingestion freshness",
-      "description": "Last deal ingested 41.8h ago",
-      "since": "2026-06-13T08:32:07.808Z"
-    },
-    {
-      "key": "pie:ingestion_velocity",
-      "severity": "critical",
-      "title": "FAIL: ingestion velocity",
-      "description": "0 inserted/updated records last 24h · 111 last 7d · 489 last 30d",
-      "since": "2026-07-01T22:11:40.059Z"
-    },
-    {
-      "key": "pie:ingestion_efficiency",
-      "severity": "warning",
-      "title": "WARN: ingestion efficiency",
-      "description": "0.0% yield · 197.8 full-text fetches/published · 17.5% generic URLs",
-      "since": "2026-06-18T23:13:08.242Z"
-    },
-    {
-      "key": "pie:source_diversity",
-      "severity": "warning",
-      "title": "WARN: source diversity",
-      "description": "1 source type(s) active in last 48h",
-      "since": "2026-06-20T23:55:25.373Z"
+      "title": "database connectivity",
+      "description": "Database unavailable: (ENOTFOUND) tenant/user postgres.vhbjjrjbzsqgerrfugrm not found"
     }
-  ],
-  "summary": {
-    "pass": 2,
-    "warn": 1,
-    "fail": 3,
-    "skip": 7,
-    "critical": 3,
-    "warnings": 2
-  }
+  ]
 }
