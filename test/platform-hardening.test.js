@@ -12,6 +12,18 @@ test('deployment controller owns all referenced site runtime assets', () => {
   assert.match(deploy, /'DEPLOY-about\.js'\s*,\s*'mawire-site'\s*,\s*'about\.js'/);
 });
 
+test('deployment controller owns the active platform entrypoint', () => {
+  const deploy = read('deploy.py');
+  const pkg = read('DEPLOY-platform-package.json');
+  const nixpacks = read('DEPLOY-platform-nixpacks.toml');
+  assert.match(deploy, /'DEPLOY-platform-package\.json'\s*,\s*'mawire-platform'\s*,\s*'package\.json'/);
+  assert.match(deploy, /'DEPLOY-platform-nixpacks\.toml'\s*,\s*'mawire-platform'\s*,\s*'nixpacks\.toml'/);
+  assert.match(pkg, /"start"\s*:\s*"npm run start:scheduler"/);
+  assert.match(pkg, /"start:scheduler"\s*:\s*"node scripts\/migrate\.js && node scheduler\.js"/);
+  assert.match(nixpacks, /cmd\s*=\s*"npm run start:scheduler"/);
+  assert.doesNotMatch(pkg + nixpacks, /frozen-platform/);
+});
+
 test('service worker never converts deal-data failure into an empty success', () => {
   const sw = read('FIX-sw.js');
   assert.match(sw, /deal_data_unavailable/);
