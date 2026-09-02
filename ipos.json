@@ -1,5 +1,44 @@
 [
   {
+    "id": "ipo-308c6358e7b6949d",
+    "slug": "tong-ying-group",
+    "name": "Tong Ying Group",
+    "legalName": "Tong Ying Group",
+    "sector": "Consumer",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-21",
+    "latestUpdateDate": "2026-07-21",
+    "filingType": "F-1/A",
+    "cik": "2018269",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2018269/000149315226034045/formf-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Tong Ying Group F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2018269/000149315226034045/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-07-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Tong Ying Group filed F-1/A with the SEC on 2026-07-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-0508ae67317d9608",
     "slug": "akari-therapeutics-plc-aktx",
     "name": "Akari Therapeutics Plc (AKTX)",
@@ -19395,45 +19434,6 @@
       }
     ],
     "notes": "Pine Tree Acquisition Corp. filed S-1 with the SEC on 2026-07-21.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-308c6358e7b6949d",
-    "slug": "tong-ying-group",
-    "name": "Tong Ying Group",
-    "legalName": "Tong Ying Group",
-    "sector": "Consumer",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-21",
-    "latestUpdateDate": "2026-07-21",
-    "filingType": "F-1",
-    "cik": "2018269",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2018269/000149315226034045/formf-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Tong Ying Group F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2018269/000149315226034045/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-07-21",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Tong Ying Group filed F-1 with the SEC on 2026-07-21.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -138538,14 +138538,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1370416/999999999526002469/primary_doc.xml",
         "publisher": "SEC",
         "date": "2026-07-27",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "WESTPORT FUEL SYSTEMS INC. (WPRT) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1370416/000162828026049042/westportfuelsystems-fx1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-21",
         "type": "filing",
         "confidence": 1
       }
