@@ -53,3 +53,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
           DEPLOY_PLATFORM_FIXES: 'true'
         run: python3 deploy.py
+
+# Production release trigger: full-platform repair 2026-09-02
