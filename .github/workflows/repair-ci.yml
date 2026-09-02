@@ -61,7 +61,10 @@ jobs:
           DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
         run: |
           node - <<'NODE'
+          const fs = require('fs');
           const { Pool } = require('pg');
+          const out = [];
+          const log = (s) => { out.push(String(s)); console.log(s); };
           const db = new Pool({
             connectionString: process.env.DATABASE_URL,
             ssl: process.env.DATABASE_SSL_ALLOW_SELF_SIGNED === 'true'
@@ -69,24 +72,48 @@ jobs:
               : { rejectUnauthorized: true },
           });
           (async () => {
-            const required = {
-              deals: ['id','acquirer_id','target_id','announcement_date','filing_date','deal_value','sector','region','source_confidence','needs_review','canonical_id','created_at'],
-              companies: ['id','name','normalized_name','cik'],
-              deal_sources: ['id','deal_id','source_type','source_url','source_date','confidence','created_at'],
-              filings: ['id','deal_id','filing_type','document_url','accession_no','cik','filing_date','created_at'],
-            };
-            const { rows } = await db.query(`SELECT table_name,column_name FROM information_schema.columns WHERE table_schema='public' AND table_name = ANY($1::text[])`, [Object.keys(required)]);
-            const found = new Map();
-            for (const r of rows) {
-              if (!found.has(r.table_name)) found.set(r.table_name, new Set());
-              found.get(r.table_name).add(r.column_name);
+            let failed = false;
+            try {
+              const required = {
+                deals: ['id','acquirer_id','target_id','announcement_date','filing_date','deal_value','sector','region','source_confidence','needs_review','canonical_id','created_at'],
+                companies: ['id','name','normalized_name','cik'],
+                deal_sources: ['id','deal_id','source_type','source_url','source_date','confidence','created_at'],
+                filings: ['id','deal_id','filing_type','document_url','accession_no','cik','filing_date','created_at'],
+              };
+              const { rows } = await db.query(`SELECT table_name,column_name FROM information_schema.columns WHERE table_schema='public' AND table_name = ANY($1::text[]) ORDER BY table_name, ordinal_position`, [Object.keys(required)]);
+              const found = new Map();
+              for (const r of rows) {
+                if (!found.has(r.table_name)) found.set(r.table_name, new Set());
+                found.get(r.table_name).add(r.column_name);
+              }
+              for (const [table, cols] of found) log(`COLUMNS ${table}: ${Array.from(cols).join(',')}`);
+              const missing = [];
+              for (const [table, cols] of Object.entries(required)) {
+                for (const col of cols) if (!found.get(table)?.has(col)) missing.push(`${table}.${col}`);
+              }
+              if (missing.length) { failed = true; log(`MISSING ${missing.join(',')}`); }
+              try {
+                await db.query(`EXPLAIN SELECT d.id, d.deal_type, d.filing_date, d.announcement_date, a.cik AS acquirer_cik, t.cik AS target_cik FROM deals d LEFT JOIN companies a ON a.id=d.acquirer_id LEFT JOIN companies t ON t.id=d.target_id LEFT JOIN LATERAL (SELECT * FROM filings f WHERE f.deal_id=d.id ORDER BY f.created_at LIMIT 1) f ON true LEFT JOIN LATERAL (SELECT * FROM deal_sources ds WHERE ds.deal_id=d.id ORDER BY ds.created_at LIMIT 1) ds ON true WHERE d.extraction_method='sec_filing' AND (COALESCE(f.document_url,'')='' OR f.document_url ~ '-index\\.html$' OR f.document_url ~ '/data/[0-9]{12,}/') AND COALESCE(ds.source_url,'')='' ORDER BY COALESCE(d.filing_date,d.announcement_date) DESC NULLS LAST LIMIT 1`);
+                log('SOURCE_BACKFILL_SELECT=ok');
+              } catch (err) {
+                failed = true;
+                log(`SOURCE_BACKFILL_SELECT_ERROR ${err.message}`);
+              }
+              if (!failed) log('PRODUCTION_SCHEMA_SMOKE=ok');
+            } catch (err) {
+              failed = true;
+              log(`DB_SMOKE_ERROR ${err.stack || err.message}`);
+            } finally {
+              fs.writeFileSync('db-smoke.txt', out.join('\n') + '\n');
+              await db.end().catch(() => {});
             }
-            const missing = [];
-            for (const [table, cols] of Object.entries(required)) {
-              for (const col of cols) if (!found.get(table)?.has(col)) missing.push(`${table}.${col}`);
-            }
-            if (missing.length) throw new Error(`Missing production schema columns: ${missing.join(', ')}`);
-            await db.query(`EXPLAIN SELECT d.id, d.deal_type, d.filing_date, d.announcement_date, a.cik AS acquirer_cik, t.cik AS target_cik FROM deals d LEFT JOIN companies a ON a.id=d.acquirer_id LEFT JOIN companies t ON t.id=d.target_id LEFT JOIN LATERAL (SELECT * FROM filings f WHERE f.deal_id=d.id ORDER BY f.created_at LIMIT 1) f ON true LEFT JOIN LATERAL (SELECT * FROM deal_sources ds WHERE ds.deal_id=d.id ORDER BY ds.created_at LIMIT 1) ds ON true WHERE d.extraction_method='sec_filing' AND (COALESCE(f.document_url,'')='' OR f.document_url ~ '-index\\.html$' OR f.document_url ~ '/data/[0-9]{12,}/') AND COALESCE(ds.source_url,'')='' ORDER BY COALESCE(d.filing_date,d.announcement_date) DESC NULLS LAST LIMIT 1`);
-            console.log('PRODUCTION_SCHEMA_SMOKE=ok');
-          })().finally(() => db.end()).catch(err => { console.error(err); process.exitCode = 1; });
+            if (failed) process.exitCode = 1;
+          })();
           NODE
+      - name: Upload database smoke diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-smoke
+          path: db-smoke.txt
+          if-no-files-found: error
