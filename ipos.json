@@ -204,53 +204,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-21c9225c59b034ea",
-    "slug": "t3-defense-inc-dfns-dfnsw",
-    "name": "T3 Defense Inc. (DFNS, DFNSW)",
-    "legalName": "T3 Defense Inc. (DFNS, DFNSW)",
-    "sector": "Other",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-25",
-    "latestUpdateDate": "2026-06-25",
-    "filingType": "S-1/A",
-    "cik": "1787518",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1787518/000121390026072134/ea0295992-s1a1_t3defense.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "T3 Defense Inc. (DFNS, DFNSW) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1787518/000121390026072134/ea0295992-s1a1_t3defense.htm",
-        "publisher": "SEC",
-        "date": "2026-06-25",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Nukkleus Inc. (NUKK, NUKKW) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1787518/000121390025087661/ea0257405-rw_nukkleus.htm",
-        "publisher": "SEC",
-        "date": "2025-09-15",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "T3 Defense Inc. (DFNS, DFNSW) filed S-1/A with the SEC on 2026-06-25.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-132772a8c681fc61",
     "slug": "vivakor-inc-vivk",
     "name": "Vivakor, Inc. (VIVK)",
@@ -12455,6 +12408,147 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-4a344174d6f9a1df",
+    "slug": "nexalin-technology-inc-nxl",
+    "name": "Nexalin Technology, Inc. (NXL)",
+    "legalName": "Nexalin Technology, Inc. (NXL)",
+    "sector": "Industrials",
+    "industry": null,
+    "valuation": "$9",
+    "valuationNum": 9.3,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "in",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-03",
+    "latestUpdateDate": "2026-09-03",
+    "filingType": "S-1",
+    "cik": "1527352",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1527352/000182912626009723/nexalintech_s1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Nexalin Technology, Inc. (NXL) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1527352/000182912626009723/nexalintech_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Nexalin Technology, Inc. (NXL) filed S-1 with the SEC on 2026-09-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-b4f00eb3fc421479",
+    "slug": "oura-inc",
+    "name": "Oura Inc.",
+    "legalName": "Oura Inc.",
+    "sector": "Industrials",
+    "industry": null,
+    "valuation": "$255M",
+    "valuationNum": 255000000,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "price",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-03",
+    "latestUpdateDate": "2026-09-03",
+    "filingType": "S-1",
+    "cik": "2133022",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2133022/000119312526381855/d119865ds1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Oura Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2133022/000119312526381855/d119865ds1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Oura Inc. filed S-1 with the SEC on 2026-09-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-21c9225c59b034ea",
+    "slug": "t3-defense-inc-dfns-dfnsw",
+    "name": "T3 Defense Inc. (DFNS, DFNSW)",
+    "legalName": "T3 Defense Inc. (DFNS, DFNSW)",
+    "sector": "Other",
+    "industry": null,
+    "valuation": "$10M",
+    "valuationNum": 10000000,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "on",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-03",
+    "latestUpdateDate": "2026-09-03",
+    "filingType": "S-1",
+    "cik": "1787518",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1787518/000121390026097287/ea0304078-s1_t3defense.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "T3 Defense Inc. (DFNS, DFNSW) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1787518/000121390026097287/ea0304078-s1_t3defense.htm",
+        "publisher": "SEC",
+        "date": "2026-09-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "T3 Defense Inc. (DFNS, DFNSW) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1787518/000118518526003839/dfnss1090126.htm",
+        "publisher": "SEC",
+        "date": "2026-09-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "T3 Defense Inc. (DFNS, DFNSW) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1787518/000121390026072134/ea0295992-s1a1_t3defense.htm",
+        "publisher": "SEC",
+        "date": "2026-06-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Nukkleus Inc. (NUKK, NUKKW) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1787518/000121390025087661/ea0257405-rw_nukkleus.htm",
+        "publisher": "SEC",
+        "date": "2025-09-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "T3 Defense Inc. (DFNS, DFNSW) filed S-1 with the SEC on 2026-09-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-4626331767b8cc68",
     "slug": "v-capital-consulting-group-ltd",
     "name": "V Capital Consulting Group Ltd",
@@ -12494,6 +12588,53 @@
       }
     ],
     "notes": "V Capital Consulting Group Ltd filed F-1 with the SEC on 2026-09-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-ba32d078df6803bd",
+    "slug": "venhub-global-inc-vhub",
+    "name": "VenHub Global, Inc. (VHUB)",
+    "legalName": "VenHub Global, Inc. (VHUB)",
+    "sector": "Industrials",
+    "industry": null,
+    "valuation": "$19M",
+    "valuationNum": 18865000,
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "under",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-03",
+    "latestUpdateDate": "2026-09-03",
+    "filingType": "S-1",
+    "cik": "1972234",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1972234/000121390026097253/ea0303955-s1_venhub.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "VenHub Global, Inc. (VHUB) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1972234/000121390026097253/ea0303955-s1_venhub.htm",
+        "publisher": "SEC",
+        "date": "2026-09-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "VenHub Global, Inc. (VHUB) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1972234/000121390026074328/ea0296408-s1a1_venhub.htm",
+        "publisher": "SEC",
+        "date": "2026-07-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "VenHub Global, Inc. (VHUB) filed S-1 with the SEC on 2026-09-03.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -12931,12 +13072,12 @@
     "legalName": "ENTRATA, INC. (ENT)",
     "sector": "Technology",
     "industry": null,
-    "valuation": "$356M",
-    "valuationNum": 356300000,
+    "valuation": null,
+    "valuationNum": null,
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "NYSE",
-    "ticker": "symbol",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-09-01",
@@ -14820,7 +14961,7 @@
         "confidence": 1
       },
       {
-        "title": "Youmi Inc. S-1",
+        "title": "Youmi Inc. S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2137360/000152013826000256/youmi-202606_s1a.htm",
         "publisher": "SEC",
         "date": "2026-06-29",
@@ -22513,45 +22654,6 @@
       }
     ],
     "notes": "Stewards, Inc. (SWRD) filed S-1 with the SEC on 2026-07-01.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-ba32d078df6803bd",
-    "slug": "venhub-global-inc-vhub",
-    "name": "VenHub Global, Inc. (VHUB)",
-    "legalName": "VenHub Global, Inc. (VHUB)",
-    "sector": "Industrials",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-01",
-    "latestUpdateDate": "2026-07-01",
-    "filingType": "S-1",
-    "cik": "1972234",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1972234/000121390026074328/ea0296408-s1a1_venhub.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "VenHub Global, Inc. (VHUB) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1972234/000121390026074328/ea0296408-s1a1_venhub.htm",
-        "publisher": "SEC",
-        "date": "2026-07-01",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "VenHub Global, Inc. (VHUB) filed S-1 with the SEC on 2026-07-01.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -74018,6 +74120,45 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-33789c1c54778cc5",
+    "slug": "weshop-holdings-ltd-wshp",
+    "name": "WeShop Holdings Ltd (WSHP)",
+    "legalName": "WeShop Holdings Ltd (WSHP)",
+    "sector": "Consumer",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-09-03",
+    "filingDate": "2026-09-03",
+    "latestUpdateDate": "2026-09-03",
+    "filingType": "424B4",
+    "cik": "2048271",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2048271/000149315226041390/form424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "WeShop Holdings Ltd (WSHP) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2048271/000149315226041390/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-09-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "WeShop Holdings Ltd (WSHP) filed 424B4 with the SEC on 2026-09-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-f0ccf0913870aa35",
     "slug": "first-breach-inc-fbdt",
     "name": "First Breach, Inc. (FBDT)",
@@ -80512,7 +80653,7 @@
         "confidence": 1
       },
       {
-        "title": "Viking Acquisition Corp. II (VII) S-1",
+        "title": "Viking Acquisition Corp. II (VII) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2139246/000121390026073322/ea0293867-04.htm",
         "publisher": "SEC",
         "date": "2026-06-30",
@@ -95265,61 +95406,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-33789c1c54778cc5",
-    "slug": "weshop-holdings-ltd-wshp",
-    "name": "WeShop Holdings Ltd (WSHP)",
-    "legalName": "WeShop Holdings Ltd (WSHP)",
-    "sector": "Consumer",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2025-11-19",
-    "filingDate": "2025-11-19",
-    "latestUpdateDate": "2025-11-19",
-    "filingType": "424B4",
-    "cik": "2048271",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2048271/000149315225024312/form424b4.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "WeShop Holdings Ltd (WSHP) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2048271/000149315225024312/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-11-19",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "WeShop Holdings Ltd (WSHP) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2048271/000149315225024299/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-11-19",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "WeShop Holdings Ltd (WSHP) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2048271/000149315225023668/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-11-14",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "WeShop Holdings Ltd (WSHP) filed 424B4 with the SEC on 2025-11-19.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-e66fe1d4fba1a4d4",
     "slug": "duke-energy-carolinas-llc",
     "name": "Duke Energy Carolinas, LLC",
@@ -105705,61 +105791,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-4a344174d6f9a1df",
-    "slug": "nexalin-technology-inc-nxl-nxliw",
-    "name": "Nexalin Technology, Inc. (NXL, NXLIW)",
-    "legalName": "Nexalin Technology, Inc. (NXL, NXLIW)",
-    "sector": "Industrials",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2025-05-06",
-    "filingDate": "2025-05-06",
-    "latestUpdateDate": "2025-05-06",
-    "filingType": "424B4",
-    "cik": "1527352",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1527352/000182912625003425/nexalintech_424b4.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Nexalin Technology, Inc. (NXL, NXLIW) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1527352/000182912625003425/nexalintech_424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-05-06",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Nexalin Technology, Inc. (NXL, NXLIW) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1527352/000182912625003319/nexalintech_424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-05-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Nexalin Technology, Inc. (NXL, NXLIW) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1527352/000182912624003342/nexalintech_rw.htm",
-        "publisher": "SEC",
-        "date": "2024-05-14",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Nexalin Technology, Inc. (NXL, NXLIW) filed 424B4 with the SEC on 2025-05-06.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-21f7efe9435d1649",
     "slug": "gores-holdings-x-inc-ci-gten",
     "name": "Gores Holdings X, Inc. / CI (GTEN)",
@@ -113197,6 +113228,77 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-f75b41ff58e3b8a4",
+    "slug": "defi-development-corp-dfdv-dfdvw-dfukf",
+    "name": "DeFi Development Corp. (DFDV, DFDVW, DFUKF)",
+    "legalName": "DeFi Development Corp. (DFDV, DFDVW, DFUKF)",
+    "sector": "Financial Services",
+    "industry": null,
+    "valuation": null,
+    "valuationNum": null,
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-03",
+    "latestUpdateDate": "2026-09-03",
+    "filingType": "RW",
+    "cik": "1805526",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1805526/000121390026097174/ea030448901-rw_defi.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "DeFi Development Corp. (DFDV, DFDVW, DFUKF) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1805526/000121390026097174/ea030448901-rw_defi.htm",
+        "publisher": "SEC",
+        "date": "2026-09-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DeFi Development Corp. (DFDV, DFDVW, DFUKF) RW WD",
+        "url": "https://www.sec.gov/Archives/edgar/data/1805526/000121390026097172/ea030448902-rwwd_defi.htm",
+        "publisher": "SEC",
+        "date": "2026-09-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DeFi Development Corp. (DFDV, DFDVW, DFUKF) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1805526/000180552626000063/dfdv-formrwpreferredsx1.htm",
+        "publisher": "SEC",
+        "date": "2026-08-31",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DeFi Development Corp. (DFDV, DFDVW) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1805526/000121390025121875/ea0269833-rw_defi.htm",
+        "publisher": "SEC",
+        "date": "2025-12-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DeFi Development Corp. (DFDV) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1805526/000121390025053425/ea024543901-rw_defidevelop.htm",
+        "publisher": "SEC",
+        "date": "2025-06-11",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "DeFi Development Corp. (DFDV, DFDVW, DFUKF) filed RW with the SEC on 2026-09-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-40a54844e4387f54",
     "slug": "bergstrom-financial-group-trust",
     "name": "Bergstrom Financial Group Trust",
@@ -113471,61 +113573,6 @@
       }
     ],
     "notes": "Coolbit Technologies Ltd (CBAI) filed RW with the SEC on 2026-08-31.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-f75b41ff58e3b8a4",
-    "slug": "defi-development-corp-dfdv-dfdvw-dfukf",
-    "name": "DeFi Development Corp. (DFDV, DFDVW, DFUKF)",
-    "legalName": "DeFi Development Corp. (DFDV, DFDVW, DFUKF)",
-    "sector": "Financial Services",
-    "industry": null,
-    "valuation": null,
-    "valuationNum": null,
-    "status": "withdrawn",
-    "statusLabel": "Withdrawn",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-31",
-    "latestUpdateDate": "2026-08-31",
-    "filingType": "RW",
-    "cik": "1805526",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1805526/000180552626000063/dfdv-formrwpreferredsx1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "DeFi Development Corp. (DFDV, DFDVW, DFUKF) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1805526/000180552626000063/dfdv-formrwpreferredsx1.htm",
-        "publisher": "SEC",
-        "date": "2026-08-31",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DeFi Development Corp. (DFDV, DFDVW) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1805526/000121390025121875/ea0269833-rw_defi.htm",
-        "publisher": "SEC",
-        "date": "2025-12-16",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DeFi Development Corp. (DFDV) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1805526/000121390025053425/ea024543901-rw_defidevelop.htm",
-        "publisher": "SEC",
-        "date": "2025-06-11",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "DeFi Development Corp. (DFDV, DFDVW, DFUKF) filed RW with the SEC on 2026-08-31.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -145798,14 +145845,6 @@
         "date": "2026-08-03",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Matternet, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2075109/000121390026073335/ea0294588-s1_matternet.htm",
-        "publisher": "SEC",
-        "date": "2026-06-30",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Matternet, Inc. filed EFFECT with the SEC on 2026-08-11.",
@@ -148282,14 +148321,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1838987/000121390026081056/ea0297324-s1_sunpower.htm",
         "publisher": "SEC",
         "date": "2026-07-24",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "SunPower Inc. (SPWR, SPWRW) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1838987/000121390026073268/ea0294433-s1_sunpower.htm",
-        "publisher": "SEC",
-        "date": "2026-06-30",
         "type": "filing",
         "confidence": 1
       }
