@@ -24,6 +24,12 @@ test('deployment controller owns the active platform entrypoint', () => {
   assert.doesNotMatch(pkg + nixpacks, /frozen-platform/);
 });
 
+test('production deal index bypasses custom-domain Cloudflare challenges', () => {
+  const deploy = read('deploy.py');
+  assert.match(deploy, /PUBLIC_DATA_URL\s*=\s*['"]https:\/\/raw\.githubusercontent\.com\/realfrantheman\/mawire-db\/main\/deals-index\.json['"]/);
+  assert.doesNotMatch(deploy, /PUBLIC_DATA_URL\s*=\s*['"]\/deals-index\.json['"]/);
+});
+
 test('service worker never converts deal-data failure into an empty success', () => {
   const sw = read('FIX-sw.js');
   assert.match(sw, /deal_data_unavailable/);
