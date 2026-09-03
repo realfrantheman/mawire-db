@@ -25,7 +25,7 @@ OWNER = 'realfrantheman'
 SITE_DATA_ONLY = os.environ.get('DEPLOY_SITE_DATA_ONLY', '').lower() == 'true'
 PUBLIC_DATA_SOURCES = {'deals-index.json', 'deals-public-manifest.json'}
 LEGACY_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals.json'
-PUBLIC_DATA_URL = '/deals-index.json'
+PUBLIC_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals-index.json'
 
 MAPPINGS = [
     # Platform deployment/runtime entrypoint
