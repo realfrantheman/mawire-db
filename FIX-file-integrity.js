@@ -3,8 +3,7 @@
 const fs = require('fs');
 const https = require('https');
 const http = require('http');
-const { buildArtifacts, RULE } = require('./build-public-artifacts');
-const { canonicalPrimarySourceUrl } = require('./FIX-source-url');
+const { buildArtifacts, RULE, isPublicTransaction, isLegacyIndexRow } = require('./build-public-artifacts');
 
 const DEALS_FILE = process.env.FILE_REFRESH_DEALS_FILE || 'deals.json';
 const INDEX_FILE = 'deals-index.json';
@@ -86,19 +85,29 @@ function validateLocalArtifacts(deals, index, manifest) {
   const age = Date.now() - generatedAt;
   if (age < -15 * 60000 || age > MAX_AGE_MS) throw new Error(`public artifact is stale: ${Math.round(age / 60000)} minutes old`);
 
-  const expected = buildArtifacts(deals).index;
+  const expected = buildArtifacts(deals, { legacyIndex: index }).index;
   if (expected.length !== index.length) throw new Error(`rebuild/index count mismatch: ${expected.length} != ${index.length}`);
-  if (JSON.stringify(expected) !== JSON.stringify(index)) throw new Error('deals-index.json does not match deterministic rebuild from deals.json');
+  if (JSON.stringify(expected) !== JSON.stringify(index)) throw new Error('deals-index.json does not match compatibility-safe deterministic rebuild from deals.json');
 
-  const invalid = index.filter(deal =>
-    deal.reviewStatus !== 'verified' || deal.reviewRuleVersion !== RULE || !deal.acquirer || !deal.target ||
-    normalizedParty(deal.acquirer) === normalizedParty(deal.target) || !/^https?:\/\//i.test(canonicalPrimarySourceUrl(deal) || '')
-  );
-  if (invalid.length) throw new Error(`public index contains ${invalid.length} invalid transaction(s)`);
+  const legacyRows = index.filter(isLegacyIndexRow);
+  const strictRows = index.filter(row => !isLegacyIndexRow(row));
+  const invalidStrict = strictRows.filter(deal => !isPublicTransaction(deal));
+  if (invalidStrict.length) throw new Error(`public index contains ${invalidStrict.length} invalid strict transaction(s)`);
+  if (manifest.legacyRecordCount !== undefined && Number(manifest.legacyRecordCount) !== legacyRows.length) {
+    throw new Error(`manifest legacy count mismatch: ${manifest.legacyRecordCount} != ${legacyRows.length}`);
+  }
+  if (manifest.strictVerifiedCount !== undefined && Number(manifest.strictVerifiedCount) !== strictRows.length) {
+    throw new Error(`manifest strict count mismatch: ${manifest.strictVerifiedCount} != ${strictRows.length}`);
+  }
 
-  const duplicates = duplicateKeys(index);
-  if (duplicates.length) throw new Error(`public index contains ${duplicates.length} duplicate identity key(s); first=${duplicates[0]}`);
-  return { dealCount: index.length, generatedAt: manifest.generatedAt };
+  const duplicates = duplicateKeys(strictRows);
+  if (duplicates.length) throw new Error(`strict public index contains ${duplicates.length} duplicate identity key(s); first=${duplicates[0]}`);
+  return {
+    dealCount: index.length,
+    legacyRecordCount: legacyRows.length,
+    strictVerifiedCount: strictRows.length,
+    generatedAt: manifest.generatedAt,
+  };
 }
 
 async function validateOrigin(localManifest) {

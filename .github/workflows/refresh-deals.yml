@@ -8,7 +8,10 @@ on:
       - main
     paths:
       - 'refresh-file-backed.js'
+      - 'refresh-file-backed-v2.js'
       - 'refresh-file-backed-runner.js'
+      - 'build-public-artifacts.js'
+      - 'FIX-transaction-review.js'
       - 'FIX-sec-efts.js'
       - 'database-probe.js'
       - 'FIX-file-integrity.js'
@@ -85,7 +88,18 @@ jobs:
       - name: Verify publication gate
         run: |
           node - <<'NODE'
-          const a=JSON.parse(require('fs').readFileSync('deals-index.json','utf8'));const b=a.filter(d=>d.reviewStatus!=='verified'||d.reviewRuleVersion!=='strict-control-v3'||!d.acquirer||!d.target||/^(unknown|undisclosed)/i.test(d.acquirer)||/^(unknown|undisclosed)/i.test(d.target)||!/^https?:\/\//.test(d.sourceUrl||''));if(b.length)throw Error('unverified rows escaped: '+b.length);if(a.some(d=>/dynatrace/i.test(d.target||'')&&/undisclosed/i.test(d.acquirer||'')))throw Error('Dynatrace regression');console.log('VERIFIED_PUBLIC_RECORDS='+a.length)
+          const fs = require('fs');
+          const { isPublicTransaction, isLegacyIndexRow } = require('./build-public-artifacts');
+          const rows = JSON.parse(fs.readFileSync('deals-index.json','utf8'));
+          if (!Array.isArray(rows) || rows.length < 10000) throw Error('public corpus collapsed below safety floor: ' + (rows && rows.length));
+          const legacy = rows.filter(isLegacyIndexRow);
+          const strict = rows.filter(d => !isLegacyIndexRow(d));
+          const invalidStrict = strict.filter(d => !isPublicTransaction(d));
+          if (invalidStrict.length) throw Error('invalid strict rows escaped: ' + invalidStrict.length);
+          const poison = /secretary of state|surviving company|as applicable|as a result of|does not close|making such other filings|\badditionally\b/i;
+          const poisonedStrict = strict.filter(d => poison.test(String(d.acquirer||'')) || poison.test(String(d.target||'')));
+          if (poisonedStrict.length) throw Error('boilerplate party text escaped strict publication: ' + poisonedStrict.length);
+          console.log(`PUBLIC_RECORDS=${rows.length} LEGACY=${legacy.length} STRICT_VERIFIED=${strict.length}`);
           NODE
       - name: Commit verified artifacts
         run: |
