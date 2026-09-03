@@ -80,38 +80,60 @@ async function run() {
   }
 }
 
+function buildEftsUrl(filingType, startdt, enddt, from = 0) {
+  return `https://efts.sec.gov/LATEST/search-index?forms=${encodeURIComponent(filingType)}&dateRange=custom&startdt=${encodeURIComponent(startdt)}&enddt=${encodeURIComponent(enddt)}&from=${from}&size=100&hits.hits.total.value=true`;
+}
+
 async function fetchRecentFilings(filingType) {
-  const fromDate = new Date();
+  const endDate = new Date();
+  const fromDate = new Date(endDate);
   fromDate.setUTCDate(fromDate.getUTCDate() - CONFIG.lookback_days);
   const startdt = fromDate.toISOString().slice(0, 10);
+  const enddt = endDate.toISOString().slice(0, 10);
   const results = [];
   let from = 0;
 
   while (true) {
-    const url = `https://efts.sec.gov/LATEST/search-index?forms=${encodeURIComponent(filingType)}&dateRange=custom&startdt=${startdt}&from=${from}&size=100&hits.hits.total.value=true`;
+    const url = buildEftsUrl(filingType, startdt, enddt, from);
     const data = await withRetry(() => fetchJson(url), { attempts: 4, baseDelayMs: 1000 });
     const hits = data?.hits?.hits;
     if (!Array.isArray(hits)) throw new Error('SEC EFTS response missing hits array');
-    for (const hit of hits) results.push(hitToFiling(hit));
+    for (const hit of hits) {
+      const exactForm = String(hit?._source?.form || '').trim();
+      if (exactForm && exactForm !== filingType) continue;
+      results.push(hitToFiling(hit));
+    }
     from += hits.length;
     const total = Number(data?.hits?.total?.value || 0);
     if (!hits.length || from >= total) break;
-    if (from >= 10000) throw new Error(`SEC EFTS returned >=10,000 ${filingType} filings in live lookback; reduce LOOKBACK_DAYS`);
+    if (from >= 10000) throw new Error(`SEC EFTS returned >=10,000 ${filingType} filings between ${startdt} and ${enddt}; reduce LOOKBACK_DAYS`);
     await sleep(300);
   }
   return dedupeFilings(results);
 }
 
+function cleanDisplayName(value) {
+  return String(value || '')
+    .replace(/\s+\([^)]*\)\s+\(CIK\s+\d+\)\s*$/i, '')
+    .replace(/\s+\(CIK\s+\d+\)\s*$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function hitToFiling(hit) {
-  const cik = hit._source?.entity_id || extractCIK(hit._id);
+  const source = hit?._source || {};
+  const primaryCik = Array.isArray(source.ciks) ? source.ciks[0] : null;
+  const cikDigits = String(primaryCik || source.entity_id || '').replace(/\D/g, '');
+  const cik = cikDigits ? String(Number.parseInt(cikDigits, 10)) : extractCIK(hit?._id);
+  const displayName = Array.isArray(source.display_names) ? source.display_names[0] : source.entity_name;
   return {
-    id: hit._id,
-    accession_no: cleanAccession(hit._id),
-    entity_name: hit._source?.entity_name || hit._source?.display_names?.[0] || 'Unknown',
+    id: hit?._id,
+    accession_no: cleanAccession(hit?._id),
+    entity_name: cleanDisplayName(displayName) || 'Unknown',
     cik,
-    filing_date: hit._source?.file_date || hit._source?.period_of_report || null,
-    filing_url: buildEdgarUrl(hit._id, cik),
-    raw: hit._source,
+    filing_date: source.file_date || source.period_ending || source.period_of_report || null,
+    filing_url: buildEdgarUrl(hit?._id, cik),
+    raw: source,
   };
 }
 
@@ -227,7 +249,7 @@ async function fetchFilingDetail(cik, accessionNo) {
 async function fetchFilingText(documentUrl) {
   if (!documentUrl) return '';
   try {
-    return await withRetry(() => fetchText(documentUrl, 250000), { attempts: 2, baseDelayMs: 600 });
+    return await withRetry(() => fetchText(documentUrl, 2 * 1024 * 1024), { attempts: 2, baseDelayMs: 600 });
   } catch (error) {
     console.warn('[SEC] Filing text unavailable:', error.message);
     return '';
@@ -466,7 +488,7 @@ async function endLog(id, status, stats, error) {
   await db.query(`UPDATE ingestion_log SET run_ended_at=NOW(),status=$1,records_fetched=$2,records_new=$3,records_updated=$4,records_failed=$5,error_message=$6,duration_ms=EXTRACT(EPOCH FROM (NOW()-run_started_at))*1000 WHERE id=$7`, [status, stats.fetched, stats.new, stats.updated, stats.failed, error || null, id]);
 }
 
-module.exports = { run, cleanAccession, fetchRecentFilings, extractDealInfo, extractOtherParty, extractDealValueCents };
+module.exports = { run, cleanAccession, buildEftsUrl, cleanDisplayName, hitToFiling, fetchRecentFilings, extractDealInfo, extractOtherParty, extractDealValueCents };
 
 if (require.main === module) {
   run()
