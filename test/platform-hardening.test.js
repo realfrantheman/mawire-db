@@ -12,6 +12,14 @@ test('deployment controller owns all referenced site runtime assets', () => {
   assert.match(deploy, /'DEPLOY-about\.js'\s*,\s*'mawire-site'\s*,\s*'about\.js'/);
 });
 
+test('site-owned brand assets cannot be overwritten by runtime deployments', () => {
+  const deploy = read('deploy.py');
+  assert.doesNotMatch(deploy, /\('style\.css'\s*,\s*'mawire-site'\s*,\s*'style\.css'\)/);
+  assert.doesNotMatch(deploy, /\('DEPLOY-manifest\.json'\s*,\s*'mawire-site'\s*,\s*'manifest\.json'\)/);
+  assert.doesNotMatch(deploy, /\('icon-192\.png'\s*,\s*'mawire-site'\s*,\s*'icon-192\.png'\)/);
+  assert.doesNotMatch(deploy, /\('icon-512\.png'\s*,\s*'mawire-site'\s*,\s*'icon-512\.png'\)/);
+});
+
 test('deployment controller owns the active platform entrypoint', () => {
   const deploy = read('deploy.py');
   const pkg = read('DEPLOY-platform-package.json');
@@ -26,7 +34,10 @@ test('deployment controller owns the active platform entrypoint', () => {
 
 test('production deal index bypasses custom-domain Cloudflare challenges', () => {
   const deploy = read('deploy.py');
-  assert.match(deploy, /PUBLIC_DATA_URL\s*=\s*['"]https:\/\/raw\.githubusercontent\.com\/realfrantheman\/mawire-db\/main\/deals-index\.json['"]/);
+  const integrity = read('FIX-file-integrity.js');
+  const endpoint = /https:\/\/raw\.githubusercontent\.com\/realfrantheman\/mawire-db\/main\/deals-index\.json/;
+  assert.match(deploy, endpoint);
+  assert.match(integrity, endpoint);
   assert.doesNotMatch(deploy, /PUBLIC_DATA_URL\s*=\s*['"]\/deals-index\.json['"]/);
 });
 

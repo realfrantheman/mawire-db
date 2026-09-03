@@ -115,8 +115,8 @@ async function validateOrigin(localManifest) {
 
   const app = await request(`${ORIGIN}/app.js`, 'GET', 1024 * 1024);
   if (app.status !== 200) throw new Error(`origin app.js HTTP ${app.status}`);
-  if (!/var\s+GITHUB_DB\s*=\s*['"]\/deals-index\.json['"]/.test(app.text)) {
-    throw new Error('origin frontend is not configured for same-origin deals-index.json');
+  if (!/var\s+GITHUB_DB\s*=\s*['"]https:\/\/raw\.githubusercontent\.com\/realfrantheman\/mawire-db\/main\/deals-index\.json['"]/.test(app.text)) {
+    throw new Error('origin frontend is not configured for the Cloudflare-safe public deal index');
   }
   return { origin: ORIGIN, remoteDealCount: remoteManifest.dealCount, remoteGeneratedAt: remoteManifest.generatedAt };
 }

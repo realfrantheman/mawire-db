@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Atomic deployment controller for mergers.news.
 
-The mawire-db repository is the release source of truth. This controller creates
-one immutable commit per target repository and only advances target main refs
-after every commit has been prepared successfully. If any ref update fails,
-already-updated repositories are rolled back to their exact previous SHA.
+The mawire-db repository is the release source of truth for platform/runtime and
+verified public data. Visual brand assets remain owned by mawire-site so an
+operational deployment can never overwrite approved presentation changes.
+This controller creates one immutable commit per target repository and only
+advances target main refs after every commit has been prepared successfully.
+If any ref update fails, already-updated repositories are rolled back to their
+exact previous SHA.
 
 Set DEPLOY_SITE_DATA_ONLY=true to publish only the optimized public deal index
 and manifest to the site repository after a verified-data refresh.
@@ -56,7 +59,8 @@ MAPPINGS = [
     ('FIX-review-queue-health-migration.sql', 'mawire-platform', 'database/migrations/20260625_review_queue_health.sql'),
     ('FIX-platform-hardening-migration.sql', 'mawire-platform', 'database/migrations/20260901_platform_hardening.sql'),
 
-    # Site
+    # Site runtime/content. Presentation-owned files such as style.css,
+    # manifest.json, and icons intentionally stay in mawire-site.
     ('DEPLOY-index.html', 'mawire-site', 'index.html'),
     ('DEPLOY-ipo.html', 'mawire-site', 'ipo.html'),
     ('DEPLOY-about.html', 'mawire-site', 'about.html'),
@@ -70,11 +74,8 @@ MAPPINGS = [
     ('DEPLOY-legal-privacy.html', 'mawire-site', 'legal/privacy.html'),
     ('DEPLOY-legal-disclaimer.html', 'mawire-site', 'legal/disclaimer.html'),
     ('DEPLOY-monitoring.html', 'mawire-site', 'monitoring.html'),
-    ('DEPLOY-manifest.json', 'mawire-site', 'manifest.json'),
     ('DEPLOY-feed.xml', 'mawire-site', 'feed.xml'),
     ('DEPLOY-rss.xml', 'mawire-site', 'rss.xml'),
-    ('icon-192.png', 'mawire-site', 'icon-192.png'),
-    ('icon-512.png', 'mawire-site', 'icon-512.png'),
     ('FIX-sw.js', 'mawire-site', 'sw.js'),
     ('DEPLOY-cache-control.js', 'mawire-site', 'cache-control.js'),
     ('DEPLOY-sector-deals.js', 'mawire-site', 'sector-deals.js'),
@@ -90,7 +91,6 @@ MAPPINGS = [
     ('deals-public-manifest.json', 'mawire-site', 'deals-public-manifest.json'),
 
     ('app.js', 'mawire-site', 'app.js'),
-    ('style.css', 'mawire-site', 'style.css'),
     ('DEPLOY-vercel.json', 'mawire-site', 'vercel.json'),
 ]
 
