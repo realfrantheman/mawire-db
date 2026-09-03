@@ -11,36 +11,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 6
+          fetch-depth: 8
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Compare pre-refresh and current public data
+      - name: Inspect exact pre-refresh corpus
         run: |
           node - <<'NODE'
-          const fs = require('fs');
           const cp = require('child_process');
           const baseline = '94bf5439a2becd25133d0e53c985ef87059f458c';
-          const currentDeals = JSON.parse(fs.readFileSync('deals.json','utf8'));
-          const currentIndex = JSON.parse(fs.readFileSync('deals-index.json','utf8'));
           const oldIndex = JSON.parse(cp.execFileSync('git',['show',`${baseline}:deals-index.json`],{encoding:'utf8',maxBuffer:150*1024*1024}));
           const oldDeals = JSON.parse(cp.execFileSync('git',['show',`${baseline}:deals.json`],{encoding:'utf8',maxBuffer:150*1024*1024}));
-          const placeholder=/^(?:unknown|undisclosed|n\/?a|null|none|tbd|not disclosed|see filing|disclosed in filing)/i;
-          const allowed=new Set(['Acquisition','Merger / Business Combination','Tender Offer','LBO / Going-Private','Divestiture / Carve-Out','Merger']);
-          const plausible=d=>d&&d.acquirer&&d.target&&!placeholder.test(d.acquirer)&&!placeholder.test(d.target)&&d.acquirer.toLowerCase()!==d.target.toLowerCase()&&/^https?:\/\//i.test(d.sourceUrl||d.edgarUrl||'')&&allowed.has(d.dealType);
-          const statusCounts = rows => rows.reduce((m,d)=>{ const k=`${d.reviewStatus||'none'}|${d.reviewRuleVersion||'none'}`; m[k]=(m[k]||0)+1; return m; },{});
-          const typeCounts = rows => rows.reduce((m,d)=>{ const k=d.dealType||'none'; m[k]=(m[k]||0)+1; return m; },{});
-          console.log('DIAGNOSTIC', JSON.stringify({
-            currentDeals: currentDeals.length,
-            currentIndex: currentIndex.length,
-            baselineDeals: oldDeals.length,
-            baselineIndex: oldIndex.length,
-            baselineIndexStatuses: statusCounts(oldIndex),
-            baselineDealStatuses: statusCounts(oldDeals),
-            baselineIndexPlausible: oldIndex.filter(plausible).length,
-            baselineDealsPlausible: oldDeals.filter(plausible).length,
-            baselineIndexTypes: typeCounts(oldIndex),
-          }));
-          console.log('BASELINE_RECENT_SAMPLE', JSON.stringify(oldIndex.filter(d=>Number(d.year)>=2026).slice(0,20)));
-          console.log('CURRENT_SAMPLE', JSON.stringify(currentIndex.slice(0,12)));
+          const indexIds = new Set(oldIndex.map(d=>String(d.id)));
+          const missing = oldDeals.filter(d=>!indexIds.has(String(d.id)));
+          const dupeIds = oldDeals.filter((d,i,a)=>a.findIndex(x=>String(x.id)===String(d.id))!==i);
+          console.log('BASELINE_COUNTS', JSON.stringify({deals:oldDeals.length,index:oldIndex.length,missing:missing.length,duplicateDealIds:dupeIds.length}));
+          console.log('MISSING_FROM_INDEX', JSON.stringify(missing));
+          console.log('DUPLICATE_IDS', JSON.stringify(dupeIds.slice(0,10)));
           NODE
