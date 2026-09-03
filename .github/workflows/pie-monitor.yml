@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '45 * * * *'
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Refresh verified public M&A data
+    types:
+      - completed
 
 concurrency:
   group: mawire-db-artifact-writes
@@ -11,6 +16,7 @@ concurrency:
 
 jobs:
   pie:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
