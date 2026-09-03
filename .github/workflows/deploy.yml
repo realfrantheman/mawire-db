@@ -18,6 +18,7 @@ on:
       - 'package-lock.json'
       - '.github/workflows/deploy.yml'
       - '.github/workflows/refresh-deals.yml'
+      - '.github/workflows/refresh-ipo-dependencies.yml'
       - '.github/workflows/pie-monitor.yml'
   workflow_dispatch:
 
