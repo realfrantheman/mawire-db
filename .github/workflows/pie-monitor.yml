@@ -20,12 +20,28 @@ jobs:
           token: ${{ secrets.MAWIRE_TOKEN }}
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Run platform integrity checks
+      - run: npm test
+      - name: Probe PostgreSQL integrity source
+        id: database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
+          DATABASE_PROBE_TIMEOUT_MS: '5000'
+        run: node database-probe.js
+      - name: Run database-backed platform integrity checks
+        if: steps.database.outputs.available == 'true'
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           MAWIRE_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
         run: node FIX-pie-monitor.js
+      - name: Run artifact and production-origin integrity checks
+        if: steps.database.outputs.available != 'true'
+        env:
+          PIE_PUBLIC_ORIGIN: https://mawire.vercel.app
+          PIE_MAX_ARTIFACT_AGE_HOURS: '3'
+          PIE_MIN_PUBLIC_DEALS: '10000'
+        run: node FIX-file-integrity.js
