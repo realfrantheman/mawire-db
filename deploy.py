@@ -5,6 +5,9 @@ The mawire-db repository is the release source of truth. This controller creates
 one immutable commit per target repository and only advances target main refs
 after every commit has been prepared successfully. If any ref update fails,
 already-updated repositories are rolled back to their exact previous SHA.
+
+Set DEPLOY_SITE_DATA_ONLY=true to publish only the optimized public deal index
+and manifest to the site repository after a verified-data refresh.
 """
 
 import base64
@@ -19,6 +22,11 @@ if not TOKEN:
     raise SystemExit('GITHUB_TOKEN/MAWIRE_TOKEN is required')
 
 OWNER = 'realfrantheman'
+SITE_DATA_ONLY = os.environ.get('DEPLOY_SITE_DATA_ONLY', '').lower() == 'true'
+PUBLIC_DATA_SOURCES = {'deals-index.json', 'deals-public-manifest.json'}
+LEGACY_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals.json'
+PUBLIC_DATA_URL = '/deals-index.json'
+
 MAPPINGS = [
     # Platform deployment/runtime entrypoint
     ('DEPLOY-platform-package.json', 'mawire-platform', 'package.json'),
@@ -75,6 +83,12 @@ MAPPINGS = [
     ('FIX-quality-hardening.js', 'mawire-site', 'quality-hardening.js'),
     ('DEPLOY-charts.js', 'mawire-site', 'charts.js'),
     ('DEPLOY-about.js', 'mawire-site', 'about.js'),
+
+    # Optimized, verified public data. Keep these in the site repository so the
+    # browser never downloads the canonical 40+ MB database from raw GitHub.
+    ('deals-index.json', 'mawire-site', 'deals-index.json'),
+    ('deals-public-manifest.json', 'mawire-site', 'deals-public-manifest.json'),
+
     ('app.js', 'mawire-site', 'app.js'),
     ('style.css', 'mawire-site', 'style.css'),
     ('DEPLOY-vercel.json', 'mawire-site', 'vercel.json'),
@@ -91,7 +105,7 @@ def api(path, method='GET', body=None):
             'Authorization': f'Bearer {TOKEN}',
             'Accept': 'application/vnd.github+json',
             'Content-Type': 'application/json',
-            'User-Agent': 'mawire-deploy/3.0',
+            'User-Agent': 'mawire-deploy/3.1',
             'X-GitHub-Api-Version': '2022-11-28',
         },
     )
@@ -104,10 +118,16 @@ def api(path, method='GET', body=None):
         raise RuntimeError(f'{method} {path} -> {error.code}: {detail}') from error
 
 
-def validate_mappings():
+def deployment_mappings():
+    if SITE_DATA_ONLY:
+        return [item for item in MAPPINGS if item[0] in PUBLIC_DATA_SOURCES]
+    return MAPPINGS
+
+
+def validate_mappings(mappings):
     seen_destinations = set()
     missing = []
-    for source, repo, destination in MAPPINGS:
+    for source, repo, destination in mappings:
         key = (repo, destination)
         if key in seen_destinations:
             raise RuntimeError(f'duplicate deployment destination: {repo}/{destination}')
@@ -118,6 +138,26 @@ def validate_mappings():
         raise RuntimeError('missing deployment sources: ' + ', '.join(sorted(set(missing))))
 
 
+def read_source(source):
+    with open(source, 'rb') as handle:
+        raw = handle.read()
+
+    # app.js is also used by internal tooling, so keep its canonical source
+    # unchanged and make the public-site endpoint substitution at release time.
+    if source == 'app.js':
+        text = raw.decode('utf-8')
+        if LEGACY_DATA_URL not in text and PUBLIC_DATA_URL not in text:
+            raise RuntimeError('app.js data source marker not found')
+        text = text.replace(LEGACY_DATA_URL, PUBLIC_DATA_URL)
+        text = text.replace(
+            "var url = GITHUB_DB + '?t=' + Date.now();",
+            'var url = GITHUB_DB;',
+        )
+        raw = text.encode('utf-8')
+
+    return raw
+
+
 def prepare(repo, items):
     ref = api(f'/repos/{OWNER}/{repo}/git/ref/heads/main')
     base = ref['object']['sha']
@@ -126,8 +166,7 @@ def prepare(repo, items):
     entries = []
 
     for source, destination in items:
-        with open(source, 'rb') as handle:
-            raw = handle.read()
+        raw = read_source(source)
         blob = api(
             f'/repos/{OWNER}/{repo}/git/blobs',
             'POST',
@@ -140,6 +179,10 @@ def prepare(repo, items):
         'POST',
         {'base_tree': base_tree, 'tree': entries},
     )
+
+    if tree['sha'] == base_tree:
+        return {'repo': repo, 'base': base, 'new': base, 'count': len(entries), 'changed': False}
+
     new_sha = api(
         f'/repos/{OWNER}/{repo}/git/commits',
         'POST',
@@ -149,7 +192,7 @@ def prepare(repo, items):
             'parents': [base],
         },
     )['sha']
-    return {'repo': repo, 'base': base, 'new': new_sha, 'count': len(entries)}
+    return {'repo': repo, 'base': base, 'new': new_sha, 'count': len(entries), 'changed': True}
 
 
 def update(plan, sha, force=False):
@@ -161,9 +204,11 @@ def update(plan, sha, force=False):
 
 
 def main():
-    validate_mappings()
+    mappings = deployment_mappings()
+    validate_mappings(mappings)
+
     grouped = {}
-    for source, repo, destination in MAPPINGS:
+    for source, repo, destination in mappings:
         grouped.setdefault(repo, []).append((source, destination))
 
     # Prepare every target commit before changing any target ref.
@@ -171,6 +216,9 @@ def main():
     updated = []
     try:
         for plan in plans:
+            if not plan['changed']:
+                print(f"NOOP {plan['repo']} {plan['count']} files already current")
+                continue
             update(plan, plan['new'])
             updated.append(plan)
             print(f"OK {plan['repo']} {plan['count']} files -> {plan['new'][:12]}")

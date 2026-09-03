@@ -23,6 +23,20 @@
       ]
     },
     {
+      "source": "/deals-index.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300, stale-while-revalidate=60" },
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/deals-public-manifest.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60, stale-while-revalidate=60" },
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" }
+      ]
+    },
+    {
       "source": "/(.*)\\.html",
       "headers": [
         { "key": "Content-Type",            "value": "text/html; charset=utf-8" },
