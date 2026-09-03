@@ -16,23 +16,33 @@ jobs:
           token: ${{ secrets.MAWIRE_TOKEN }}
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Probe PostgreSQL publication source
+        id: database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
+          DATABASE_PROBE_TIMEOUT_MS: '5000'
+        run: node database-probe.js
       - name: Backfill direct SEC sources
+        if: steps.database.outputs.available == 'true'
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           SOURCE_BACKFILL_LIMIT: '250'
         run: node FIX-source-url-backfill.js
       - name: Ingest SEC candidates
+        if: steps.database.outputs.available == 'true'
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           LOOKBACK_DAYS: '3'
         run: node FIX-sec-ingestor-index.js
       - name: Verify transactions against primary sources
+        if: steps.database.outputs.available == 'true'
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
@@ -42,12 +52,23 @@ jobs:
           TRANSACTION_REVIEW_POLITENESS_MS: '400'
         run: node FIX-transaction-review.js
       - name: Export verified transactions only
+        if: steps.database.outputs.available == 'true'
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           LOCAL_ONLY: 'true'
           TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
         run: node FIX-export-to-github.js
+      - name: Refresh from primary SEC filings without PostgreSQL
+        if: steps.database.outputs.available != 'true'
+        env:
+          FILE_REFRESH_LOOKBACK_DAYS: '3'
+          FILE_REFRESH_MAX_FILINGS: '250'
+          FILE_REFRESH_MAX_ATTEMPTS: '5'
+          FILE_REFRESH_RETRY_HOURS: '6'
+          FILE_REFRESH_POLITENESS_MS: '250'
+          TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
+        run: node refresh-file-backed.js
       - run: node build-public-artifacts.js deals.json
       - run: node validate-source-urls.js deals-index.json
       - name: Verify publication gate
@@ -60,6 +81,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add deals.json deals-index.json deals-public-manifest.json deal-review-manifest.json deals-details/
+          if [ -f file-refresh-state.json ]; then git add file-refresh-state.json; fi
           if git diff --cached --quiet; then
             echo 'No verified artifact changes'
           else
