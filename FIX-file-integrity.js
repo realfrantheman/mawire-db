@@ -12,6 +12,7 @@ const MANIFEST_FILE = 'deals-public-manifest.json';
 const ORIGIN = String(process.env.PIE_PUBLIC_ORIGIN || 'https://mawire.vercel.app').replace(/\/$/, '');
 const MAX_AGE_MS = Math.max(1, Number(process.env.PIE_MAX_ARTIFACT_AGE_HOURS || 3)) * 3600000;
 const MIN_DEALS = Math.max(1000, Number(process.env.PIE_MIN_PUBLIC_DEALS || 10000));
+const PUBLIC_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals-index.json';
 
 function request(url, method = 'GET', maxBytes = 2 * 1024 * 1024, redirects = 0) {
   if (redirects > 5) return Promise.reject(new Error('redirect limit exceeded'));
@@ -115,7 +116,7 @@ async function validateOrigin(localManifest) {
 
   const app = await request(`${ORIGIN}/app.js`, 'GET', 1024 * 1024);
   if (app.status !== 200) throw new Error(`origin app.js HTTP ${app.status}`);
-  if (!/var\s+GITHUB_DB\s*=\s*['"]https:\/\/raw\.githubusercontent\.com\/realfrantheman\/mawire-db\/main\/deals-index\.json['"]/.test(app.text)) {
+  if (!app.text.includes(PUBLIC_DATA_URL) || !/var\s+GITHUB_DB\s*=/.test(app.text)) {
     throw new Error('origin frontend is not configured for the Cloudflare-safe public deal index');
   }
   return { origin: ORIGIN, remoteDealCount: remoteManifest.dealCount, remoteGeneratedAt: remoteManifest.generatedAt };
