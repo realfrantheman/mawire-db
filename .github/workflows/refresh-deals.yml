@@ -3,6 +3,15 @@ on:
   schedule:
     - cron: '12 * * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'refresh-file-backed.js'
+      - 'database-probe.js'
+      - 'FIX-file-integrity.js'
+      - '.github/workflows/refresh-deals.yml'
+      - '.github/workflows/pie-monitor.yml'
 concurrency:
   group: mawire-db-artifact-writes
   cancel-in-progress: false
