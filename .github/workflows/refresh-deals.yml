@@ -8,6 +8,8 @@ on:
       - main
     paths:
       - 'refresh-file-backed.js'
+      - 'refresh-file-backed-runner.js'
+      - 'FIX-sec-efts.js'
       - 'database-probe.js'
       - 'FIX-file-integrity.js'
       - '.github/workflows/refresh-deals.yml'
@@ -77,7 +79,7 @@ jobs:
           FILE_REFRESH_RETRY_HOURS: '6'
           FILE_REFRESH_POLITENESS_MS: '250'
           TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
-        run: node refresh-file-backed.js
+        run: node refresh-file-backed-runner.js
       - run: node build-public-artifacts.js deals.json
       - run: node validate-source-urls.js deals-index.json
       - name: Verify publication gate
