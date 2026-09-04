@@ -11,11 +11,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001213900-26-096903": {
-      "attempts": 3,
+      "attempts": 4,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-09-04T04:30:28.901Z",
+      "lastAttemptAt": "2026-09-04T14:21:40.913Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-035517": {
@@ -459,27 +459,27 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-035627": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "verified_result_failed_publication_invariants",
       "error": null,
-      "lastAttemptAt": "2026-09-04T04:30:26.152Z",
+      "lastAttemptAt": "2026-09-04T14:21:38.045Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-105083": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "verified_result_failed_publication_invariants",
       "error": null,
-      "lastAttemptAt": "2026-09-04T04:30:27.054Z",
+      "lastAttemptAt": "2026-09-04T14:21:38.747Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-105071": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "verified_result_failed_publication_invariants",
       "error": null,
-      "lastAttemptAt": "2026-09-04T04:30:28.034Z",
+      "lastAttemptAt": "2026-09-04T14:21:39.653Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001999371-26-019766": {
@@ -545,7 +545,79 @@
       "error": null,
       "lastAttemptAt": "2026-09-03T21:42:03.161Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001628280-26-060602": {
+      "attempts": 1,
+      "status": "error",
+      "reasonCode": "processing_error",
+      "error": "timeout: https://www.sec.gov/Archives/edgar/data/1854270/000162828026060602/snti2026defa-14aeclandnsg2.htm",
+      "lastAttemptAt": "2026-09-04T14:21:32.892Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001493152-26-041469": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-04T14:21:33.345Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-097415": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-04T14:21:33.673Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-382807": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-04T14:21:33.987Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-382691": {
+      "attempts": 1,
+      "status": "verified",
+      "reasonCode": "verified_primary_source_control_transaction",
+      "error": null,
+      "lastAttemptAt": "2026-09-04T14:21:34.286Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-382685": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-04T14:21:34.636Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-382496": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "non_mna_context",
+      "error": null,
+      "lastAttemptAt": "2026-09-04T14:21:34.956Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001829126-26-009732": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "non_mna_context",
+      "error": null,
+      "lastAttemptAt": "2026-09-04T14:21:36.598Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-382362": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "non_mna_context",
+      "error": null,
+      "lastAttemptAt": "2026-09-04T14:21:37.384Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-04T09:41:08.332Z"
+  "updatedAt": "2026-09-04T14:21:41.366Z"
 }
