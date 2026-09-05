@@ -809,7 +809,23 @@
       "error": null,
       "lastAttemptAt": "2026-09-04T21:27:25.453Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-383841": {
+      "attempts": 1,
+      "status": "verified",
+      "reasonCode": "verified_primary_source_control_transaction",
+      "error": null,
+      "lastAttemptAt": "2026-09-05T00:03:43.357Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001493152-26-041607": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "verified_result_failed_publication_invariants",
+      "error": null,
+      "lastAttemptAt": "2026-09-05T00:03:44.695Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-04T21:27:29.498Z"
+  "updatedAt": "2026-09-05T00:03:45.166Z"
 }
