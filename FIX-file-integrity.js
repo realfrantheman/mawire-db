@@ -3,7 +3,15 @@
 const fs = require('fs');
 const https = require('https');
 const http = require('http');
-const { buildArtifacts, RULE, isPublicTransaction, isLegacyIndexRow } = require('./build-public-artifacts');
+const {
+  buildArtifacts,
+  RULE,
+  isPublicTransaction,
+  isLegacyIndexRow,
+  readStrictOverrides,
+  readLegacyReviewManifest,
+  isApprovedHistoricalCutover,
+} = require('./build-public-artifacts');
 
 const DEALS_FILE = process.env.FILE_REFRESH_DEALS_FILE || 'deals.json';
 const INDEX_FILE = 'deals-index.json';
@@ -75,7 +83,16 @@ function duplicateKeys(index) {
   return duplicates;
 }
 
-function validateLocalArtifacts(deals, index, manifest) {
+function publicationBuildOptions(root = process.cwd()) {
+  const overrides = readStrictOverrides(root);
+  const reviewManifest = readLegacyReviewManifest(root);
+  return {
+    overrides,
+    preserveLegacy: !isApprovedHistoricalCutover(reviewManifest),
+  };
+}
+
+function validateLocalArtifacts(deals, index, manifest, buildOptions = {}) {
   if (!Array.isArray(deals) || deals.length < MIN_DEALS) throw new Error(`full deal artifact unexpectedly small: ${deals.length}`);
   if (!Array.isArray(index) || index.length < MIN_DEALS) throw new Error(`public index unexpectedly small: ${index.length}`);
   if (Number(manifest.dealCount) !== index.length) throw new Error(`manifest/index count mismatch: ${manifest.dealCount} != ${index.length}`);
@@ -85,7 +102,7 @@ function validateLocalArtifacts(deals, index, manifest) {
   const age = Date.now() - generatedAt;
   if (age < -15 * 60000 || age > MAX_AGE_MS) throw new Error(`public artifact is stale: ${Math.round(age / 60000)} minutes old`);
 
-  const expected = buildArtifacts(deals, { legacyIndex: index }).index;
+  const expected = buildArtifacts(deals, { legacyIndex: index, ...buildOptions }).index;
   if (expected.length !== index.length) throw new Error(`rebuild/index count mismatch: ${expected.length} != ${index.length}`);
   if (JSON.stringify(expected) !== JSON.stringify(index)) throw new Error('deals-index.json does not match compatibility-safe deterministic rebuild from deals.json');
 
@@ -135,7 +152,7 @@ async function run() {
   const deals = parseJson(DEALS_FILE);
   const index = parseJson(INDEX_FILE);
   const manifest = parseJson(MANIFEST_FILE);
-  const local = validateLocalArtifacts(deals, index, manifest);
+  const local = validateLocalArtifacts(deals, index, manifest, publicationBuildOptions());
   const remote = await validateOrigin(manifest);
   const report = { checkedAt: new Date().toISOString(), mode: 'file-backed', ruleVersion: RULE, local, remote };
   fs.writeFileSync('pie-file-report.json', `${JSON.stringify(report, null, 2)}\n`);
@@ -143,7 +160,7 @@ async function run() {
   return report;
 }
 
-module.exports = { request, normalizedParty, duplicateKeys, validateLocalArtifacts, validateOrigin, run };
+module.exports = { request, normalizedParty, duplicateKeys, publicationBuildOptions, validateLocalArtifacts, validateOrigin, run };
 
 if (require.main === module) {
   run().catch(error => {
