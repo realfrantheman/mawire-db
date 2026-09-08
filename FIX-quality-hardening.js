@@ -2,7 +2,7 @@
   'use strict';
 
   var ROOT = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/';
-  var INDEX_URL = '/deals-index.json';
+  var INDEX_URL = ROOT + 'deals-index.json';
   var DETAIL_ROOT = ROOT + 'deals-details/';
   var detailCache = Object.create(null);
   var lastModalFocus = null;
