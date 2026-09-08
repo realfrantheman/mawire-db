@@ -32,7 +32,7 @@ const PLACEHOLDER = /^(?:unknown|undisclosed|n\/?a|null|none|tbd|not disclosed|s
 const GENERIC = /^(?:merger sub(?:sidiary)?|acquisition sub(?:sidiary)?|purchaser|parent|buyer|seller|issuer|offeror|bidder|investor|management team|shareholders?)$/i;
 const FILING_AGENT = /\b(?:BCP Investment Corp|Merrill Corp|Toppan Merrill|Donnelley Financial|EDGARfilings|filing services|filing agent)\b/i;
 const BAD_PARTY = /\b(?:shares?|stake|equity interest|agreement|announces?|entered|signing|definitive|majority stake|minority stake|all outstanding|common stock|ordinary stock|shareholders?|new campus|portfolio of properties|to power|to expand|to create|bringing|creating|expanding|accelerating|transforming|strengthening)\b/i;
-const PARTY_PROSE = /\b(?:with respect to|respect to the|team,? today|we announced|we have announced|starman means|means and includes|this transaction|the proposed merger|proxy statement|special meeting|board of directors)\b/i;
+const PARTY_PROSE = /\b(?:with respect to|respect to the|team,? today|we announced|we have announced|starman means|means and includes|this transaction|the proposed merger|proxy statement|special meeting|board of directors)\b|,\s*(?:a|an)\s+(?:(?:Delaware|Maryland|Nevada|California|New York|Singapore)\s+)?(?:corporation|limited liability company|limited partnership)\b/i;
 const REGULATOR_PARTY = /^(?:the\s+)?(?:federal trade commission|securities and exchange commission|u\.?s\.? department of justice|department of justice|competition and markets authority|european commission)$/i;
 
 const MERGER = /\b(?:agreement and plan of merger|merger agreement|business combination agreement|definitive merger agreement|proposed merger|merger with|merge with|business combination with|scheme of arrangement)\b/i;
@@ -117,13 +117,13 @@ function hasAcquirerRoleEvidence(acquirer, target, source) {
   const t = flexibleNamePattern(target);
   if (!a || !t) return false;
   const patterns = [
-    new RegExp(`${a}.{0,80}[\\(\"“'](?:Parent|Buyer|Purchaser|Acquir(?:er|or)|Offeror)[\\)\"”']`, 'i'),
+    new RegExp(`${a}[^.;]{0,100}[\\(\"“'](?:Parent|Buyer|Purchaser|Acquir(?:er|or)|Offeror)[\\)\"”']`, 'i'),
     new RegExp(`(?:Parent|Buyer|Purchaser|Acquir(?:er|or)|Offeror)\\s*(?:means|is|:|–|-)\\s*${a}`, 'i'),
-    new RegExp(`${a}.{0,100}(?:agreed|agrees|has agreed|will)\\s+to?\\s*(?:acquire|purchase|buy).{0,120}${t}`, 'i'),
-    new RegExp(`${t}.{0,100}(?:to be|will be|was|agreed to be)\\s+acquired\\s+by.{0,80}${a}`, 'i'),
-    new RegExp(`${t}.{0,180}entered into.{0,160}(?:merger agreement|agreement and plan of merger|business combination agreement).{0,260}(?:with|by and among).{0,260}${a}`, 'i'),
-    new RegExp(`(?:agreement and plan of merger|merger agreement|business combination agreement).{0,260}(?:by and among|with).{0,260}${a}.{0,320}${t}`, 'i'),
-    new RegExp(`(?:agreement and plan of merger|merger agreement|business combination agreement).{0,260}(?:by and among|with).{0,260}${t}.{0,320}${a}`, 'i'),
+    new RegExp(`${a}[^.;]{0,120}(?:agreed|agrees|has agreed|will)\\s+to?\\s*(?:acquire|purchase|buy)[^.;]{0,140}${t}`, 'i'),
+    new RegExp(`${t}[^.;]{0,120}(?:to be|will be|was|agreed to be)\\s+acquired\\s+by[^.;]{0,100}${a}`, 'i'),
+    new RegExp(`${t}[^.;]{0,200}entered into[^.;]{0,180}(?:merger agreement|agreement and plan of merger|business combination agreement)[^.;]{0,140}(?:with|by and among)[^.;]{0,160}${a}`, 'i'),
+    new RegExp(`(?:agreement and plan of merger|merger agreement|business combination agreement)[^.;]{0,300}(?:by and among|with)[^.;]{0,300}${a}[^.;]{0,360}${t}`, 'i'),
+    new RegExp(`(?:agreement and plan of merger|merger agreement|business combination agreement)[^.;]{0,300}(?:by and among|with)[^.;]{0,300}${t}[^.;]{0,360}${a}`, 'i'),
   ];
   return patterns.some(pattern => pattern.test(source));
 }
@@ -133,11 +133,11 @@ function hasTargetRoleEvidence(target, acquirer, source) {
   const a = flexibleNamePattern(acquirer);
   if (!t || !a) return false;
   const patterns = [
-    new RegExp(`${t}.{0,80}[\\(\"“'](?:Target|Company|Subject Company|Target Company)[\\)\"”']`, 'i'),
+    new RegExp(`${t}[^.;]{0,100}[\\(\"“'](?:Target|Company|Subject Company|Target Company)[\\)\"”']`, 'i'),
     new RegExp(`(?:Target|Subject Company|Target Company)\\s*(?:means|is|:|–|-)\\s*${t}`, 'i'),
-    new RegExp(`(?:offer to purchase|tender offer for|tender offer to purchase).{0,180}${t}`, 'i'),
-    new RegExp(`${a}.{0,100}(?:agreed|agrees|has agreed|will)\\s+to?\\s*(?:acquire|purchase|buy).{0,120}${t}`, 'i'),
-    new RegExp(`${t}.{0,100}(?:to be|will be|was|agreed to be)\\s+acquired\\s+by.{0,80}${a}`, 'i'),
+    new RegExp(`(?:offers?\\s+to\\s+purchase|offer to purchase|tender offer for|tender offer to purchase)[^.;]{0,220}${t}`, 'i'),
+    new RegExp(`${a}[^.;]{0,120}(?:agreed|agrees|has agreed|will)\\s+to?\\s*(?:acquire|purchase|buy)[^.;]{0,140}${t}`, 'i'),
+    new RegExp(`${t}[^.;]{0,120}(?:to be|will be|was|agreed to be)\\s+acquired\\s+by[^.;]{0,100}${a}`, 'i'),
   ];
   return patterns.some(pattern => pattern.test(source));
 }
@@ -185,6 +185,9 @@ function reviewEvidence(record, source) {
   if (!nameAppears(record.acquirer, partyEvidence) || !nameAppears(record.target, partyEvidence)) {
     return reviewResult('rejected', 'party_not_confirmed_in_primary_source');
   }
+  if (form.startsWith('SC TO-T') && PARTIAL_TENDER.test(primary) && !TENDER.test(primary)) {
+    return reviewResult('rejected', 'partial_tender_not_control_transaction');
+  }
   if ((sourceType.includes('sec') || form) && !hasSecRoleEvidence(record, primary)) {
     return reviewResult('needs_review', 'sec_party_roles_not_proven');
   }
@@ -193,7 +196,6 @@ function reviewEvidence(record, source) {
 
   if (sourceType.includes('sec') || form) {
     if (form.startsWith('SC TO-T')) {
-      if (PARTIAL_TENDER.test(primary) && !TENDER.test(primary)) return reviewResult('rejected', 'partial_tender_not_control_transaction');
       if (!TENDER.test(primary) && !MERGER.test(primary)) return reviewResult('needs_review', 'tender_control_not_proven');
     } else if (form.startsWith('SC 13E-3')) {
       if (!GOING_PRIVATE.test(primary) && !MERGER.test(primary)) return reviewResult('needs_review', 'going_private_not_proven');
