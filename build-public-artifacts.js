@@ -3,10 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const { canonicalPrimarySourceUrl } = require('./FIX-source-url');
+const { withPublicDescription } = require('./FIX-public-description');
 
 const RULE = process.env.TRANSACTION_REVIEW_RULE_VERSION || 'strict-control-v3';
 const PLACEHOLDER = /^(?:unknown|undisclosed|n\/?a|null|none|tbd|not disclosed|see filing|disclosed in filing)/i;
 const PARTY_BOILERPLATE = /\b(?:secretary of state|surviving company|as applicable|as a result of|does not close|additionally|making such other filings|such other filings|pursuant to the foregoing|in connection with the foregoing|described above|set forth herein|filed with the state|the state of delaware)\b/i;
+const PARTY_PROSE = /\b(?:with respect to|respect to the|team,? today|we announced|we have announced|starman means|means and includes|this transaction|the merger|the proposed merger|proxy statement|special meeting|shareholders? are|board of directors)\b/i;
+const REGULATOR_PARTY = /^(?:the\s+)?(?:federal trade commission|securities and exchange commission|u\.?s\.? department of justice|department of justice|competition and markets authority|european commission)$/i;
 const ALLOWED_TYPES = new Set([
   'Acquisition',
   'Merger / Business Combination',
@@ -27,7 +30,7 @@ function normalizedParty(value) {
 
 function isSaneParty(value) {
   const raw = String(value || '').replace(/&amp;/gi, '&').replace(/\s+/g, ' ').trim();
-  if (!raw || raw.length > 100 || PLACEHOLDER.test(raw) || PARTY_BOILERPLATE.test(raw)) return false;
+  if (!raw || raw.length > 100 || PLACEHOLDER.test(raw) || PARTY_BOILERPLATE.test(raw) || PARTY_PROSE.test(raw) || REGULATOR_PARTY.test(raw)) return false;
   const words = normalizedParty(raw).split(' ').filter(Boolean);
   if (!words.length || words.length > 10) return false;
   return /[A-Za-z]{2}/.test(raw);
@@ -61,15 +64,39 @@ function isLegacyIndexRow(row) {
   return !!row && !row.reviewStatus && !row.reviewRuleVersion;
 }
 
+function normalizeOverrides(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  return value;
+}
+
+function applyStrictOverrides(inputDeals, overrides = {}) {
+  const map = normalizeOverrides(overrides);
+  return (inputDeals || []).map(deal => {
+    const override = map[String(deal?.id || '')];
+    return override && typeof override === 'object' ? { ...deal, ...override } : deal;
+  });
+}
+
+function readStrictOverrides(root) {
+  try {
+    return normalizeOverrides(JSON.parse(fs.readFileSync(path.join(root, 'strict-record-overrides.json'), 'utf8')));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    return {};
+  }
+}
+
 function buildArtifacts(inputDeals, options = {}) {
   const existingIndex = Array.isArray(options.legacyIndex) ? options.legacyIndex : [];
   const preserveLegacy = options.preserveLegacy !== false;
+  const overrides = normalizeOverrides(options.overrides);
+  const reviewedInput = applyStrictOverrides(inputDeals, overrides);
   const legacyIndex = preserveLegacy ? existingIndex.filter(isLegacyIndexRow) : [];
-  const byId = new Map(inputDeals.map(deal => [String(deal.id), deal]));
+  const byId = new Map(reviewedInput.map(deal => [String(deal.id), deal]));
 
-  const strictDeals = inputDeals
+  const strictDeals = reviewedInput
     .filter(isPublicTransaction)
-    .map(deal => ({ ...deal, sourceUrl: canonicalPrimarySourceUrl(deal) }))
+    .map(deal => withPublicDescription({ ...deal, sourceUrl: canonicalPrimarySourceUrl(deal) }))
     .sort((a, b) => String(b.dateISO || '').localeCompare(String(a.dateISO || '')) || String(a.id).localeCompare(String(b.id)));
   const strictIndex = strictDeals.map(compactDeal);
   const strictIds = new Set(strictIndex.map(row => String(row.id)));
@@ -104,6 +131,7 @@ function buildArtifacts(inputDeals, options = {}) {
       dealCount: index.length,
       legacyRecordCount: retainedLegacyIndex.length,
       strictVerifiedCount: strictIndex.length,
+      strictOverrideCount: Object.keys(overrides).length,
       historicalCutoverApplied: !preserveLegacy,
       typeCounts,
       allowedTypes: [...ALLOWED_TYPES],
@@ -144,8 +172,9 @@ function isApprovedHistoricalCutover(manifest) {
 function writeArtifacts(inputDeals, root = '.') {
   const legacyIndex = readExistingIndex(root);
   const reviewManifest = readLegacyReviewManifest(root);
+  const overrides = readStrictOverrides(root);
   const preserveLegacy = !isApprovedHistoricalCutover(reviewManifest);
-  const result = buildArtifacts(inputDeals, { legacyIndex, preserveLegacy });
+  const result = buildArtifacts(inputDeals, { legacyIndex, preserveLegacy, overrides });
   fs.writeFileSync(path.join(root, 'deals-index.json'), JSON.stringify(result.index) + '\n');
   fs.writeFileSync(path.join(root, 'deals-public-manifest.json'), JSON.stringify(result.manifest, null, 2) + '\n');
   const detailDir = path.join(root, 'deals-details');
@@ -165,5 +194,6 @@ if (require.main === module) {
 
 module.exports = {
   RULE, ALLOWED_TYPES, normalizedParty, isSaneParty, isPublicTransaction, compactDeal,
-  isLegacyIndexRow, buildArtifacts, readLegacyReviewManifest, isApprovedHistoricalCutover, writeArtifacts,
+  isLegacyIndexRow, normalizeOverrides, applyStrictOverrides, readStrictOverrides, buildArtifacts,
+  readLegacyReviewManifest, isApprovedHistoricalCutover, writeArtifacts,
 };
