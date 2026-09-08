@@ -13,6 +13,7 @@ const sourceUrlPath = fs.existsSync(path.join(__dirname, '../services/shared/sou
 const { canonicalPrimarySourceUrl } = require(sourceUrlPath);
 
 const RULE_VERSION = process.env.TRANSACTION_REVIEW_RULE_VERSION || 'strict-control-v3';
+const REVIEW_ENGINE_VERSION = 'role-aware-v1';
 const LIMIT = Math.max(1, Math.min(100000, Number(process.env.TRANSACTION_REVIEW_LIMIT || 30000)));
 const CONCURRENCY = Math.max(1, Math.min(8, Number(process.env.TRANSACTION_REVIEW_CONCURRENCY || 4)));
 const WAIT_MS = Math.max(0, Number(process.env.TRANSACTION_REVIEW_POLITENESS_MS || 250));
@@ -31,6 +32,8 @@ const PLACEHOLDER = /^(?:unknown|undisclosed|n\/?a|null|none|tbd|not disclosed|s
 const GENERIC = /^(?:merger sub(?:sidiary)?|acquisition sub(?:sidiary)?|purchaser|parent|buyer|seller|issuer|offeror|bidder|investor|management team|shareholders?)$/i;
 const FILING_AGENT = /\b(?:BCP Investment Corp|Merrill Corp|Toppan Merrill|Donnelley Financial|EDGARfilings|filing services|filing agent)\b/i;
 const BAD_PARTY = /\b(?:shares?|stake|equity interest|agreement|announces?|entered|signing|definitive|majority stake|minority stake|all outstanding|common stock|ordinary stock|shareholders?|new campus|portfolio of properties|to power|to expand|to create|bringing|creating|expanding|accelerating|transforming|strengthening)\b/i;
+const PARTY_PROSE = /\b(?:with respect to|respect to the|team,? today|we announced|we have announced|starman means|means and includes|this transaction|the proposed merger|proxy statement|special meeting|board of directors)\b|,\s*(?:a|an)\s+(?:(?:Delaware|Maryland|Nevada|California|New York|Singapore)\s+)?(?:corporation|limited liability company|limited partnership)\b/i;
+const REGULATOR_PARTY = /^(?:the\s+)?(?:federal trade commission|securities and exchange commission|u\.?s\.? department of justice|department of justice|competition and markets authority|european commission)$/i;
 
 const MERGER = /\b(?:agreement and plan of merger|merger agreement|business combination agreement|definitive merger agreement|proposed merger|merger with|merge with|business combination with|scheme of arrangement)\b/i;
 const ACQUISITION = /\b(?:definitive agreement to acquire|agreed to acquire|agrees to acquire|to be acquired by|agreed to be acquired by|acquisition of|acquire all(?: of)? the outstanding|purchase all(?: of)? the outstanding|acquire 100%|acquire a controlling interest|acquire a majority interest)\b/i;
@@ -76,6 +79,7 @@ function isReliableParty(value) {
   return !!(
     raw && raw.length <= 120 &&
     !PLACEHOLDER.test(raw) && !GENERIC.test(raw) && !FILING_AGENT.test(raw) && !BAD_PARTY.test(raw) &&
+    !PARTY_PROSE.test(raw) && !REGULATOR_PARTY.test(raw) &&
     !/^unknown|^undisclosed|see filing/i.test(raw) &&
     nameTokens.length && nameTokens.length <= 12 && /[A-Za-z]{2}/.test(raw)
   );
@@ -91,6 +95,66 @@ function nameAppears(name, source) {
   if (!nameTokens.length) return false;
   const hits = nameTokens.filter(token => haystack.includes(` ${token} `)).length;
   return hits >= (nameTokens.length === 1 ? 1 : Math.max(2, Math.ceil(nameTokens.length * 0.75)));
+}
+
+function escapeRegex(value) {
+  return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function flexibleNamePattern(name) {
+  const rawWords = String(name || '')
+    .replace(/&amp;/gi, '&')
+    .replace(/[^A-Za-z0-9&]+/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (!rawWords.length) return null;
+  return rawWords.map(escapeRegex).join("[\\s,.&()'\"’“”\\-]+");
+}
+
+function hasAcquirerRoleEvidence(acquirer, target, source) {
+  const a = flexibleNamePattern(acquirer);
+  const t = flexibleNamePattern(target);
+  if (!a || !t) return false;
+  const patterns = [
+    new RegExp(`${a}[^.;]{0,100}[\\(\"“'](?:Parent|Buyer|Purchaser|Acquir(?:er|or)|Offeror)[\\)\"”']`, 'i'),
+    new RegExp(`(?:Parent|Buyer|Purchaser|Acquir(?:er|or)|Offeror)\\s*(?:means|is|:|–|-)\\s*${a}`, 'i'),
+    new RegExp(`${a}[^.;]{0,120}(?:agreed|agrees|has agreed|will)\\s+to?\\s*(?:acquire|purchase|buy)[^.;]{0,140}${t}`, 'i'),
+    new RegExp(`${t}[^.;]{0,120}(?:to be|will be|was|agreed to be)\\s+acquired\\s+by[^.;]{0,100}${a}`, 'i'),
+    new RegExp(`${t}[^.;]{0,200}entered into[^.;]{0,180}(?:merger agreement|agreement and plan of merger|business combination agreement)[^.;]{0,140}(?:with|by and among)[^.;]{0,160}${a}`, 'i'),
+    new RegExp(`(?:agreement and plan of merger|merger agreement|business combination agreement)[^.;]{0,300}(?:by and among|with)[^.;]{0,300}${a}[^.;]{0,360}${t}`, 'i'),
+    new RegExp(`(?:agreement and plan of merger|merger agreement|business combination agreement)[^.;]{0,300}(?:by and among|with)[^.;]{0,300}${t}[^.;]{0,360}${a}`, 'i'),
+  ];
+  return patterns.some(pattern => pattern.test(source));
+}
+
+function hasTargetRoleEvidence(target, acquirer, source) {
+  const t = flexibleNamePattern(target);
+  const a = flexibleNamePattern(acquirer);
+  if (!t || !a) return false;
+  const patterns = [
+    new RegExp(`${t}[^.;]{0,100}[\\(\"“'](?:Target|Company|Subject Company|Target Company)[\\)\"”']`, 'i'),
+    new RegExp(`(?:Target|Subject Company|Target Company)\\s*(?:means|is|:|–|-)\\s*${t}`, 'i'),
+    new RegExp(`(?:offers?\\s+to\\s+purchase|offer to purchase|tender offer for|tender offer to purchase)[^.;]{0,220}${t}`, 'i'),
+    new RegExp(`${a}[^.;]{0,120}(?:agreed|agrees|has agreed|will)\\s+to?\\s*(?:acquire|purchase|buy)[^.;]{0,140}${t}`, 'i'),
+    new RegExp(`${t}[^.;]{0,120}(?:to be|will be|was|agreed to be)\\s+acquired\\s+by[^.;]{0,100}${a}`, 'i'),
+  ];
+  return patterns.some(pattern => pattern.test(source));
+}
+
+function hasSecRoleEvidence(record, source) {
+  const form = String(record?.filingType || '').toUpperCase();
+  if (!form) return true;
+  if (['DEFM14A', 'PREM14A', 'DEFA14A', 'SC 13E-3', 'SC 13E-3/A'].includes(form)) {
+    return hasAcquirerRoleEvidence(record.acquirer, record.target, source);
+  }
+  if (['SC TO-T', 'SC TO-T/A'].includes(form)) {
+    return hasTargetRoleEvidence(record.target, record.acquirer, source);
+  }
+  if (['S-4', 'S-4/A'].includes(form)) {
+    return hasAcquirerRoleEvidence(record.acquirer, record.target, source) || hasTargetRoleEvidence(record.target, record.acquirer, source);
+  }
+  return true;
 }
 
 function classifyTransaction(source, filingType, headline) {
@@ -121,12 +185,17 @@ function reviewEvidence(record, source) {
   if (!nameAppears(record.acquirer, partyEvidence) || !nameAppears(record.target, partyEvidence)) {
     return reviewResult('rejected', 'party_not_confirmed_in_primary_source');
   }
+  if (form.startsWith('SC TO-T') && PARTIAL_TENDER.test(primary) && !TENDER.test(primary)) {
+    return reviewResult('rejected', 'partial_tender_not_control_transaction');
+  }
+  if ((sourceType.includes('sec') || form) && !hasSecRoleEvidence(record, primary)) {
+    return reviewResult('needs_review', 'sec_party_roles_not_proven');
+  }
   if (NON_MNA.test(shortEvidence) && !CONTROL.test(shortEvidence)) return reviewResult('rejected', 'non_mna_context');
   if (SHARE_PURCHASE.test(shortEvidence) && !CONTROL_STAKE.test(shortEvidence) && !CONTROL.test(shortEvidence)) return reviewResult('rejected', 'non_control_share_purchase');
 
   if (sourceType.includes('sec') || form) {
     if (form.startsWith('SC TO-T')) {
-      if (PARTIAL_TENDER.test(primary) && !TENDER.test(primary)) return reviewResult('rejected', 'partial_tender_not_control_transaction');
       if (!TENDER.test(primary) && !MERGER.test(primary)) return reviewResult('needs_review', 'tender_control_not_proven');
     } else if (form.startsWith('SC 13E-3')) {
       if (!GOING_PRIVATE.test(primary) && !MERGER.test(primary)) return reviewResult('needs_review', 'going_private_not_proven');
@@ -256,12 +325,13 @@ async function candidates() {
       AND d.acquirer_id IS NOT NULL AND d.target_id IS NOT NULL AND d.acquirer_id<>d.target_id
       AND (
         review.deal_id IS NULL OR review.rule_version<>$1 OR d.updated_at>review.reviewed_at OR
+        COALESCE(review.detail->>'reviewEngineVersion','')<>$3 OR
         (review.status='needs_review' AND review.reviewed_at<NOW()-INTERVAL '24 hours')
       )
     ORDER BY d.needs_review DESC,d.source_confidence DESC NULLS LAST,
              d.announcement_date DESC NULLS LAST,d.created_at DESC,d.id
     LIMIT $2
-  `, [RULE_VERSION, LIMIT]);
+  `, [RULE_VERSION, LIMIT, REVIEW_ENGINE_VERSION]);
   return result.rows;
 }
 
@@ -278,7 +348,7 @@ async function saveReview(record, review, evidenceUrl) {
   `, [
     record.id,review.status,review.transactionType,review.reasonCode,RULE_VERSION,evidenceUrl || null,
     review.evidenceExcerpt || null,hash,
-    JSON.stringify({ filingType: record.filingType || null, sourceType: record.sourceType || null, sourceName: record.sourceName || null }),
+    JSON.stringify({ filingType: record.filingType || null, sourceType: record.sourceType || null, sourceName: record.sourceName || null, reviewEngineVersion: REVIEW_ENGINE_VERSION }),
   ]);
 }
 
@@ -354,9 +424,10 @@ async function run() {
   const manifest = {
     generatedAt: new Date().toISOString(),
     ruleVersion: RULE_VERSION,
+    reviewEngineVersion: REVIEW_ENGINE_VERSION,
     processedThisRun: counts,
     reviewSummary: summary.rows,
-    publicationRule: 'Verified primary-source control transactions only.',
+    publicationRule: 'Verified primary-source control transactions with role-confirmed parties only.',
   };
   fs.writeFileSync('deal-review-manifest.json', `${JSON.stringify(manifest, null, 2)}\n`);
   console.log('[REVIEW] complete', JSON.stringify(counts));
@@ -371,8 +442,8 @@ async function close() {
 }
 
 module.exports = {
-  RULE_VERSION,run,close,normalizeName,nameAppears,isReliableParty,distinctParties,
-  classifyTransaction,reviewEvidence,stripHtml,reviewOne,
+  RULE_VERSION,REVIEW_ENGINE_VERSION,run,close,normalizeName,nameAppears,isReliableParty,distinctParties,
+  hasAcquirerRoleEvidence,hasTargetRoleEvidence,hasSecRoleEvidence,classifyTransaction,reviewEvidence,stripHtml,reviewOne,
 };
 
 if (require.main === module) {

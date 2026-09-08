@@ -12,7 +12,11 @@ on:
       - 'refresh-file-backed-runner.js'
       - 'reconcile-strict-export.js'
       - 'build-public-artifacts.js'
+      - 'FIX-public-description.js'
+      - 'strict-record-overrides.json'
       - 'FIX-transaction-review.js'
+      - 'FIX-sec-ingestor-index.js'
+      - 'FIX-deal-extraction.js'
       - 'FIX-sec-efts.js'
       - 'database-probe.js'
       - 'FIX-file-integrity.js'
@@ -107,9 +111,9 @@ jobs:
           const invalidStrict = strict.filter(d => !isPublicTransaction(d));
           if (invalidStrict.length) throw Error('invalid strict rows escaped: ' + invalidStrict.length);
           if (manifest.historicalCutoverApplied && legacy.length) throw Error('legacy rows escaped approved historical cutover: ' + legacy.length);
-          const poison = /secretary of state|surviving company|as applicable|as a result of|does not close|making such other filings|\badditionally\b/i;
+          const poison = /secretary of state|surviving company|as applicable|as a result of|does not close|making such other filings|\badditionally\b|respect to the merger|team,? today|starman means|federal trade commission/i;
           const poisonedStrict = strict.filter(d => poison.test(String(d.acquirer||'')) || poison.test(String(d.target||'')));
-          if (poisonedStrict.length) throw Error('boilerplate party text escaped strict publication: ' + poisonedStrict.length);
+          if (poisonedStrict.length) throw Error('boilerplate or non-party text escaped strict publication: ' + poisonedStrict.length);
           console.log(`PUBLIC_RECORDS=${rows.length} LEGACY=${legacy.length} STRICT_VERIFIED=${strict.length} CUTOVER=${!!manifest.historicalCutoverApplied}`);
           NODE
       - name: Commit verified artifacts

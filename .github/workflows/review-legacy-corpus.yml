@@ -14,7 +14,9 @@ on:
       - 'build-public-artifacts.js'
       - 'FIX-transaction-review.js'
       - 'FIX-deal-extraction.js'
+      - 'FIX-public-description.js'
       - 'FIX-source-url.js'
+      - 'strict-record-overrides.json'
       - '.github/workflows/review-legacy-corpus.yml'
 
 concurrency:
@@ -44,6 +46,7 @@ jobs:
       - name: Review next historical batch
         env:
           TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
+          LEGACY_REVIEW_STATE_FILE: 'legacy-review-state-role-v1.json'
           LEGACY_REVIEW_BATCH_SIZE: '1000'
           LEGACY_REVIEW_CONCURRENCY: '4'
           LEGACY_REVIEW_POLITENESS_MS: '400'
@@ -101,7 +104,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add legacy-review-state.json legacy-review-manifest.json
+          git add legacy-review-state-role-v1.json legacy-review-manifest.json
           if [ "${{ steps.review.outputs.cutover }}" = "true" ]; then
             git add deals.json deals-index.json deals-public-manifest.json deals-details/
           fi
