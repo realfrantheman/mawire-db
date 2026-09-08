@@ -109,7 +109,7 @@ function flexibleNamePattern(name) {
     .split(/\s+/)
     .filter(Boolean);
   if (!rawWords.length) return null;
-  return rawWords.map(escapeRegex).join('[\\s,.&()\'"’“”\\-]+');
+  return rawWords.map(escapeRegex).join("[\\s,.&()'\"’“”\\-]+");
 }
 
 function hasAcquirerRoleEvidence(acquirer, target, source) {
