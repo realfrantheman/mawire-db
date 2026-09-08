@@ -6,7 +6,7 @@ const http = require('http');
 const https = require('https');
 
 const RULE_VERSION = process.env.TRANSACTION_REVIEW_RULE_VERSION || 'strict-control-v3';
-const ENGINE_VERSION = 'legacy-control-review-v1.1';
+const ENGINE_VERSION = 'legacy-control-review-v1.2';
 const DEALS_FILE = process.env.LEGACY_REVIEW_DEALS_FILE || 'deals.json';
 const STATE_FILE = process.env.LEGACY_REVIEW_STATE_FILE || 'legacy-review-state.json';
 const MANIFEST_FILE = process.env.LEGACY_REVIEW_MANIFEST_FILE || 'legacy-review-manifest.json';
@@ -54,6 +54,7 @@ const UNCERTAIN_BASE_REASONS = new Set([
   'transaction_type_not_proven',
 ]);
 const RETRYABLE_REASONS = new Set(['primary_source_unreachable', 'source_request_error']);
+const GENERIC_NAME_ALIAS = /^(?:buyer|target|seller|parent|acquirer|purchaser|offeror|bidder|issuer|investor|company|corporation|business|group|management|shareholders?)$/i;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -106,9 +107,25 @@ function stakePercentages(text) {
   return values;
 }
 
+function literalName(value) {
+  return String(value || '')
+    .replace(/&amp;/gi, '&')
+    .toLowerCase()
+    .replace(/[^a-z0-9&]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function strongNameAppears(name, source) {
+  const literal = literalName(name);
+  const literalSource = literalName(source);
+  if (!literal || !literalSource) return false;
+  if (` ${literalSource} `.includes(` ${literal} `)) return true;
+
+  // Corporate suffix stripping is useful for Microsoft Corp. -> Microsoft, but
+  // never accept a generic one-word role such as Buyer/Target as an alias.
   const normalizedName = review.normalizeName(name);
-  if (!normalizedName) return false;
+  if (!normalizedName || GENERIC_NAME_ALIAS.test(normalizedName)) return false;
   const normalizedSource = review.normalizeName(source);
   if (!normalizedSource) return false;
   return ` ${normalizedSource} `.includes(` ${normalizedName} `);
