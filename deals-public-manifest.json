@@ -1,14 +1,16 @@
 {
-  "generatedAt": "2026-09-07T23:29:03.920Z",
+  "generatedAt": "2026-09-08T01:37:18.284Z",
   "ruleVersion": "strict-control-v3",
   "sourceRecordCount": 25217,
-  "dealCount": 25216,
+  "dealCount": 25215,
   "legacyRecordCount": 25211,
-  "strictVerifiedCount": 5,
+  "strictVerifiedCount": 4,
+  "strictOverrideCount": 5,
+  "historicalCutoverApplied": false,
   "typeCounts": {
     "Merger / Business Combination": 4,
-    "Acquisition": 12759,
     "Merger": 12451,
+    "Acquisition": 12758,
     "Tender Offer": 1,
     "Going-Private": 1
   },
@@ -19,5 +21,5 @@
     "LBO / Going-Private",
     "Divestiture / Carve-Out"
   ],
-  "publicationRule": "Preserved historical public corpus; all newly admitted transactions require strict primary-source verification."
+  "publicationRule": "Historical review migration in progress: preserve the existing public corpus while all new admissions require strict primary-source verification."
 }
