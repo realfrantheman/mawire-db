@@ -10,6 +10,7 @@ on:
       - 'refresh-file-backed.js'
       - 'refresh-file-backed-v2.js'
       - 'refresh-file-backed-runner.js'
+      - 'reconcile-strict-export.js'
       - 'build-public-artifacts.js'
       - 'FIX-transaction-review.js'
       - 'FIX-sec-efts.js'
@@ -65,14 +66,22 @@ jobs:
           TRANSACTION_REVIEW_CONCURRENCY: '4'
           TRANSACTION_REVIEW_POLITENESS_MS: '400'
         run: node FIX-transaction-review.js
-      - name: Export verified transactions only
+      - name: Export strict database population without replacing historical master
         if: steps.database.outputs.available == 'true'
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           LOCAL_ONLY: 'true'
           TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
-        run: node FIX-export-to-github.js
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp deals.json deals-master.json
+          node FIX-export-to-github.js
+          mv deals.json strict-export.json
+          mv deals-master.json deals.json
+          node reconcile-strict-export.js deals.json strict-export.json
+          rm -f strict-export.json
       - name: Refresh from primary SEC filings without PostgreSQL
         if: steps.database.outputs.available != 'true'
         env:
@@ -91,15 +100,17 @@ jobs:
           const fs = require('fs');
           const { isPublicTransaction, isLegacyIndexRow } = require('./build-public-artifacts');
           const rows = JSON.parse(fs.readFileSync('deals-index.json','utf8'));
+          const manifest = JSON.parse(fs.readFileSync('deals-public-manifest.json','utf8'));
           if (!Array.isArray(rows) || rows.length < 10000) throw Error('public corpus collapsed below safety floor: ' + (rows && rows.length));
           const legacy = rows.filter(isLegacyIndexRow);
           const strict = rows.filter(d => !isLegacyIndexRow(d));
           const invalidStrict = strict.filter(d => !isPublicTransaction(d));
           if (invalidStrict.length) throw Error('invalid strict rows escaped: ' + invalidStrict.length);
+          if (manifest.historicalCutoverApplied && legacy.length) throw Error('legacy rows escaped approved historical cutover: ' + legacy.length);
           const poison = /secretary of state|surviving company|as applicable|as a result of|does not close|making such other filings|\badditionally\b/i;
           const poisonedStrict = strict.filter(d => poison.test(String(d.acquirer||'')) || poison.test(String(d.target||'')));
           if (poisonedStrict.length) throw Error('boilerplate party text escaped strict publication: ' + poisonedStrict.length);
-          console.log(`PUBLIC_RECORDS=${rows.length} LEGACY=${legacy.length} STRICT_VERIFIED=${strict.length}`);
+          console.log(`PUBLIC_RECORDS=${rows.length} LEGACY=${legacy.length} STRICT_VERIFIED=${strict.length} CUTOVER=${!!manifest.historicalCutoverApplied}`);
           NODE
       - name: Commit verified artifacts
         run: |
