@@ -6,7 +6,7 @@ const http = require('http');
 const https = require('https');
 
 const RULE_VERSION = process.env.TRANSACTION_REVIEW_RULE_VERSION || 'strict-control-v3';
-const ENGINE_VERSION = 'legacy-control-review-v1.0';
+const ENGINE_VERSION = 'legacy-control-review-v1.1';
 const DEALS_FILE = process.env.LEGACY_REVIEW_DEALS_FILE || 'deals.json';
 const STATE_FILE = process.env.LEGACY_REVIEW_STATE_FILE || 'legacy-review-state.json';
 const MANIFEST_FILE = process.env.LEGACY_REVIEW_MANIFEST_FILE || 'legacy-review-manifest.json';
@@ -18,9 +18,9 @@ const TIMEOUT_MS = Math.max(5000, Math.min(45000, Number(process.env.LEGACY_REVI
 const MAX_ATTEMPTS = Math.max(1, Math.min(8, Number(process.env.LEGACY_REVIEW_MAX_ATTEMPTS || 3)));
 const RETRY_HOURS = Math.max(1, Math.min(168, Number(process.env.LEGACY_REVIEW_RETRY_HOURS || 12)));
 const MIN_VERIFIED = Math.max(1000, Number(process.env.LEGACY_REVIEW_MIN_VERIFIED || 10000));
-const MIN_VERIFIED_RATIO = Math.max(0.1, Math.min(0.95, Number(process.env.LEGACY_REVIEW_MIN_VERIFIED_RATIO || 0.45)));
-const MAX_UNRESOLVED_RATIO = Math.max(0, Math.min(0.8, Number(process.env.LEGACY_REVIEW_MAX_UNRESOLVED_RATIO || 0.20)));
-const MAX_REJECTED_RATIO = Math.max(0, Math.min(0.8, Number(process.env.LEGACY_REVIEW_MAX_REJECTED_RATIO || 0.45)));
+const MIN_VERIFIED_RATIO = Math.max(0.1, Math.min(0.95, Number(process.env.LEGACY_REVIEW_MIN_VERIFIED_RATIO || 0.55)));
+const MAX_UNRESOLVED_RATIO = Math.max(0, Math.min(0.8, Number(process.env.LEGACY_REVIEW_MAX_UNRESOLVED_RATIO || 0.15)));
+const MAX_REJECTED_RATIO = Math.max(0, Math.min(0.8, Number(process.env.LEGACY_REVIEW_MAX_REJECTED_RATIO || 0.35)));
 const AUTO_CUTOVER = String(process.env.LEGACY_REVIEW_AUTO_CUTOVER || 'false').toLowerCase() === 'true';
 const USER_AGENT = 'mergers.news historical transaction verifier contact@mergers.news';
 
@@ -38,6 +38,7 @@ const JOINT_VENTURE = /\bjoint\s+venture\b/i;
 const NON_BINDING = /\b(?:non[- ]binding|letter of intent|memorandum of understanding|proposal to acquire|exploring (?:a )?(?:sale|acquisition)|considering (?:a )?(?:sale|acquisition))\b/i;
 const CONTROL_OVERRIDE = /\b(?:all(?: of)? the outstanding|all outstanding|100\s*%|majority (?:stake|interest|ownership)|controlling (?:stake|interest)|control of|all remaining|remaining (?:shares|stake|interest|equity)|tender offer (?:to purchase|for) all|going[- ]private|take[- ]private|agreement and plan of merger|merger agreement|business combination agreement|scheme of arrangement)\b/i;
 const TRANSACTION_TERM = /\b(?:acquir(?:e|es|ed|ing|er|ition)|purchas(?:e|es|ed|ing)|buy(?:s|ing)?|stake|interest|merger|merge|tender offer|going[- ]private|take[- ]private|business combination|divestiture|sale of)\b/gi;
+const CONTROL_PROXIMITY_TERM = /\b(?:agreement and plan of merger|merger agreement|business combination agreement|definitive agreement to acquire|agreed to acquire|agrees to acquire|will acquire|to be acquired by|agreed to be acquired by|acquisition of|acquire all(?: of)? the outstanding|purchase all(?: of)? the outstanding|tender offer|going[- ]private|take[- ]private|merge with|merger with|scheme of arrangement|sale of (?:the )?(?:business|division|subsidiary|operations))\b/gi;
 const STAKE_PERCENT = /(?:acquir\w*|purchas\w*|buy\w*)[^.!?]{0,140}?([0-9]{1,3}(?:\.[0-9]+)?)\s*%[^.!?]{0,80}?(?:stake|interest|shares?|equity)|([0-9]{1,3}(?:\.[0-9]+)?)\s*%[^.!?]{0,80}?(?:stake|interest|shares?|equity)[^.!?]{0,140}?(?:acquir\w*|purchas\w*|buy\w*)/gi;
 const STRONG_CONTROL_TYPES = new Set(['Merger / Business Combination', 'Tender Offer', 'LBO / Going-Private']);
 const UNCERTAIN_BASE_REASONS = new Set([
@@ -83,6 +84,17 @@ function transactionWindows(source, maxWindows = 12) {
   return windows.join('\n');
 }
 
+function controlWindows(source, maxWindows = 20) {
+  const text = String(source || '').replace(/\s+/g, ' ');
+  const windows = [];
+  CONTROL_PROXIMITY_TERM.lastIndex = 0;
+  let match;
+  while ((match = CONTROL_PROXIMITY_TERM.exec(text)) !== null && windows.length < maxWindows) {
+    windows.push(text.slice(Math.max(0, match.index - 650), Math.min(text.length, match.index + 850)));
+  }
+  return windows;
+}
+
 function stakePercentages(text) {
   const values = [];
   STAKE_PERCENT.lastIndex = 0;
@@ -94,29 +106,54 @@ function stakePercentages(text) {
   return values;
 }
 
+function strongNameAppears(name, source) {
+  const normalizedName = review.normalizeName(name);
+  if (!normalizedName) return false;
+  const normalizedSource = review.normalizeName(source);
+  if (!normalizedSource) return false;
+  return ` ${normalizedSource} `.includes(` ${normalizedName} `);
+}
+
+function partiesNearControl(record, source, result) {
+  if (!record?.acquirer || !record?.target) return false;
+  const excerpt = String(result?.evidenceExcerpt || '');
+  if (excerpt && strongNameAppears(record.acquirer, excerpt) && strongNameAppears(record.target, excerpt)) return true;
+  return controlWindows(source).some(window =>
+    strongNameAppears(record.acquirer, window) && strongNameAppears(record.target, window)
+  );
+}
+
+function decisionEvidence(record, result, source) {
+  const excerpt = String(result?.evidenceExcerpt || '').trim();
+  if (excerpt) return `${record.headline || ''}\n${excerpt}`;
+  return `${record.headline || ''}\n${transactionWindows(source, 4)}`;
+}
+
 /**
  * Second, independent false-positive guard for historical migration.
  * The base verifier proves parties + an M&A control phrase. This guard prevents
  * generic words such as "acquisition" from promoting minority/non-control stake
- * purchases, joint ventures, or non-binding proposals.
+ * purchases, joint ventures, or non-binding proposals. It evaluates the exact
+ * decision excerpt selected by the base verifier, not unrelated language elsewhere
+ * in a long filing.
  */
 function enforceHistoricalControlGuard(record, source, result) {
   if (!result || result.status !== 'verified') return result;
-  const window = transactionWindows(`${record.headline || ''}\n${source || ''}`);
+  const decision = decisionEvidence(record, result, source);
   const strongType = STRONG_CONTROL_TYPES.has(result.transactionType);
-  const controlOverride = CONTROL_OVERRIDE.test(window);
+  const controlOverride = CONTROL_OVERRIDE.test(decision);
 
-  if (!strongType && EXPLICIT_NON_CONTROL.test(window) && !controlOverride) {
+  if (!strongType && EXPLICIT_NON_CONTROL.test(decision) && !controlOverride) {
     return { status: 'rejected', reasonCode: 'legacy_explicit_non_control_transaction', transactionType: null, evidenceExcerpt: null };
   }
-  if (!strongType && JOINT_VENTURE.test(window) && !controlOverride) {
+  if (!strongType && JOINT_VENTURE.test(decision) && !controlOverride) {
     return { status: 'rejected', reasonCode: 'legacy_joint_venture_not_mna', transactionType: null, evidenceExcerpt: null };
   }
-  if (!strongType && NON_BINDING.test(window) && !controlOverride) {
+  if (!strongType && NON_BINDING.test(decision) && !controlOverride) {
     return { status: 'rejected', reasonCode: 'legacy_non_binding_transaction', transactionType: null, evidenceExcerpt: null };
   }
 
-  const percentages = stakePercentages(window);
+  const percentages = stakePercentages(decision);
   if (!strongType && percentages.some(value => value <= 50) && !controlOverride) {
     return { status: 'rejected', reasonCode: 'legacy_non_control_percentage_stake', transactionType: null, evidenceExcerpt: null };
   }
@@ -298,6 +335,10 @@ async function reviewOne(deal, previous = null) {
       repaired = result.status === 'verified';
     }
   }
+
+  if (result.status === 'verified' && !partiesNearControl(effectiveRecord, source, result)) {
+    result = { status: 'needs_review', reasonCode: 'party_control_proximity_not_proven', transactionType: null, evidenceExcerpt: result.evidenceExcerpt || null };
+  }
   result = enforceHistoricalControlGuard(effectiveRecord, source, result);
   result = normalizeUncertain(result, fetched.truncated);
 
@@ -307,7 +348,7 @@ async function reviewOne(deal, previous = null) {
     reasonCode: result.reasonCode,
     transactionType: result.transactionType || null,
     evidenceHash: evidenceHash(result),
-    repairedParties: repaired ? { acquirer: effectiveRecord.acquirer, target: effectiveRecord.target } : null,
+    repairedParties: repaired && result.status === 'verified' ? { acquirer: effectiveRecord.acquirer, target: effectiveRecord.target } : null,
     truncated: !!fetched.truncated,
   };
 }
@@ -320,6 +361,17 @@ function duplicateIdCount(deals) {
     const id = String(deal.id);
     if (seen.has(id)) dupes.add(id);
     seen.add(id);
+  }
+  return dupes.size;
+}
+
+function duplicateRecordKeyCount(deals) {
+  const seen = new Set();
+  const dupes = new Set();
+  for (const deal of deals) {
+    const key = recordKey(deal);
+    if (seen.has(key)) dupes.add(key);
+    seen.add(key);
   }
   return dupes.size;
 }
@@ -340,12 +392,13 @@ function summarize(deals, state) {
   const unresolvedRatio = total ? unresolved / total : 1;
   const rejectedRatio = total ? counts.rejected / total : 0;
   const duplicateIds = duplicateIdCount(deals);
+  const duplicateRecordKeys = duplicateRecordKeyCount(deals);
   const complete = reviewed === total && total > 0;
-  const cutoverEligible = complete && duplicateIds === 0 && counts.verified >= MIN_VERIFIED &&
+  const cutoverEligible = complete && duplicateIds === 0 && duplicateRecordKeys === 0 && counts.verified >= MIN_VERIFIED &&
     verifiedRatio >= MIN_VERIFIED_RATIO && unresolvedRatio <= MAX_UNRESOLVED_RATIO && rejectedRatio <= MAX_REJECTED_RATIO;
   return {
     total, reviewed, coveragePct: total ? Math.round(reviewed / total * 10000) / 100 : 0,
-    counts, reasons, verifiedRatio, unresolvedRatio, rejectedRatio, duplicateIds, complete, cutoverEligible,
+    counts, reasons, verifiedRatio, unresolvedRatio, rejectedRatio, duplicateIds, duplicateRecordKeys, complete, cutoverEligible,
   };
 }
 
@@ -416,7 +469,7 @@ async function run() {
           status: 'error',
           reasonCode: 'source_request_error',
           transactionType: null,
-          evidenceUrl: canonicalPrimarySourceUrl(item.deal),
+          evidenceUrl: canonicalPrimarySourceUrl({ ...item.deal, sourceType: normalizeSourceType(item.deal) }),
           evidenceHash: null,
           error: String(error.stack || error.message || error).slice(0, 500),
         };
@@ -455,6 +508,7 @@ async function run() {
       maxUnresolvedRatio: MAX_UNRESOLVED_RATIO,
       maxRejectedRatio: MAX_REJECTED_RATIO,
       requireZeroDuplicateIds: true,
+      requireZeroDuplicateRecordKeys: true,
     },
     samples: {
       verified: sampleKeys(deals, state, 'verified'),
@@ -478,7 +532,8 @@ if (require.main === module) {
 }
 
 module.exports = {
-  RULE_VERSION, ENGINE_VERSION, stripHtml, transactionWindows, stakePercentages,
-  enforceHistoricalControlGuard, recordKey, loadState, shouldAttempt, normalizeUncertain,
-  reviewRecord, repairParties, duplicateIdCount, summarize, applyCutover, reviewOne, run,
+  RULE_VERSION, ENGINE_VERSION, stripHtml, transactionWindows, controlWindows, stakePercentages,
+  strongNameAppears, partiesNearControl, decisionEvidence, enforceHistoricalControlGuard,
+  recordKey, loadState, shouldAttempt, normalizeUncertain, reviewRecord, repairParties,
+  duplicateIdCount, duplicateRecordKeyCount, summarize, applyCutover, reviewOne, run,
 };
