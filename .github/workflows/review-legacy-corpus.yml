@@ -1,4 +1,5 @@
 name: Review historical M&A corpus
+# This workflow is safe to retrigger: review progress is resumable and publication is safety-gated.
 
 on:
   schedule:
