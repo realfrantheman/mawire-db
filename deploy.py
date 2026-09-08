@@ -17,6 +17,7 @@ import base64
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -29,6 +30,8 @@ SITE_DATA_ONLY = os.environ.get('DEPLOY_SITE_DATA_ONLY', '').lower() == 'true'
 PUBLIC_DATA_SOURCES = {'deals-index.json', 'deals-public-manifest.json'}
 LEGACY_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals.json'
 PUBLIC_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals-index.json'
+TRANSIENT_HTTP_CODES = {502, 503, 504}
+API_ATTEMPTS = 4
 
 MAPPINGS = [
     # Platform deployment/runtime entrypoint
@@ -97,25 +100,46 @@ MAPPINGS = [
 
 def api(path, method='GET', body=None):
     data = json.dumps(body).encode() if body is not None else None
-    request = urllib.request.Request(
-        'https://api.github.com' + path,
-        data=data,
-        method=method,
-        headers={
-            'Authorization': f'Bearer {TOKEN}',
-            'Accept': 'application/vnd.github+json',
-            'Content-Type': 'application/json',
-            'User-Agent': 'mawire-deploy/3.1',
-            'X-GitHub-Api-Version': '2022-11-28',
-        },
-    )
-    try:
-        with urllib.request.urlopen(request) as response:
-            raw = response.read()
-            return json.loads(raw) if raw else {}
-    except urllib.error.HTTPError as error:
-        detail = error.read().decode(errors='replace')[:500]
-        raise RuntimeError(f'{method} {path} -> {error.code}: {detail}') from error
+    url = 'https://api.github.com' + path
+    headers = {
+        'Authorization': f'Bearer {TOKEN}',
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+        'User-Agent': 'mawire-deploy/3.2',
+        'X-GitHub-Api-Version': '2022-11-28',
+    }
+
+    for attempt in range(1, API_ATTEMPTS + 1):
+        request = urllib.request.Request(url, data=data, method=method, headers=headers)
+        try:
+            with urllib.request.urlopen(request) as response:
+                raw = response.read()
+                return json.loads(raw) if raw else {}
+        except urllib.error.HTTPError as error:
+            detail = error.read().decode(errors='replace')[:500]
+            if error.code in TRANSIENT_HTTP_CODES and attempt < API_ATTEMPTS:
+                delay = 2 ** (attempt - 1)
+                print(
+                    f'RETRY {method} {path} after HTTP {error.code} '
+                    f'(attempt {attempt}/{API_ATTEMPTS}, sleep {delay}s)',
+                    file=sys.stderr,
+                )
+                time.sleep(delay)
+                continue
+            raise RuntimeError(f'{method} {path} -> {error.code}: {detail}') from error
+        except urllib.error.URLError as error:
+            if attempt < API_ATTEMPTS:
+                delay = 2 ** (attempt - 1)
+                print(
+                    f'RETRY {method} {path} after network error '
+                    f'(attempt {attempt}/{API_ATTEMPTS}, sleep {delay}s): {error.reason}',
+                    file=sys.stderr,
+                )
+                time.sleep(delay)
+                continue
+            raise RuntimeError(f'{method} {path} -> network error: {error.reason}') from error
+
+    raise RuntimeError(f'{method} {path} failed after {API_ATTEMPTS} attempts')
 
 
 def deployment_mappings():
