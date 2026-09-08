@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: deploy-mawire-${{ github.ref }}
+  group: mawire-db-artifact-writes
   cancel-in-progress: false
 
 jobs:
