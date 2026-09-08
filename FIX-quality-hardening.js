@@ -56,12 +56,23 @@
     return d;
   }
 
+  function isLegacyRecord(d) {
+    return !!d && !d.reviewStatus && !d.reviewRuleVersion;
+  }
+
   function isMA(d) {
     if (!d || typeof d.headline !== 'string') return false;
-    if (d.reviewStatus !== 'verified' || d.reviewRuleVersion !== 'strict-control-v3') return false;
-    if (!d.acquirer || !d.target || !d.sourceUrl) return false;
+
+    // Migration invariant: unreviewed historical rows remain visible until the
+    // whole corpus has been reviewed and the atomic cutover safety gate passes.
+    // Once a row has review metadata, only a verified strict-control decision is
+    // allowed through. This prevents partial review progress from collapsing the
+    // site while ensuring rejected/needs-review rows cannot leak after cutover.
+    if (!isLegacyRecord(d) && (d.reviewStatus !== 'verified' || d.reviewRuleVersion !== 'strict-control-v3')) return false;
+
+    if (!d.acquirer || !d.target) return false;
     if (/^(?:unknown|undisclosed)/i.test(d.acquirer) || /^(?:unknown|undisclosed)/i.test(d.target)) return false;
-    if (String(d.acquirer).toLowerCase() === String(d.target).toLowerCase()) return false;
+    if (String(d.acquirer).trim().toLowerCase() === String(d.target).trim().toLowerCase()) return false;
     return true;
   }
 

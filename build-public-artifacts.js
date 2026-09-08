@@ -46,7 +46,7 @@ function compactDeal(deal) {
     'id','headline','acquirer','target','dealType','status','dealValue','dealValueNum','perShare','premium',
     'sector','region','country','date','year','dateISO','closingDate','timeAgo','era','isPrivateEquity','isHostile',
     'source','sourceUrl','filingType','edgarUrl','extractionMethod','sourceType','sourceName','accessionNo','confidence',
-    'breaking','reviewStatus','reviewRuleVersion','reviewedAt'
+    'breaking','reviewStatus','reviewRuleVersion','reviewEngineVersion','reviewedAt'
   ];
   const out = {};
   for (const key of keys) if (deal[key] !== undefined && deal[key] !== null && deal[key] !== '') out[key] = deal[key];
@@ -63,7 +63,8 @@ function isLegacyIndexRow(row) {
 
 function buildArtifacts(inputDeals, options = {}) {
   const existingIndex = Array.isArray(options.legacyIndex) ? options.legacyIndex : [];
-  const legacyIndex = existingIndex.filter(isLegacyIndexRow);
+  const preserveLegacy = options.preserveLegacy !== false;
+  const legacyIndex = preserveLegacy ? existingIndex.filter(isLegacyIndexRow) : [];
   const byId = new Map(inputDeals.map(deal => [String(deal.id), deal]));
 
   const strictDeals = inputDeals
@@ -103,9 +104,12 @@ function buildArtifacts(inputDeals, options = {}) {
       dealCount: index.length,
       legacyRecordCount: retainedLegacyIndex.length,
       strictVerifiedCount: strictIndex.length,
+      historicalCutoverApplied: !preserveLegacy,
       typeCounts,
       allowedTypes: [...ALLOWED_TYPES],
-      publicationRule: 'Preserved historical public corpus; all newly admitted transactions require strict primary-source verification.',
+      publicationRule: preserveLegacy
+        ? 'Historical review migration in progress: preserve the existing public corpus while all new admissions require strict primary-source verification.'
+        : 'Historical review migration complete: publish only strict verified control transactions.',
     },
   };
 }
@@ -120,9 +124,28 @@ function readExistingIndex(root) {
   }
 }
 
+function readLegacyReviewManifest(root) {
+  try {
+    const value = JSON.parse(fs.readFileSync(path.join(root, 'legacy-review-manifest.json'), 'utf8'));
+    return value && typeof value === 'object' ? value : null;
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    return null;
+  }
+}
+
+function isApprovedHistoricalCutover(manifest) {
+  if (!manifest || manifest.cutoverApplied !== true || manifest.complete !== true) return false;
+  if (manifest.ruleVersion !== RULE || Number(manifest.coveragePct) !== 100) return false;
+  const minimum = Number(manifest.safetyThresholds?.minVerified || 0);
+  return Number(manifest.publicVerifiedCount || 0) >= minimum && minimum > 0;
+}
+
 function writeArtifacts(inputDeals, root = '.') {
   const legacyIndex = readExistingIndex(root);
-  const result = buildArtifacts(inputDeals, { legacyIndex });
+  const reviewManifest = readLegacyReviewManifest(root);
+  const preserveLegacy = !isApprovedHistoricalCutover(reviewManifest);
+  const result = buildArtifacts(inputDeals, { legacyIndex, preserveLegacy });
   fs.writeFileSync(path.join(root, 'deals-index.json'), JSON.stringify(result.index) + '\n');
   fs.writeFileSync(path.join(root, 'deals-public-manifest.json'), JSON.stringify(result.manifest, null, 2) + '\n');
   const detailDir = path.join(root, 'deals-details');
@@ -142,5 +165,5 @@ if (require.main === module) {
 
 module.exports = {
   RULE, ALLOWED_TYPES, normalizedParty, isSaneParty, isPublicTransaction, compactDeal,
-  isLegacyIndexRow, buildArtifacts, writeArtifacts,
+  isLegacyIndexRow, buildArtifacts, readLegacyReviewManifest, isApprovedHistoricalCutover, writeArtifacts,
 };

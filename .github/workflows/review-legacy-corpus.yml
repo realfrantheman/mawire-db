@@ -1,0 +1,120 @@
+name: Review historical M&A corpus
+
+on:
+  schedule:
+    - cron: '42 * * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'review-legacy-corpus.js'
+      - 'reconcile-strict-export.js'
+      - 'build-public-artifacts.js'
+      - 'FIX-transaction-review.js'
+      - 'FIX-deal-extraction.js'
+      - 'FIX-source-url.js'
+      - '.github/workflows/review-legacy-corpus.yml'
+
+concurrency:
+  group: mawire-db-artifact-writes
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 115
+    steps:
+      - name: Checkout mawire-db
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.MAWIRE_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+
+      - name: Review next historical batch
+        env:
+          TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
+          LEGACY_REVIEW_BATCH_SIZE: '1000'
+          LEGACY_REVIEW_CONCURRENCY: '4'
+          LEGACY_REVIEW_POLITENESS_MS: '400'
+          LEGACY_REVIEW_MAX_BYTES: '1500000'
+          LEGACY_REVIEW_TIMEOUT_MS: '15000'
+          LEGACY_REVIEW_MAX_ATTEMPTS: '2'
+          LEGACY_REVIEW_RETRY_HOURS: '12'
+          LEGACY_REVIEW_MIN_VERIFIED: '10000'
+          LEGACY_REVIEW_MIN_VERIFIED_RATIO: '0.55'
+          LEGACY_REVIEW_MAX_UNRESOLVED_RATIO: '0.15'
+          LEGACY_REVIEW_MAX_REJECTED_RATIO: '0.35'
+          LEGACY_REVIEW_AUTO_CUTOVER: 'true'
+        run: node review-legacy-corpus.js
+
+      - name: Read cutover state
+        id: review
+        run: |
+          node - <<'NODE' >> "$GITHUB_OUTPUT"
+          const m = require('./legacy-review-manifest.json');
+          console.log(`cutover=${m.cutoverApplied === true ? 'true' : 'false'}`);
+          console.log(`coverage=${m.coveragePct || 0}`);
+          console.log(`verified=${m.counts?.verified || 0}`);
+          console.log(`rejected=${m.counts?.rejected || 0}`);
+          console.log(`needs_review=${m.counts?.needs_review || 0}`);
+          NODE
+
+      - name: Build strict public artifacts after approved cutover
+        if: steps.review.outputs.cutover == 'true'
+        run: node build-public-artifacts.js deals.json
+
+      - name: Validate strict cutover sources
+        if: steps.review.outputs.cutover == 'true'
+        run: node validate-source-urls.js deals-index.json
+
+      - name: Verify strict cutover publication gate
+        if: steps.review.outputs.cutover == 'true'
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const { isPublicTransaction, isLegacyIndexRow } = require('./build-public-artifacts');
+          const rows = JSON.parse(fs.readFileSync('deals-index.json','utf8'));
+          const manifest = JSON.parse(fs.readFileSync('deals-public-manifest.json','utf8'));
+          const review = JSON.parse(fs.readFileSync('legacy-review-manifest.json','utf8'));
+          if (!review.cutoverApplied || !review.complete || Number(review.coveragePct) !== 100) throw Error('historical review is not complete');
+          if (!manifest.historicalCutoverApplied) throw Error('public artifact builder did not enter strict cutover mode');
+          if (!Array.isArray(rows) || rows.length < 10000) throw Error('strict corpus collapsed below safety floor: ' + (rows && rows.length));
+          const legacy = rows.filter(isLegacyIndexRow);
+          if (legacy.length) throw Error('legacy rows escaped strict cutover: ' + legacy.length);
+          const invalid = rows.filter(row => !isPublicTransaction(row));
+          if (invalid.length) throw Error('invalid rows escaped strict cutover: ' + invalid.length);
+          console.log(`STRICT_CUTOVER_RECORDS=${rows.length}`);
+          NODE
+
+      - name: Commit review progress
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add legacy-review-state.json legacy-review-manifest.json
+          if [ "${{ steps.review.outputs.cutover }}" = "true" ]; then
+            git add deals.json deals-index.json deals-public-manifest.json deals-details/
+          fi
+          if git diff --cached --quiet; then
+            echo 'No historical review changes'
+          else
+            git commit -m 'chore: advance historical M&A verification [skip ci]'
+            git pull --rebase https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git main
+            git push https://x-access-token:${{ secrets.MAWIRE_TOKEN }}@github.com/realfrantheman/mawire-db.git HEAD:main
+          fi
+
+      - name: Publish strict cutover to site
+        if: steps.review.outputs.cutover == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
+          DEPLOY_SITE_DATA_ONLY: 'true'
+        run: python3 deploy.py
