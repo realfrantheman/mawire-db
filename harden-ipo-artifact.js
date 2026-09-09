@@ -10,7 +10,7 @@ const OVERRIDES = require('./ipo-overrides.json');
 function uniqueByUrl(items = []) {
   const seen = new Set();
   return items.filter(Boolean).filter(item => {
-    const key = String(item.url || `${item.form || ''}|${item.date || ''}`);
+    const key = String(item.url || `${item.form || item.filingType || ''}|${item.date || item.filingDate || ''}`);
     if (!key || seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -21,6 +21,10 @@ function mergeTerminal(previous, incoming) {
   const prior = normalizeRecord(previous);
   const next = normalizeRecord(incoming);
   if (!TERMINAL.has(prior.status) || !isActive(next)) return next;
+  const lifecycleFilings = uniqueByUrl([
+    ...(Array.isArray(previous.lifecycleFilings) ? previous.lifecycleFilings : []),
+    ...(Array.isArray(incoming.lifecycleFilings) ? incoming.lifecycleFilings : []),
+  ]);
   return normalizeRecord({
     ...next,
     status: prior.status,
@@ -35,7 +39,7 @@ function mergeTerminal(previous, incoming) {
     source: prior.source || next.source,
     notes: prior.notes || next.notes,
     sources: uniqueByUrl([...(prior.sources || []), ...(next.sources || [])]),
-    lifecycleFilings: uniqueByUrl([...(prior.lifecycleFilings || []), ...(next.lifecycleFilings || [])]),
+    lifecycleFilings,
     latestUpdateDate: [prior.latestUpdateDate, next.latestUpdateDate].filter(Boolean).sort().pop(),
   });
 }
@@ -44,7 +48,7 @@ function genericMarketGuard(record, today = new Date().toISOString().slice(0, 10
   const normalized = normalizeRecord(record);
   const actualDate = normalized.ipoDate;
   if (isActive(normalized) && actualDate && actualDate <= today && normalized.ticker && normalized.exchange) {
-    return normalizeRecord({ ...normalized, status: 'listed', statusLabel: 'Listed', expected: null });
+    return normalizeRecord({ ...record, ...normalized, status: 'listed', statusLabel: 'Listed', expected: null });
   }
   if (TERMINAL.has(normalized.status) && normalized.expected) return { ...normalized, expected: null };
   return normalized;
@@ -53,15 +57,15 @@ function genericMarketGuard(record, today = new Date().toISOString().slice(0, 10
 function reconcileRecords(previousRecords = [], refreshedRecords = []) {
   const previous = new Map(previousRecords.map(record => {
     const normalized = normalizeRecord(record);
-    return [recordKey(normalized), normalized];
+    return [recordKey(normalized), { raw: record, normalized }];
   }));
   const reconciled = refreshedRecords.map(record => {
     const normalized = normalizeRecord(record);
     const prior = previous.get(recordKey(normalized));
-    return genericMarketGuard(prior ? mergeTerminal(prior, normalized) : normalized);
+    return genericMarketGuard(prior ? mergeTerminal(prior.raw, record) : record);
   });
   const refreshedKeys = new Set(reconciled.map(recordKey));
-  const preserved = previousRecords.map(normalizeRecord).filter(record => !refreshedKeys.has(recordKey(record)));
+  const preserved = previousRecords.filter(record => !refreshedKeys.has(recordKey(normalizeRecord(record)))).map(genericMarketGuard);
   return applyOverrides(dedupeRecords(preserved.concat(reconciled)), OVERRIDES).map(genericMarketGuard);
 }
 
