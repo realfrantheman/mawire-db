@@ -25,7 +25,7 @@ jobs:
         env:
           IPO_LOOKBACK_YEARS: '3'
           IPO_MAX_METADATA: '6000'
-          IPO_MAX_FULL_TEXT: '40'
+          IPO_MAX_FULL_TEXT: '100'
         run: node fetch-ipos.js
       - name: Prevent terminal lifecycle regressions
         run: node harden-ipo-artifact.js /tmp/ipos-before-refresh.json ipos.json
