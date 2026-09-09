@@ -33,6 +33,10 @@ function valuationNumber(value) {
   const result = Number(match[1]) * multiplier;
   return Number.isFinite(result) ? result : null;
 }
+function positiveNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : null;
+}
 function normalizeExchange(value) {
   const text = cleanText(value).toUpperCase();
   if (!text || text === '—' || text === '-') return null;
@@ -154,8 +158,13 @@ function normalizeRecord(record, options = {}) {
     id: record.id || stableId({ ...record, legalName, name, cik }),
     slug: slugify(record.slug || name), name, legalName,
     sector: cleanText(record.sector || 'Other'), industry: cleanText(record.industry) || null,
+    description: cleanText(record.description) || null, headquarters: cleanText(record.headquarters) || null,
     valuation: cleanText(record.valuation) && record.valuation !== '—' ? cleanText(record.valuation) : null,
     valuationNum: valuationNumber(record.valuationNum ?? record.valuation),
+    priceRange: cleanText(record.priceRange) || null,
+    sharesOffered: cleanText(record.sharesOffered) || null, sharesOfferedNum: positiveNumber(record.sharesOfferedNum),
+    offeringSize: cleanText(record.offeringSize) || null, offeringSizeNum: positiveNumber(record.offeringSizeNum),
+    leadUnderwriters: [...new Set((Array.isArray(record.leadUnderwriters) ? record.leadUnderwriters : []).map(cleanText).filter(Boolean))],
     status, statusLabel: statusLabel(status), exchange: normalizeExchange(record.exchange),
     ticker: cleanText(record.ticker) || null, expected: cleanText(record.expected) && !/unknown|—/i.test(record.expected) ? cleanText(record.expected) : null,
     ipoDate: isoDate(record.ipoDate), filingDate, latestUpdateDate,
@@ -172,7 +181,8 @@ function normalizeRecord(record, options = {}) {
 function recordKey(record) { return record.cik ? `cik:${String(record.cik).replace(/^0+/, '')}` : `name:${normalizedName(record.legalName || record.name)}`; }
 function recordScore(record) {
   const formWeight = FINAL_FORMS.has(String(record.filingType || '').toUpperCase()) ? 20 : /\/A$/.test(record.filingType || '') ? 10 : 5;
-  return formWeight + (record.ticker ? 10 : 0) + (record.exchange ? 5 : 0) + (record.sources?.length || 0) + Number(String(record.latestUpdateDate || '').replace(/-/g, '').slice(0, 8) || 0) / 1e8;
+  const enrichmentWeight = [record.ticker, record.exchange, record.industry, record.headquarters, record.priceRange, record.sharesOffered, record.offeringSize].filter(Boolean).length;
+  return formWeight + (record.ticker ? 10 : 0) + (record.exchange ? 5 : 0) + enrichmentWeight + (record.sources?.length || 0) + Number(String(record.latestUpdateDate || '').replace(/-/g, '').slice(0, 8) || 0) / 1e8;
 }
 function dedupeRecords(records) {
   const winners = new Map();

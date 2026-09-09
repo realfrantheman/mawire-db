@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const { applyOverrides, dedupeRecords, normalizeRecord, normalizedName, recordKey } = require('./ipo-data');
+const { parseTextMetadata, parseSubmissionMetadata } = require('./ipo-enrichment');
 
 const ROOT = __dirname;
 const OUTPUT = process.env.IPO_OUTPUT || path.join(ROOT, 'ipos.json');
@@ -14,7 +15,7 @@ const FORMS = ['S-1', 'S-1/A', 'F-1', 'F-1/A', '424B4', '424B1', 'EFFECT', 'RW',
 const CONFIG = {
   lookbackYears: Number(process.env.IPO_LOOKBACK_YEARS || 8),
   maxMetadata: Number(process.env.IPO_MAX_METADATA || 12000),
-  maxFullText: Number(process.env.IPO_MAX_FULL_TEXT || 40),
+  maxFullText: Number(process.env.IPO_MAX_FULL_TEXT || 100),
   requestDelayMs: Number(process.env.IPO_REQUEST_DELAY_MS || 140),
   timeoutMs: Number(process.env.IPO_REQUEST_TIMEOUT_MS || 20000),
   maxBytes: Number(process.env.IPO_RESPONSE_MAX_BYTES || 6_000_000),
@@ -129,22 +130,45 @@ function mergeLifecycle(records) {
     return normalizeRecord({ ...latest, lifecycleFilings, sources, latestUpdateDate: lifecycleFilings[0]?.date || latest.latestUpdateDate });
   });
 }
-function parseTextMetadata(text) {
-  const plain = String(text || '').replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ').replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ').replace(/&amp;/gi, '&').replace(/\s+/g, ' ');
-  const ticker = plain.match(/(?:ticker|trading|symbol)\s+(?:symbol\s+)?[“"']?([A-Z][A-Z0-9.]{0,5})[”"']?/i)?.[1] || null;
-  const exchange = /nasdaq/i.test(plain) ? 'Nasdaq' : /nyse american/i.test(plain) ? 'NYSE American' : /new york stock exchange|\bnyse\b/i.test(plain) ? 'NYSE' : null;
-  const offering = plain.match(/(?:aggregate offering|offering price|proceeds)[^$]{0,80}\$\s*([\d,.]+)\s*(billion|million)?/i);
-  let valuationNum = null;
-  if (offering) valuationNum = Number(offering[1].replace(/,/g, '')) * (/billion/i.test(offering[2] || '') ? 1e9 : /million/i.test(offering[2] || '') ? 1e6 : 1);
-  return { ticker, exchange, valuationNum: Number.isFinite(valuationNum) ? valuationNum : null };
+function submissionUrl(cik) {
+  const digits = String(cik || '').replace(/\D/g, '');
+  return digits ? `https://data.sec.gov/submissions/CIK${digits.padStart(10, '0')}.json` : null;
 }
-function humanValue(value) {
-  if (!Number.isFinite(value)) return null;
-  if (value >= 1e12) return `$${(value / 1e12).toFixed(1).replace(/\.0$/, '')}T`;
-  if (value >= 1e9) return `$${(value / 1e9).toFixed(1).replace(/\.0$/, '')}B`;
-  if (value >= 1e6) return `$${Math.round(value / 1e6)}M`;
-  return `$${Math.round(value).toLocaleString('en-US')}`;
+async function enrichRecord(record, stats) {
+  const updates = {};
+  if (record.cik) {
+    try {
+      const metadata = parseSubmissionMetadata(await requestWithRetry(submissionUrl(record.cik), false, 2));
+      Object.assign(updates, {
+        ticker: metadata.ticker || record.ticker,
+        exchange: metadata.exchange || record.exchange,
+        industry: metadata.industry || record.industry,
+        headquarters: metadata.headquarters || record.headquarters,
+      });
+      stats.submissions++;
+    } catch (error) {
+      stats.errors.push({ cik: record.cik, stage: 'submissions', message: error.message });
+    }
+    await sleep(CONFIG.requestDelayMs);
+  }
+  try {
+    const html = await requestWithRetry(record.sourceUrl, true, 2);
+    const parsed = parseTextMetadata(html);
+    Object.assign(updates, {
+      ticker: updates.ticker || parsed.ticker || record.ticker,
+      exchange: updates.exchange || parsed.exchange || record.exchange,
+      priceRange: parsed.priceRange || record.priceRange,
+      sharesOffered: parsed.sharesOffered || record.sharesOffered,
+      sharesOfferedNum: parsed.sharesOfferedNum || record.sharesOfferedNum,
+      offeringSize: parsed.offeringSize || record.offeringSize,
+      offeringSizeNum: parsed.offeringSizeNum || record.offeringSizeNum,
+    });
+    stats.fullText++;
+  } catch (error) {
+    stats.errors.push({ cik: record.cik, stage: 'filing', message: error.message });
+  }
+  Object.assign(record, updates);
+  return record;
 }
 
 async function searchForm(form, start, end, stats, formBudget) {
@@ -152,7 +176,7 @@ async function searchForm(form, start, end, stats, formBudget) {
   for (let from = 0; output.length < formBudget && stats.metadata < CONFIG.maxMetadata; from += 100) {
     const url = `https://efts.sec.gov/LATEST/search-index?forms=${encodeURIComponent(form)}&dateRange=custom&startdt=${start}&enddt=${end}&from=${from}&size=100`;
     let data;
-    try { data = await requestWithRetry(url); } catch (error) { stats.errors.push({ form, start, message: error.message }); break; }
+    try { data = await requestWithRetry(url); } catch (error) { stats.errors.push({ form, start, stage: 'search', message: error.message }); break; }
     const hits = data?.hits?.hits || [];
     for (const hit of hits) {
       const candidate = hitToCandidate(hit, form);
@@ -166,7 +190,7 @@ async function searchForm(form, start, end, stats, formBudget) {
 }
 async function fetchLifecycleCandidates() {
   const year = new Date().getUTCFullYear();
-  const stats = { metadata: 0, fullText: 0, errors: [] };
+  const stats = { metadata: 0, fullText: 0, submissions: 0, errors: [] };
   const records = [];
   const formBudget = Math.max(100, Math.floor(CONFIG.maxMetadata / FORMS.length));
   for (const form of FORMS) {
@@ -175,19 +199,10 @@ async function fetchLifecycleCandidates() {
       await sleep(CONFIG.requestDelayMs);
     }
   }
-  let merged = mergeLifecycle(records);
+  const merged = mergeLifecycle(records);
   const enrichable = merged.filter(record => ['filed', 'amended', 'priced'].includes(record.status)).slice(0, CONFIG.maxFullText);
   for (const record of enrichable) {
-    try {
-      const html = await requestWithRetry(record.sourceUrl, true, 2);
-      const parsed = parseTextMetadata(html);
-      Object.assign(record, {
-        ticker: parsed.ticker || record.ticker, exchange: parsed.exchange || record.exchange,
-        valuationNum: parsed.valuationNum || record.valuationNum,
-        valuation: humanValue(parsed.valuationNum) || record.valuation,
-      });
-      stats.fullText++;
-    } catch (error) { stats.errors.push({ cik: record.cik, message: error.message }); }
+    await enrichRecord(record, stats);
     await sleep(CONFIG.requestDelayMs);
   }
   return { records: merged, stats };
@@ -212,6 +227,9 @@ function validateArtifact(records) {
     if (ids.has(record.id)) errors.push(`${record.slug}: duplicate id`); ids.add(record.id);
     if (slugs.has(record.slug)) errors.push(`${record.slug}: duplicate slug`); slugs.add(record.slug);
     if (record.sources?.some(source => !/^https?:\/\//i.test(source.url))) errors.push(`${record.slug}: unsafe source`);
+    if (record.priceRange && !/^\$[\d,.]+–\$[\d,.]+\/share$/.test(record.priceRange)) errors.push(`${record.slug}: invalid price range`);
+    if (record.sharesOfferedNum != null && (!Number.isFinite(record.sharesOfferedNum) || record.sharesOfferedNum <= 0)) errors.push(`${record.slug}: invalid shares offered`);
+    if (record.offeringSizeNum != null && (!Number.isFinite(record.offeringSizeNum) || record.offeringSizeNum <= 0)) errors.push(`${record.slug}: invalid offering size`);
     for (const edge of [...(record.dependencyGraph?.publicCompaniesDependingOnIPO || []), ...(record.dependencyGraph?.publicCompaniesIPOCompanyDependsOn || [])]) {
       if (!edge.company || !edge.relationship || !edge.sourceUrl || Number(edge.confidence) < 0.6) errors.push(`${record.slug}: invalid dependency edge`);
     }
@@ -292,7 +310,7 @@ async function publishArtifact(records) {
 async function main() {
   const normalizeOnly = process.argv.includes('--normalize-existing');
   const existing = readExisting();
-  const fetched = normalizeOnly ? { records: [], stats: { metadata: 0, fullText: 0, errors: [] } } : await fetchLifecycleCandidates();
+  const fetched = normalizeOnly ? { records: [], stats: { metadata: 0, fullText: 0, submissions: 0, errors: [] } } : await fetchLifecycleCandidates();
   const records = buildArtifact(existing, fetched.records);
   const summary = validateArtifact(records);
   if (process.env.IPO_DRY_RUN !== 'true') writeArtifact(records);
@@ -301,7 +319,7 @@ async function main() {
 }
 
 module.exports = { FORMS, CONFIG, cleanName, hitCik, directFilingUrl, sectorFromSic, hitToCandidate,
-  mergeLifecycle, parseTextMetadata, buildArtifact, validateArtifact, fetchLifecycleCandidates, publishArtifact,
+  mergeLifecycle, submissionUrl, enrichRecord, parseTextMetadata, buildArtifact, validateArtifact, fetchLifecycleCandidates, publishArtifact,
   remoteContentMatches, shouldRetryGithubPublish };
 
 if (require.main === module) main().catch(error => { console.error(error.stack || error.message); process.exit(1); });

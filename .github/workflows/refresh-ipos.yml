@@ -1,5 +1,12 @@
 name: Refresh IPO lifecycle data
 on:
+  push:
+    branches: [main]
+    paths:
+      - fetch-ipos.js
+      - ipo-data.js
+      - ipo-enrichment.js
+      - ipo-overrides.json
   schedule:
     - cron: '25 * * * *'
   workflow_dispatch:
@@ -25,7 +32,7 @@ jobs:
         env:
           IPO_LOOKBACK_YEARS: '3'
           IPO_MAX_METADATA: '6000'
-          IPO_MAX_FULL_TEXT: '40'
+          IPO_MAX_FULL_TEXT: '100'
         run: node fetch-ipos.js
       - name: Prevent terminal lifecycle regressions
         run: node harden-ipo-artifact.js /tmp/ipos-before-refresh.json ipos.json
