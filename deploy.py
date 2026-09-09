@@ -2,8 +2,9 @@
 """Atomic deployment controller for mergers.news.
 
 The mawire-db repository is the release source of truth for platform/runtime and
-verified public data. Visual brand assets remain owned by mawire-site so an
-operational deployment can never overwrite approved presentation changes.
+verified public data. Visual brand assets and site-owned application entrypoints
+remain owned by mawire-site so an operational database deployment can never
+overwrite approved presentation, routing, or deployment-safety changes.
 This controller creates one immutable commit per target repository and only
 advances target main refs after every commit has been prepared successfully.
 If any ref update fails, already-updated repositories are rolled back to their
@@ -28,6 +29,7 @@ if not TOKEN:
 OWNER = 'realfrantheman'
 SITE_DATA_ONLY = os.environ.get('DEPLOY_SITE_DATA_ONLY', '').lower() == 'true'
 PUBLIC_DATA_SOURCES = {'deals-index.json', 'deals-public-manifest.json'}
+SITE_PROTECTED_DESTINATIONS = {'ipo.html', 'vercel.json'}
 LEGACY_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals.json'
 PUBLIC_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals-index.json'
 TRANSIENT_HTTP_CODES = {502, 503, 504}
@@ -62,10 +64,10 @@ MAPPINGS = [
     ('FIX-review-queue-health-migration.sql', 'mawire-platform', 'database/migrations/20260625_review_queue_health.sql'),
     ('FIX-platform-hardening-migration.sql', 'mawire-platform', 'database/migrations/20260901_platform_hardening.sql'),
 
-    # Site runtime/content. Presentation-owned files such as style.css,
-    # manifest.json, and icons intentionally stay in mawire-site.
+    # Site runtime/content. The IPO page and Vercel routing/build configuration
+    # are intentionally NOT deployed from mawire-db. They are site-owned and
+    # protected by mawire-site regression tests and Vercel's build gate.
     ('DEPLOY-index.html', 'mawire-site', 'index.html'),
-    ('DEPLOY-ipo.html', 'mawire-site', 'ipo.html'),
     ('DEPLOY-about.html', 'mawire-site', 'about.html'),
     ('DEPLOY-contact.html', 'mawire-site', 'contact.html'),
     ('DEPLOY-tender-offers.html', 'mawire-site', 'tender-offers.html'),
@@ -94,7 +96,6 @@ MAPPINGS = [
     ('deals-public-manifest.json', 'mawire-site', 'deals-public-manifest.json'),
 
     ('app.js', 'mawire-site', 'app.js'),
-    ('DEPLOY-vercel.json', 'mawire-site', 'vercel.json'),
 ]
 
 
@@ -143,9 +144,12 @@ def api(path, method='GET', body=None):
 
 
 def deployment_mappings():
+    mappings = [item for item in MAPPINGS if not (
+        item[1] == 'mawire-site' and item[2] in SITE_PROTECTED_DESTINATIONS
+    )]
     if SITE_DATA_ONLY:
-        return [item for item in MAPPINGS if item[0] in PUBLIC_DATA_SOURCES]
-    return MAPPINGS
+        return [item for item in mappings if item[0] in PUBLIC_DATA_SOURCES]
+    return mappings
 
 
 def validate_mappings(mappings):
@@ -156,6 +160,8 @@ def validate_mappings(mappings):
         if key in seen_destinations:
             raise RuntimeError(f'duplicate deployment destination: {repo}/{destination}')
         seen_destinations.add(key)
+        if repo == 'mawire-site' and destination in SITE_PROTECTED_DESTINATIONS:
+            raise RuntimeError(f'protected site destination cannot be deployed from mawire-db: {destination}')
         if not os.path.isfile(source):
             missing.append(source)
     if missing:
