@@ -1,5 +1,12 @@
 name: Refresh IPO lifecycle data
 on:
+  push:
+    branches: [main]
+    paths:
+      - fetch-ipos.js
+      - ipo-data.js
+      - ipo-enrichment.js
+      - ipo-overrides.json
   schedule:
     - cron: '25 * * * *'
   workflow_dispatch:
