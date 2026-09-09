@@ -7,11 +7,12 @@ on:
       - ipo-data.js
       - ipo-enrichment.js
       - ipo-overrides.json
+      - .github/workflows/refresh-ipos.yml
   schedule:
     - cron: '25 * * * *'
   workflow_dispatch:
 concurrency:
-  group: mawire-db-artifact-writes
+  group: mawire-db-ipo-lifecycle-refresh
   cancel-in-progress: false
 jobs:
   refresh:
