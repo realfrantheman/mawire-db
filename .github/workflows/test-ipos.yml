@@ -1,0 +1,38 @@
+name: IPO regression tests
+
+on:
+  pull_request:
+    paths:
+      - 'fetch-ipos.js'
+      - 'ipo-data.js'
+      - 'harden-ipo-artifact.js'
+      - 'ipo-overrides.json'
+      - 'test/ipo-*.test.js'
+      - '.github/workflows/refresh-ipos.yml'
+      - '.github/workflows/test-ipos.yml'
+  push:
+    branches:
+      - main
+      - 'fix/**'
+    paths:
+      - 'fetch-ipos.js'
+      - 'ipo-data.js'
+      - 'harden-ipo-artifact.js'
+      - 'ipo-overrides.json'
+      - 'test/ipo-*.test.js'
+      - '.github/workflows/refresh-ipos.yml'
+      - '.github/workflows/test-ipos.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Run IPO lifecycle regressions
+        run: node --test test/ipo-data.test.js test/ipo-hardening.test.js
