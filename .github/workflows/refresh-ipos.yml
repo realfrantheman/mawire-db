@@ -19,12 +19,16 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
+      - name: Preserve prior lifecycle state
+        run: cp ipos.json /tmp/ipos-before-refresh.json
       - name: Refresh SEC IPO lifecycle records
         env:
           IPO_LOOKBACK_YEARS: '3'
-          IPO_MAX_METADATA: '3000'
-          IPO_MAX_FULL_TEXT: '5'
+          IPO_MAX_METADATA: '6000'
+          IPO_MAX_FULL_TEXT: '40'
         run: node fetch-ipos.js
+      - name: Prevent terminal lifecycle regressions
+        run: node harden-ipo-artifact.js /tmp/ipos-before-refresh.json ipos.json
       - run: npm test
       - run: node build-ipo-freshness.js
       - name: Publish IPO data atomically
