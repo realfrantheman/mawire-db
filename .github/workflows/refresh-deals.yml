@@ -93,6 +93,8 @@ jobs:
           FILE_REFRESH_MAX_FILINGS: '250'
           FILE_REFRESH_MAX_ATTEMPTS: '5'
           FILE_REFRESH_RETRY_HOURS: '6'
+          FILE_REFRESH_SOURCE_ATTEMPTS: '3'
+          FILE_REFRESH_SOURCE_RETRY_BASE_MS: '1500'
           FILE_REFRESH_POLITENESS_MS: '250'
           TRANSACTION_REVIEW_RULE_VERSION: strict-control-v3
         run: node refresh-file-backed-runner.js
