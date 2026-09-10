@@ -1,60 +1,5 @@
 [
   {
-    "id": "ipo-d23e747bb9857455",
-    "slug": "rokit-america-inc-rkam",
-    "name": "ROKIT America, Inc. (RKAM)",
-    "legalName": "ROKIT America, Inc. (RKAM)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-04",
-    "latestUpdateDate": "2026-06-04",
-    "filingType": "S-1/A",
-    "cik": "2087716",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226003627/rokit_s1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "ROKIT America, Inc. (RKAM) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226003627/rokit_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ROKIT America, Inc. (RKAM) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226002884/rokit_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-08",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "ROKIT America, Inc. (RKAM) filed S-1/A with the SEC on 2026-06-04.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-2eb68f0d88a0ddf3",
     "slug": "lgl-group-inc-lgl",
     "name": "LGL GROUP INC (LGL)",
@@ -21872,6 +21817,14 @@
         "date": "2026-07-27",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "Watu Metals Acquisition Corp S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2115659/000182912626006023/watumetalsacq_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-06-04",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "Watu Metals Acquisition Corp filed S-1 with the SEC on 2026-07-27.",
@@ -24445,7 +24398,7 @@
         "confidence": 1
       },
       {
-        "title": "Gameverse Interactive Corp S-1/A",
+        "title": "Gameverse Interactive Corp S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2017541/000149315226027320/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-06-04",
@@ -26695,6 +26648,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-d23e747bb9857455",
+    "slug": "rokit-america-inc-rkam",
+    "name": "ROKIT America, Inc. (RKAM)",
+    "legalName": "ROKIT America, Inc. (RKAM)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-06-04",
+    "latestUpdateDate": "2026-06-04",
+    "filingType": "S-1",
+    "cik": "2087716",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226003627/rokit_s1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "ROKIT America, Inc. (RKAM) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226003627/rokit_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-04",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ROKIT America, Inc. (RKAM) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226002884/rokit_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-05-08",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "ROKIT America, Inc. (RKAM) filed S-1 with the SEC on 2026-06-04.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-18e7ccd70794d8d4",
     "slug": "ff-global-holdings-ltd-ffgg",
     "name": "FF Global Holdings Ltd (FFGG)",
@@ -28096,69 +28104,6 @@
       }
     ],
     "notes": "Gravity AI filed F-1 with the SEC on 2026-05-22.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-2a9a58b495d88918",
-    "slug": "iqstel-inc-iqst",
-    "name": "iQSTEL Inc (IQST)",
-    "legalName": "iQSTEL Inc (IQST)",
-    "sector": "Telecommunications",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-05-22",
-    "latestUpdateDate": "2026-05-22",
-    "filingType": "S-1",
-    "cik": "1527702",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1527702/000166357726000163/iqst_s1a052126.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "iQSTEL Inc (IQST) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1527702/000166357726000163/iqst_s1a052126.htm",
-        "publisher": "SEC",
-        "date": "2026-05-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "iQSTEL Inc (IQST) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1527702/000166357726000017/corresp.htm",
-        "publisher": "SEC",
-        "date": "2026-01-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "iQSTEL Inc (IQST) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1527702/000166357725000112/iqst_rw.htm",
-        "publisher": "SEC",
-        "date": "2025-04-15",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "iQSTEL Inc (IQST) filed S-1 with the SEC on 2026-05-22.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -94772,6 +94717,14 @@
         "date": "2026-06-22",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "Sinda Ltd. (SIND) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2096861/000114036126024304/ny20063495x4_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-06-05",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "Sinda Ltd. (SIND) filed S-1 with the SEC on 2026-07-28.",
@@ -96872,14 +96825,6 @@
         "date": "2026-06-26",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Columbus Circle Capital Corp III (CCCT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2123471/000118518526002099/columbus3s1052026.htm",
-        "publisher": "SEC",
-        "date": "2026-05-26",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Columbus Circle Capital Corp III (CCCT) filed 424B4 with the SEC on 2026-07-09.",
@@ -97331,7 +97276,7 @@
         "confidence": 1
       },
       {
-        "title": "Idaho Copper Corp (COPR) S-1/A",
+        "title": "Idaho Copper Corp (COPR) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1263364/000149315226027323/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-06-04",
@@ -98308,14 +98253,6 @@
         "date": "2026-06-15",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "DPC Holdings Ltd (DPC) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2107018/000110465926066058/tm269965-2_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-26",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "DPC Holdings Ltd (DPC) filed 424B4 with the SEC on 2026-06-26.",
@@ -98452,7 +98389,7 @@
         "confidence": 1
       },
       {
-        "title": "Futurewave Acquisition Corp (FWAC) S-1/A",
+        "title": "Futurewave Acquisition Corp (FWAC) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2116105/000182912626006058/futurewaveacq_s1a3.htm",
         "publisher": "SEC",
         "date": "2026-06-04",
@@ -99697,7 +99634,7 @@
         "confidence": 1
       },
       {
-        "title": "Yorkville International Capital Corp. (YICC) S-1/A",
+        "title": "Yorkville International Capital Corp. (YICC) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2130386/000110465926070647/yicc-20260604xs1a.htm",
         "publisher": "SEC",
         "date": "2026-06-05",
@@ -99886,7 +99823,7 @@
         "confidence": 1
       },
       {
-        "title": "ERock, Inc. (EROC) S-1",
+        "title": "ERock, Inc. (EROC) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2110029/000119312526237760/d12401ds1a.htm",
         "publisher": "SEC",
         "date": "2026-05-26",
@@ -100012,7 +99949,7 @@
         "confidence": 1
       },
       {
-        "title": "Ocean Capital Acquisition Corp S-1",
+        "title": "Ocean Capital Acquisition Corp S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1926314/000149315226024926/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-05-22",
@@ -100831,7 +100768,7 @@
         "confidence": 1
       },
       {
-        "title": "Sunshine Silver Mining & Refining Co (SSMR) S-1",
+        "title": "Sunshine Silver Mining & Refining Co (SSMR) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2091017/000114036126022717/ny20061035x5_s1a.htm",
         "publisher": "SEC",
         "date": "2026-05-26",
@@ -102178,61 +102115,6 @@
       }
     ],
     "notes": "Medline Inc. (MDLN) filed 424B4 with the SEC on 2026-05-26.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-2c0eed0dd72f6d45",
-    "slug": "flux-power-holdings-inc-flux",
-    "name": "Flux Power Holdings, Inc. (FLUX)",
-    "legalName": "Flux Power Holdings, Inc. (FLUX)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-05-22",
-    "filingDate": "2026-05-22",
-    "latestUpdateDate": "2026-05-22",
-    "filingType": "S-1",
-    "cik": "1083743",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1083743/000149315226025047/forms-1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Flux Power Holdings, Inc. (FLUX) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1083743/000149315226025047/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Flux Power Holdings, Inc. (FLUX) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1083743/000149315225020510/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-11-03",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Flux Power Holdings, Inc. (FLUX) filed S-1 with the SEC on 2026-05-22.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -107314,14 +107196,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2023796/000149315226018037/form424b4.htm",
         "publisher": "SEC",
         "date": "2026-04-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Fitness Champs Holdings Ltd (FCHL) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2023796/000149315226012406/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-03-24",
         "type": "filing",
         "confidence": 1
       },
@@ -118117,6 +117991,53 @@
       }
     ],
     "notes": "Cantor Equity Partners V, Inc. (CEPV) filed 424B4 with the SEC on 2025-11-04.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-2c0eed0dd72f6d45",
+    "slug": "flux-power-holdings-inc-flux",
+    "name": "Flux Power Holdings, Inc. (FLUX)",
+    "legalName": "Flux Power Holdings, Inc. (FLUX)",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2025-11-03",
+    "filingDate": "2025-11-03",
+    "latestUpdateDate": "2025-11-03",
+    "filingType": "424B4",
+    "cik": "1083743",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1083743/000149315225020510/form424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Flux Power Holdings, Inc. (FLUX) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1083743/000149315225020510/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2025-11-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Flux Power Holdings, Inc. (FLUX) filed 424B4 with the SEC on 2025-11-03.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -145002,6 +144923,61 @@
       }
     ],
     "notes": "FundVantage Trust filed RW with the SEC on 2026-01-23.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-2a9a58b495d88918",
+    "slug": "iqstel-inc-iqst",
+    "name": "iQSTEL Inc (IQST)",
+    "legalName": "iQSTEL Inc (IQST)",
+    "sector": "Telecommunications",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-01-15",
+    "latestUpdateDate": "2026-01-15",
+    "filingType": "RW",
+    "cik": "1527702",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1527702/000166357726000017/corresp.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "iQSTEL Inc (IQST) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1527702/000166357726000017/corresp.htm",
+        "publisher": "SEC",
+        "date": "2026-01-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "iQSTEL Inc (IQST) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1527702/000166357725000112/iqst_rw.htm",
+        "publisher": "SEC",
+        "date": "2025-04-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "iQSTEL Inc (IQST) filed RW with the SEC on 2026-01-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -178860,7 +178836,7 @@
         "confidence": 1
       },
       {
-        "title": "SHF Holdings, Inc. (SHFS, SHFSW) S-1/A",
+        "title": "SHF Holdings, Inc. (SHFS, SHFSW) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1854963/000149315226027258/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-06-04",
@@ -187470,7 +187446,7 @@
         "confidence": 1
       },
       {
-        "title": "Vivakor, Inc. (VIVK) S-1",
+        "title": "Vivakor, Inc. (VIVK) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1450704/000182912626005622/vivakor_s1a.htm",
         "publisher": "SEC",
         "date": "2026-05-22",
