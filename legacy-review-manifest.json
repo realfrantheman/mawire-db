@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T19:23:36.008Z",
+  "generatedAt": "2026-09-10T21:55:27.522Z",
   "ruleVersion": "strict-control-v3",
   "engineVersion": "legacy-control-review-v1.2",
   "batchSize": 1000,
@@ -10,30 +10,30 @@
     "error": 0
   },
   "total": 25218,
-  "reviewed": 9559,
-  "coveragePct": 37.91,
+  "reviewed": 10559,
+  "coveragePct": 41.87,
   "counts": {
     "verified": 7,
     "rejected": 1,
-    "needs_review": 9551,
+    "needs_review": 10551,
     "error": 0
   },
   "reasons": {
-    "source_truncated_before_verification": 89,
-    "unresolved_or_invalid_parties": 298,
-    "primary_source_unreachable": 7859,
+    "source_truncated_before_verification": 106,
+    "unresolved_or_invalid_parties": 319,
+    "primary_source_unreachable": 8517,
     "no_explicit_control_transaction_evidence": 4,
     "verified_primary_source_control_transaction": 7,
     "non_mna_context": 1,
     "party_control_proximity_not_proven": 3,
-    "missing_primary_source": 1277,
+    "missing_primary_source": 1575,
     "unsupported_sec_form": 1,
     "primary_source_text_unavailable": 1,
-    "sec_party_roles_not_proven": 7,
-    "tender_control_not_proven": 12
+    "sec_party_roles_not_proven": 8,
+    "tender_control_not_proven": 17
   },
   "verifiedRatio": 0.0002775795067015624,
-  "unresolvedRatio": 0.3787374097866603,
+  "unresolvedRatio": 0.41839162502974064,
   "rejectedRatio": 0.00003965421524308034,
   "duplicateIds": 0,
   "duplicateRecordKeys": 0,
