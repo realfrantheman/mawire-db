@@ -22,8 +22,10 @@ on:
       - '.github/workflows/pie-monitor.yml'
   workflow_dispatch:
 
+# Deployment reads the repository and writes to downstream deployment targets; it must
+# not occupy the database artifact-writer queue or displace a pending data refresh.
 concurrency:
-  group: mawire-db-artifact-writes
+  group: mawire-db-deploy
   cancel-in-progress: false
 
 jobs:
@@ -55,7 +57,4 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         env:
           GITHUB_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
-          DEPLOY_PLATFORM_FIXES: 'true'
         run: python3 deploy.py
-
-# Production release trigger: full-platform repair 2026-09-02
