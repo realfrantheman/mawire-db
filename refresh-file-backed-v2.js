@@ -13,6 +13,8 @@ const FILE_LOOKBACK_DAYS = Math.max(1, Math.min(14, Number(process.env.FILE_REFR
 const MAX_FILINGS = Math.max(1, Math.min(2000, Number(process.env.FILE_REFRESH_MAX_FILINGS || 250)));
 const POLITENESS_MS = Math.max(0, Math.min(5000, Number(process.env.FILE_REFRESH_POLITENESS_MS || 250)));
 const MAX_DOCUMENT_BYTES = Math.max(600000, Math.min(32 * 1024 * 1024, Number(process.env.FILE_REFRESH_MAX_DOCUMENT_BYTES || 12 * 1024 * 1024)));
+const SOURCE_FETCH_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.FILE_REFRESH_SOURCE_ATTEMPTS || 3)));
+const SOURCE_RETRY_BASE_MS = Math.max(0, Math.min(30000, Number(process.env.FILE_REFRESH_SOURCE_RETRY_BASE_MS || 1500)));
 const DEALS_FILE = process.env.FILE_REFRESH_DEALS_FILE || 'deals.json';
 const STATE_FILE = process.env.FILE_REFRESH_STATE_FILE || 'file-refresh-state.json';
 const REVIEW_MANIFEST_FILE = 'deal-review-manifest.json';
@@ -20,6 +22,31 @@ const USER_AGENT = 'mergers.news file-backed refresh contact@mergers.news';
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function isTransientSourceError(error) {
+  const message = String(error?.message || error || '');
+  return /\bHTTP\s+(?:429|5\d\d)\b|\b(?:ECONNRESET|ECONNREFUSED|ETIMEDOUT|EAI_AGAIN|ENETUNREACH|socket hang up|timeout)\b/i.test(message);
+}
+
+async function fetchRecentFilingsWithRetry(filingType, options = {}) {
+  const attempts = Math.max(1, Math.min(5, Number(options.attempts ?? SOURCE_FETCH_ATTEMPTS)));
+  const baseDelayMs = Math.max(0, Number(options.baseDelayMs ?? SOURCE_RETRY_BASE_MS));
+  const fetcher = options.fetcher || efts.fetchRecentFilings;
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      return await fetcher(filingType, { lookbackDays: FILE_LOOKBACK_DAYS });
+    } catch (error) {
+      lastError = error;
+      if (!isTransientSourceError(error) || attempt >= attempts) throw error;
+      const delay = baseDelayMs * (2 ** (attempt - 1));
+      console.warn(`[FILE REFRESH] ${filingType} transient source failure (attempt ${attempt}/${attempts}): ${error.message}; retrying in ${delay}ms`);
+      if (delay) await sleep(delay);
+    }
+  }
+  throw lastError;
 }
 
 function appendBoundedChunk(state, chunk, maxBytes = MAX_DOCUMENT_BYTES) {
@@ -138,12 +165,12 @@ async function fetchAllRecentFilings() {
   const failures = [];
   for (const filingType of efts.ROOT_FORMS) {
     try {
-      const rows = await efts.fetchRecentFilings(filingType, { lookbackDays: FILE_LOOKBACK_DAYS });
+      const rows = await fetchRecentFilingsWithRetry(filingType);
       console.log(`[FILE REFRESH] ${filingType}: ${rows.length} recent filing(s)`);
       for (const filing of rows) all.push({ filing, filingType: filing.filing_type || filingType });
     } catch (error) {
       failures.push(`${filingType}: ${error.message}`);
-      console.error(`[FILE REFRESH] ${filingType} source failure:`, error.message);
+      console.error(`[FILE REFRESH] ${filingType} source failure after retries:`, error.message);
     }
   }
   if (failures.length) throw new Error(`SEC source coverage incomplete: ${failures.join('; ')}`);
@@ -269,7 +296,17 @@ async function run() {
   return { additions, counts, manifest };
 }
 
-module.exports = { MAX_DOCUMENT_BYTES, appendBoundedChunk, requestTextPrefix, fetchFilingDetail, fetchAllRecentFilings, processCandidate, run };
+module.exports = {
+  MAX_DOCUMENT_BYTES,
+  appendBoundedChunk,
+  isTransientSourceError,
+  fetchRecentFilingsWithRetry,
+  requestTextPrefix,
+  fetchFilingDetail,
+  fetchAllRecentFilings,
+  processCandidate,
+  run,
+};
 
 if (require.main === module) {
   run().catch(error => {
