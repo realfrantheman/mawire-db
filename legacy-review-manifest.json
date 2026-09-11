@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-11T05:14:35.676Z",
+  "generatedAt": "2026-09-11T10:02:38.212Z",
   "ruleVersion": "strict-control-v3",
   "engineVersion": "legacy-control-review-v1.2",
   "batchSize": 1000,
   "processedThisRun": {
-    "verified": 1,
+    "verified": 0,
     "rejected": 0,
-    "needs_review": 999,
+    "needs_review": 1000,
     "error": 0
   },
   "total": 25218,
@@ -19,9 +19,9 @@
     "error": 0
   },
   "reasons": {
-    "source_truncated_before_verification": 121,
+    "source_truncated_before_verification": 123,
     "unresolved_or_invalid_parties": 452,
-    "primary_source_unreachable": 9909,
+    "primary_source_unreachable": 9907,
     "no_explicit_control_transaction_evidence": 4,
     "verified_primary_source_control_transaction": 8,
     "non_mna_context": 1,
