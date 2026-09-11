@@ -1281,7 +1281,47 @@
       "error": null,
       "lastAttemptAt": "2026-09-11T05:57:27.177Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0000812011-26-000039": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-11T11:17:59.152Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001493152-26-042269": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-11T11:17:59.942Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001493152-26-042250": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "verified_result_failed_publication_invariants",
+      "error": null,
+      "lastAttemptAt": "2026-09-11T11:18:00.589Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-388348": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "primary_source_truncated_before_verification",
+      "error": null,
+      "lastAttemptAt": "2026-09-11T11:18:01.221Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-388301": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "non_mna_context",
+      "error": null,
+      "lastAttemptAt": "2026-09-11T11:18:01.815Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-11T05:57:31.470Z"
+  "updatedAt": "2026-09-11T11:18:02.066Z"
 }
