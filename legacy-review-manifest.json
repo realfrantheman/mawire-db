@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-09-11T00:34:02.323Z",
+  "generatedAt": "2026-09-11T05:14:35.676Z",
   "ruleVersion": "strict-control-v3",
   "engineVersion": "legacy-control-review-v1.2",
   "batchSize": 1000,
   "processedThisRun": {
-    "verified": 0,
+    "verified": 1,
     "rejected": 0,
-    "needs_review": 1000,
+    "needs_review": 999,
     "error": 0
   },
   "total": 25218,
-  "reviewed": 11559,
-  "coveragePct": 45.84,
+  "reviewed": 12559,
+  "coveragePct": 49.8,
   "counts": {
-    "verified": 7,
+    "verified": 8,
     "rejected": 1,
-    "needs_review": 11551,
+    "needs_review": 12550,
     "error": 0
   },
   "reasons": {
-    "source_truncated_before_verification": 114,
-    "unresolved_or_invalid_parties": 363,
-    "primary_source_unreachable": 9103,
+    "source_truncated_before_verification": 121,
+    "unresolved_or_invalid_parties": 452,
+    "primary_source_unreachable": 9909,
     "no_explicit_control_transaction_evidence": 4,
-    "verified_primary_source_control_transaction": 7,
+    "verified_primary_source_control_transaction": 8,
     "non_mna_context": 1,
     "party_control_proximity_not_proven": 3,
-    "missing_primary_source": 1931,
+    "missing_primary_source": 2023,
     "unsupported_sec_form": 1,
     "primary_source_text_unavailable": 1,
     "sec_party_roles_not_proven": 9,
-    "tender_control_not_proven": 22
+    "tender_control_not_proven": 27
   },
-  "verifiedRatio": 0.0002775795067015624,
-  "unresolvedRatio": 0.458045840272821,
+  "verifiedRatio": 0.00031723372194464273,
+  "unresolvedRatio": 0.49766040130065825,
   "rejectedRatio": 0.00003965421524308034,
   "duplicateIds": 0,
   "duplicateRecordKeys": 0,
@@ -57,7 +57,8 @@
       "id:a50a6704-a221-461a-8200-c6459c67eb0c",
       "id:19dc1865-6b69-4598-9c67-006d6c5fab74",
       "id:f7c45b0b-3026-4a15-a8a4-11c51373035a",
-      "id:0a076bc7-b878-4f04-80b8-d777c615994f"
+      "id:0a076bc7-b878-4f04-80b8-d777c615994f",
+      "id:433caa80-b71c-4d50-bf0f-03e22f6822a2"
     ],
     "rejected": [
       "id:f407229e-666f-4c4c-918f-ed776d60fa66"
