@@ -1,5 +1,60 @@
 [
   {
+    "id": "ipo-a5f97432d37e0278",
+    "slug": "samos-energy-acquisition-corp-samo",
+    "name": "Samos Energy Acquisition Corp (SAMO)",
+    "legalName": "Samos Energy Acquisition Corp (SAMO)",
+    "sector": "Real Estate",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-08",
+    "latestUpdateDate": "2026-07-08",
+    "filingType": "S-1/A",
+    "cik": "2125567",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026076151/ea0282661-03.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Samos Energy Acquisition Corp (SAMO) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026076151/ea0282661-03.htm",
+        "publisher": "SEC",
+        "date": "2026-07-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Samos Energy Acquisition Corp S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026068402/ea0282661-02.htm",
+        "publisher": "SEC",
+        "date": "2026-06-12",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Samos Energy Acquisition Corp (SAMO) filed S-1/A with the SEC on 2026-07-08.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-0f35ad45b2011a36",
     "slug": "amesite-inc-amst",
     "name": "Amesite Inc. (AMST)",
@@ -21360,7 +21415,7 @@
         "confidence": 1
       },
       {
-        "title": "Ambitious Entertainment, Inc. S-1",
+        "title": "Ambitious Entertainment, Inc. S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1900851/000149315226032371/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-07-07",
@@ -24028,61 +24083,6 @@
       }
     ],
     "notes": "QMSK Technology Co., Ltd filed F-1 with the SEC on 2026-07-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-a5f97432d37e0278",
-    "slug": "samos-energy-acquisition-corp-samo",
-    "name": "Samos Energy Acquisition Corp (SAMO)",
-    "legalName": "Samos Energy Acquisition Corp (SAMO)",
-    "sector": "Real Estate",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-08",
-    "latestUpdateDate": "2026-07-08",
-    "filingType": "S-1",
-    "cik": "2125567",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026076151/ea0282661-03.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Samos Energy Acquisition Corp (SAMO) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026076151/ea0282661-03.htm",
-        "publisher": "SEC",
-        "date": "2026-07-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Samos Energy Acquisition Corp S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026068402/ea0282661-02.htm",
-        "publisher": "SEC",
-        "date": "2026-06-12",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Samos Energy Acquisition Corp (SAMO) filed S-1 with the SEC on 2026-07-08.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -92156,7 +92156,7 @@
         "confidence": 1
       },
       {
-        "title": "Professional Diversity Network, Inc. (IPDN) S-1",
+        "title": "Professional Diversity Network, Inc. (IPDN) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1546296/000143774926022940/ipdn20260707_s1a.htm",
         "publisher": "SEC",
         "date": "2026-07-07",
@@ -93300,7 +93300,7 @@
         "confidence": 1
       },
       {
-        "title": "iSpecimen Inc. (ISPC) S-1",
+        "title": "iSpecimen Inc. (ISPC) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1558569/000121390026075593/ea0297032-s1a1_ispecimen.htm",
         "publisher": "SEC",
         "date": "2026-07-06",
@@ -95178,14 +95178,6 @@
         "date": "2026-07-27",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Catalyst Acquisition Corp. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2104391/000121390026076132/ea0280268-02.htm",
-        "publisher": "SEC",
-        "date": "2026-07-08",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Catalyst Acquisition Corp. (CATL) filed 424B4 with the SEC on 2026-07-28.",
@@ -96742,7 +96734,7 @@
         "confidence": 1
       },
       {
-        "title": "Standard Nuclear, Inc. (STDN) S-1",
+        "title": "Standard Nuclear, Inc. (STDN) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2086716/000121390026075742/ea0276071-11.htm",
         "publisher": "SEC",
         "date": "2026-07-07",
@@ -96817,14 +96809,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1837607/000110465926082167/tm2615250-6_s1a.htm",
         "publisher": "SEC",
         "date": "2026-07-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "AEON Biopharma, Inc. (AEON) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1837607/000110465926081860/tm2615250-3_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-08",
         "type": "filing",
         "confidence": 1
       }
@@ -97193,7 +97177,7 @@
         "confidence": 1
       },
       {
-        "title": "Research Alliance Corp IV (RACD) S-1",
+        "title": "Research Alliance Corp IV (RACD) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2137777/000119312526298633/d160806ds1a.htm",
         "publisher": "SEC",
         "date": "2026-07-08",
@@ -97256,7 +97240,7 @@
         "confidence": 1
       },
       {
-        "title": "Catheter Precision, Inc. (VTAK) S-1",
+        "title": "Catheter Precision, Inc. (VTAK) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1716621/000143774926022592/vtak20260702_s1a.htm",
         "publisher": "SEC",
         "date": "2026-07-06",
@@ -172465,7 +172449,7 @@
         "confidence": 1
       },
       {
-        "title": "VisionWave Holdings, Inc. (VWAV, VWAVW) S-1",
+        "title": "VisionWave Holdings, Inc. (VWAV, VWAVW) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2038439/000173112226000921/e7757_s1a.htm",
         "publisher": "SEC",
         "date": "2026-07-07",
@@ -178896,7 +178880,7 @@
         "confidence": 1
       },
       {
-        "title": "Luvulis Corp S-1",
+        "title": "Luvulis Corp S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2123169/000212316926000008/luvulis_s1a3.htm",
         "publisher": "SEC",
         "date": "2026-07-07",
