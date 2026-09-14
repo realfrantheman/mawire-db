@@ -19,6 +19,8 @@ const MANIFEST_FILE = 'deals-public-manifest.json';
 const ORIGIN = String(process.env.PIE_PUBLIC_ORIGIN || 'https://mawire.vercel.app').replace(/\/$/, '');
 const MAX_AGE_MS = Math.max(1, Number(process.env.PIE_MAX_ARTIFACT_AGE_HOURS || 3)) * 3600000;
 const MIN_DEALS = Math.max(1000, Number(process.env.PIE_MIN_PUBLIC_DEALS || 10000));
+const ORIGIN_PROPAGATION_ATTEMPTS = Math.max(1, Number(process.env.PIE_ORIGIN_PROPAGATION_ATTEMPTS || 8));
+const ORIGIN_PROPAGATION_DELAY_MS = Math.max(0, Number(process.env.PIE_ORIGIN_PROPAGATION_DELAY_MS || 15000));
 const PUBLIC_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals-index.json';
 
 function request(url, method = 'GET', maxBytes = 2 * 1024 * 1024, redirects = 0) {
@@ -148,19 +150,52 @@ async function validateOrigin(localManifest) {
   return { origin: ORIGIN, remoteDealCount: remoteManifest.dealCount, remoteGeneratedAt: remoteManifest.generatedAt };
 }
 
+function isRetryableOriginError(error) {
+  const message = String(error && (error.message || error) || '');
+  if (/origin manifest is stale/i.test(message)) return true;
+  if (/origin\/local deal count mismatch/i.test(message)) return true;
+  if (/origin frontend is not configured/i.test(message)) return true;
+  if (/\b(?:ECONNRESET|ECONNREFUSED|ETIMEDOUT|EAI_AGAIN|socket hang up|timeout:)\b/i.test(message)) return true;
+  const http = message.match(/origin (?:manifest|deals-index|app\.js) HTTP (\d{3})/i);
+  return !!http && (Number(http[1]) === 404 || Number(http[1]) === 408 || Number(http[1]) === 409 || Number(http[1]) === 425 || Number(http[1]) === 429 || Number(http[1]) >= 500);
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function validateOriginWithRetry(localManifest, options = {}) {
+  const attempts = Math.max(1, Number(options.attempts ?? ORIGIN_PROPAGATION_ATTEMPTS));
+  const delayMs = Math.max(0, Number(options.delayMs ?? ORIGIN_PROPAGATION_DELAY_MS));
+  const validate = options.validate || validateOrigin;
+  const wait = options.sleep || sleep;
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await validate(localManifest);
+    } catch (error) {
+      lastError = error;
+      if (!isRetryableOriginError(error) || attempt === attempts) throw error;
+      console.warn(`[PIE FILE] origin not propagated yet (attempt ${attempt}/${attempts}): ${error.message}; retrying in ${delayMs}ms`);
+      await wait(delayMs);
+    }
+  }
+  throw lastError;
+}
+
 async function run() {
   const deals = parseJson(DEALS_FILE);
   const index = parseJson(INDEX_FILE);
   const manifest = parseJson(MANIFEST_FILE);
   const local = validateLocalArtifacts(deals, index, manifest, publicationBuildOptions());
-  const remote = await validateOrigin(manifest);
+  const remote = await validateOriginWithRetry(manifest);
   const report = { checkedAt: new Date().toISOString(), mode: 'file-backed', ruleVersion: RULE, local, remote };
   fs.writeFileSync('pie-file-report.json', `${JSON.stringify(report, null, 2)}\n`);
   console.log('[PIE FILE]', JSON.stringify(report));
   return report;
 }
 
-module.exports = { request, normalizedParty, duplicateKeys, publicationBuildOptions, validateLocalArtifacts, validateOrigin, run };
+module.exports = { request, normalizedParty, duplicateKeys, publicationBuildOptions, validateLocalArtifacts, validateOrigin, isRetryableOriginError, validateOriginWithRetry, run };
 
 if (require.main === module) {
   run().catch(error => {
