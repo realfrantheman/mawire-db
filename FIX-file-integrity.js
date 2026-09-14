@@ -155,7 +155,7 @@ function isRetryableOriginError(error) {
   if (/origin manifest is stale/i.test(message)) return true;
   if (/origin\/local deal count mismatch/i.test(message)) return true;
   if (/origin frontend is not configured/i.test(message)) return true;
-  if (/\b(?:ECONNRESET|ECONNREFUSED|ETIMEDOUT|EAI_AGAIN|socket hang up|timeout:)\b/i.test(message)) return true;
+  if (/(?:\bECONNRESET\b|\bECONNREFUSED\b|\bETIMEDOUT\b|\bEAI_AGAIN\b|socket hang up|timeout:)/i.test(message)) return true;
   const http = message.match(/origin (?:manifest|deals-index|app\.js) HTTP (\d{3})/i);
   return !!http && (Number(http[1]) === 404 || Number(http[1]) === 408 || Number(http[1]) === 409 || Number(http[1]) === 425 || Number(http[1]) === 429 || Number(http[1]) >= 500);
 }
