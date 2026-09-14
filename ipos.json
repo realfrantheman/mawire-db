@@ -2645,61 +2645,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-32ec83ca37342330",
-    "slug": "netcapital-inc-ncpl-ncplw",
-    "name": "Netcapital Inc. (NCPL, NCPLW)",
-    "legalName": "Netcapital Inc. (NCPL, NCPLW)",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-03-24",
-    "latestUpdateDate": "2026-03-24",
-    "filingType": "S-1/A",
-    "cik": "1414767",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1414767/000149315226012402/forms-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Netcapital Inc. (NCPL, NCPLW) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1414767/000149315226012402/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-24",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Netcapital Inc. (NCPL, NCPLW) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1414767/000164117225025080/formrw.htm",
-        "publisher": "SEC",
-        "date": "2025-08-21",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Netcapital Inc. (NCPL, NCPLW) filed S-1/A with the SEC on 2026-03-24.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-a15ae781412f218b",
     "slug": "myx-inc",
     "name": "MYX Inc.",
@@ -12632,6 +12577,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-078ddc42fd070b9f",
+    "slug": "adarx-pharmaceuticals-inc",
+    "name": "ADARx Pharmaceuticals, Inc.",
+    "legalName": "ADARx Pharmaceuticals, Inc.",
+    "sector": "Healthcare",
+    "industry": "Pharmaceutical Preparations",
+    "description": null,
+    "headquarters": "5871 OBERLIN DRIVE, SUITE 200, SAN DIEGO, CA, 92121",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": "$15M",
+    "offeringSizeNum": 15000000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "price",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-14",
+    "latestUpdateDate": "2026-09-14",
+    "filingType": "S-1",
+    "cik": "1802369",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1802369/000119312526390724/d903461ds1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "ADARx Pharmaceuticals, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1802369/000119312526390724/d903461ds1a.htm",
+        "publisher": "SEC",
+        "date": "2026-09-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ADARx Pharmaceuticals, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1802369/000119312526383838/d903461ds1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-04",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "ADARx Pharmaceuticals, Inc. filed S-1 with the SEC on 2026-09-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-bacc884eec79b1ae",
     "slug": "bamboo-insurance-services-inc-bmb",
     "name": "Bamboo Insurance Services, Inc. (BMB)",
@@ -12915,6 +12915,321 @@
       }
     ],
     "notes": "Leader's Advantage Acquisition Corp. (LEDR) filed S-1 with the SEC on 2026-09-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-622c4c962da5f529",
+    "slug": "little-west-holdings-inc",
+    "name": "Little West Holdings Inc.",
+    "legalName": "Little West Holdings Inc.",
+    "sector": "Industrials",
+    "industry": "Beverages",
+    "description": null,
+    "headquarters": "426 E 58TH STREET, LOS ANGELES, CA, 90011",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": "$4–$6/share",
+    "sharesOffered": "3,750,000",
+    "sharesOfferedNum": 3750000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "volume",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-14",
+    "latestUpdateDate": "2026-09-14",
+    "filingType": "S-1",
+    "cik": "2065821",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026099701/ea0305381-s1a9_little.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Little West Holdings Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026099701/ea0305381-s1a9_little.htm",
+        "publisher": "SEC",
+        "date": "2026-09-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Little West Holdings Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026092565/ea0302904-s1a8_littlewest.htm",
+        "publisher": "SEC",
+        "date": "2026-08-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Little West Holdings Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026081199/ea0297925-s1a7_littlewest.htm",
+        "publisher": "SEC",
+        "date": "2026-07-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Little West Holdings Inc. (LILW) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026043322/ea0286199-s1a6_littlewest.htm",
+        "publisher": "SEC",
+        "date": "2026-04-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Little West Holdings Inc. (LILW) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026040995/ea0285356-s1a5_littlewest.htm",
+        "publisher": "SEC",
+        "date": "2026-04-07",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Little West Holdings Inc. filed S-1 with the SEC on 2026-09-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-dea294fc359a9880",
+    "slug": "mfb-bancorp-inc",
+    "name": "MFB Bancorp, Inc.",
+    "legalName": "MFB Bancorp, Inc.",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": "2212 WEST CERMAK ROAD, CHICAGO, IL, 60608",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "Symbol",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-14",
+    "latestUpdateDate": "2026-09-14",
+    "filingType": "S-1",
+    "cik": "2152813",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2152813/000110465926107563/tm2624212-5_s1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "MFB Bancorp, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2152813/000110465926107563/tm2624212-5_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-14",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "MFB Bancorp, Inc. filed S-1 with the SEC on 2026-09-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-ee50bf84d84aa0f1",
+    "slug": "polar-power-inc-pola",
+    "name": "Polar Power, Inc. (POLA)",
+    "legalName": "Polar Power, Inc. (POLA)",
+    "sector": "Industrials",
+    "industry": "Miscellaneous Electrical Machinery, Equipment & Supplies",
+    "description": null,
+    "headquarters": "249 E. GARDENA BOULEVARD, GARDENA, CA, 90248",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "POLA",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-14",
+    "latestUpdateDate": "2026-09-14",
+    "filingType": "S-1",
+    "cik": "1622345",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1622345/000149315226042616/forms-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Polar Power, Inc. (POLA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1622345/000149315226042616/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-09-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Polar Power, Inc. (POLA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1622345/000149315226039916/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-08-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Polar Power, Inc. (POLA) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1622345/999999999526002573/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-06",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Polar Power, Inc. (POLA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1622345/000149315226035002/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-28",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Polar Power, Inc. (POLA) filed S-1 with the SEC on 2026-09-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-3d1acaf6a7573080",
+    "slug": "syra-health-corp-syra",
+    "name": "Syra Health Corp (SYRA)",
+    "legalName": "Syra Health Corp (SYRA)",
+    "sector": "Technology",
+    "industry": "Services-Employment Agencies",
+    "description": null,
+    "headquarters": "1119 KEYSTONE WAY N., #201, CARMEL, IN, 46032",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": "$1.28–$1.88/share",
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "OTC",
+    "ticker": "SYRA",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-14",
+    "latestUpdateDate": "2026-09-14",
+    "filingType": "S-1",
+    "cik": "1922335",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1922335/000149315226042591/forms-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Syra Health Corp (SYRA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1922335/000149315226042591/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-14",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Syra Health Corp (SYRA) filed S-1 with the SEC on 2026-09-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-226f757c007e41da",
+    "slug": "veri-medtech-holdings-inc-vrhid",
+    "name": "Veri MedTech Holdings, Inc. (VRHID)",
+    "legalName": "Veri MedTech Holdings, Inc. (VRHID)",
+    "sector": "Technology",
+    "industry": "Services-Computer Processing & Data Preparation",
+    "description": null,
+    "headquarters": "1600 INTERNATIONAL DRIVE, SUITE 600, MCLEAN, VA, 22102",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "OTC",
+    "ticker": "VRHID",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-14",
+    "latestUpdateDate": "2026-09-14",
+    "filingType": "S-1",
+    "cik": "2078149",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626001366/vrhi_s1z.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Veri MedTech Holdings, Inc. (VRHID) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626001366/vrhi_s1z.htm",
+        "publisher": "SEC",
+        "date": "2026-09-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Veri MedTech Holdings, Inc. (VRHI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626000927/vrhi_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-09",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Veri MedTech Holdings, Inc. (VRHI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626000909/vrhi_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-02",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Veri MedTech Holdings, Inc. (VRHI) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626000738/vrhi_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-07",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Veri MedTech Holdings, Inc. (VRHID) filed S-1 with the SEC on 2026-09-14.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -14154,7 +14469,7 @@
     "name": "Rafex Gold Corp.",
     "legalName": "Rafex Gold Corp.",
     "sector": "Other",
-    "industry": null,
+    "industry": "Gold and Silver Ores",
     "description": null,
     "headquarters": "1912 CAPITOL AVENUE, SUITE 500, CHEYENNE, WY, 82001",
     "valuation": null,
@@ -15643,53 +15958,6 @@
       }
     ],
     "notes": "Southport Acquisition Corp. II filed S-1 with the SEC on 2026-09-08.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-078ddc42fd070b9f",
-    "slug": "adarx-pharmaceuticals-inc",
-    "name": "ADARx Pharmaceuticals, Inc.",
-    "legalName": "ADARx Pharmaceuticals, Inc.",
-    "sector": "Healthcare",
-    "industry": "Pharmaceutical Preparations",
-    "description": null,
-    "headquarters": "5871 OBERLIN DRIVE, SUITE 200, SAN DIEGO, CA, 92121",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": "$15M",
-    "offeringSizeNum": 15000000,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "price",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-04",
-    "latestUpdateDate": "2026-09-04",
-    "filingType": "S-1",
-    "cik": "1802369",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1802369/000119312526383838/d903461ds1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "ADARx Pharmaceuticals, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1802369/000119312526383838/d903461ds1.htm",
-        "publisher": "SEC",
-        "date": "2026-09-04",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "ADARx Pharmaceuticals, Inc. filed S-1 with the SEC on 2026-09-04.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -19135,14 +19403,6 @@
         "confidence": 1
       },
       {
-        "title": "GridAI Technologies Corp. (GRDX) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1604191/000110465926067071/tm2615795d1_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
         "title": "GridAI Technologies Corp. (GRDX) RW",
         "url": "https://www.sec.gov/Archives/edgar/data/1604191/000110465926028766/tm269021d1_rw.htm",
         "publisher": "SEC",
@@ -19286,69 +19546,6 @@
       }
     ],
     "notes": "Live Oak Acquisition Corp. VI filed S-1 with the SEC on 2026-08-24.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-ee50bf84d84aa0f1",
-    "slug": "polar-power-inc-pola",
-    "name": "Polar Power, Inc. (POLA)",
-    "legalName": "Polar Power, Inc. (POLA)",
-    "sector": "Industrials",
-    "industry": "Miscellaneous Electrical Machinery, Equipment & Supplies",
-    "description": null,
-    "headquarters": "249 E. GARDENA BOULEVARD, GARDENA, CA, 90248",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "POLA",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-24",
-    "latestUpdateDate": "2026-08-24",
-    "filingType": "S-1",
-    "cik": "1622345",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1622345/000149315226039916/forms-1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Polar Power, Inc. (POLA) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1622345/000149315226039916/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-08-24",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Polar Power, Inc. (POLA) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1622345/999999999526002573/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-06",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Polar Power, Inc. (POLA) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1622345/000149315226035002/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-28",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Polar Power, Inc. (POLA) filed S-1 with the SEC on 2026-08-24.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -19545,77 +19742,6 @@
       }
     ],
     "notes": "Dune Acquisition Corp III filed S-1 with the SEC on 2026-08-21.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-622c4c962da5f529",
-    "slug": "little-west-holdings-inc",
-    "name": "Little West Holdings Inc.",
-    "legalName": "Little West Holdings Inc.",
-    "sector": "Industrials",
-    "industry": "Beverages",
-    "description": null,
-    "headquarters": "426 E 58TH STREET, LOS ANGELES, CA, 90011",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": "$4–$6/share",
-    "sharesOffered": "3,750,000",
-    "sharesOfferedNum": 3750000,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "volume",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-21",
-    "latestUpdateDate": "2026-08-21",
-    "filingType": "S-1",
-    "cik": "2065821",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026092565/ea0302904-s1a8_littlewest.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Little West Holdings Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026092565/ea0302904-s1a8_littlewest.htm",
-        "publisher": "SEC",
-        "date": "2026-08-21",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Little West Holdings Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026081199/ea0297925-s1a7_littlewest.htm",
-        "publisher": "SEC",
-        "date": "2026-07-24",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Little West Holdings Inc. (LILW) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026043322/ea0286199-s1a6_littlewest.htm",
-        "publisher": "SEC",
-        "date": "2026-04-14",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Little West Holdings Inc. (LILW) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2065821/000121390026040995/ea0285356-s1a5_littlewest.htm",
-        "publisher": "SEC",
-        "date": "2026-04-07",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Little West Holdings Inc. filed S-1 with the SEC on 2026-08-21.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -20903,21 +21029,21 @@
     "name": "AMERICAN BATTERY MATERIALS, INC. (BLTH)",
     "legalName": "AMERICAN BATTERY MATERIALS, INC. (BLTH)",
     "sector": "Other",
-    "industry": "Mining & Quarrying of Nonmetallic Minerals (No Fuels)",
+    "industry": null,
     "description": null,
-    "headquarters": "500 WEST PUTNAM AVENUE, SUITE 400, GREENWICH, CT, 06830",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
-    "sharesOffered": "3,327,273",
-    "sharesOfferedNum": 3327273,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
     "offeringSize": null,
     "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "OTC",
-    "ticker": "BLTH",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-11",
@@ -21006,9 +21132,9 @@
     "name": "YOUNEEQAI TECHNICAL SERVICES, INC.",
     "legalName": "YOUNEEQAI TECHNICAL SERVICES, INC.",
     "sector": "Technology",
-    "industry": "Services-Computer Programming Services",
+    "industry": null,
     "description": null,
-    "headquarters": "2700 YOUNGFIELD ST., SUITE 280, LAKEWOOD, CO, 80215",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -21019,8 +21145,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "volume",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-11",
@@ -21126,19 +21252,19 @@
     "sector": "Other",
     "industry": null,
     "description": null,
-    "headquarters": "1731 EMBARCADERO RD., SUITE 200, PALO ALTO, CA, 94303",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$220M",
-    "offeringSizeNum": 220000000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "volume",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-10",
@@ -27204,69 +27330,6 @@
       }
     ],
     "notes": "Pharmaceutical Resource Technology, Inc. filed S-1 with the SEC on 2026-06-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-226f757c007e41da",
-    "slug": "veri-medtech-holdings-inc-vrhi",
-    "name": "Veri MedTech Holdings, Inc. (VRHI)",
-    "legalName": "Veri MedTech Holdings, Inc. (VRHI)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-09",
-    "latestUpdateDate": "2026-06-09",
-    "filingType": "S-1",
-    "cik": "2078149",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626000927/vrhi_s1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Veri MedTech Holdings, Inc. (VRHI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626000927/vrhi_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Veri MedTech Holdings, Inc. (VRHI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626000909/vrhi_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Veri MedTech Holdings, Inc. (VRHI) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626000738/vrhi_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-07",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Veri MedTech Holdings, Inc. (VRHI) filed S-1 with the SEC on 2026-06-09.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -45895,55 +45958,6 @@
       }
     ],
     "notes": "AEye, Inc. (LIDR, LIDRW) filed an S-1 registration statement with the SEC.",
-    "tags": [
-      "tech"
-    ],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-3d1acaf6a7573080",
-    "slug": "syra-health-corp-syra",
-    "name": "Syra Health Corp (SYRA)",
-    "legalName": "Syra Health Corp (SYRA)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": "2024",
-    "ipoDate": null,
-    "filingDate": "2024-08-15",
-    "latestUpdateDate": "2024-08-15",
-    "filingType": "S-1",
-    "cik": "1922335",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1922335/000149315224032689/forms-1.htm",
-    "source": "SEC EDGAR",
-    "sources": [
-      {
-        "title": "Syra Health Corp (SYRA) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1922335/000149315224032689/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2024-08-15",
-        "type": "filing",
-        "confidence": 0.95
-      }
-    ],
-    "notes": "Syra Health Corp (SYRA) filed an S-1 registration statement with the SEC.",
     "tags": [
       "tech"
     ],
@@ -88093,7 +88107,7 @@
         "confidence": 1
       },
       {
-        "title": "First Breach, Inc. (FBDT) S-1",
+        "title": "First Breach, Inc. (FBDT) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226025360/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-05-27",
@@ -99250,7 +99264,7 @@
         "confidence": 1
       },
       {
-        "title": "Futurewave Acquisition Corp (FWAC) S-1",
+        "title": "Futurewave Acquisition Corp (FWAC) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2116105/000182912626005680/futurewaveacq_s1a.htm",
         "publisher": "SEC",
         "date": "2026-05-27",
@@ -101414,14 +101428,6 @@
         "date": "2026-05-28",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "LIQTECH INTERNATIONAL INC (LIQT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1307579/000143774926018425/liqt20260518c_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-27",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "LIQTECH INTERNATIONAL INC (LIQT) filed 424B4 with the SEC on 2026-06-05.",
@@ -101589,7 +101595,7 @@
         "confidence": 1
       },
       {
-        "title": "Algorhythm Holdings, Inc. (RIME) S-1",
+        "title": "Algorhythm Holdings, Inc. (RIME) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/923601/000149315226025427/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-05-27",
@@ -106224,14 +106230,6 @@
         "date": "2026-04-21",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "SILVER BOW MINING CORP. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067674/000153949726000991/n5138_x11-s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-24",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "SILVER BOW MINING CORP. (SBMT) filed 424B4 with the SEC on 2026-05-01.",
@@ -109297,14 +109295,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2102041/000121390026035878/ea0270234-07.htm",
         "publisher": "SEC",
         "date": "2026-03-30",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Inflection Point Acquisition Corp. VI (IPFX) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2102041/000121390026033704/ea0270234-04.htm",
-        "publisher": "SEC",
-        "date": "2026-03-25",
         "type": "filing",
         "confidence": 1
       }
@@ -144138,14 +144128,6 @@
         "date": "2026-03-27",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "ARTELO BIOSCIENCES, INC. (ARTL) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1621221/000164033426000540/artl_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-24",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "ARTELO BIOSCIENCES, INC. (ARTL) filed RW with the SEC on 2026-03-27.",
@@ -149656,6 +149638,53 @@
       }
     ],
     "notes": "DAVIS NEW YORK VENTURE FUND INC filed RW with the SEC on 2025-08-22.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-32ec83ca37342330",
+    "slug": "netcapital-inc-ncpl-ncplw",
+    "name": "Netcapital Inc. (NCPL, NCPLW)",
+    "legalName": "Netcapital Inc. (NCPL, NCPLW)",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2025-08-21",
+    "latestUpdateDate": "2025-08-21",
+    "filingType": "RW",
+    "cik": "1414767",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1414767/000164117225025080/formrw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Netcapital Inc. (NCPL, NCPLW) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1414767/000164117225025080/formrw.htm",
+        "publisher": "SEC",
+        "date": "2025-08-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Netcapital Inc. (NCPL, NCPLW) filed RW with the SEC on 2025-08-21.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -179224,7 +179253,7 @@
         "confidence": 1
       },
       {
-        "title": "Luvulis Corp S-1",
+        "title": "Luvulis Corp S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2123169/000212316926000004/luvuliscorp_s1a1.htm",
         "publisher": "SEC",
         "date": "2026-05-27",
