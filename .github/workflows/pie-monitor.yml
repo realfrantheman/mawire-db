@@ -11,8 +11,8 @@ on:
       - completed
 
 concurrency:
-  group: mawire-db-artifact-writes
-  cancel-in-progress: false
+  group: mawire-db-pie-monitor
+  cancel-in-progress: true
 
 jobs:
   pie:
@@ -50,4 +50,6 @@ jobs:
           PIE_PUBLIC_ORIGIN: https://mawire.vercel.app
           PIE_MAX_ARTIFACT_AGE_HOURS: '3'
           PIE_MIN_PUBLIC_DEALS: '10000'
+          PIE_ORIGIN_PROPAGATION_ATTEMPTS: '8'
+          PIE_ORIGIN_PROPAGATION_DELAY_MS: '15000'
         run: node FIX-file-integrity.js
