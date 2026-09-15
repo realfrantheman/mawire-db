@@ -1729,7 +1729,23 @@
       "error": null,
       "lastAttemptAt": "2026-09-15T07:42:53.313Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-391062": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-15T13:31:42.919Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-107656": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-09-15T13:31:44.104Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-15T07:42:53.564Z"
+  "updatedAt": "2026-09-15T13:31:44.354Z"
 }
