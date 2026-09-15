@@ -1,9 +1,9 @@
 [
   {
-    "id": "ipo-23b287dd56240d2c",
-    "slug": "dravica-corp",
-    "name": "Dravica Corp",
-    "legalName": "Dravica Corp",
+    "id": "ipo-47c4c8c53f7dc9bc",
+    "slug": "ruanyun-edai-technology-inc-ryet",
+    "name": "Ruanyun Edai Technology Inc. (RYET)",
+    "legalName": "Ruanyun Edai Technology Inc. (RYET)",
     "sector": "Technology",
     "industry": null,
     "description": null,
@@ -22,31 +22,173 @@
     "ticker": null,
     "expected": null,
     "ipoDate": null,
-    "filingDate": "2026-05-28",
-    "latestUpdateDate": "2026-05-28",
-    "filingType": "S-1/A",
-    "cik": "2106607",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2106607/000117152026000115/eps12626_drav.htm",
+    "filingDate": "2026-06-22",
+    "latestUpdateDate": "2026-06-22",
+    "filingType": "F-1/A",
+    "cik": "1873454",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1873454/000173112226000879/e7734_f-1a.htm",
     "source": "SEC",
     "sources": [
       {
-        "title": "Dravica Corp S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2106607/000117152026000115/eps12626_drav.htm",
+        "title": "Ruanyun Edai Technology Inc. (RYET) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1873454/000173112226000879/e7734_f-1a.htm",
         "publisher": "SEC",
-        "date": "2026-05-28",
+        "date": "2026-06-22",
         "type": "filing",
         "confidence": 1
       },
       {
-        "title": "Dravica Corp S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2106607/000117152026000090/eps12603_drav.htm",
+        "title": "Ruanyun Edai Technology Inc. (RYET) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1873454/000173112226000800/e7675_f-1.htm",
         "publisher": "SEC",
-        "date": "2026-05-13",
+        "date": "2026-05-29",
         "type": "filing",
         "confidence": 1
       }
     ],
-    "notes": "Dravica Corp filed S-1/A with the SEC on 2026-05-28.",
+    "notes": "Ruanyun Edai Technology Inc. (RYET) filed F-1/A with the SEC on 2026-06-22.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-cebe6b6d73f36ad7",
+    "slug": "ishares-bitcoin-premium-income-etf",
+    "name": "iShares Bitcoin Premium Income ETF",
+    "legalName": "iShares Bitcoin Premium Income ETF",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-06-10",
+    "latestUpdateDate": "2026-06-10",
+    "filingType": "S-1/A",
+    "cik": "2089969",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926020066/bitp20260605_s1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "iShares Bitcoin Premium Income ETF S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926020066/bitp20260605_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-10",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "iShares Bitcoin Premium Income ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926018892/bitp20260527_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-29",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "iShares Bitcoin Premium Income ETF S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926015917/bitp20260506_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "iShares Bitcoin Premium Income ETF S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926010792/bitp20260331_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-04-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "iShares Bitcoin Premium Income ETF filed S-1/A with the SEC on 2026-06-10.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-5e9677ef47d97710",
+    "slug": "pharmaceutical-resource-technology-inc",
+    "name": "Pharmaceutical Resource Technology, Inc.",
+    "legalName": "Pharmaceutical Resource Technology, Inc.",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-06-09",
+    "latestUpdateDate": "2026-06-09",
+    "filingType": "S-1/A",
+    "cik": "1865759",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226003701/pharmaceutical_s1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Pharmaceutical Resource Technology, Inc. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226003701/pharmaceutical_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-09",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Pharmaceutical Resource Technology, Inc. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226003401/pharmaceutical_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-22",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Pharmaceutical Resource Technology, Inc. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226002599/pharmaceutical_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-04-28",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Pharmaceutical Resource Technology, Inc. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226001989/pharmaceutical_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-04-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Pharmaceutical Resource Technology, Inc. filed S-1/A with the SEC on 2026-06-09.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -385,93 +527,6 @@
       }
     ],
     "notes": "Vaxart, Inc. (VXRT) filed S-1/A with the SEC on 2026-05-18.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-397a044a720c907a",
-    "slug": "libera-gaming-operations-inc-lbrj",
-    "name": "Libera Gaming Operations, Inc (LBRJ)",
-    "legalName": "Libera Gaming Operations, Inc (LBRJ)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-05-15",
-    "latestUpdateDate": "2026-05-15",
-    "filingType": "F-1/A",
-    "cik": "1999119",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1999119/000149315226023432/formf-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Libera Gaming Operations, Inc (LBRJ) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315226023432/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Libera Gaming Operations, Inc (LBRJ) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315226015185/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-04-03",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Libera Gaming Operations, Inc (LBRJ) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315225029519/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2025-12-30",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Libera Gaming Operations, Inc (LBRJ) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315225025791/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2025-12-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Libera Gaming Operations, Inc (LBRJ) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315225020581/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2025-11-03",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Libera Gaming Operations, Inc F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315225016475/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2025-10-01",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Libera Gaming Operations, Inc (LBRJ) filed F-1/A with the SEC on 2026-05-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -1842,14 +1897,6 @@
         "date": "2026-04-13",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "RWB Health Inc. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2107166/000147793226001605/rwbhealth_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-26",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "RWB Health Inc. filed S-1/A with the SEC on 2026-04-23.",
@@ -2002,61 +2049,6 @@
       }
     ],
     "notes": "Neo Aeronautics, Inc. filed S-1/A with the SEC on 2026-04-17.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-9910095d6e74f85b",
-    "slug": "first-choice-healthcare-solutions-inc-fchs",
-    "name": "First Choice Healthcare Solutions, Inc. (FCHS)",
-    "legalName": "First Choice Healthcare Solutions, Inc. (FCHS)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-04-14",
-    "latestUpdateDate": "2026-04-14",
-    "filingType": "S-1/A",
-    "cik": "1416876",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226016512/forms-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "First Choice Healthcare Solutions, Inc. (FCHS) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226016512/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-04-14",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Choice Healthcare Solutions, Inc. (FCHS) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226013167/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-27",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "First Choice Healthcare Solutions, Inc. (FCHS) filed S-1/A with the SEC on 2026-04-14.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -2360,14 +2352,6 @@
         "date": "2026-04-07",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Bitwise Avalanche ETF (BAVA) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2086017/000121390026034701/ea0283436-s1a4_bitwise.htm",
-        "publisher": "SEC",
-        "date": "2026-03-26",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Bitwise Avalanche ETF (BAVA) filed S-1/A with the SEC on 2026-04-07.",
@@ -2429,14 +2413,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2103612/000110465926038604/tm2534140-14_s1a.htm",
         "publisher": "SEC",
         "date": "2026-04-01",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Morgan Stanley Bitcoin Trust S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2103612/000110465926036138/tm2534140-10_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-27",
         "type": "filing",
         "confidence": 1
       }
@@ -5508,61 +5484,6 @@
     "dependencyIngestion": {
       "parserVersion": "sec-dependency-v2",
       "attemptedAt": "2026-09-09T18:25:31.852Z",
-      "status": "no_evidence",
-      "sourceUrlsFound": 1,
-      "sourceUrlsAttempted": 1,
-      "edgesFound": 0,
-      "errors": []
-    }
-  },
-  {
-    "id": "ipo-4b1526922b68979a",
-    "slug": "canary-staked-sei-etf",
-    "name": "Canary Staked SEI ETF",
-    "legalName": "Canary Staked SEI ETF",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2025-12-10",
-    "latestUpdateDate": "2025-12-10",
-    "filingType": "S-1/A",
-    "cik": "2066353",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2066353/000199937125020023/sei-s1a_121025.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Canary Staked SEI ETF S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2066353/000199937125020023/sei-s1a_121025.htm",
-        "publisher": "SEC",
-        "date": "2025-12-10",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Canary Staked SEI ETF filed S-1/A with the SEC on 2025-12-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": {
-      "parserVersion": "sec-dependency-v2",
-      "attemptedAt": "2026-09-09T18:25:32.657Z",
       "status": "no_evidence",
       "sourceUrlsFound": 1,
       "sourceUrlsAttempted": 1,
@@ -9980,69 +9901,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-846231343abf779b",
-    "slug": "otsaw-ltd-otsa",
-    "name": "OTSAW Ltd (OTSA)",
-    "legalName": "OTSAW Ltd (OTSA)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2025-07-25",
-    "latestUpdateDate": "2025-07-25",
-    "filingType": "F-1/A",
-    "cik": "2046462",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2046462/000121390025067724/ea0227213-13.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "OTSAW Ltd (OTSA) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2046462/000121390025067724/ea0227213-13.htm",
-        "publisher": "SEC",
-        "date": "2025-07-25",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "OTSAW Ltd (OTSA) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2046462/000121390025064434/ea0227213-10.htm",
-        "publisher": "SEC",
-        "date": "2025-07-16",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "OTSAW Ltd (OTSA) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2046462/000121390025061733/ea0227213-08.htm",
-        "publisher": "SEC",
-        "date": "2025-07-07",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "OTSAW Ltd (OTSA) filed F-1/A with the SEC on 2025-07-25.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-e00367259b22197a",
     "slug": "somitos-corp",
     "name": "Somitos Corp.",
@@ -12774,6 +12632,195 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-ba40b657e7fd6ec7",
+    "slug": "bitari-inc-biai",
+    "name": "Bitari Inc (BIAI)",
+    "legalName": "Bitari Inc (BIAI)",
+    "sector": "Financial Services",
+    "industry": "Commodity Contracts Brokers & Dealers",
+    "description": null,
+    "headquarters": "16544 HWY 152, WHEELER, TX, 79096",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "BIAI",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-15",
+    "latestUpdateDate": "2026-09-15",
+    "filingType": "S-1",
+    "cik": "2091680",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004027/bitaris1a1090926.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Bitari Inc (BIAI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004027/bitaris1a1090926.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Bitari Inc S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526003678/bitaris1082026.htm",
+        "publisher": "SEC",
+        "date": "2026-08-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Bitari Inc (BIAI) filed S-1 with the SEC on 2026-09-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-4b1526922b68979a",
+    "slug": "canary-staked-sei-etf",
+    "name": "Canary Staked SEI ETF",
+    "legalName": "Canary Staked SEI ETF",
+    "sector": "Financial Services",
+    "industry": "Commodity Contracts Brokers & Dealers",
+    "description": null,
+    "headquarters": "8 CADILLAC DRIVE, SUITE 300, BRENTWOOD, TN, 37027",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "platfo",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-15",
+    "latestUpdateDate": "2026-09-15",
+    "filingType": "S-1",
+    "cik": "2066353",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2066353/000199937126020568/sei-s1a_091526.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Canary Staked SEI ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2066353/000199937126020568/sei-s1a_091526.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Canary Staked SEI ETF filed S-1 with the SEC on 2026-09-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-e0a12480488ce90e",
+    "slug": "change-agents-corporation-chga",
+    "name": "Change Agents Corporation. (CHGA)",
+    "legalName": "Change Agents Corporation. (CHGA)",
+    "sector": "Technology",
+    "industry": "Services-Computer Programming Services",
+    "description": null,
+    "headquarters": "4400 ROUTE 9, SUITE 3100, FREEHOLD, NJ, 07728",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": "$3.5M",
+    "offeringSizeNum": 3500000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "CHGA",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-15",
+    "latestUpdateDate": "2026-09-15",
+    "filingType": "S-1",
+    "cik": "1630212",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026100214/ea0305058-s1a2_change.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Change Agents Corporation. (CHGA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026100214/ea0305058-s1a2_change.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Change Agents Corporation. (CHGA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026093149/ea0302304-s1a1_change.htm",
+        "publisher": "SEC",
+        "date": "2026-08-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Change Agents Corporation. (CHGA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026086806/ea0300078-s1_change.htm",
+        "publisher": "SEC",
+        "date": "2026-08-07",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Avalon GloboCare Corp. (ALBT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026077307/ea0297456-s1_avalon.htm",
+        "publisher": "SEC",
+        "date": "2026-07-13",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Avalon GloboCare Corp. (ALBT) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026041563/ea0285650-rw_avalon.htm",
+        "publisher": "SEC",
+        "date": "2026-04-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Avalon GloboCare Corp. (ALBT) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026011050/ea0275121-rw_avalon.htm",
+        "publisher": "SEC",
+        "date": "2026-02-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Change Agents Corporation. (CHGA) filed S-1 with the SEC on 2026-09-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-870d3e8c322b30d8",
     "slug": "creatd-inc-crtd",
     "name": "Creatd, Inc. (CRTD)",
@@ -13397,6 +13444,179 @@
       }
     ],
     "notes": "Oceanhawk Acquisition II Corp. filed S-1 with the SEC on 2026-09-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-76bb0f46779a09de",
+    "slug": "siyata-ptt-ptt",
+    "name": "SIYATA PTT (PTT)",
+    "legalName": "SIYATA PTT (PTT)",
+    "sector": "Telecommunications",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-15",
+    "latestUpdateDate": "2026-09-15",
+    "filingType": "F-1",
+    "cik": "2110025",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026100115/ea0305510-f1a3_siyata.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "SIYATA PTT (PTT) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026100115/ea0305510-f1a3_siyata.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "SIYATA PTT (PTT) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026097968/ea0304624-f1a2_siyata.htm",
+        "publisher": "SEC",
+        "date": "2026-09-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "SIYATA PTT F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026093558/ea0303098-f1a1_siyata.htm",
+        "publisher": "SEC",
+        "date": "2026-08-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "SIYATA PTT F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026085987/ea0300166-f1_siyata.htm",
+        "publisher": "SEC",
+        "date": "2026-08-06",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "SIYATA PTT (PTT) filed F-1 with the SEC on 2026-09-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-4d1bbe7e78ba48f6",
+    "slug": "spaccircle-acquisition-corp",
+    "name": "SPACCircle Acquisition Corp.",
+    "legalName": "SPACCircle Acquisition Corp.",
+    "sector": "Real Estate",
+    "industry": "Blank Checks",
+    "description": null,
+    "headquarters": "8795 FOLSOM BLVD, SACRAMENTO, CA, 95826",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": "$150M",
+    "offeringSizeNum": 150000000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "on",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-15",
+    "latestUpdateDate": "2026-09-15",
+    "filingType": "S-1",
+    "cik": "2131303",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2131303/000118518526004030/spacs1091326.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "SPACCircle Acquisition Corp. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2131303/000118518526004030/spacs1091326.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "SPACCircle Acquisition Corp. filed S-1 with the SEC on 2026-09-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-a270e8d2569f0e69",
+    "slug": "yi-feng-holdings-ltd",
+    "name": "Yi Feng Holdings Ltd.",
+    "legalName": "Yi Feng Holdings Ltd.",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-15",
+    "latestUpdateDate": "2026-09-15",
+    "filingType": "F-1",
+    "cik": "2084038",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2084038/000121390026100091/ea0254251-10.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Yi Feng Holdings Ltd. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2084038/000121390026100091/ea0254251-10.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Yi Feng Holdings Ltd. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2084038/000121390026005036/ea0254251-08.htm",
+        "publisher": "SEC",
+        "date": "2026-01-16",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Yi Feng Holdings Ltd. filed F-1 with the SEC on 2026-09-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -15680,7 +15900,7 @@
     "status": "filed",
     "statusLabel": "Filed",
     "exchange": "Nasdaq",
-    "ticker": "market",
+    "ticker": "OIG",
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-09-09",
@@ -16384,69 +16604,6 @@
       }
     ],
     "notes": "Prenetics Global Ltd (PRE, PRENW) filed F-1 with the SEC on 2026-09-08.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-76bb0f46779a09de",
-    "slug": "siyata-ptt-ptt",
-    "name": "SIYATA PTT (PTT)",
-    "legalName": "SIYATA PTT (PTT)",
-    "sector": "Telecommunications",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-08",
-    "latestUpdateDate": "2026-09-08",
-    "filingType": "F-1",
-    "cik": "2110025",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026097968/ea0304624-f1a2_siyata.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "SIYATA PTT (PTT) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026097968/ea0304624-f1a2_siyata.htm",
-        "publisher": "SEC",
-        "date": "2026-09-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "SIYATA PTT F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026093558/ea0303098-f1a1_siyata.htm",
-        "publisher": "SEC",
-        "date": "2026-08-25",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "SIYATA PTT F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2110025/000121390026085987/ea0300166-f1_siyata.htm",
-        "publisher": "SEC",
-        "date": "2026-08-06",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "SIYATA PTT (PTT) filed F-1 with the SEC on 2026-09-08.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -17776,7 +17933,7 @@
         "confidence": 1
       },
       {
-        "title": "Sensei Harbor Corp. S-1/A",
+        "title": "Sensei Harbor Corp. S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2112634/000168316826004336/sensei_s1a1.htm",
         "publisher": "SEC",
         "date": "2026-05-28",
@@ -17937,6 +18094,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2028464/000162828026042574/entrata-sx1a1.htm",
         "publisher": "SEC",
         "date": "2026-06-11",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ENTRATA, INC. (ENT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2028464/000162828026038608/entrata-sx1.htm",
+        "publisher": "SEC",
+        "date": "2026-05-28",
         "type": "filing",
         "confidence": 1
       }
@@ -19229,6 +19394,14 @@
         "date": "2026-06-29",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "Youmi Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2137360/000152013826000188/youmi-202605_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-05-28",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "Youmi Inc. filed S-1 with the SEC on 2026-08-27.",
@@ -19278,7 +19451,7 @@
         "confidence": 1
       },
       {
-        "title": "CALM Chain International Ltd (CCIL) F-1",
+        "title": "CALM Chain International Ltd (CCIL) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2083945/000121390026071389/ea0254362-08.htm",
         "publisher": "SEC",
         "date": "2026-06-24",
@@ -19286,7 +19459,7 @@
         "confidence": 1
       },
       {
-        "title": "CALM Chain International Ltd (CCIL) F-1/A",
+        "title": "CALM Chain International Ltd (CCIL) F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2083945/000121390026056439/ea0254362-07.htm",
         "publisher": "SEC",
         "date": "2026-05-14",
@@ -19413,85 +19586,6 @@
       }
     ],
     "notes": "Velos Acquisition I Corp. (VLOS, VLOSU, VLOSW) filed S-1 with the SEC on 2026-08-26.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-e0a12480488ce90e",
-    "slug": "change-agents-corporation-chga",
-    "name": "Change Agents Corporation. (CHGA)",
-    "legalName": "Change Agents Corporation. (CHGA)",
-    "sector": "Technology",
-    "industry": "Services-Computer Programming Services",
-    "description": null,
-    "headquarters": "4400 ROUTE 9, SUITE 3100, FREEHOLD, NJ, 07728",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": "$3.5M",
-    "offeringSizeNum": 3500000,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "CHGA",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-25",
-    "latestUpdateDate": "2026-08-25",
-    "filingType": "S-1",
-    "cik": "1630212",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026093149/ea0302304-s1a1_change.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Change Agents Corporation. (CHGA) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026093149/ea0302304-s1a1_change.htm",
-        "publisher": "SEC",
-        "date": "2026-08-25",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Change Agents Corporation. (CHGA) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026086806/ea0300078-s1_change.htm",
-        "publisher": "SEC",
-        "date": "2026-08-07",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Avalon GloboCare Corp. (ALBT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026077307/ea0297456-s1_avalon.htm",
-        "publisher": "SEC",
-        "date": "2026-07-13",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Avalon GloboCare Corp. (ALBT) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026041563/ea0285650-rw_avalon.htm",
-        "publisher": "SEC",
-        "date": "2026-04-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Avalon GloboCare Corp. (ALBT) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026011050/ea0275121-rw_avalon.htm",
-        "publisher": "SEC",
-        "date": "2026-02-03",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Change Agents Corporation. (CHGA) filed S-1 with the SEC on 2026-08-25.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -19995,53 +20089,6 @@
       }
     ],
     "notes": "Alzamend Neuro, Inc. (ALZN) filed S-1 with the SEC on 2026-08-21.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-ba40b657e7fd6ec7",
-    "slug": "bitari-inc",
-    "name": "Bitari Inc",
-    "legalName": "Bitari Inc",
-    "sector": "Financial Services",
-    "industry": "Commodity Contracts Brokers & Dealers",
-    "description": null,
-    "headquarters": "16544 HWY 152, WHEELER, TX, 79096",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "price",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-21",
-    "latestUpdateDate": "2026-08-21",
-    "filingType": "S-1",
-    "cik": "2091680",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526003678/bitaris1082026.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Bitari Inc S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526003678/bitaris1082026.htm",
-        "publisher": "SEC",
-        "date": "2026-08-21",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Bitari Inc filed S-1 with the SEC on 2026-08-21.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -21219,12 +21266,12 @@
     "name": "BirchBioMed Inc.",
     "legalName": "BirchBioMed Inc.",
     "sector": "Healthcare",
-    "industry": "Pharmaceutical Preparations",
+    "industry": null,
     "description": null,
-    "headquarters": "130 KINGSCROSS DRIVE, KING CITY, A6, L7B 1E6",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
-    "priceRange": "$1–$5/share",
+    "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
     "offeringSize": null,
@@ -21232,8 +21279,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "in",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-12",
@@ -21266,9 +21313,9 @@
     "name": "Fast Finance Pay Corp.",
     "legalName": "Fast Finance Pay Corp.",
     "sector": "Technology",
-    "industry": "Services-Business Services, NEC",
+    "industry": null,
     "description": null,
-    "headquarters": "147 WEST 35TH STREET, SUITE 1203, NEW YORK, NY, NY 10001",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -21279,8 +21326,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "market",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-12",
@@ -23855,7 +23902,7 @@
         "confidence": 1
       },
       {
-        "title": "3 KNIGHTS DYNAMICS GROUP Ltd (TKDG) F-1",
+        "title": "3 KNIGHTS DYNAMICS GROUP Ltd (TKDG) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2092287/000149315226029522/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-06-22",
@@ -24335,7 +24382,7 @@
         "confidence": 1
       },
       {
-        "title": "Neucleus Group Ltd (NEUC) F-1",
+        "title": "Neucleus Group Ltd (NEUC) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2093976/000149315226029902/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-06-24",
@@ -24500,7 +24547,7 @@
         "confidence": 1
       },
       {
-        "title": "Starton Holdings, Inc. (STA) S-1",
+        "title": "Starton Holdings, Inc. (STA) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2049977/000121390026066466/ea0225405-15.htm",
         "publisher": "SEC",
         "date": "2026-06-09",
@@ -26190,61 +26237,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-47c4c8c53f7dc9bc",
-    "slug": "ruanyun-edai-technology-inc-ryet",
-    "name": "Ruanyun Edai Technology Inc. (RYET)",
-    "legalName": "Ruanyun Edai Technology Inc. (RYET)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-22",
-    "latestUpdateDate": "2026-06-22",
-    "filingType": "F-1",
-    "cik": "1873454",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1873454/000173112226000879/e7734_f-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Ruanyun Edai Technology Inc. (RYET) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1873454/000173112226000879/e7734_f-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Ruanyun Edai Technology Inc. (RYET) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1873454/000173112226000800/e7675_f-1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-29",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Ruanyun Edai Technology Inc. (RYET) filed F-1 with the SEC on 2026-06-22.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-61ebb9c1150e4ee8",
     "slug": "ozop-energy-solutions-inc-ozsc",
     "name": "OZOP ENERGY SOLUTIONS, INC. (OZSC)",
@@ -27298,77 +27290,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-cebe6b6d73f36ad7",
-    "slug": "ishares-bitcoin-premium-income-etf",
-    "name": "iShares Bitcoin Premium Income ETF",
-    "legalName": "iShares Bitcoin Premium Income ETF",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-10",
-    "latestUpdateDate": "2026-06-10",
-    "filingType": "S-1",
-    "cik": "2089969",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926020066/bitp20260605_s1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "iShares Bitcoin Premium Income ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926020066/bitp20260605_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "iShares Bitcoin Premium Income ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926018892/bitp20260527_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-29",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "iShares Bitcoin Premium Income ETF S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926015917/bitp20260506_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "iShares Bitcoin Premium Income ETF S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926010792/bitp20260331_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-04-01",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "iShares Bitcoin Premium Income ETF filed S-1 with the SEC on 2026-06-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-869865743a410cbc",
     "slug": "metaoptics-ltd-mot",
     "name": "MetaOptics Ltd (MOT)",
@@ -27606,77 +27527,6 @@
       }
     ],
     "notes": "Cansince Innovations Inc. filed F-1 with the SEC on 2026-06-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-5e9677ef47d97710",
-    "slug": "pharmaceutical-resource-technology-inc",
-    "name": "Pharmaceutical Resource Technology, Inc.",
-    "legalName": "Pharmaceutical Resource Technology, Inc.",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-09",
-    "latestUpdateDate": "2026-06-09",
-    "filingType": "S-1",
-    "cik": "1865759",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226003701/pharmaceutical_s1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Pharmaceutical Resource Technology, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226003701/pharmaceutical_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Pharmaceutical Resource Technology, Inc. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226003401/pharmaceutical_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Pharmaceutical Resource Technology, Inc. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226002599/pharmaceutical_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-04-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Pharmaceutical Resource Technology, Inc. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1865759/000147793226001989/pharmaceutical_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-04-03",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Pharmaceutical Resource Technology, Inc. filed S-1 with the SEC on 2026-06-09.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -28477,7 +28327,7 @@
         "confidence": 1
       },
       {
-        "title": "Grayscale Hyperliquid Staking ETF (GHYP) S-1/A",
+        "title": "Grayscale Hyperliquid Staking ETF (GHYP) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2107730/000119312526243167/hype_s-1_amendment_4.htm",
         "publisher": "SEC",
         "date": "2026-05-28",
@@ -28911,6 +28761,61 @@
       }
     ],
     "notes": "Kodiak AI, Inc. (KDK, KDKRW) filed S-1 with the SEC on 2026-05-29.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-23b287dd56240d2c",
+    "slug": "dravica-corp",
+    "name": "Dravica Corp",
+    "legalName": "Dravica Corp",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-05-28",
+    "latestUpdateDate": "2026-05-28",
+    "filingType": "S-1",
+    "cik": "2106607",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2106607/000117152026000115/eps12626_drav.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Dravica Corp S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2106607/000117152026000115/eps12626_drav.htm",
+        "publisher": "SEC",
+        "date": "2026-05-28",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Dravica Corp S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2106607/000117152026000090/eps12603_drav.htm",
+        "publisher": "SEC",
+        "date": "2026-05-13",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Dravica Corp filed S-1 with the SEC on 2026-05-28.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -29496,6 +29401,93 @@
       }
     ],
     "notes": "CoinShares PLC (CSHR, CSHRW) filed F-1 with the SEC on 2026-05-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-397a044a720c907a",
+    "slug": "libera-gaming-operations-inc-lbrj",
+    "name": "Libera Gaming Operations, Inc (LBRJ)",
+    "legalName": "Libera Gaming Operations, Inc (LBRJ)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-05-15",
+    "latestUpdateDate": "2026-05-15",
+    "filingType": "F-1",
+    "cik": "1999119",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1999119/000149315226023432/formf-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Libera Gaming Operations, Inc (LBRJ) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315226023432/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Libera Gaming Operations, Inc (LBRJ) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315226015185/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-04-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Libera Gaming Operations, Inc (LBRJ) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315225029519/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2025-12-30",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Libera Gaming Operations, Inc (LBRJ) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315225025791/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2025-12-02",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Libera Gaming Operations, Inc (LBRJ) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315225020581/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2025-11-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Libera Gaming Operations, Inc F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1999119/000149315225016475/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2025-10-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Libera Gaming Operations, Inc (LBRJ) filed F-1 with the SEC on 2026-05-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -37707,53 +37699,6 @@
       }
     ],
     "notes": "YCS Group Holdings Ltd filed F-1 with the SEC on 2026-01-16.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-a270e8d2569f0e69",
-    "slug": "yi-feng-holdings-ltd",
-    "name": "Yi Feng Holdings Ltd.",
-    "legalName": "Yi Feng Holdings Ltd.",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-01-16",
-    "latestUpdateDate": "2026-01-16",
-    "filingType": "F-1",
-    "cik": "2084038",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2084038/000121390026005036/ea0254251-08.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Yi Feng Holdings Ltd. F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2084038/000121390026005036/ea0254251-08.htm",
-        "publisher": "SEC",
-        "date": "2026-01-16",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Yi Feng Holdings Ltd. filed F-1 with the SEC on 2026-01-16.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -97457,7 +97402,7 @@
         "confidence": 1
       },
       {
-        "title": "QumulusAI, Inc. (QMLS) S-1",
+        "title": "QumulusAI, Inc. (QMLS) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2084026/000143774926020200/quma20260605_s1a.htm",
         "publisher": "SEC",
         "date": "2026-06-10",
@@ -97793,14 +97738,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2120882/000119312526289345/d32785df1a.htm",
         "publisher": "SEC",
         "date": "2026-06-30",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "SK hynix Inc. F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2120882/000119312526280172/d32785df1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-24",
         "type": "filing",
         "confidence": 1
       }
@@ -99327,7 +99264,7 @@
         "confidence": 1
       },
       {
-        "title": "DSC Holdings Ltd. F-1",
+        "title": "DSC Holdings Ltd. F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1966041/000121390026070374/ea0200059-36.htm",
         "publisher": "SEC",
         "date": "2026-06-22",
@@ -100210,7 +100147,7 @@
         "confidence": 1
       },
       {
-        "title": "DEEP FISSION, INC. (FISN) S-1",
+        "title": "DEEP FISSION, INC. (FISN) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1918102/000110465926072286/tm2612179-5_s1a.htm",
         "publisher": "SEC",
         "date": "2026-06-10",
@@ -100391,7 +100328,7 @@
         "confidence": 1
       },
       {
-        "title": "Texas Ventures Acquisition IV Corp (TVIV) S-1",
+        "title": "Texas Ventures Acquisition IV Corp (TVIV) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2096755/000121390026066790/ea0268724-03.htm",
         "publisher": "SEC",
         "date": "2026-06-09",
@@ -100446,7 +100383,7 @@
         "confidence": 1
       },
       {
-        "title": "Cantor Equity Partners VII, Inc. (CAES) S-1",
+        "title": "Cantor Equity Partners VII, Inc. (CAES) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2087965/000121390026066499/ea0261707-05.htm",
         "publisher": "SEC",
         "date": "2026-06-09",
@@ -101062,61 +100999,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-dbfe9f0283e9e14d",
-    "slug": "swarmer-inc-swmr",
-    "name": "Swarmer, Inc (SWMR)",
-    "legalName": "Swarmer, Inc (SWMR)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-06-10",
-    "filingDate": "2026-06-10",
-    "latestUpdateDate": "2026-06-10",
-    "filingType": "S-1",
-    "cik": "2092574",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2092574/000110465926072392/tmb-20260331xs1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Swarmer, Inc (SWMR) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2092574/000110465926072392/tmb-20260331xs1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Swarmer, Inc (SWMR) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2092574/000110465926029590/tm2529424-12_424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-03-17",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Swarmer, Inc (SWMR) filed S-1 with the SEC on 2026-06-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-21bd01842551381a",
     "slug": "milestone-scientific-inc-mlss",
     "name": "MILESTONE SCIENTIFIC INC. (MLSS)",
@@ -101580,7 +101462,7 @@
         "confidence": 1
       },
       {
-        "title": "LIQTECH INTERNATIONAL INC (LIQT) S-1/A",
+        "title": "LIQTECH INTERNATIONAL INC (LIQT) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1307579/000143774926018645/liqt20260527c_s1a.htm",
         "publisher": "SEC",
         "date": "2026-05-28",
@@ -102320,7 +102202,7 @@
         "confidence": 1
       },
       {
-        "title": "Keystone Acquisition Corp. (KEYY) S-1/A",
+        "title": "Keystone Acquisition Corp. (KEYY) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2102771/000121390026062203/ea0272937-05.htm",
         "publisher": "SEC",
         "date": "2026-05-28",
@@ -109811,6 +109693,53 @@
       }
     ],
     "notes": "Rich Sparkle Holdings Ltd (ANPA) filed F-1 with the SEC on 2026-03-20.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-dbfe9f0283e9e14d",
+    "slug": "swarmer-inc-swmr",
+    "name": "Swarmer, Inc (SWMR)",
+    "legalName": "Swarmer, Inc (SWMR)",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-03-17",
+    "filingDate": "2026-03-17",
+    "latestUpdateDate": "2026-03-17",
+    "filingType": "424B4",
+    "cik": "2092574",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2092574/000110465926029590/tm2529424-12_424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Swarmer, Inc (SWMR) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2092574/000110465926029590/tm2529424-12_424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-03-17",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Swarmer, Inc (SWMR) filed 424B4 with the SEC on 2026-03-17.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -137818,6 +137747,116 @@
       }
     ],
     "notes": "Kaival Brands Innovations Group, Inc. (KAVL) filed 424B1 with the SEC on 2024-01-12.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-9910095d6e74f85b",
+    "slug": "first-choice-healthcare-solutions-inc-fchs",
+    "name": "First Choice Healthcare Solutions, Inc. (FCHS)",
+    "legalName": "First Choice Healthcare Solutions, Inc. (FCHS)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-15",
+    "latestUpdateDate": "2026-09-15",
+    "filingType": "RW",
+    "cik": "1416876",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226042784/formrw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "First Choice Healthcare Solutions, Inc. (FCHS) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226042784/formrw.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Choice Healthcare Solutions, Inc. (FCHS) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226016512/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-04-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Choice Healthcare Solutions, Inc. (FCHS) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226013167/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-03-27",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "First Choice Healthcare Solutions, Inc. (FCHS) filed RW with the SEC on 2026-09-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-846231343abf779b",
+    "slug": "otsaw-ltd",
+    "name": "OTSAW Ltd",
+    "legalName": "OTSAW Ltd",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-15",
+    "latestUpdateDate": "2026-09-15",
+    "filingType": "RW",
+    "cik": "2046462",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2046462/000121390026100069/ea0305465-rw_otsaw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "OTSAW Ltd RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/2046462/000121390026100069/ea0305465-rw_otsaw.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "OTSAW Ltd filed RW with the SEC on 2026-09-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -172006,14 +172045,6 @@
         "confidence": 1
       },
       {
-        "title": "Onconetix, Inc. (ONCO) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1782107/000121390026066400/ea0293708-s1_onconetix.htm",
-        "publisher": "SEC",
-        "date": "2026-06-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
         "title": "Onconetix, Inc. (ONCO) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1782107/000121390026053255/ea0289698-s1a1_onconetix.htm",
         "publisher": "SEC",
@@ -174893,7 +174924,7 @@
         "confidence": 1
       },
       {
-        "title": "3 E Network Technology Group Ltd (MASK) F-1",
+        "title": "3 E Network Technology Group Ltd (MASK) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1993097/000118518526002628/maskf1a1062426.htm",
         "publisher": "SEC",
         "date": "2026-06-24",
