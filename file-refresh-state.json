@@ -1555,11 +1555,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-107503": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T00:18:24.747Z",
+      "lastAttemptAt": "2026-09-16T11:29:10.773Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001835856-26-000044": {
@@ -1707,11 +1707,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-390568": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T00:18:28.571Z",
+      "lastAttemptAt": "2026-09-16T11:29:11.393Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-107513": {
@@ -1723,11 +1723,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-107495": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T00:18:29.478Z",
+      "lastAttemptAt": "2026-09-16T11:29:12.242Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-391062": {
@@ -1755,11 +1755,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001666138-26-000028": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "verified_result_failed_publication_invariants",
       "error": null,
-      "lastAttemptAt": "2026-09-16T00:18:20.659Z",
+      "lastAttemptAt": "2026-09-16T11:29:07.752Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001580642-26-006301": {
@@ -1771,19 +1771,19 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-391565": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T00:18:21.100Z",
+      "lastAttemptAt": "2026-09-16T11:29:08.145Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-391555": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T00:18:21.451Z",
+      "lastAttemptAt": "2026-09-16T11:29:08.426Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-391074": {
@@ -1947,21 +1947,45 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-036669": {
-      "attempts": 1,
+      "attempts": 2,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T00:18:20.284Z",
+      "lastAttemptAt": "2026-09-16T11:29:07.438Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-107980": {
-      "attempts": 1,
+      "attempts": 2,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-09-16T00:18:23.234Z",
+      "lastAttemptAt": "2026-09-16T11:29:10.052Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001474903-26-000085": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-16T11:29:04.854Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-392338": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-16T11:29:05.198Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-392246": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "verified_result_failed_publication_invariants",
+      "error": null,
+      "lastAttemptAt": "2026-09-16T11:29:06.545Z",
       "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-16T05:59:27.048Z"
+  "updatedAt": "2026-09-16T11:29:12.493Z"
 }
