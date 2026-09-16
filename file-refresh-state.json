@@ -1739,11 +1739,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-107656": {
-      "attempts": 3,
+      "attempts": 4,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T05:59:21.467Z",
+      "lastAttemptAt": "2026-09-16T16:52:26.071Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001683168-26-007129": {
@@ -1923,27 +1923,27 @@
       "ruleVersion": "strict-control-v3"
     },
     "0000723254-26-000041": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "error",
       "reasonCode": "processing_error",
       "error": "primary SEC document text unavailable",
-      "lastAttemptAt": "2026-09-16T05:59:22.054Z",
+      "lastAttemptAt": "2026-09-16T16:52:26.610Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001628280-26-062095": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T05:59:25.672Z",
+      "lastAttemptAt": "2026-09-16T16:52:27.993Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-036638": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-16T05:59:26.797Z",
+      "lastAttemptAt": "2026-09-16T16:52:29.128Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-036669": {
@@ -1985,7 +1985,31 @@
       "error": null,
       "lastAttemptAt": "2026-09-16T11:29:06.545Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001580642-26-006315": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-16T16:52:24.465Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-392661": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-16T16:52:24.941Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-392558": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-16T16:52:25.448Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-16T11:29:12.493Z"
+  "updatedAt": "2026-09-16T16:52:29.378Z"
 }
