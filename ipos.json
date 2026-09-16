@@ -1,5 +1,123 @@
 [
   {
+    "id": "ipo-2bee61d5cdf4fdf0",
+    "slug": "koei-group-co-ltd-koei",
+    "name": "Koei Group Co., Ltd. (KOEI)",
+    "legalName": "Koei Group Co., Ltd. (KOEI)",
+    "sector": "Energy",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-16",
+    "latestUpdateDate": "2026-09-16",
+    "filingType": "F-1/A",
+    "cik": "2070087",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226042913/formf-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Koei Group Co., Ltd. (KOEI) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226042913/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-09-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Koei Group Co., Ltd. (KOEI) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226036409/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-06",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Koei Group Co., Ltd. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226031115/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-06-29",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Koei Group Co., Ltd. (KOEI) filed F-1/A with the SEC on 2026-09-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-d6825860339692fe",
+    "slug": "healthlynked-corp-hlyk",
+    "name": "HealthLynked Corp (HLYK)",
+    "legalName": "HealthLynked Corp (HLYK)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-05-29",
+    "latestUpdateDate": "2026-05-29",
+    "filingType": "S-1/A",
+    "cik": "1680139",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1680139/000121390026062879/ea0292204-s1a2_health.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "HealthLynked Corp (HLYK) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1680139/000121390026062879/ea0292204-s1a2_health.htm",
+        "publisher": "SEC",
+        "date": "2026-05-29",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "HealthLynked Corp (HLYK) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1680139/000121390026050297/ea0286031-s1a1_health.htm",
+        "publisher": "SEC",
+        "date": "2026-04-30",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "HealthLynked Corp (HLYK) filed S-1/A with the SEC on 2026-05-29.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-23b287dd56240d2c",
     "slug": "dravica-corp",
     "name": "Dravica Corp",
@@ -1951,14 +2069,6 @@
         "date": "2026-04-14",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Lantics Corp. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2112585/000168316826002310/lantics_s1a1.htm",
-        "publisher": "SEC",
-        "date": "2026-03-27",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Lantics Corp. filed S-1/A with the SEC on 2026-04-14.",
@@ -2370,53 +2480,6 @@
       }
     ],
     "notes": "Grayscale Bittensor Trust (TAO) (GTAO) filed S-1/A with the SEC on 2026-04-02.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-cb36ecd28d5cad2a",
-    "slug": "dror-ortho-design-inc-dror",
-    "name": "Dror Ortho-Design, Inc. (DROR)",
-    "legalName": "Dror Ortho-Design, Inc. (DROR)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-04-01",
-    "latestUpdateDate": "2026-04-01",
-    "filingType": "S-1/A",
-    "cik": "1282980",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1282980/000121390026037951/ea0283974-s1a3_drorortho.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Dror Ortho-Design, Inc. (DROR) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1282980/000121390026037951/ea0283974-s1a3_drorortho.htm",
-        "publisher": "SEC",
-        "date": "2026-04-01",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Dror Ortho-Design, Inc. (DROR) filed S-1/A with the SEC on 2026-04-01.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -12380,6 +12443,180 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-d820a5e5cb6c61ef",
+    "slug": "bitwise-near-etf",
+    "name": "Bitwise NEAR ETF",
+    "legalName": "Bitwise NEAR ETF",
+    "sector": "Financial Services",
+    "industry": "Finance Services",
+    "description": null,
+    "headquarters": "250 MONTGOMERY STREET, SUITE 200, SAN FRANCISCO, CA, 94104",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "NYSE",
+    "ticker": "symbol",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-16",
+    "latestUpdateDate": "2026-09-16",
+    "filingType": "S-1",
+    "cik": "2067111",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526393240/ck0002067111-20260916.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Bitwise NEAR ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526393240/ck0002067111-20260916.htm",
+        "publisher": "SEC",
+        "date": "2026-09-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Bitwise NEAR ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526374507/ck0002067111-20260828.htm",
+        "publisher": "SEC",
+        "date": "2026-08-28",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Bitwise NEAR ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526329988/ck0002067111-20260803.htm",
+        "publisher": "SEC",
+        "date": "2026-08-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Bitwise NEAR ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526328801/ck0002067111-20260731.htm",
+        "publisher": "SEC",
+        "date": "2026-07-31",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Bitwise NEAR ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526293745/bitwise_near_-_s-1_am_2.htm",
+        "publisher": "SEC",
+        "date": "2026-07-02",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Bitwise NEAR ETF filed S-1 with the SEC on 2026-09-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-e0a12480488ce90e",
+    "slug": "change-agents-corporation-chga",
+    "name": "Change Agents Corporation. (CHGA)",
+    "legalName": "Change Agents Corporation. (CHGA)",
+    "sector": "Technology",
+    "industry": "Services-Computer Programming Services",
+    "description": null,
+    "headquarters": "4400 ROUTE 9, SUITE 3100, FREEHOLD, NJ, 07728",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": "$3.5M",
+    "offeringSizeNum": 3500000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "CHGA",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-16",
+    "latestUpdateDate": "2026-09-16",
+    "filingType": "S-1",
+    "cik": "1630212",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026100576/ea0305711-s1a3_change.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Change Agents Corporation. (CHGA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026100576/ea0305711-s1a3_change.htm",
+        "publisher": "SEC",
+        "date": "2026-09-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Change Agents Corporation. (CHGA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026100214/ea0305058-s1a2_change.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Change Agents Corporation. (CHGA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026093149/ea0302304-s1a1_change.htm",
+        "publisher": "SEC",
+        "date": "2026-08-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Change Agents Corporation. (CHGA) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026086806/ea0300078-s1_change.htm",
+        "publisher": "SEC",
+        "date": "2026-08-07",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Avalon GloboCare Corp. (ALBT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026077307/ea0297456-s1_avalon.htm",
+        "publisher": "SEC",
+        "date": "2026-07-13",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Avalon GloboCare Corp. (ALBT) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026041563/ea0285650-rw_avalon.htm",
+        "publisher": "SEC",
+        "date": "2026-04-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Avalon GloboCare Corp. (ALBT) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026011050/ea0275121-rw_avalon.htm",
+        "publisher": "SEC",
+        "date": "2026-02-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Change Agents Corporation. (CHGA) filed S-1 with the SEC on 2026-09-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-d0506cd982dfb055",
     "slug": "cyabra-inc-cyab",
     "name": "CYABRA, INC. (CYAB)",
@@ -12443,6 +12680,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-cb36ecd28d5cad2a",
+    "slug": "dror-ortho-design-inc-dror",
+    "name": "Dror Ortho-Design, Inc. (DROR)",
+    "legalName": "Dror Ortho-Design, Inc. (DROR)",
+    "sector": "Industrials",
+    "industry": "Dental Equipment & Supplies",
+    "description": null,
+    "headquarters": "480 JOHNSON ROAD, SUITE 200, WASHINGTON, PA, 15301",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": "3,636,364",
+    "sharesOfferedNum": 3636364,
+    "offeringSize": "$3.4M",
+    "offeringSizeNum": 3400000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "OTC",
+    "ticker": "DROR",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-16",
+    "latestUpdateDate": "2026-09-16",
+    "filingType": "S-1",
+    "cik": "1282980",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1282980/000121390026100567/ea0305492-s1a4_drorortho.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Dror Ortho-Design, Inc. (DROR) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1282980/000121390026100567/ea0305492-s1a4_drorortho.htm",
+        "publisher": "SEC",
+        "date": "2026-09-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Dror Ortho-Design, Inc. (DROR) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1282980/000121390026037951/ea0283974-s1a3_drorortho.htm",
+        "publisher": "SEC",
+        "date": "2026-04-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Dror Ortho-Design, Inc. (DROR) filed S-1 with the SEC on 2026-09-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-ae053d1befd6f4f7",
     "slug": "glghk-ltd-glg",
     "name": "GLGHK Ltd (GLG)",
@@ -12498,6 +12790,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-89d8ead8419a77b5",
+    "slug": "lower-cross-acquisitions-corp",
+    "name": "Lower Cross Acquisitions Corp",
+    "legalName": "Lower Cross Acquisitions Corp",
+    "sector": "Real Estate",
+    "industry": "Blank Checks",
+    "description": null,
+    "headquarters": "18 LOWER CROSS ROAD, GREENWICH, CT, 06831",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "volume",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-16",
+    "latestUpdateDate": "2026-09-16",
+    "filingType": "S-1",
+    "cik": "2147457",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2147457/000118518526004071/lcacs1091126.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Lower Cross Acquisitions Corp S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2147457/000118518526004071/lcacs1091126.htm",
+        "publisher": "SEC",
+        "date": "2026-09-16",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Lower Cross Acquisitions Corp filed S-1 with the SEC on 2026-09-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-a2f37150fc9e90d9",
     "slug": "new-iceland-arctic-acquisition-corp",
     "name": "New Iceland Arctic Acquisition Corp.",
@@ -12545,6 +12884,61 @@
       }
     ],
     "notes": "New Iceland Arctic Acquisition Corp. filed S-1 with the SEC on 2026-09-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-900f34990c202183",
+    "slug": "nuvox-therapeutics-inc-nuox",
+    "name": "NuvOx Therapeutics, Inc. (NUOX)",
+    "legalName": "NuvOx Therapeutics, Inc. (NUOX)",
+    "sector": "Healthcare",
+    "industry": "Pharmaceutical Preparations",
+    "description": null,
+    "headquarters": "1635 E. 18TH STREET, TUCSON, AZ, 85719",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": "NUOX",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-16",
+    "latestUpdateDate": "2026-09-16",
+    "filingType": "S-1",
+    "cik": "1966126",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1966126/000121390026100586/ea0225257-10.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "NuvOx Therapeutics, Inc. (NUOX) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966126/000121390026100586/ea0225257-10.htm",
+        "publisher": "SEC",
+        "date": "2026-09-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "NuvOx Therapeutics, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966126/000121390026079095/ea0225257-08.htm",
+        "publisher": "SEC",
+        "date": "2026-07-17",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "NuvOx Therapeutics, Inc. (NUOX) filed S-1 with the SEC on 2026-09-16.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -12852,93 +13246,6 @@
       }
     ],
     "notes": "Canary Staked SEI ETF filed S-1 with the SEC on 2026-09-15.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-e0a12480488ce90e",
-    "slug": "change-agents-corporation-chga",
-    "name": "Change Agents Corporation. (CHGA)",
-    "legalName": "Change Agents Corporation. (CHGA)",
-    "sector": "Technology",
-    "industry": "Services-Computer Programming Services",
-    "description": null,
-    "headquarters": "4400 ROUTE 9, SUITE 3100, FREEHOLD, NJ, 07728",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": "$3.5M",
-    "offeringSizeNum": 3500000,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "CHGA",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-15",
-    "latestUpdateDate": "2026-09-15",
-    "filingType": "S-1",
-    "cik": "1630212",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026100214/ea0305058-s1a2_change.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Change Agents Corporation. (CHGA) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026100214/ea0305058-s1a2_change.htm",
-        "publisher": "SEC",
-        "date": "2026-09-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Change Agents Corporation. (CHGA) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026093149/ea0302304-s1a1_change.htm",
-        "publisher": "SEC",
-        "date": "2026-08-25",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Change Agents Corporation. (CHGA) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026086806/ea0300078-s1_change.htm",
-        "publisher": "SEC",
-        "date": "2026-08-07",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Avalon GloboCare Corp. (ALBT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026077307/ea0297456-s1_avalon.htm",
-        "publisher": "SEC",
-        "date": "2026-07-13",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Avalon GloboCare Corp. (ALBT) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026041563/ea0285650-rw_avalon.htm",
-        "publisher": "SEC",
-        "date": "2026-04-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Avalon GloboCare Corp. (ALBT) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630212/000121390026011050/ea0275121-rw_avalon.htm",
-        "publisher": "SEC",
-        "date": "2026-02-03",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Change Agents Corporation. (CHGA) filed S-1 with the SEC on 2026-09-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -18483,77 +18790,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-d820a5e5cb6c61ef",
-    "slug": "bitwise-near-etf",
-    "name": "Bitwise NEAR ETF",
-    "legalName": "Bitwise NEAR ETF",
-    "sector": "Financial Services",
-    "industry": "Finance Services",
-    "description": null,
-    "headquarters": "250 MONTGOMERY STREET, SUITE 200, SAN FRANCISCO, CA, 94104",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "NYSE",
-    "ticker": "symbol",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-28",
-    "latestUpdateDate": "2026-08-28",
-    "filingType": "S-1",
-    "cik": "2067111",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526374507/ck0002067111-20260828.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Bitwise NEAR ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526374507/ck0002067111-20260828.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bitwise NEAR ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526329988/ck0002067111-20260803.htm",
-        "publisher": "SEC",
-        "date": "2026-08-03",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bitwise NEAR ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526328801/ck0002067111-20260731.htm",
-        "publisher": "SEC",
-        "date": "2026-07-31",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bitwise NEAR ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526293745/bitwise_near_-_s-1_am_2.htm",
-        "publisher": "SEC",
-        "date": "2026-07-02",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Bitwise NEAR ETF filed S-1 with the SEC on 2026-08-28.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-2fc51f24a442c9df",
     "slug": "fast-track-group-ftrkf",
     "name": "Fast Track Group (FTRKF)",
@@ -20541,9 +20777,9 @@
     "name": "Gravity Acquisition Corp.",
     "legalName": "Gravity Acquisition Corp.",
     "sector": "Real Estate",
-    "industry": "Blank Checks",
+    "industry": null,
     "description": null,
-    "headquarters": "14247 DON JULIAN RD, CITY OF INDUSTRY, CA, 91746",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -20554,8 +20790,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "of",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-17",
@@ -20769,21 +21005,21 @@
     "name": "BIOVIE INC. (BIVI, BIVIW)",
     "legalName": "BIOVIE INC. (BIVI, BIVIW)",
     "sector": "Healthcare",
-    "industry": "Pharmaceutical Preparations",
+    "industry": null,
     "description": null,
-    "headquarters": "680 W NYE LANE, SUITE 201, CARSON CITY, NV, 89703",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
-    "sharesOffered": "16,025,641",
-    "sharesOfferedNum": 16025641,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
     "offeringSize": null,
     "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "BIVI",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-14",
@@ -20919,21 +21155,21 @@
     "name": "ARC Group Securities Acquisition II",
     "legalName": "ARC Group Securities Acquisition II",
     "sector": "Real Estate",
-    "industry": "Blank Checks",
+    "industry": null,
     "description": null,
-    "headquarters": "398 MILL AVENUE, SUITE 201B, C/O ARC GROUP SECURITIES LLC, TEMPE, AZ, 85281",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$101M",
-    "offeringSizeNum": 101050000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "price",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-13",
@@ -21881,61 +22117,6 @@
       }
     ],
     "notes": "Ambitious Entertainment, Inc. filed S-1 with the SEC on 2026-08-06.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-2bee61d5cdf4fdf0",
-    "slug": "koei-group-co-ltd-koei",
-    "name": "Koei Group Co., Ltd. (KOEI)",
-    "legalName": "Koei Group Co., Ltd. (KOEI)",
-    "sector": "Energy",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-06",
-    "latestUpdateDate": "2026-08-06",
-    "filingType": "F-1",
-    "cik": "2070087",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226036409/formf-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Koei Group Co., Ltd. (KOEI) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226036409/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-06",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Koei Group Co., Ltd. F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226031115/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-29",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Koei Group Co., Ltd. (KOEI) filed F-1 with the SEC on 2026-08-06.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -23436,14 +23617,6 @@
         "date": "2026-07-21",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Pine Tree Acquisition Corp. (PAXG) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2076561/000147793226001712/ptree_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-30",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Pine Tree Acquisition Corp. filed S-1 with the SEC on 2026-07-21.",
@@ -23824,53 +23997,6 @@
       }
     ],
     "notes": "Genneia S.A. (GENN) filed F-1 with the SEC on 2026-07-17.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-900f34990c202183",
-    "slug": "nuvox-therapeutics-inc",
-    "name": "NuvOx Therapeutics, Inc.",
-    "legalName": "NuvOx Therapeutics, Inc.",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-17",
-    "latestUpdateDate": "2026-07-17",
-    "filingType": "S-1",
-    "cik": "1966126",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1966126/000121390026079095/ea0225257-08.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "NuvOx Therapeutics, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966126/000121390026079095/ea0225257-08.htm",
-        "publisher": "SEC",
-        "date": "2026-07-17",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "NuvOx Therapeutics, Inc. filed S-1 with the SEC on 2026-07-17.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -25535,14 +25661,6 @@
         "date": "2026-01-22",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Unitrend Entertainment Group Ltd (INHI) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1997950/000121390026006310/ea0273652-rw_unitrend.htm",
-        "publisher": "SEC",
-        "date": "2026-01-21",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Unitrend Entertainment Group Ltd (INHI) filed F-1 with the SEC on 2026-06-29.",
@@ -25978,53 +26096,6 @@
       }
     ],
     "notes": "JuNeng Technology Ltd filed F-1 with the SEC on 2026-06-25.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-596f849d38c1aa1d",
-    "slug": "lincoln-bancorp-ia",
-    "name": "LINCOLN BANCORP /IA/",
-    "legalName": "LINCOLN BANCORP /IA/",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-25",
-    "latestUpdateDate": "2026-06-25",
-    "filingType": "S-1",
-    "cik": "906205",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/906205/000162828026045588/lincolnsavingsbank-sx1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "LINCOLN BANCORP /IA/ S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/906205/000162828026045588/lincolnsavingsbank-sx1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-25",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "LINCOLN BANCORP /IA/ filed S-1 with the SEC on 2026-06-25.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -27320,7 +27391,7 @@
         "confidence": 1
       },
       {
-        "title": "iShares Bitcoin Premium Income ETF S-1",
+        "title": "iShares Bitcoin Premium Income ETF S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2089969/000143774926018892/bitp20260527_s1a.htm",
         "publisher": "SEC",
         "date": "2026-05-29",
@@ -28691,61 +28762,6 @@
       }
     ],
     "notes": "BullFrog AI Holdings, Inc. (BFRG, BFRGW) filed S-1 with the SEC on 2026-05-29.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-d6825860339692fe",
-    "slug": "healthlynked-corp-hlyk",
-    "name": "HealthLynked Corp (HLYK)",
-    "legalName": "HealthLynked Corp (HLYK)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-05-29",
-    "latestUpdateDate": "2026-05-29",
-    "filingType": "S-1",
-    "cik": "1680139",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1680139/000121390026062879/ea0292204-s1a2_health.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "HealthLynked Corp (HLYK) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1680139/000121390026062879/ea0292204-s1a2_health.htm",
-        "publisher": "SEC",
-        "date": "2026-05-29",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "HealthLynked Corp (HLYK) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1680139/000121390026050297/ea0286031-s1a1_health.htm",
-        "publisher": "SEC",
-        "date": "2026-04-30",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "HealthLynked Corp (HLYK) filed S-1 with the SEC on 2026-05-29.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -100065,14 +100081,6 @@
         "date": "2026-06-22",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Wilco 63 Corp (WLCO) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2101470/000121390026062973/ea0272227-02.htm",
-        "publisher": "SEC",
-        "date": "2026-05-29",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Wilco 63 Corp (WLCO) filed 424B4 with the SEC on 2026-06-22.",
@@ -100949,7 +100957,7 @@
         "confidence": 1
       },
       {
-        "title": "JAB Acquisition Corp I (JAB) S-1",
+        "title": "JAB Acquisition Corp I (JAB) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2128739/000121390026062789/ea0285899-03.htm",
         "publisher": "SEC",
         "date": "2026-05-29",
@@ -102209,7 +102217,7 @@
         "confidence": 1
       },
       {
-        "title": "Long Table Growth Corp. (LTGR) S-1",
+        "title": "Long Table Growth Corp. (LTGR) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2104177/000121390026062817/ea0272676-04.htm",
         "publisher": "SEC",
         "date": "2026-05-29",
@@ -109036,14 +109044,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2111542/000121390026041121/ea0280006-05.htm",
         "publisher": "SEC",
         "date": "2026-04-07",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ACP Holdings Acquisition Corp. (ACGC) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2111542/000121390026036521/ea0280006-04.htm",
-        "publisher": "SEC",
-        "date": "2026-03-30",
         "type": "filing",
         "confidence": 1
       }
@@ -137880,6 +137880,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-596f849d38c1aa1d",
+    "slug": "lincoln-bancorp-ia",
+    "name": "LINCOLN BANCORP /IA/",
+    "legalName": "LINCOLN BANCORP /IA/",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-16",
+    "latestUpdateDate": "2026-09-16",
+    "filingType": "RW",
+    "cik": "906205",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/906205/000162828026062302/lsb-rw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "LINCOLN BANCORP /IA/ RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/906205/000162828026062302/lsb-rw.htm",
+        "publisher": "SEC",
+        "date": "2026-09-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "LINCOLN BANCORP /IA/ S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/906205/000162828026045588/lincolnsavingsbank-sx1.htm",
+        "publisher": "SEC",
+        "date": "2026-06-25",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "LINCOLN BANCORP /IA/ filed RW with the SEC on 2026-09-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-9910095d6e74f85b",
     "slug": "first-choice-healthcare-solutions-inc-fchs",
     "name": "First Choice Healthcare Solutions, Inc. (FCHS)",
@@ -137922,14 +137977,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226016512/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-04-14",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Choice Healthcare Solutions, Inc. (FCHS) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226013167/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-27",
         "type": "filing",
         "confidence": 1
       }
