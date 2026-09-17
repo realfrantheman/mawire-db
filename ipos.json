@@ -1,68 +1,5 @@
 [
   {
-    "id": "ipo-2bee61d5cdf4fdf0",
-    "slug": "koei-group-co-ltd-koei",
-    "name": "Koei Group Co., Ltd. (KOEI)",
-    "legalName": "Koei Group Co., Ltd. (KOEI)",
-    "sector": "Energy",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-16",
-    "latestUpdateDate": "2026-09-16",
-    "filingType": "F-1/A",
-    "cik": "2070087",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226042913/formf-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Koei Group Co., Ltd. (KOEI) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226042913/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-09-16",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Koei Group Co., Ltd. (KOEI) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226036409/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-06",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Koei Group Co., Ltd. F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226031115/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-29",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Koei Group Co., Ltd. (KOEI) filed F-1/A with the SEC on 2026-09-16.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-d6825860339692fe",
     "slug": "healthlynked-corp-hlyk",
     "name": "HealthLynked Corp (HLYK)",
@@ -12782,6 +12719,69 @@
       }
     ],
     "notes": "GLGHK Ltd (GLG) filed F-1 with the SEC on 2026-09-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-2bee61d5cdf4fdf0",
+    "slug": "koei-group-co-ltd-koei",
+    "name": "Koei Group Co., Ltd. (KOEI)",
+    "legalName": "Koei Group Co., Ltd. (KOEI)",
+    "sector": "Energy",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-16",
+    "latestUpdateDate": "2026-09-16",
+    "filingType": "F-1",
+    "cik": "2070087",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226042913/formf-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Koei Group Co., Ltd. (KOEI) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226042913/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-09-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Koei Group Co., Ltd. (KOEI) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226036409/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-06",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Koei Group Co., Ltd. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2070087/000149315226031115/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-06-29",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Koei Group Co., Ltd. (KOEI) filed F-1 with the SEC on 2026-09-16.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -25659,6 +25659,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1997950/000121390026006713/ea0273689-01.htm",
         "publisher": "SEC",
         "date": "2026-01-22",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Unitrend Entertainment Group Ltd (INHI) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1997950/000121390026006310/ea0273652-rw_unitrend.htm",
+        "publisher": "SEC",
+        "date": "2026-01-21",
         "type": "filing",
         "confidence": 1
       }
@@ -91006,7 +91014,7 @@
         "confidence": 1
       },
       {
-        "title": "Optimi Health Corp. (OPTH, OPTHF) F-1",
+        "title": "Optimi Health Corp. (OPTH, OPTHF) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2027329/000119312526229774/d43258df1a.htm",
         "publisher": "SEC",
         "date": "2026-05-19",
