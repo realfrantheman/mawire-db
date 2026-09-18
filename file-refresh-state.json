@@ -2283,13 +2283,61 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-394814": {
-      "attempts": 1,
+      "attempts": 2,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-09-18T11:11:15.200Z",
+      "lastAttemptAt": "2026-09-18T18:27:18.231Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001999371-26-020838": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-09-18T18:27:14.467Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001999371-26-020837": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-09-18T18:27:14.886Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001683168-26-007227": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-18T18:27:15.238Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001661306-26-000090": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-18T18:27:15.734Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-101139": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-18T18:27:16.090Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001140361-26-037060": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-18T18:27:16.551Z",
       "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-18T15:00:19.640Z"
+  "updatedAt": "2026-09-18T18:27:18.482Z"
 }
