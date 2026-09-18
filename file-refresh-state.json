@@ -2035,11 +2035,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-108313": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-18T00:15:44.040Z",
+      "lastAttemptAt": "2026-09-18T11:11:16.124Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001835856-26-000049": {
@@ -2075,11 +2075,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001213900-26-100607": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-18T00:15:44.347Z",
+      "lastAttemptAt": "2026-09-18T11:11:16.493Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001213900-26-100600": {
@@ -2107,11 +2107,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-108257": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-09-18T00:15:46.856Z",
+      "lastAttemptAt": "2026-09-18T11:11:17.920Z",
       "ruleVersion": "strict-control-v3"
     },
     "0002077096-26-000256": {
@@ -2273,7 +2273,23 @@
       "error": null,
       "lastAttemptAt": "2026-09-18T00:15:43.124Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001493152-26-043206": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-18T11:11:13.951Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-394814": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "primary_source_truncated_before_verification",
+      "error": null,
+      "lastAttemptAt": "2026-09-18T11:11:15.200Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-18T05:54:27.027Z"
+  "updatedAt": "2026-09-18T11:11:18.171Z"
 }
