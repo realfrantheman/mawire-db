@@ -94,3 +94,13 @@ test('deal_value billions view correctly converts USD cents', () => {
   const schema = read('FIX-platform-schema.sql');
   assert.match(schema, /deal_value::double precision\s*\/\s*100000000000\.0/);
 });
+
+
+test('scheduled PIE treats scheduler freshness drift as warning while post-refresh verification remains strict', () => {
+  const workflow = read('.github/workflows/pie-monitor.yml');
+  const integrity = read('FIX-file-integrity.js');
+  assert.match(workflow, /github\.event_name == 'schedule'[\s\S]{0,700}PIE_STALE_POLICY:\s*warn/);
+  assert.match(workflow, /github\.event_name != 'schedule'[\s\S]{0,700}PIE_STALE_POLICY:\s*fail/);
+  assert.match(integrity, /PIE_STALE_POLICY/);
+  assert.match(integrity, /STALE_POLICY === 'warn'/);
+});

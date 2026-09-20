@@ -21,6 +21,16 @@ const MAX_AGE_MS = Math.max(1, Number(process.env.PIE_MAX_ARTIFACT_AGE_HOURS || 
 const MIN_DEALS = Math.max(1000, Number(process.env.PIE_MIN_PUBLIC_DEALS || 10000));
 const ORIGIN_PROPAGATION_ATTEMPTS = Math.max(1, Number(process.env.PIE_ORIGIN_PROPAGATION_ATTEMPTS || 8));
 const ORIGIN_PROPAGATION_DELAY_MS = Math.max(0, Number(process.env.PIE_ORIGIN_PROPAGATION_DELAY_MS || 15000));
+const STALE_POLICY = String(process.env.PIE_STALE_POLICY || 'fail').trim().toLowerCase();
+if (!['fail', 'warn'].includes(STALE_POLICY)) throw new Error(`invalid PIE_STALE_POLICY: ${STALE_POLICY}`);
+
+function handleStaleness(message) {
+  if (STALE_POLICY === 'warn') {
+    console.warn(`[PIE FILE] ${message}; freshness warning only for scheduled monitoring`);
+    return;
+  }
+  throw new Error(message);
+}
 const PUBLIC_DATA_URL = 'https://raw.githubusercontent.com/realfrantheman/mawire-db/main/deals-index.json';
 
 function request(url, method = 'GET', maxBytes = 2 * 1024 * 1024, redirects = 0) {
@@ -102,7 +112,7 @@ function validateLocalArtifacts(deals, index, manifest, buildOptions = {}) {
   const generatedAt = Date.parse(manifest.generatedAt || '');
   if (!Number.isFinite(generatedAt)) throw new Error('public manifest generatedAt is invalid');
   const age = Date.now() - generatedAt;
-  if (age < -15 * 60000 || age > MAX_AGE_MS) throw new Error(`public artifact is stale: ${Math.round(age / 60000)} minutes old`);
+  if (age < -15 * 60000 || age > MAX_AGE_MS) handleStaleness(`public artifact is stale: ${Math.round(age / 60000)} minutes old`);
 
   const expected = buildArtifacts(deals, { legacyIndex: index, ...buildOptions }).index;
   if (expected.length !== index.length) throw new Error(`rebuild/index count mismatch: ${expected.length} != ${index.length}`);
@@ -137,7 +147,8 @@ async function validateOrigin(localManifest) {
     throw new Error(`origin/local deal count mismatch: ${remoteManifest.dealCount} != ${localManifest.dealCount}`);
   }
   const remoteGeneratedAt = Date.parse(remoteManifest.generatedAt || '');
-  if (!Number.isFinite(remoteGeneratedAt) || Date.now() - remoteGeneratedAt > MAX_AGE_MS) throw new Error('origin manifest is stale');
+  if (!Number.isFinite(remoteGeneratedAt)) throw new Error('origin manifest generatedAt is invalid');
+  if (Date.now() - remoteGeneratedAt > MAX_AGE_MS) handleStaleness('origin manifest is stale');
 
   const indexHead = await request(`${ORIGIN}/deals-index.json`, 'HEAD');
   if (indexHead.status !== 200) throw new Error(`origin deals-index HTTP ${indexHead.status}`);

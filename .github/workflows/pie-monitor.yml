@@ -44,12 +44,23 @@ jobs:
           DATABASE_SSL_ALLOW_SELF_SIGNED: 'true'
           MAWIRE_TOKEN: ${{ secrets.MAWIRE_TOKEN }}
         run: node FIX-pie-monitor.js
-      - name: Run artifact and production-origin integrity checks
-        if: steps.database.outputs.available != 'true'
+      - name: Run scheduled artifact and production-origin integrity checks
+        if: steps.database.outputs.available != 'true' && github.event_name == 'schedule'
         env:
           PIE_PUBLIC_ORIGIN: https://mawire.vercel.app
           PIE_MAX_ARTIFACT_AGE_HOURS: '3'
           PIE_MIN_PUBLIC_DEALS: '10000'
+          PIE_STALE_POLICY: warn
           PIE_ORIGIN_PROPAGATION_ATTEMPTS: '8'
+          PIE_ORIGIN_PROPAGATION_DELAY_MS: '15000'
+        run: node FIX-file-integrity.js
+      - name: Run strict artifact and production-origin integrity checks
+        if: steps.database.outputs.available != 'true' && github.event_name != 'schedule'
+        env:
+          PIE_PUBLIC_ORIGIN: https://mawire.vercel.app
+          PIE_MAX_ARTIFACT_AGE_HOURS: '3'
+          PIE_MIN_PUBLIC_DEALS: '10000'
+          PIE_STALE_POLICY: fail
+          PIE_ORIGIN_PROPAGATION_ATTEMPTS: '40'
           PIE_ORIGIN_PROPAGATION_DELAY_MS: '15000'
         run: node FIX-file-integrity.js
