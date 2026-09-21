@@ -2553,7 +2553,23 @@
       "error": null,
       "lastAttemptAt": "2026-09-19T00:19:29.460Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-395819": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-21T14:06:10.162Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-101614": {
+      "attempts": 1,
+      "status": "verified",
+      "reasonCode": "verified_primary_source_control_transaction",
+      "error": null,
+      "lastAttemptAt": "2026-09-21T14:06:11.527Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-21T06:19:32.721Z"
+  "updatedAt": "2026-09-21T14:06:12.067Z"
 }
