@@ -2569,7 +2569,31 @@
       "error": null,
       "lastAttemptAt": "2026-09-21T14:06:11.527Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001683168-26-007246": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-21T19:26:13.474Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-101653": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-09-21T19:26:13.913Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-396264": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-09-21T19:26:14.454Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-21T14:06:12.067Z"
+  "updatedAt": "2026-09-21T19:26:14.704Z"
 }
