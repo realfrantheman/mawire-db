@@ -1,5 +1,68 @@
 [
   {
+    "id": "ipo-bfe34ebb9de2c2a9",
+    "slug": "grayscale-bnb-etf-gbnb",
+    "name": "Grayscale BNB ETF (GBNB)",
+    "legalName": "Grayscale BNB ETF (GBNB)",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-06-03",
+    "latestUpdateDate": "2026-06-03",
+    "filingType": "S-1/A",
+    "cik": "2106762",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2106762/000119312526254665/bnb_s-1_amendment_3.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Grayscale BNB ETF (GBNB) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2106762/000119312526254665/bnb_s-1_amendment_3.htm",
+        "publisher": "SEC",
+        "date": "2026-06-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Grayscale BNB ETF (GBNB) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2106762/000119312526227224/bnb_s-1_amendment_2.htm",
+        "publisher": "SEC",
+        "date": "2026-05-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Grayscale BNB ETF (GBNB) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2106762/000119312526145494/bnb_s-1_amendment_1.htm",
+        "publisher": "SEC",
+        "date": "2026-04-07",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Grayscale BNB ETF (GBNB) filed S-1/A with the SEC on 2026-06-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-f67174e4b90e30fc",
     "slug": "gopro-inc-gpro",
     "name": "GoPro, Inc. (GPRO)",
@@ -13351,6 +13414,69 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-10127e30fa3b6907",
+    "slug": "ecominas-corp-ilxp",
+    "name": "ECOMINAS CORP. (ILXP)",
+    "legalName": "ECOMINAS CORP. (ILXP)",
+    "sector": "Other",
+    "industry": "Mining & Quarrying of Nonmetallic Minerals (No Fuels)",
+    "description": null,
+    "headquarters": "CALLE 2, EDIFICIO UNO, OFICINA 2B, LAS MERCEDES",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": "$400,000",
+    "offeringSizeNum": 400000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "ILXP",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "S-1",
+    "cik": "1115864",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1115864/000147793226005725/ilxp_s1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "ECOMINAS CORP. (ILXP) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1115864/000147793226005725/ilxp_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ECOMINAS CORP. (ILXP) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1115864/000147793226005410/ilxp_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-09-04",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ECOMINAS CORP. (ILXP) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1115864/000147793226004590/ilxp_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-29",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "ECOMINAS CORP. (ILXP) filed S-1 with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-61f933b00ba42c1e",
     "slug": "fast-finance-pay-corp-ffpp",
     "name": "Fast Finance Pay Corp. (FFPP)",
@@ -13398,6 +13524,53 @@
       }
     ],
     "notes": "Fast Finance Pay Corp. (FFPP) filed S-1 with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-ca969e5b7af4d285",
+    "slug": "iambic-therapeutics-inc",
+    "name": "Iambic Therapeutics, Inc.",
+    "legalName": "Iambic Therapeutics, Inc.",
+    "sector": "Healthcare",
+    "industry": "Biological Products, (No Diagnostic Substances)",
+    "description": null,
+    "headquarters": "5627 OBERLIN DRIVE, SUITE 120, SAN DIEGO, CA, 92121",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "S-1",
+    "cik": "1997038",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1997038/000119312526396704/iam-20260921.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Iambic Therapeutics, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1997038/000119312526396704/iam-20260921.htm",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Iambic Therapeutics, Inc. filed S-1 with the SEC on 2026-09-21.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -13571,6 +13744,53 @@
       }
     ],
     "notes": "SB Energy, Inc. (SBE) filed S-1 with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-b21be775c6a7237b",
+    "slug": "silicon-valley-acquisition-corp-ii",
+    "name": "Silicon Valley Acquisition Corp. II",
+    "legalName": "Silicon Valley Acquisition Corp. II",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": "228 HAMILTON AVE, 3RD FL, PALO ALTO, CA, 94301",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": "$227M",
+    "offeringSizeNum": 226700000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "on",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "S-1",
+    "cik": "2145826",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2145826/000121390026101822/ea0304348-01.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Silicon Valley Acquisition Corp. II S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2145826/000121390026101822/ea0304348-01.htm",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Silicon Valley Acquisition Corp. II filed S-1 with the SEC on 2026-09-21.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -19568,61 +19788,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-10127e30fa3b6907",
-    "slug": "ecominas-corp-ilxp",
-    "name": "ECOMINAS CORP. (ILXP)",
-    "legalName": "ECOMINAS CORP. (ILXP)",
-    "sector": "Other",
-    "industry": "Mining & Quarrying of Nonmetallic Minerals (No Fuels)",
-    "description": null,
-    "headquarters": "CALLE 2, EDIFICIO UNO, OFICINA 2B, LAS MERCEDES",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": "$400,000",
-    "offeringSizeNum": 400000,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "ILXP",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-04",
-    "latestUpdateDate": "2026-09-04",
-    "filingType": "S-1",
-    "cik": "1115864",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1115864/000147793226005410/ilxp_s1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "ECOMINAS CORP. (ILXP) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1115864/000147793226005410/ilxp_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-09-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ECOMINAS CORP. (ILXP) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1115864/000147793226004590/ilxp_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-29",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "ECOMINAS CORP. (ILXP) filed S-1 with the SEC on 2026-09-04.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-1dd3cb1d5eecf15b",
     "slug": "legion-capital-acquisition-corp",
     "name": "Legion Capital Acquisition Corp.",
@@ -21900,21 +22065,21 @@
     "name": "ARC Group Acquisition II Corp.",
     "legalName": "ARC Group Acquisition II Corp.",
     "sector": "Real Estate",
-    "industry": "Blank Checks",
+    "industry": null,
     "description": null,
-    "headquarters": "10 E. 53RD STREET, SUITE 3001, NEW YORK, NY, 10022",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$106M",
-    "offeringSizeNum": 106400000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "price",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-20",
@@ -21947,9 +22112,9 @@
     "name": "NEXGEL, INC. (NXGL, NXGLW)",
     "legalName": "NEXGEL, INC. (NXGL, NXGLW)",
     "sector": "Industrials",
-    "industry": "Surgical & Medical Instruments & Apparatus",
+    "industry": null,
     "description": null,
-    "headquarters": "2150 CABOT BLVD WEST,, SUITE B, LANGHORNE, PA, 19047",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -21960,8 +22125,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "NXGL",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-20",
@@ -29734,69 +29899,6 @@
       }
     ],
     "notes": "FF Global Holdings Ltd (FFGG) filed F-1 with the SEC on 2026-06-03.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-bfe34ebb9de2c2a9",
-    "slug": "grayscale-bnb-etf-gbnb",
-    "name": "Grayscale BNB ETF (GBNB)",
-    "legalName": "Grayscale BNB ETF (GBNB)",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-03",
-    "latestUpdateDate": "2026-06-03",
-    "filingType": "S-1",
-    "cik": "2106762",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2106762/000119312526254665/bnb_s-1_amendment_3.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Grayscale BNB ETF (GBNB) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2106762/000119312526254665/bnb_s-1_amendment_3.htm",
-        "publisher": "SEC",
-        "date": "2026-06-03",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Grayscale BNB ETF (GBNB) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2106762/000119312526227224/bnb_s-1_amendment_2.htm",
-        "publisher": "SEC",
-        "date": "2026-05-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Grayscale BNB ETF (GBNB) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2106762/000119312526145494/bnb_s-1_amendment_1.htm",
-        "publisher": "SEC",
-        "date": "2026-04-07",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Grayscale BNB ETF (GBNB) filed S-1 with the SEC on 2026-06-03.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -100439,7 +100541,7 @@
         "confidence": 1
       },
       {
-        "title": "Futurewave Acquisition Corp (FWAC) S-1",
+        "title": "Futurewave Acquisition Corp (FWAC) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2116105/000182912626005938/futurewaveacq_s1a2.htm",
         "publisher": "SEC",
         "date": "2026-06-02",
@@ -101593,14 +101695,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1557798/000168316826004818/tianci_s1a1.htm",
         "publisher": "SEC",
         "date": "2026-06-12",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Tianci International, Inc. (CIIT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1557798/000168316826004448/tianci_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-02",
         "type": "filing",
         "confidence": 1
       }
@@ -109135,14 +109229,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2112446/000121390026044954/ea0286555-424b4_jatt2acq.htm",
         "publisher": "SEC",
         "date": "2026-04-17",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "JATT II Acquisition Corp. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2112446/000121390026039468/ea0284690-s1a1_jatt2acq.htm",
-        "publisher": "SEC",
-        "date": "2026-04-02",
         "type": "filing",
         "confidence": 1
       }
