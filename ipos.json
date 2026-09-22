@@ -13912,7 +13912,7 @@
     "status": "filed",
     "statusLabel": "Filed",
     "exchange": "Nasdaq",
-    "ticker": "price",
+    "ticker": "AMRO",
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-09-18",
@@ -17479,14 +17479,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2095096/000149315226042440/formf-1.htm",
         "publisher": "SEC",
         "date": "2026-09-14",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Einride AB (ENRD, ENRDW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2095096/999999999526002316/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-07-15",
         "type": "filing",
         "confidence": 1
       },
@@ -25764,6 +25756,61 @@
       }
     ],
     "notes": "Starton Holdings, Inc. (STA) filed S-1 with the SEC on 2026-07-13.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-096624fa89761b00",
+    "slug": "healthcare-triangle-inc-hcti",
+    "name": "Healthcare Triangle, Inc. (HCTI)",
+    "legalName": "Healthcare Triangle, Inc. (HCTI)",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-10",
+    "latestUpdateDate": "2026-07-10",
+    "filingType": "S-1",
+    "cik": "1839285",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1839285/000121390026077268/ea0297552-s1_healthcare.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Healthcare Triangle, Inc. (HCTI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1839285/000121390026077268/ea0297552-s1_healthcare.htm",
+        "publisher": "SEC",
+        "date": "2026-07-10",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Healthcare Triangle, Inc. (HCTI) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1839285/000121390026076690/ea0297572-rw_health.htm",
+        "publisher": "SEC",
+        "date": "2026-07-09",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Healthcare Triangle, Inc. (HCTI) filed S-1 with the SEC on 2026-07-10.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -50479,55 +50526,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-6a4e320810894521",
-    "slug": "benitec-biopharma-inc-bntc",
-    "name": "Benitec Biopharma Inc. (BNTC)",
-    "legalName": "Benitec Biopharma Inc. (BNTC)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": "2022",
-    "ipoDate": null,
-    "filingDate": "2022-12-13",
-    "latestUpdateDate": "2022-12-13",
-    "filingType": "S-1",
-    "cik": "1808898",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1808898/000119312522303006/d406791ds1.htm",
-    "source": "SEC EDGAR",
-    "sources": [
-      {
-        "title": "Benitec Biopharma Inc. (BNTC) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1808898/000119312522303006/d406791ds1.htm",
-        "publisher": "SEC",
-        "date": "2022-12-13",
-        "type": "filing",
-        "confidence": 0.95
-      }
-    ],
-    "notes": "Benitec Biopharma Inc. (BNTC) filed an S-1 registration statement with the SEC.",
-    "tags": [
-      "tech"
-    ],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-31a53b91e3f88c17",
     "slug": "coya-therapeutics-inc-coya",
     "name": "Coya Therapeutics, Inc. (COYA)",
@@ -57427,55 +57425,6 @@
       }
     ],
     "notes": "Legacy Education Alliance, Inc. (LEAI) filed an S-1 registration statement with the SEC.",
-    "tags": [
-      "tech"
-    ],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-3881efe4c373600f",
-    "slug": "nft-gaming-co-inc-gxai",
-    "name": "NFT Gaming Co Inc. (GXAI)",
-    "legalName": "NFT Gaming Co Inc. (GXAI)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": "2022",
-    "ipoDate": null,
-    "filingDate": "2022-10-14",
-    "latestUpdateDate": "2022-10-14",
-    "filingType": "S-1",
-    "cik": "1895618",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1895618/000121390022064005/fs12022_nftgaming.htm",
-    "source": "SEC EDGAR",
-    "sources": [
-      {
-        "title": "NFT Gaming Co Inc. (GXAI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1895618/000121390022064005/fs12022_nftgaming.htm",
-        "publisher": "SEC",
-        "date": "2022-10-14",
-        "type": "filing",
-        "confidence": 0.95
-      }
-    ],
-    "notes": "NFT Gaming Co Inc. (GXAI) filed an S-1 registration statement with the SEC.",
     "tags": [
       "tech"
     ],
@@ -88013,6 +87962,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-1a03bc41b06ae24b",
+    "slug": "black-hawk-acquisition-corp-bkha-bkhar-bkhau",
+    "name": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU)",
+    "legalName": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-09-22",
+    "filingDate": "2026-09-22",
+    "latestUpdateDate": "2026-09-22",
+    "filingType": "424B4",
+    "cik": "2000775",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2000775/000182912626010292/blackhawk_424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2000775/000182912626010292/blackhawk_424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-09-22",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/2000775/999999999526002988/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-17",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU) filed 424B4 with the SEC on 2026-09-22.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-aa7d9726244f3d2b",
     "slug": "cch-holdings-ltd-cchh",
     "name": "CCH Holdings Ltd (CCHH)",
@@ -98289,14 +98293,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1814215/000119312526306867/buru_s-1_7.10.26_424b4.htm",
         "publisher": "SEC",
         "date": "2026-07-17",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Nuburu, Inc. (BURU, BURUW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1814215/999999999526002319/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-07-15",
         "type": "filing",
         "confidence": 1
       },
@@ -138913,101 +138909,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-54c4b5aad1af4d64",
-    "slug": "xcf-global-inc-safx",
-    "name": "XCF Global, Inc. (SAFX)",
-    "legalName": "XCF Global, Inc. (SAFX)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "withdrawn",
-    "statusLabel": "Withdrawn",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-14",
-    "latestUpdateDate": "2026-09-14",
-    "filingType": "RW",
-    "cik": "2019793",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226042525/formrw.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "XCF Global, Inc. (SAFX) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226042525/formrw.htm",
-        "publisher": "SEC",
-        "date": "2026-09-14",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "XCF Global, Inc. (SAFX) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226042240/formrw.htm",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "XCF Global, Inc. (SAFX) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019793/999999999526002776/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-27",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "XCF Global, Inc. (SAFX) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226039112/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-08-19",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "XCF Global, Inc. (SAFX) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019793/999999999526002508/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-07-31",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "XCF Global, Inc. (SAFX) RW WD",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226032537/formrwwd.htm",
-        "publisher": "SEC",
-        "date": "2026-07-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "XCF Global, Inc. (SAFX) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226029513/formrw.htm",
-        "publisher": "SEC",
-        "date": "2026-06-22",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "XCF Global, Inc. (SAFX) filed RW with the SEC on 2026-09-14.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-89117b2fb88faf9a",
     "slug": "lee-enterprises-inc-lee",
     "name": "LEE ENTERPRISES, Inc (LEE)",
@@ -169282,6 +169183,446 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-5261216588458ffb",
+    "slug": "baosheng-media-group-holdings-ltd-baos",
+    "name": "Baosheng Media Group Holdings Ltd (BAOS)",
+    "legalName": "Baosheng Media Group Holdings Ltd (BAOS)",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "EFFECT",
+    "cik": "1811216",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1811216/999999999526003018/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Baosheng Media Group Holdings Ltd (BAOS) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1811216/999999999526003018/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Baosheng Media Group Holdings Ltd (BAOS) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1811216/999999999526002997/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-17",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Baosheng Media Group Holdings Ltd (BAOS) filed EFFECT with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-6a4e320810894521",
+    "slug": "benitec-biopharma-inc-bntc",
+    "name": "Benitec Biopharma Inc. (BNTC)",
+    "legalName": "Benitec Biopharma Inc. (BNTC)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "EFFECT",
+    "cik": "1808898",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1808898/999999999526003021/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Benitec Biopharma Inc. (BNTC) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1808898/999999999526003021/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Benitec Biopharma Inc. (BNTC) filed EFFECT with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-bda6dbcb10d41631",
+    "slug": "citi-trends-inc-ctrn",
+    "name": "Citi Trends Inc (CTRN)",
+    "legalName": "Citi Trends Inc (CTRN)",
+    "sector": "Consumer",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "EFFECT",
+    "cik": "1318484",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1318484/999999999526003017/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Citi Trends Inc (CTRN) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1318484/999999999526003017/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Citi Trends Inc (CTRN) filed EFFECT with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-3881efe4c373600f",
+    "slug": "gaxos-ai-inc-gxai",
+    "name": "GAXOS.AI INC. (GXAI)",
+    "legalName": "GAXOS.AI INC. (GXAI)",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "EFFECT",
+    "cik": "1895618",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1895618/999999999526003020/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "GAXOS.AI INC. (GXAI) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1895618/999999999526003020/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "GAXOS.AI INC. (GXAI) filed EFFECT with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-8cf63155ee3e347e",
+    "slug": "managed-portfolio-series",
+    "name": "Managed Portfolio Series",
+    "legalName": "Managed Portfolio Series",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "EFFECT",
+    "cik": "1511699",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1511699/999999999526003015/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Managed Portfolio Series EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1511699/999999999526003015/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Managed Portfolio Series filed EFFECT with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-6f33a71378e73850",
+    "slug": "optimumbank-holdings-inc-ophc",
+    "name": "OptimumBank Holdings, Inc. (OPHC)",
+    "legalName": "OptimumBank Holdings, Inc. (OPHC)",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "EFFECT",
+    "cik": "1288855",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1288855/999999999526003019/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "OptimumBank Holdings, Inc. (OPHC) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1288855/999999999526003019/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "OptimumBank Holdings, Inc. (OPHC) filed EFFECT with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-f5049079c86fa690",
+    "slug": "western-asset-managed-municipals-fund-inc-mmu",
+    "name": "WESTERN ASSET MANAGED MUNICIPALS FUND INC. (MMU)",
+    "legalName": "WESTERN ASSET MANAGED MUNICIPALS FUND INC. (MMU)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "EFFECT",
+    "cik": "886043",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/886043/999999999526003016/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "WESTERN ASSET MANAGED MUNICIPALS FUND INC. (MMU) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/886043/999999999526003016/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "WESTERN ASSET MANAGED MUNICIPALS FUND INC. (MMU) filed EFFECT with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-54c4b5aad1af4d64",
+    "slug": "xcf-global-inc-safx",
+    "name": "XCF Global, Inc. (SAFX)",
+    "legalName": "XCF Global, Inc. (SAFX)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-21",
+    "latestUpdateDate": "2026-09-21",
+    "filingType": "EFFECT",
+    "cik": "2019793",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2019793/999999999526003022/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "XCF Global, Inc. (SAFX) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019793/999999999526003022/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "XCF Global, Inc. (SAFX) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226042525/formrw.htm",
+        "publisher": "SEC",
+        "date": "2026-09-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "XCF Global, Inc. (SAFX) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226042240/formrw.htm",
+        "publisher": "SEC",
+        "date": "2026-09-10",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "XCF Global, Inc. (SAFX) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019793/999999999526002776/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-27",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "XCF Global, Inc. (SAFX) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226039112/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-08-19",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "XCF Global, Inc. (SAFX) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019793/999999999526002508/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-07-31",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "XCF Global, Inc. (SAFX) RW WD",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226032537/formrwwd.htm",
+        "publisher": "SEC",
+        "date": "2026-07-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "XCF Global, Inc. (SAFX) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019793/000149315226029513/formrw.htm",
+        "publisher": "SEC",
+        "date": "2026-06-22",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "XCF Global, Inc. (SAFX) filed EFFECT with the SEC on 2026-09-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-e657e00773bda65d",
     "slug": "broadcom-inc-avgo",
     "name": "Broadcom Inc. (AVGO)",
@@ -169880,100 +170221,6 @@
       }
     ],
     "notes": "Acurx Pharmaceuticals, Inc. (ACXP) filed EFFECT with the SEC on 2026-09-17.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-5261216588458ffb",
-    "slug": "baosheng-media-group-holdings-ltd-baos",
-    "name": "Baosheng Media Group Holdings Ltd (BAOS)",
-    "legalName": "Baosheng Media Group Holdings Ltd (BAOS)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-17",
-    "latestUpdateDate": "2026-09-17",
-    "filingType": "EFFECT",
-    "cik": "1811216",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1811216/999999999526002997/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Baosheng Media Group Holdings Ltd (BAOS) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1811216/999999999526002997/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-17",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Baosheng Media Group Holdings Ltd (BAOS) filed EFFECT with the SEC on 2026-09-17.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-1a03bc41b06ae24b",
-    "slug": "black-hawk-acquisition-corp-bkha-bkhar-bkhau",
-    "name": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU)",
-    "legalName": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-17",
-    "latestUpdateDate": "2026-09-17",
-    "filingType": "EFFECT",
-    "cik": "2000775",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2000775/999999999526002988/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2000775/999999999526002988/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-17",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Black Hawk Acquisition Corp (BKHA, BKHAR, BKHAU) filed EFFECT with the SEC on 2026-09-17.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -191735,14 +191982,6 @@
         "date": "2026-07-16",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "CATALYST PHARMACEUTICALS, INC. (CPRX) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1369568/999999999526002321/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-07-16",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "CATALYST PHARMACEUTICALS, INC. (CPRX) filed EFFECT with the SEC on 2026-07-16.",
@@ -192476,69 +192715,6 @@
       }
     ],
     "notes": "Genius Group Ltd (GNS) filed EFFECT with the SEC on 2026-07-15.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-096624fa89761b00",
-    "slug": "healthcare-triangle-inc-hcti",
-    "name": "Healthcare Triangle, Inc. (HCTI)",
-    "legalName": "Healthcare Triangle, Inc. (HCTI)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-15",
-    "latestUpdateDate": "2026-07-15",
-    "filingType": "EFFECT",
-    "cik": "1839285",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1839285/999999999526002318/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Healthcare Triangle, Inc. (HCTI) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1839285/999999999526002318/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-07-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Healthcare Triangle, Inc. (HCTI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1839285/000121390026077268/ea0297552-s1_healthcare.htm",
-        "publisher": "SEC",
-        "date": "2026-07-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Healthcare Triangle, Inc. (HCTI) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1839285/000121390026076690/ea0297572-rw_health.htm",
-        "publisher": "SEC",
-        "date": "2026-07-09",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Healthcare Triangle, Inc. (HCTI) filed EFFECT with the SEC on 2026-07-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
