@@ -2595,11 +2595,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-109351": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-22T09:56:40.002Z",
+      "lastAttemptAt": "2026-09-22T18:53:12.998Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001835856-26-000054": {
@@ -2691,11 +2691,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-037256": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-22T09:56:41.402Z",
+      "lastAttemptAt": "2026-09-22T18:53:14.532Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001683168-26-007278": {
@@ -2713,7 +2713,47 @@
       "error": null,
       "lastAttemptAt": "2026-09-22T14:51:24.147Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001539497-26-002571": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-22T18:53:09.806Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001482430-26-000038": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-22T18:53:10.419Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-397428": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-22T18:53:10.906Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001133228-26-012679": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-22T18:53:11.501Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-109516": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-22T18:53:12.066Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-22T14:51:25.163Z"
+  "updatedAt": "2026-09-22T18:53:14.782Z"
 }
