@@ -1,5 +1,60 @@
 [
   {
+    "id": "ipo-d23e747bb9857455",
+    "slug": "rokit-america-inc-rkam",
+    "name": "ROKIT America, Inc. (RKAM)",
+    "legalName": "ROKIT America, Inc. (RKAM)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-06-04",
+    "latestUpdateDate": "2026-06-04",
+    "filingType": "S-1/A",
+    "cik": "2087716",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226003627/rokit_s1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "ROKIT America, Inc. (RKAM) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226003627/rokit_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-04",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ROKIT America, Inc. (RKAM) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226002884/rokit_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-05-08",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "ROKIT America, Inc. (RKAM) filed S-1/A with the SEC on 2026-06-04.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-bfe34ebb9de2c2a9",
     "slug": "grayscale-bnb-etf-gbnb",
     "name": "Grayscale BNB ETF (GBNB)",
@@ -168,14 +223,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2107730/000119312526237193/hype_s-1_amendment_3.htm",
         "publisher": "SEC",
         "date": "2026-05-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Grayscale HYPE ETF (GHYP) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2107730/000119312526215888/hype_s-1_amendment_2.htm",
-        "publisher": "SEC",
-        "date": "2026-05-11",
         "type": "filing",
         "confidence": 1
       },
@@ -1268,6 +1315,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1918080/000121390026052661/ea0289158-s1a5_deep.htm",
         "publisher": "SEC",
         "date": "2026-05-06",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Deep Isolation Nuclear, Inc. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1918080/000121390026040521/ea0280146-s1a4_deep.htm",
+        "publisher": "SEC",
+        "date": "2026-04-06",
         "type": "filing",
         "confidence": 1
       }
@@ -13239,6 +13294,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-94c8322c399e9ee1",
+    "slug": "city-therapeutics-inc",
+    "name": "CITY THERAPEUTICS, INC.",
+    "legalName": "CITY THERAPEUTICS, INC.",
+    "sector": "Healthcare",
+    "industry": "Pharmaceutical Preparations",
+    "description": null,
+    "headquarters": "399 BINNEY ST, CAMBRIDGE, MA, 02141",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": "$0.08–$9.99/share",
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": "$75M",
+    "offeringSizeNum": 75000000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "market",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-24",
+    "latestUpdateDate": "2026-09-24",
+    "filingType": "S-1",
+    "cik": "2143850",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2143850/000110465926110430/tm2619715-5_s1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "CITY THERAPEUTICS, INC. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2143850/000110465926110430/tm2619715-5_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-24",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "CITY THERAPEUTICS, INC. filed S-1 with the SEC on 2026-09-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-99bd9299c367c6d0",
     "slug": "evmand-corp",
     "name": "Evmand Corp",
@@ -13349,6 +13451,61 @@
       }
     ],
     "notes": "Evolution Metals & Technologies Corp. (EMAT) filed S-1 with the SEC on 2026-09-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-10761a7a3d10de7c",
+    "slug": "fdctech-inc-fdct",
+    "name": "FDCTECH, INC. (FDCT)",
+    "legalName": "FDCTECH, INC. (FDCT)",
+    "sector": "Technology",
+    "industry": "Services-Prepackaged Software",
+    "description": null,
+    "headquarters": "200 SPECTRUM DRIVE, SUITE 300, IRVINE, CA, 92618",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "OTC",
+    "ticker": "FDCT",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-24",
+    "latestUpdateDate": "2026-09-24",
+    "filingType": "S-1",
+    "cik": "1722731",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1722731/000149315226044195/forms-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "FDCTECH, INC. (FDCT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1722731/000149315226044195/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-09-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "FDCTECH, INC. (FDCT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1722731/000149315226042707/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "FDCTECH, INC. (FDCT) filed S-1 with the SEC on 2026-09-24.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -13475,6 +13632,266 @@
       }
     ],
     "notes": "Hacker Interstellar Inc. (SOUD) filed F-1 with the SEC on 2026-09-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-a10e3bc4fe8ebbe3",
+    "slug": "kinrg-inc-byop",
+    "name": "KiNRG, Inc. (BYOP)",
+    "legalName": "KiNRG, Inc. (BYOP)",
+    "sector": "Other",
+    "industry": "Heavy Construction Other Than Bldg Const - Contractors",
+    "description": null,
+    "headquarters": "839 BESTGATE ROAD, SUITE 400, ANNAPOLIS, MD, 21401",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": "$5–$7/share",
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "NYSE American",
+    "ticker": "BYOP",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-24",
+    "latestUpdateDate": "2026-09-24",
+    "filingType": "S-1",
+    "cik": "95572",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/95572/000121390026103116/ea0306428-s1a2_kinrg.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "KiNRG, Inc. (BYOP) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/95572/000121390026103116/ea0306428-s1a2_kinrg.htm",
+        "publisher": "SEC",
+        "date": "2026-09-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "KiNRG, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/95572/000121390026099804/ea0304622-s1a1_kinrg.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "KiNRG, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/95572/000121390026086369/ea0300773-s1_kinrg.htm",
+        "publisher": "SEC",
+        "date": "2026-08-07",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "KiNRG, Inc. RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/95572/000173112225001206/e6828_rw.htm",
+        "publisher": "SEC",
+        "date": "2025-09-08",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "KiNRG, Inc. (BYOP) filed S-1 with the SEC on 2026-09-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-eab11892b43d6565",
+    "slug": "pbt-land-and-minerals-inc",
+    "name": "PBT Land & Minerals, Inc.",
+    "legalName": "PBT Land & Minerals, Inc.",
+    "sector": "Real Estate",
+    "industry": "Oil Royalty Traders",
+    "description": null,
+    "headquarters": "400 PINE STREET, SUITE 1010, ABILENE, TX, 79604",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-24",
+    "latestUpdateDate": "2026-09-24",
+    "filingType": "S-1",
+    "cik": "2142855",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2142855/000121390026103083/ea0299258-04.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "PBT Land & Minerals, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2142855/000121390026103083/ea0299258-04.htm",
+        "publisher": "SEC",
+        "date": "2026-09-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "PBT Land & Minerals, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2142855/000121390026097366/ea0299258-02.htm",
+        "publisher": "SEC",
+        "date": "2026-09-04",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "PBT Land & Minerals, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2142855/000121390026082502/ea0299258-01.htm",
+        "publisher": "SEC",
+        "date": "2026-07-29",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "PBT Land & Minerals, Inc. filed S-1 with the SEC on 2026-09-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-4ed869bdb6d6ad92",
+    "slug": "scinai-immunotherapeutics-ltd-scni",
+    "name": "Scinai Immunotherapeutics Ltd. (SCNI)",
+    "legalName": "Scinai Immunotherapeutics Ltd. (SCNI)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-24",
+    "latestUpdateDate": "2026-09-24",
+    "filingType": "F-1",
+    "cik": "1611747",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1611747/000121390026103067/ea0306554-f1_scinai.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Scinai Immunotherapeutics Ltd. (SCNI) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1611747/000121390026103067/ea0306554-f1_scinai.htm",
+        "publisher": "SEC",
+        "date": "2026-09-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Scinai Immunotherapeutics Ltd. (SCNI) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1611747/999999999526002805/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-28",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Scinai Immunotherapeutics Ltd. (SCNI) filed F-1 with the SEC on 2026-09-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-4b27bc6ef68ca9f9",
+    "slug": "southport-acquisition-corp-ii",
+    "name": "Southport Acquisition Corp. II",
+    "legalName": "Southport Acquisition Corp. II",
+    "sector": "Real Estate",
+    "industry": "Blank Checks",
+    "description": null,
+    "headquarters": "8 BOLLING PLACE, GREENWICH, CT, 06830",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": "$400M",
+    "offeringSizeNum": 400000000,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "volume",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-24",
+    "latestUpdateDate": "2026-09-24",
+    "filingType": "S-1",
+    "cik": "2148436",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526004287/southacq2s1a3092326.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Southport Acquisition Corp. II S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526004287/southacq2s1a3092326.htm",
+        "publisher": "SEC",
+        "date": "2026-09-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Southport Acquisition Corp. II S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526003872/southacq2s1a2090226.htm",
+        "publisher": "SEC",
+        "date": "2026-09-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Southport Acquisition Corp. II S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526003758/southacq2s1a1081826.htm",
+        "publisher": "SEC",
+        "date": "2026-08-28",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Southport Acquisition Corp. II S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526003326/southacq2s1080226.htm",
+        "publisher": "SEC",
+        "date": "2026-08-07",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Southport Acquisition Corp. II filed S-1 with the SEC on 2026-09-24.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -17259,7 +17676,7 @@
     "status": "filed",
     "statusLabel": "Filed",
     "exchange": "Nasdaq",
-    "ticker": "on",
+    "ticker": "NIAA",
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-09-16",
@@ -17705,116 +18122,6 @@
       }
     ],
     "notes": "EvoNexus Group LTD (EVON) filed F-1 with the SEC on 2026-09-15.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-10761a7a3d10de7c",
-    "slug": "fdctech-inc-fdct",
-    "name": "FDCTECH, INC. (FDCT)",
-    "legalName": "FDCTECH, INC. (FDCT)",
-    "sector": "Technology",
-    "industry": "Services-Prepackaged Software",
-    "description": null,
-    "headquarters": "200 SPECTRUM DRIVE, SUITE 300, IRVINE, CA, 92618",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "OTC",
-    "ticker": "FDCT",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-15",
-    "latestUpdateDate": "2026-09-15",
-    "filingType": "S-1",
-    "cik": "1722731",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1722731/000149315226042707/forms-1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "FDCTECH, INC. (FDCT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1722731/000149315226042707/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-09-15",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "FDCTECH, INC. (FDCT) filed S-1 with the SEC on 2026-09-15.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-a10e3bc4fe8ebbe3",
-    "slug": "kinrg-inc",
-    "name": "KiNRG, Inc.",
-    "legalName": "KiNRG, Inc.",
-    "sector": "Other",
-    "industry": "Heavy Construction Other Than Bldg Const - Contractors",
-    "description": null,
-    "headquarters": "839 BESTGATE ROAD, SUITE 400, ANNAPOLIS, MD, 21401",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": "$4–$5/share",
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "NYSE American",
-    "ticker": "volume",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-15",
-    "latestUpdateDate": "2026-09-15",
-    "filingType": "S-1",
-    "cik": "95572",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/95572/000121390026099804/ea0304622-s1a1_kinrg.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "KiNRG, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/95572/000121390026099804/ea0304622-s1a1_kinrg.htm",
-        "publisher": "SEC",
-        "date": "2026-09-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "KiNRG, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/95572/000121390026086369/ea0300773-s1_kinrg.htm",
-        "publisher": "SEC",
-        "date": "2026-08-07",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "KiNRG, Inc. RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/95572/000173112225001206/e6828_rw.htm",
-        "publisher": "SEC",
-        "date": "2025-09-08",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "KiNRG, Inc. filed S-1 with the SEC on 2026-09-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -19771,69 +20078,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-4b27bc6ef68ca9f9",
-    "slug": "southport-acquisition-corp-ii",
-    "name": "Southport Acquisition Corp. II",
-    "legalName": "Southport Acquisition Corp. II",
-    "sector": "Real Estate",
-    "industry": "Blank Checks",
-    "description": null,
-    "headquarters": "8 BOLLING PLACE, GREENWICH, CT, 06830",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": "$400M",
-    "offeringSizeNum": 400000000,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "volume",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-08",
-    "latestUpdateDate": "2026-09-08",
-    "filingType": "S-1",
-    "cik": "2148436",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526003872/southacq2s1a2090226.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Southport Acquisition Corp. II S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526003872/southacq2s1a2090226.htm",
-        "publisher": "SEC",
-        "date": "2026-09-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Southport Acquisition Corp. II S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526003758/southacq2s1a1081826.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Southport Acquisition Corp. II S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2148436/000118518526003326/southacq2s1080226.htm",
-        "publisher": "SEC",
-        "date": "2026-08-07",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Southport Acquisition Corp. II filed S-1 with the SEC on 2026-09-08.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-07f5ee1def728b20",
     "slug": "albatross-acquisition-corp-atac",
     "name": "Albatross Acquisition Corp (ATAC)",
@@ -20236,61 +20480,6 @@
       }
     ],
     "notes": "Legion Capital Acquisition Corp. filed S-1 with the SEC on 2026-09-04.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-eab11892b43d6565",
-    "slug": "pbt-land-and-minerals-inc",
-    "name": "PBT Land & Minerals, Inc.",
-    "legalName": "PBT Land & Minerals, Inc.",
-    "sector": "Real Estate",
-    "industry": "Oil Royalty Traders",
-    "description": null,
-    "headquarters": "400 PINE STREET, SUITE 1010, ABILENE, TX, 79604",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-04",
-    "latestUpdateDate": "2026-09-04",
-    "filingType": "S-1",
-    "cik": "2142855",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2142855/000121390026097366/ea0299258-02.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "PBT Land & Minerals, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2142855/000121390026097366/ea0299258-02.htm",
-        "publisher": "SEC",
-        "date": "2026-09-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "PBT Land & Minerals, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2142855/000121390026082502/ea0299258-01.htm",
-        "publisher": "SEC",
-        "date": "2026-07-29",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "PBT Land & Minerals, Inc. filed S-1 with the SEC on 2026-09-04.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -22010,21 +22199,21 @@
     "name": "GridAI Technologies Corp. (GRDX)",
     "legalName": "GridAI Technologies Corp. (GRDX)",
     "sector": "Energy",
-    "industry": "Electric & Other Services Combined",
+    "industry": null,
     "description": null,
-    "headquarters": "433 PLAZA REAL, SUITE 275, BOCA RATON, FL",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$900,000",
-    "offeringSizeNum": 900000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "GRDX",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-24",
@@ -24697,14 +24886,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2115659/000182912626007852/watumetalsacq_s1a.htm",
         "publisher": "SEC",
         "date": "2026-07-27",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Watu Metals Acquisition Corp S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2115659/000182912626006023/watumetalsacq_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-04",
         "type": "filing",
         "confidence": 1
       }
@@ -27601,7 +27782,7 @@
         "confidence": 1
       },
       {
-        "title": "Gameverse Interactive Corp S-1",
+        "title": "Gameverse Interactive Corp S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2017541/000149315226027320/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-06-04",
@@ -29677,61 +29858,6 @@
       }
     ],
     "notes": "BOUNDLESS GROUP (BLTG) filed F-1 with the SEC on 2026-06-04.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-d23e747bb9857455",
-    "slug": "rokit-america-inc-rkam",
-    "name": "ROKIT America, Inc. (RKAM)",
-    "legalName": "ROKIT America, Inc. (RKAM)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-06-04",
-    "latestUpdateDate": "2026-06-04",
-    "filingType": "S-1",
-    "cik": "2087716",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226003627/rokit_s1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "ROKIT America, Inc. (RKAM) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226003627/rokit_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ROKIT America, Inc. (RKAM) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087716/000147793226002884/rokit_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-08",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "ROKIT America, Inc. (RKAM) filed S-1 with the SEC on 2026-06-04.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -87967,6 +88093,101 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-2603cc2d6eef288e",
+    "slug": "metals-royalty-co-inc-tmcr",
+    "name": "Metals Royalty Co Inc. (TMCR)",
+    "legalName": "Metals Royalty Co Inc. (TMCR)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-09-24",
+    "filingDate": "2026-09-24",
+    "latestUpdateDate": "2026-09-24",
+    "filingType": "F-1",
+    "cik": "2087398",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926110437/tm2611613-8_f1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Metals Royalty Co Inc. (TMCR) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926110437/tm2611613-8_f1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Metals Royalty Co Inc. (TMCR) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926110429/tm2625277-4_f1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Metals Royalty Co Inc. (TMCR) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926076367/tm2616840-4_f1.htm",
+        "publisher": "SEC",
+        "date": "2026-06-22",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Metals Royalty Co Inc. (TMCR) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926040599/tm2526563-24_424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-04-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Metals Royalty Co Inc. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926027721/tm2526563-15_f1a.htm",
+        "publisher": "SEC",
+        "date": "2026-03-13",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Metals Royalty Co Inc. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926026481/tm2526563-13_f1a.htm",
+        "publisher": "SEC",
+        "date": "2026-03-11",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Metals Royalty Co Inc. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926021062/tm2526563-10_f1.htm",
+        "publisher": "SEC",
+        "date": "2026-02-27",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Metals Royalty Co Inc. (TMCR) filed F-1 with the SEC on 2026-09-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-d125efafb3fc605b",
     "slug": "rui-holdings-inc",
     "name": "RUI Holdings Inc",
@@ -99524,18 +99745,10 @@
         "confidence": 1
       },
       {
-        "title": "Idaho Copper Corp (COPR) S-1",
+        "title": "Idaho Copper Corp (COPR) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1263364/000149315226027323/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-06-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Idaho Copper Corp (COPR) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1263364/000149315226022155/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-11",
         "type": "filing",
         "confidence": 1
       }
@@ -101134,85 +101347,6 @@
       }
     ],
     "notes": "Gores Holdings XI, Inc. (GHXI) filed 424B4 with the SEC on 2026-06-23.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-2603cc2d6eef288e",
-    "slug": "metals-royalty-co-inc-tmcr",
-    "name": "Metals Royalty Co Inc. (TMCR)",
-    "legalName": "Metals Royalty Co Inc. (TMCR)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-06-22",
-    "filingDate": "2026-06-22",
-    "latestUpdateDate": "2026-06-22",
-    "filingType": "F-1",
-    "cik": "2087398",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926076367/tm2616840-4_f1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Metals Royalty Co Inc. (TMCR) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926076367/tm2616840-4_f1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Metals Royalty Co Inc. (TMCR) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926040599/tm2526563-24_424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-04-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Metals Royalty Co Inc. F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926027721/tm2526563-15_f1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-13",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Metals Royalty Co Inc. F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926026481/tm2526563-13_f1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Metals Royalty Co Inc. F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087398/000110465926021062/tm2526563-10_f1.htm",
-        "publisher": "SEC",
-        "date": "2026-02-27",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Metals Royalty Co Inc. (TMCR) filed F-1 with the SEC on 2026-06-22.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -104602,14 +104736,6 @@
         "date": "2026-05-14",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Lincoln International, Inc. (LCLN) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1925283/000162828026033128/lincolninternational-sx1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-11",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Lincoln International, Inc. (LCLN) filed 424B4 with the SEC on 2026-05-21.",
@@ -105012,14 +105138,6 @@
         "date": "2026-05-18",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Patriot Acquisition Corp./CI S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2099095/000121390026054455/ea0268595-03.htm",
-        "publisher": "SEC",
-        "date": "2026-05-11",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Patriot Acquisition Corp./CI (PTAC) filed 424B4 with the SEC on 2026-05-18.",
@@ -105246,14 +105364,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2090441/000121390026057787/ea0261600-07.htm",
         "publisher": "SEC",
         "date": "2026-05-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Iron Dome Acquisition I Corp. (IDAC) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2090441/000121390026054599/ea0261600-06.htm",
-        "publisher": "SEC",
-        "date": "2026-05-11",
         "type": "filing",
         "confidence": 1
       }
@@ -105624,14 +105734,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026034849/fervoenergy-424b4.htm",
         "publisher": "SEC",
         "date": "2026-05-14",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Fervo Energy Co (FRVO) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026033127/fervoenergy-sx1a3.htm",
-        "publisher": "SEC",
-        "date": "2026-05-11",
         "type": "filing",
         "confidence": 1
       },
@@ -178612,53 +178714,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-4ed869bdb6d6ad92",
-    "slug": "scinai-immunotherapeutics-ltd-scni",
-    "name": "Scinai Immunotherapeutics Ltd. (SCNI)",
-    "legalName": "Scinai Immunotherapeutics Ltd. (SCNI)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-08-28",
-    "latestUpdateDate": "2026-08-28",
-    "filingType": "EFFECT",
-    "cik": "1611747",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1611747/999999999526002805/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Scinai Immunotherapeutics Ltd. (SCNI) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1611747/999999999526002805/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Scinai Immunotherapeutics Ltd. (SCNI) filed EFFECT with the SEC on 2026-08-28.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-05338716a0307238",
     "slug": "t-rowe-price-goldman-sachs-all-equity-access-fund",
     "name": "T. Rowe Price Goldman Sachs All Equity Access Fund",
@@ -185367,7 +185422,7 @@
         "confidence": 1
       },
       {
-        "title": "SHF Holdings, Inc. (SHFS, SHFSW) S-1",
+        "title": "SHF Holdings, Inc. (SHFS, SHFSW) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1854963/000149315226027258/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-06-04",
