@@ -2843,11 +2843,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001185185-26-004213": {
-      "attempts": 3,
+      "attempts": 4,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-09-24T04:46:46.579Z",
+      "lastAttemptAt": "2026-09-24T15:04:00.551Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001999371-26-021134": {
@@ -2993,7 +2993,55 @@
       "error": null,
       "lastAttemptAt": "2026-09-23T23:41:07.787Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-110234": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "primary_source_truncated_before_verification",
+      "error": null,
+      "lastAttemptAt": "2026-09-24T15:03:55.854Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001661306-26-000092": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-24T15:03:56.393Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-102858": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-24T15:03:56.723Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-102844": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-09-24T15:03:57.124Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001437749-26-031092": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-09-24T15:03:58.349Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-102800": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "primary_source_truncated_before_verification",
+      "error": null,
+      "lastAttemptAt": "2026-09-24T15:03:59.440Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-09-24T09:59:28.269Z"
+  "updatedAt": "2026-09-24T15:04:00.802Z"
 }
