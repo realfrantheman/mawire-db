@@ -1,60 +1,5 @@
 [
   {
-    "id": "ipo-a4014ea285a87ab9",
-    "slug": "tric-global-inc",
-    "name": "TRIC Global, Inc.",
-    "legalName": "TRIC Global, Inc.",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-02",
-    "latestUpdateDate": "2026-07-02",
-    "filingType": "S-1/A",
-    "cik": "2124122",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000012/tric_s1a2.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "TRIC Global, Inc. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000012/tric_s1a2.htm",
-        "publisher": "SEC",
-        "date": "2026-07-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "TRIC Global, Inc. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000010/tric_s1a1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-15",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "TRIC Global, Inc. filed S-1/A with the SEC on 2026-07-02.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-d23e747bb9857455",
     "slug": "rokit-america-inc-rkam",
     "name": "ROKIT America, Inc. (RKAM)",
@@ -14819,7 +14764,7 @@
         "confidence": 1
       },
       {
-        "title": "AEI CapForce II Investment Corp S-1/A",
+        "title": "AEI CapForce II Investment Corp S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1875655/000149315226035799/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-08-03",
@@ -19194,6 +19139,14 @@
         "date": "2026-07-30",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "Gold Mountain Acquisition Corp. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2105318/000149315226031978/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-02",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "Gold Mountain Acquisition Corp. (GDMT) filed S-1 with the SEC on 2026-09-11.",
@@ -20083,7 +20036,7 @@
         "confidence": 1
       },
       {
-        "title": "Albatross Acquisition Corp (ATAC) S-1/A",
+        "title": "Albatross Acquisition Corp (ATAC) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2135163/000182912626008252/albatrossacq_s1a.htm",
         "publisher": "SEC",
         "date": "2026-08-03",
@@ -20793,6 +20746,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-bc1b843695fca6f6",
+    "slug": "grande-group-ltd-hk-gran",
+    "name": "Grande Group Ltd/HK (GRAN)",
+    "legalName": "Grande Group Ltd/HK (GRAN)",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-09-02",
+    "latestUpdateDate": "2026-09-02",
+    "filingType": "F-1",
+    "cik": "2027722",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2027722/000121390026096486/ea0304185-f1_grande.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Grande Group Ltd/HK (GRAN) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2027722/000121390026096486/ea0304185-f1_grande.htm",
+        "publisher": "SEC",
+        "date": "2026-09-02",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Grande Group Ltd/HK (GRAN) filed F-1 with the SEC on 2026-09-02.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-3acad518c15d9280",
     "slug": "henghong-technology-inc",
     "name": "HengHong Technology Inc.",
@@ -21382,6 +21382,211 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-ae1a8efa40726419",
+    "slug": "zhibao-technology-inc-zbao",
+    "name": "Zhibao Technology Inc. (ZBAO)",
+    "legalName": "Zhibao Technology Inc. (ZBAO)",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-08-31",
+    "latestUpdateDate": "2026-08-31",
+    "filingType": "F-1",
+    "cik": "1966750",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026095337/ea0303198-f1_zhibao.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Zhibao Technology Inc. (ZBAO) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026095337/ea0303198-f1_zhibao.htm",
+        "publisher": "SEC",
+        "date": "2026-08-31",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Zhibao Technology Inc. (ZBAO) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026063037/ea029270101-f1a2_zhibao.htm",
+        "publisher": "SEC",
+        "date": "2026-06-01",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Zhibao Technology Inc. (ZBAO) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026055814/ea0290377-f1a1_zhibao.htm",
+        "publisher": "SEC",
+        "date": "2026-05-13",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Zhibao Technology Inc. (ZBAO) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026047092/ea0286440-f1_zhibao.htm",
+        "publisher": "SEC",
+        "date": "2026-04-23",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Zhibao Technology Inc. (ZBAO) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026006749/ea0273699-f1a3_zhibao.htm",
+        "publisher": "SEC",
+        "date": "2026-01-22",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Zhibao Technology Inc. (ZBAO) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026003488/ea0271358-f1a2_zhibao.htm",
+        "publisher": "SEC",
+        "date": "2026-01-12",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Zhibao Technology Inc. (ZBAO) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390025092467/ea0258781-f1a1_zhibao.htm",
+        "publisher": "SEC",
+        "date": "2025-09-26",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Zhibao Technology Inc. (ZBAO) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390025033525/ea0238848-rw_zhibao.htm",
+        "publisher": "SEC",
+        "date": "2025-04-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Zhibao Technology Inc. (ZBAO) filed F-1 with the SEC on 2026-08-31.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-bb33eb6330d9347a",
+    "slug": "adaptin-bio-inc-aptn",
+    "name": "ADAPTIN BIO, INC. (APTN)",
+    "legalName": "ADAPTIN BIO, INC. (APTN)",
+    "sector": "Healthcare",
+    "industry": "Biological Products, (No Diagnostic Substances)",
+    "description": null,
+    "headquarters": "3540 TORINGDON WAY, SUITE 200, #250, CHARLOTTE, NC, 28277",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "OTC",
+    "ticker": "APTN",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-08-28",
+    "latestUpdateDate": "2026-08-28",
+    "filingType": "S-1",
+    "cik": "1938571",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1938571/000121390026095034/ea0303043-s1_adaptin.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "ADAPTIN BIO, INC. (APTN) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1938571/000121390026095034/ea0303043-s1_adaptin.htm",
+        "publisher": "SEC",
+        "date": "2026-08-28",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ADAPTIN BIO, INC. (APTN) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1938571/999999999526002384/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-07-22",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "ADAPTIN BIO, INC. (APTN) filed S-1 with the SEC on 2026-08-28.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-7095719108fa614e",
+    "slug": "air-global-plc-aiir",
+    "name": "AIR Global PLC (AIIR)",
+    "legalName": "AIR Global PLC (AIIR)",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-08-28",
+    "latestUpdateDate": "2026-08-28",
+    "filingType": "F-1",
+    "cik": "2097725",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2097725/000119312526372035/ck0002097725-20260828.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "AIR Global PLC (AIIR) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2097725/000119312526372035/ck0002097725-20260828.htm",
+        "publisher": "SEC",
+        "date": "2026-08-28",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "AIR Global PLC (AIIR) filed F-1 with the SEC on 2026-08-28.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-2fc51f24a442c9df",
     "slug": "fast-track-group-ftrkf",
     "name": "Fast Track Group (FTRKF)",
@@ -21547,6 +21752,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-b46ef808b7fe8974",
+    "slug": "obsidian-therapeutics-inc-obx",
+    "name": "Obsidian Therapeutics, Inc. (OBX)",
+    "legalName": "Obsidian Therapeutics, Inc. (OBX)",
+    "sector": "Healthcare",
+    "industry": "Pharmaceutical Preparations",
+    "description": null,
+    "headquarters": "1030 MASSACHUSETTS AVENUE, CAMBRIDGE, MA, 02138",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "OBX",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-08-28",
+    "latestUpdateDate": "2026-08-28",
+    "filingType": "S-1",
+    "cik": "2130606",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2130606/000119312526374729/d127696ds1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Obsidian Therapeutics, Inc. (OBX) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2130606/000119312526374729/d127696ds1.htm",
+        "publisher": "SEC",
+        "date": "2026-08-28",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Obsidian Therapeutics, Inc. (OBX) filed S-1 with the SEC on 2026-08-28.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-26457f5e570910bd",
     "slug": "turbogen-ltd-trbg",
     "name": "Turbogen Ltd. (TRBG)",
@@ -21680,7 +21932,7 @@
         "confidence": 1
       },
       {
-        "title": "USBC, Inc. (USBC) S-1/A",
+        "title": "USBC, Inc. (USBC) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1074828/000107482826000044/usbc-20260706.htm",
         "publisher": "SEC",
         "date": "2026-07-06",
@@ -22158,21 +22410,21 @@
     "name": "GridAI Technologies Corp. (GRDX)",
     "legalName": "GridAI Technologies Corp. (GRDX)",
     "sector": "Energy",
-    "industry": "Electric & Other Services Combined",
+    "industry": null,
     "description": null,
-    "headquarters": "433 PLAZA REAL, SUITE 275, BOCA RATON, FL",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$900,000",
-    "offeringSizeNum": 900000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "GRDX",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-24",
@@ -22316,9 +22568,9 @@
     "name": "Alzamend Neuro, Inc. (ALZN)",
     "legalName": "Alzamend Neuro, Inc. (ALZN)",
     "sector": "Healthcare",
-    "industry": "Pharmaceutical Preparations",
+    "industry": null,
     "description": null,
-    "headquarters": "480 PEACHTREE ROAD NE, SECOND FLOOR, SUITE 103, ATLANTA, GA, 30326",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -22329,8 +22581,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "ALZN",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-21",
@@ -22664,6 +22916,77 @@
       }
     ],
     "notes": "Timwood Holdings Ltd (TIWD) filed F-1 with the SEC on 2026-08-20.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-fb97937779ad9544",
+    "slug": "canary-staked-trx-etf",
+    "name": "Canary Staked TRX ETF",
+    "legalName": "Canary Staked TRX ETF",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-08-19",
+    "latestUpdateDate": "2026-08-19",
+    "filingType": "S-1",
+    "cik": "2064768",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126018236/trx-s1a_081926.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Canary Staked TRX ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126018236/trx-s1a_081926.htm",
+        "publisher": "SEC",
+        "date": "2026-08-19",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Canary Staked TRX ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126015859/canary-s1a_072426.htm",
+        "publisher": "SEC",
+        "date": "2026-07-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Canary Staked TRX ETF S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126013365/canary-s1a_062426.htm",
+        "publisher": "SEC",
+        "date": "2026-06-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Canary Staked TRX ETF S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126010857/canary-s1a_051526.htm",
+        "publisher": "SEC",
+        "date": "2026-05-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Canary Staked TRX ETF filed S-1 with the SEC on 2026-08-19.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -26697,6 +27020,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-a4014ea285a87ab9",
+    "slug": "tric-global-inc",
+    "name": "TRIC Global, Inc.",
+    "legalName": "TRIC Global, Inc.",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-02",
+    "latestUpdateDate": "2026-07-02",
+    "filingType": "S-1",
+    "cik": "2124122",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000012/tric_s1a2.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "TRIC Global, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000012/tric_s1a2.htm",
+        "publisher": "SEC",
+        "date": "2026-07-02",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "TRIC Global, Inc. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000010/tric_s1a1.htm",
+        "publisher": "SEC",
+        "date": "2026-05-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "TRIC Global, Inc. filed S-1 with the SEC on 2026-07-02.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-ac214cf7cb867f4e",
     "slug": "asia-ai-group-inc",
     "name": "Asia AI Group Inc",
@@ -30596,6 +30974,93 @@
       }
     ],
     "notes": "Xanadu Quantum Technologies Ltd (XNDU) filed F-1 with the SEC on 2026-05-22.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-d5d1443cbb7540e0",
+    "slug": "blue-gold-ltd-bgl-bglww",
+    "name": "Blue Gold Ltd (BGL, BGLWW)",
+    "legalName": "Blue Gold Ltd (BGL, BGLWW)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-05-21",
+    "latestUpdateDate": "2026-05-21",
+    "filingType": "F-1",
+    "cik": "2019435",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2019435/000121390026059736/ea0291610-f1a1_bluegold.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Blue Gold Ltd (BGL, BGLWW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390026059736/ea0291610-f1a1_bluegold.htm",
+        "publisher": "SEC",
+        "date": "2026-05-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Blue Gold Ltd (BGL, BGLWW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390026052984/ea0284484-f1_bluegold.htm",
+        "publisher": "SEC",
+        "date": "2026-05-07",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Blue Gold Ltd (BGL, BGLWW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390026012755/ea0273347-f1a1_bluegold.htm",
+        "publisher": "SEC",
+        "date": "2026-02-05",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Blue Gold Ltd (BGL, BGLWW) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390025100897/ea0261734-f1a1_bluegold.htm",
+        "publisher": "SEC",
+        "date": "2025-10-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Blue Gold Ltd (BGL, BGLWW) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390025100891/ea0261735-f1a1_bluegold.htm",
+        "publisher": "SEC",
+        "date": "2025-10-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Blue Gold Ltd (BGL, BGLWW) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390025087356/ea0257140-f1a3_bluegold.htm",
+        "publisher": "SEC",
+        "date": "2025-09-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Blue Gold Ltd (BGL, BGLWW) filed F-1 with the SEC on 2026-05-21.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -35143,6 +35608,53 @@
       "edgesFound": 0,
       "errors": []
     }
+  },
+  {
+    "id": "ipo-950a0d9802bbb3b0",
+    "slug": "energys-group-ltd-engs",
+    "name": "Energys Group Ltd (ENGS)",
+    "legalName": "Energys Group Ltd (ENGS)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-03-03",
+    "latestUpdateDate": "2026-03-03",
+    "filingType": "F-1",
+    "cik": "1971828",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1971828/000149315226008660/formf-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Energys Group Ltd (ENGS) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1971828/000149315226008660/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-03-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Energys Group Ltd (ENGS) filed F-1 with the SEC on 2026-03-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
   },
   {
     "id": "ipo-548bac1dca29050b",
@@ -89922,14 +90434,6 @@
         "confidence": 1
       },
       {
-        "title": "Laser Photonics Corp (LASE) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1807887/999999999526002943/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
         "title": "Laser Photonics Corp (LASE) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1807887/000149315226041999/forms-1a.htm",
         "publisher": "SEC",
@@ -90058,598 +90562,6 @@
       }
     ],
     "notes": "TJGC GROUP Ltd (TJGC) filed EFFECT with the SEC on 2026-09-14.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-5979d77b8796127c",
-    "slug": "calisa-acquisition-corp-alis-alisr-alisu",
-    "name": "Calisa Acquisition Corp (ALIS, ALISR, ALISU)",
-    "legalName": "Calisa Acquisition Corp (ALIS, ALISR, ALISU)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-09-11",
-    "filingDate": "2026-09-11",
-    "latestUpdateDate": "2026-09-11",
-    "filingType": "EFFECT",
-    "cik": "2026767",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2026767/999999999526002947/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Calisa Acquisition Corp (ALIS, ALISR, ALISU) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2026767/999999999526002947/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Calisa Acquisition Corp 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2026767/000149315225018879/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-10-22",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Calisa Acquisition Corp (ALIS, ALISR, ALISU) filed EFFECT with the SEC on 2026-09-11.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-3d3a6e383d133f8e",
-    "slug": "can-fite-biopharma-ltd-canf",
-    "name": "Can-Fite BioPharma Ltd. (CANF)",
-    "legalName": "Can-Fite BioPharma Ltd. (CANF)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-09-11",
-    "filingDate": "2026-09-11",
-    "latestUpdateDate": "2026-09-11",
-    "filingType": "EFFECT",
-    "cik": "1536196",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1536196/999999999526002945/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Can-Fite BioPharma Ltd. (CANF) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1536196/999999999526002945/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Can-Fite BioPharma Ltd. (CANF) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1536196/999999999526002944/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Can-Fite BioPharma Ltd. (CANF) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1536196/000121390025068481/ea0250500-424b4_canfite.htm",
-        "publisher": "SEC",
-        "date": "2025-07-29",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Can-Fite BioPharma Ltd. (CANF) filed EFFECT with the SEC on 2026-09-11.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-f0ccf0913870aa35",
-    "slug": "first-breach-inc-fbdt",
-    "name": "First Breach, Inc. (FBDT)",
-    "legalName": "First Breach, Inc. (FBDT)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-09-11",
-    "filingDate": "2026-09-11",
-    "latestUpdateDate": "2026-09-11",
-    "filingType": "EFFECT",
-    "cik": "1892704",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1892704/999999999526002955/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "First Breach, Inc. (FBDT) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/999999999526002955/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Breach, Inc. (FBDT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226041268/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-09-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Breach, Inc. (FBDT) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226040850/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-08-31",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Breach, Inc. (FBDT) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226039415/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-08-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Breach, Inc. (FBDT) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/999999999526002634/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-12",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Breach, Inc. (FBDT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226036554/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-07",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Breach, Inc. (FBDT) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226035840/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-03",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Breach, Inc. (FBDT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226028434/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-12",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "First Breach, Inc. (FBDT) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226025360/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-27",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "First Breach, Inc. (FBDT) filed EFFECT with the SEC on 2026-09-11.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-b5c9c23f768d9e2a",
-    "slug": "nasus-pharma-ltd-nsrx",
-    "name": "Nasus Pharma Ltd (NSRX)",
-    "legalName": "Nasus Pharma Ltd (NSRX)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-09-11",
-    "filingDate": "2026-09-11",
-    "latestUpdateDate": "2026-09-11",
-    "filingType": "EFFECT",
-    "cik": "2029039",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2029039/999999999526002954/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Nasus Pharma Ltd (NSRX) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2029039/999999999526002954/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Nasus Pharma Ltd (NSRX) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2029039/999999999526002715/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Nasus Pharma Ltd (NSRX) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2029039/000149315226008581/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-03-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Nasus Pharma Ltd (NSRX) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2029039/000164117225023826/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-08-14",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Nasus Pharma Ltd (NSRX) filed EFFECT with the SEC on 2026-09-11.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-0a0759390b1ef708",
-    "slug": "bridgebio-oncology-therapeutics-inc-bbot",
-    "name": "BridgeBio Oncology Therapeutics, Inc. (BBOT)",
-    "legalName": "BridgeBio Oncology Therapeutics, Inc. (BBOT)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-09-10",
-    "filingDate": "2026-09-10",
-    "latestUpdateDate": "2026-09-10",
-    "filingType": "EFFECT",
-    "cik": "1869105",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1869105/999999999526002939/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "BridgeBio Oncology Therapeutics, Inc. (BBOT) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1869105/999999999526002939/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "BridgeBio Oncology Therapeutics, Inc. (BBOT) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1869105/999999999526002909/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Helix Acquisition Corp. II (HLXB) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1869105/000121390025062864/ea0237401-11.htm",
-        "publisher": "SEC",
-        "date": "2025-07-10",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "BridgeBio Oncology Therapeutics, Inc. (BBOT) filed EFFECT with the SEC on 2026-09-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-1151ace82793aa9c",
-    "slug": "intercont-cayman-ltd-nct",
-    "name": "Intercont (Cayman) Ltd (NCT)",
-    "legalName": "Intercont (Cayman) Ltd (NCT)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-09-10",
-    "filingDate": "2026-09-10",
-    "latestUpdateDate": "2026-09-10",
-    "filingType": "EFFECT",
-    "cik": "2018529",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2018529/999999999526002933/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Intercont (Cayman) Ltd (NCT) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2018529/999999999526002933/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Intercont (Cayman) Ltd (NCT) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390026075881/ea0291199-05.htm",
-        "publisher": "SEC",
-        "date": "2026-07-07",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Intercont (Cayman) Ltd (NCT) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390026069967/ea0291199-04.htm",
-        "publisher": "SEC",
-        "date": "2026-06-18",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Intercont (Cayman) Ltd (NCT) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390026066161/ea0291199-03.htm",
-        "publisher": "SEC",
-        "date": "2026-06-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Intercont (Cayman) Ltd (NCT) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390025115908/ea0258017-04.htm",
-        "publisher": "SEC",
-        "date": "2025-11-28",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Intercont (Cayman) Ltd (NCT) filed EFFECT with the SEC on 2026-09-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-f324dd9d66c4a1e4",
-    "slug": "defsec-technologies-inc-dfsc-dfscw",
-    "name": "DEFSEC Technologies Inc. (DFSC, DFSCW)",
-    "legalName": "DEFSEC Technologies Inc. (DFSC, DFSCW)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-09-09",
-    "filingDate": "2026-09-09",
-    "latestUpdateDate": "2026-09-09",
-    "filingType": "EFFECT",
-    "cik": "1889823",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1889823/999999999526002928/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "DEFSEC Technologies Inc. (DFSC, DFSCW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1889823/999999999526002928/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DEFSEC Technologies Inc. (DFSC, DFSCW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1889823/999999999526002527/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-03",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DEFSEC Technologies Inc. (DFSC, DFSCW) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1889823/000106299326003775/formf1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DEFSEC Technologies Inc. (DFSC, DFSCW) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1889823/000106299325013146/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-07-25",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "KWESST Micro Systems Inc. (KWE, KWESW) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1889823/000106299324015010/formrw.htm",
-        "publisher": "SEC",
-        "date": "2024-08-14",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "DEFSEC Technologies Inc. (DFSC, DFSCW) filed EFFECT with the SEC on 2026-09-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-3b4fe7a5af5c4a31",
-    "slug": "sunshine-biopharma-inc-sbfm-sbfmw",
-    "name": "Sunshine Biopharma Inc. (SBFM, SBFMW)",
-    "legalName": "Sunshine Biopharma Inc. (SBFM, SBFMW)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-09-08",
-    "filingDate": "2026-09-08",
-    "latestUpdateDate": "2026-09-08",
-    "filingType": "EFFECT",
-    "cik": "1402328",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1402328/999999999526002914/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Sunshine Biopharma Inc. (SBFM, SBFMW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1402328/999999999526002914/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Sunshine Biopharma Inc. (SBFM, SBFMW) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1402328/000168316826006779/sunshine_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Sunshine Biopharma Inc. (SBFM, SBFMW) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1402328/000168316826004098/sunshine_424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-05-19",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Sunshine Biopharma Inc. (SBFM, SBFMW) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1402328/000168316825005976/sunshine_rw.htm",
-        "publisher": "SEC",
-        "date": "2025-08-12",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Sunshine Biopharma Inc. (SBFM, SBFMW) filed EFFECT with the SEC on 2026-09-08.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -91394,6 +91306,109 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-f0ccf0913870aa35",
+    "slug": "first-breach-inc-fbdt",
+    "name": "First Breach, Inc. (FBDT)",
+    "legalName": "First Breach, Inc. (FBDT)",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-09-02",
+    "filingDate": "2026-09-02",
+    "latestUpdateDate": "2026-09-02",
+    "filingType": "S-1",
+    "cik": "1892704",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226041268/forms-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "First Breach, Inc. (FBDT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226041268/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-02",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Breach, Inc. (FBDT) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226040850/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-08-31",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Breach, Inc. (FBDT) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226039415/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-08-20",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Breach, Inc. (FBDT) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1892704/999999999526002634/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-12",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Breach, Inc. (FBDT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226036554/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-07",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Breach, Inc. (FBDT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226035840/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Breach, Inc. (FBDT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226028434/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-12",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "First Breach, Inc. (FBDT) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226025360/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-27",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "First Breach, Inc. (FBDT) filed S-1 with the SEC on 2026-09-02.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-796c5a666412a9a0",
     "slug": "advance-jv-group-ltd",
     "name": "Advance JV Group Ltd",
@@ -91994,6 +92009,69 @@
       }
     ],
     "notes": "NextBoat Inc. (NXB) filed S-1 with the SEC on 2026-08-28.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-3b4fe7a5af5c4a31",
+    "slug": "sunshine-biopharma-inc-sbfm-sbfmw",
+    "name": "Sunshine Biopharma Inc. (SBFM, SBFMW)",
+    "legalName": "Sunshine Biopharma Inc. (SBFM, SBFMW)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-08-28",
+    "filingDate": "2026-08-28",
+    "latestUpdateDate": "2026-08-28",
+    "filingType": "S-1",
+    "cik": "1402328",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1402328/000168316826006779/sunshine_s1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Sunshine Biopharma Inc. (SBFM, SBFMW) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1402328/000168316826006779/sunshine_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-08-28",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Sunshine Biopharma Inc. (SBFM, SBFMW) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1402328/000168316826004098/sunshine_424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-05-19",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Sunshine Biopharma Inc. (SBFM, SBFMW) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1402328/000168316825005976/sunshine_rw.htm",
+        "publisher": "SEC",
+        "date": "2025-08-12",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Sunshine Biopharma Inc. (SBFM, SBFMW) filed S-1 with the SEC on 2026-08-28.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -93645,6 +93723,69 @@
       }
     ],
     "notes": "Aptera Motors Corp (SEV) filed 424B4 with the SEC on 2026-08-20.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-b5c9c23f768d9e2a",
+    "slug": "nasus-pharma-ltd-nsrx",
+    "name": "Nasus Pharma Ltd (NSRX)",
+    "legalName": "Nasus Pharma Ltd (NSRX)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-08-20",
+    "filingDate": "2026-08-20",
+    "latestUpdateDate": "2026-08-20",
+    "filingType": "EFFECT",
+    "cik": "2029039",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2029039/999999999526002715/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Nasus Pharma Ltd (NSRX) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/2029039/999999999526002715/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-20",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Nasus Pharma Ltd (NSRX) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2029039/000149315226008581/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-03-02",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Nasus Pharma Ltd (NSRX) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2029039/000164117225023826/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2025-08-14",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Nasus Pharma Ltd (NSRX) filed EFFECT with the SEC on 2026-08-20.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -96772,6 +96913,77 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-f324dd9d66c4a1e4",
+    "slug": "defsec-technologies-inc-dfsc-dfscw",
+    "name": "DEFSEC Technologies Inc. (DFSC, DFSCW)",
+    "legalName": "DEFSEC Technologies Inc. (DFSC, DFSCW)",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-08-03",
+    "filingDate": "2026-08-03",
+    "latestUpdateDate": "2026-08-03",
+    "filingType": "EFFECT",
+    "cik": "1889823",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1889823/999999999526002527/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "DEFSEC Technologies Inc. (DFSC, DFSCW) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1889823/999999999526002527/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-03",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DEFSEC Technologies Inc. (DFSC, DFSCW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1889823/000106299326003775/formf1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-22",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DEFSEC Technologies Inc. (DFSC, DFSCW) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1889823/000106299325013146/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2025-07-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "KWESST Micro Systems Inc. (KWE, KWESW) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1889823/000106299324015010/formrw.htm",
+        "publisher": "SEC",
+        "date": "2024-08-14",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "DEFSEC Technologies Inc. (DFSC, DFSCW) filed EFFECT with the SEC on 2026-08-03.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-de668b6c6f3de732",
     "slug": "east-west-ave-acquisition-corp-ewav",
     "name": "East West Ave Acquisition Corp. (EWAV)",
@@ -99524,6 +99736,77 @@
       }
     ],
     "notes": "Bleichroeder Acquisition Corp. III (BCCQ) filed 424B4 with the SEC on 2026-07-07.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-1151ace82793aa9c",
+    "slug": "intercont-cayman-ltd-nct",
+    "name": "Intercont (Cayman) Ltd (NCT)",
+    "legalName": "Intercont (Cayman) Ltd (NCT)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-07-07",
+    "filingDate": "2026-07-07",
+    "latestUpdateDate": "2026-07-07",
+    "filingType": "424B4",
+    "cik": "2018529",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2018529/000121390026075881/ea0291199-05.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Intercont (Cayman) Ltd (NCT) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390026075881/ea0291199-05.htm",
+        "publisher": "SEC",
+        "date": "2026-07-07",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Intercont (Cayman) Ltd (NCT) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390026069967/ea0291199-04.htm",
+        "publisher": "SEC",
+        "date": "2026-06-18",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Intercont (Cayman) Ltd (NCT) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390026066161/ea0291199-03.htm",
+        "publisher": "SEC",
+        "date": "2026-06-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Intercont (Cayman) Ltd (NCT) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390025115908/ea0258017-04.htm",
+        "publisher": "SEC",
+        "date": "2025-11-28",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Intercont (Cayman) Ltd (NCT) filed 424B4 with the SEC on 2026-07-07.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -120075,6 +120358,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-5979d77b8796127c",
+    "slug": "calisa-acquisition-corp",
+    "name": "Calisa Acquisition Corp",
+    "legalName": "Calisa Acquisition Corp",
+    "sector": "Real Estate",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2025-10-22",
+    "filingDate": "2025-10-22",
+    "latestUpdateDate": "2025-10-22",
+    "filingType": "424B4",
+    "cik": "2026767",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2026767/000149315225018879/form424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Calisa Acquisition Corp 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2026767/000149315225018879/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2025-10-22",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Calisa Acquisition Corp filed 424B4 with the SEC on 2025-10-22.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-c02dadc29af7dedc",
     "slug": "harvard-ave-acquistion-corp",
     "name": "Harvard Ave Acquistion Corp",
@@ -125086,6 +125416,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-3d3a6e383d133f8e",
+    "slug": "can-fite-biopharma-ltd-canf",
+    "name": "Can-Fite BioPharma Ltd. (CANF)",
+    "legalName": "Can-Fite BioPharma Ltd. (CANF)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2025-07-29",
+    "filingDate": "2025-07-29",
+    "latestUpdateDate": "2025-07-29",
+    "filingType": "424B4",
+    "cik": "1536196",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1536196/000121390025068481/ea0250500-424b4_canfite.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Can-Fite BioPharma Ltd. (CANF) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1536196/000121390025068481/ea0250500-424b4_canfite.htm",
+        "publisher": "SEC",
+        "date": "2025-07-29",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Can-Fite BioPharma Ltd. (CANF) filed 424B4 with the SEC on 2025-07-29.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-49606befb83a3b6a",
     "slug": "accelerant-holdings-arx",
     "name": "Accelerant Holdings (ARX)",
@@ -125877,6 +126254,53 @@
       }
     ],
     "notes": "Bluemount Holdings Ltd (BMHL) filed 424B4 with the SEC on 2025-07-11.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-0a0759390b1ef708",
+    "slug": "helix-acquisition-corp-ii-hlxb",
+    "name": "Helix Acquisition Corp. II (HLXB)",
+    "legalName": "Helix Acquisition Corp. II (HLXB)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2025-07-10",
+    "filingDate": "2025-07-10",
+    "latestUpdateDate": "2025-07-10",
+    "filingType": "424B4",
+    "cik": "1869105",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1869105/000121390025062864/ea0237401-11.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Helix Acquisition Corp. II (HLXB) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1869105/000121390025062864/ea0237401-11.htm",
+        "publisher": "SEC",
+        "date": "2025-07-10",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Helix Acquisition Corp. II (HLXB) filed 424B4 with the SEC on 2025-07-10.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -143388,6 +143812,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-5d51045372282cf3",
+    "slug": "strategic-storage-trust-vi-inc-sgst",
+    "name": "Strategic Storage Trust VI, Inc. (SGST)",
+    "legalName": "Strategic Storage Trust VI, Inc. (SGST)",
+    "sector": "Real Estate",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-05-20",
+    "latestUpdateDate": "2026-05-20",
+    "filingType": "RW",
+    "cik": "1852575",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1852575/000119312526232838/d52554drw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Strategic Storage Trust VI, Inc. (SGST) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1852575/000119312526232838/d52554drw.htm",
+        "publisher": "SEC",
+        "date": "2026-05-20",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Strategic Storage Trust VI, Inc. (SGST) filed RW with the SEC on 2026-05-20.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-2f62698a02e15be7",
     "slug": "triller-group-inc-illr-illrw",
     "name": "Triller Group Inc. (ILLR, ILLRW)",
@@ -146175,6 +146646,53 @@
       }
     ],
     "notes": "AIGO HOLDING Ltd (AIGO) filed RW with the SEC on 2026-02-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-90feca5e0d09fd70",
+    "slug": "wheeler-real-estate-investment-trust-inc-whlr-whlrd-whlrl-whlrp",
+    "name": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP)",
+    "legalName": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP)",
+    "sector": "Real Estate",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-02-24",
+    "latestUpdateDate": "2026-02-24",
+    "filingType": "RW",
+    "cik": "1527541",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1527541/000121390026019643/ea0278080-rw_wheeler.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1527541/000121390026019643/ea0278080-rw_wheeler.htm",
+        "publisher": "SEC",
+        "date": "2026-02-24",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP) filed RW with the SEC on 2026-02-24.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -153765,6 +154283,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-9bd8b4a5d7530dfe",
+    "slug": "volitionrx-ltd-vnrx",
+    "name": "VOLITIONRX LTD (VNRX)",
+    "legalName": "VOLITIONRX LTD (VNRX)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2025-04-25",
+    "latestUpdateDate": "2025-04-25",
+    "filingType": "RW WD",
+    "cik": "93314",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/93314/000147793225002983/vnrx_rwwd.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "VOLITIONRX LTD (VNRX) RW WD",
+        "url": "https://www.sec.gov/Archives/edgar/data/93314/000147793225002983/vnrx_rwwd.htm",
+        "publisher": "SEC",
+        "date": "2025-04-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "VOLITIONRX LTD (VNRX) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/93314/000147793225002795/vnrx_rw.htm",
+        "publisher": "SEC",
+        "date": "2025-04-16",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "VOLITIONRX LTD (VNRX) filed RW WD with the SEC on 2025-04-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-162bd4c498193fea",
     "slug": "genembryomics-ltd-xgen",
     "name": "GenEmbryomics Ltd (XGEN)",
@@ -155506,6 +156079,53 @@
       }
     ],
     "notes": "ORANCO INC filed RW with the SEC on 2025-02-27.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-02e8db7827aa5d3e",
+    "slug": "gcl-global-holdings-ltd-gcl-gclww",
+    "name": "GCL Global Holdings Ltd (GCL, GCLWW)",
+    "legalName": "GCL Global Holdings Ltd (GCL, GCLWW)",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2025-02-26",
+    "latestUpdateDate": "2025-02-26",
+    "filingType": "RW",
+    "cik": "2002045",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2002045/000121390025017443/ea023219601-rw_gclglobal.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "GCL Global Holdings Ltd (GCL, GCLWW) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/2002045/000121390025017443/ea023219601-rw_gclglobal.htm",
+        "publisher": "SEC",
+        "date": "2025-02-26",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "GCL Global Holdings Ltd (GCL, GCLWW) filed RW with the SEC on 2025-02-26.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -174004,61 +174624,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-5d51045372282cf3",
-    "slug": "strategic-storage-trust-vi-inc-sgst",
-    "name": "Strategic Storage Trust VI, Inc. (SGST)",
-    "legalName": "Strategic Storage Trust VI, Inc. (SGST)",
-    "sector": "Real Estate",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-11",
-    "latestUpdateDate": "2026-09-11",
-    "filingType": "EFFECT",
-    "cik": "1852575",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1852575/999999999526002951/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Strategic Storage Trust VI, Inc. (SGST) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1852575/999999999526002951/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Strategic Storage Trust VI, Inc. (SGST) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1852575/000119312526232838/d52554drw.htm",
-        "publisher": "SEC",
-        "date": "2026-05-20",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Strategic Storage Trust VI, Inc. (SGST) filed EFFECT with the SEC on 2026-09-11.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-98b595f09f92d2ac",
     "slug": "vs-media-holdings-ltd-vsme",
     "name": "VS MEDIA Holdings Ltd (VSME)",
@@ -174098,61 +174663,6 @@
       }
     ],
     "notes": "VS MEDIA Holdings Ltd (VSME) filed EFFECT with the SEC on 2026-09-11.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-90feca5e0d09fd70",
-    "slug": "wheeler-real-estate-investment-trust-inc-whlr-whlrd-whlrl-whlrp",
-    "name": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP)",
-    "legalName": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP)",
-    "sector": "Real Estate",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-11",
-    "latestUpdateDate": "2026-09-11",
-    "filingType": "EFFECT",
-    "cik": "1527541",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1527541/999999999526002952/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1527541/999999999526002952/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1527541/000121390026019643/ea0278080-rw_wheeler.htm",
-        "publisher": "SEC",
-        "date": "2026-02-24",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Wheeler Real Estate Investment Trust, Inc. (WHLR, WHLRD, WHLRL, WHLRP) filed EFFECT with the SEC on 2026-09-11.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -174208,101 +174718,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-d5d1443cbb7540e0",
-    "slug": "blue-gold-ltd-bgl-bglww",
-    "name": "Blue Gold Ltd (BGL, BGLWW)",
-    "legalName": "Blue Gold Ltd (BGL, BGLWW)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-10",
-    "latestUpdateDate": "2026-09-10",
-    "filingType": "EFFECT",
-    "cik": "2019435",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2019435/999999999526002935/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Blue Gold Ltd (BGL, BGLWW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019435/999999999526002935/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Blue Gold Ltd (BGL, BGLWW) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390026059736/ea0291610-f1a1_bluegold.htm",
-        "publisher": "SEC",
-        "date": "2026-05-21",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Blue Gold Ltd (BGL, BGLWW) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390026052984/ea0284484-f1_bluegold.htm",
-        "publisher": "SEC",
-        "date": "2026-05-07",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Blue Gold Ltd (BGL, BGLWW) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390026012755/ea0273347-f1a1_bluegold.htm",
-        "publisher": "SEC",
-        "date": "2026-02-05",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Blue Gold Ltd (BGL, BGLWW) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390025100897/ea0261734-f1a1_bluegold.htm",
-        "publisher": "SEC",
-        "date": "2025-10-21",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Blue Gold Ltd (BGL, BGLWW) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390025100891/ea0261735-f1a1_bluegold.htm",
-        "publisher": "SEC",
-        "date": "2025-10-21",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Blue Gold Ltd (BGL, BGLWW) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2019435/000121390025087356/ea0257140-f1a3_bluegold.htm",
-        "publisher": "SEC",
-        "date": "2025-09-15",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Blue Gold Ltd (BGL, BGLWW) filed EFFECT with the SEC on 2026-09-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-13eaff34df0a05f6",
     "slug": "bridgecrest-auto-funding-llc",
     "name": "Bridgecrest Auto Funding LLC",
@@ -174350,124 +174765,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-94387625efc9bd24",
-    "slug": "click-holdings-ltd-clik",
-    "name": "Click Holdings Ltd. (CLIK)",
-    "legalName": "Click Holdings Ltd. (CLIK)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-10",
-    "latestUpdateDate": "2026-09-10",
-    "filingType": "EFFECT",
-    "cik": "2020027",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2020027/999999999526002934/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Click Holdings Ltd. (CLIK) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2020027/999999999526002934/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Click Holdings Ltd. (CLIK) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2020027/999999999526002368/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-07-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Click Holdings Ltd. (CLIK) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2020027/000149315226033136/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-14",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Click Holdings Ltd. (CLIK) filed EFFECT with the SEC on 2026-09-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-950a0d9802bbb3b0",
-    "slug": "energys-group-ltd-engs",
-    "name": "Energys Group Ltd (ENGS)",
-    "legalName": "Energys Group Ltd (ENGS)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-10",
-    "latestUpdateDate": "2026-09-10",
-    "filingType": "EFFECT",
-    "cik": "1971828",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1971828/999999999526002932/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Energys Group Ltd (ENGS) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1971828/999999999526002932/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Energys Group Ltd (ENGS) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1971828/000149315226008660/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-03-03",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Energys Group Ltd (ENGS) filed EFFECT with the SEC on 2026-09-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-d594a02323afc0cc",
     "slug": "ft-13208",
     "name": "FT 13208",
@@ -174507,61 +174804,6 @@
       }
     ],
     "notes": "FT 13208 filed EFFECT with the SEC on 2026-09-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-02e8db7827aa5d3e",
-    "slug": "gcl-global-holdings-ltd-gcl-gclww",
-    "name": "GCL Global Holdings Ltd (GCL, GCLWW)",
-    "legalName": "GCL Global Holdings Ltd (GCL, GCLWW)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-10",
-    "latestUpdateDate": "2026-09-10",
-    "filingType": "EFFECT",
-    "cik": "2002045",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2002045/999999999526002941/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "GCL Global Holdings Ltd (GCL, GCLWW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2002045/999999999526002941/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "GCL Global Holdings Ltd (GCL, GCLWW) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/2002045/000121390025017443/ea023219601-rw_gclglobal.htm",
-        "publisher": "SEC",
-        "date": "2025-02-26",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "GCL Global Holdings Ltd (GCL, GCLWW) filed EFFECT with the SEC on 2026-09-10.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -174711,180 +174953,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-ae1a8efa40726419",
-    "slug": "zhibao-technology-inc-zbao",
-    "name": "Zhibao Technology Inc. (ZBAO)",
-    "legalName": "Zhibao Technology Inc. (ZBAO)",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-10",
-    "latestUpdateDate": "2026-09-10",
-    "filingType": "EFFECT",
-    "cik": "1966750",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1966750/999999999526002938/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/999999999526002938/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026095337/ea0303198-f1_zhibao.htm",
-        "publisher": "SEC",
-        "date": "2026-08-31",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026063037/ea029270101-f1a2_zhibao.htm",
-        "publisher": "SEC",
-        "date": "2026-06-01",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026055814/ea0290377-f1a1_zhibao.htm",
-        "publisher": "SEC",
-        "date": "2026-05-13",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026047092/ea0286440-f1_zhibao.htm",
-        "publisher": "SEC",
-        "date": "2026-04-23",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026006749/ea0273699-f1a3_zhibao.htm",
-        "publisher": "SEC",
-        "date": "2026-01-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390026003488/ea0271358-f1a2_zhibao.htm",
-        "publisher": "SEC",
-        "date": "2026-01-12",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390025092467/ea0258781-f1a1_zhibao.htm",
-        "publisher": "SEC",
-        "date": "2025-09-26",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Zhibao Technology Inc. (ZBAO) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1966750/000121390025033525/ea0238848-rw_zhibao.htm",
-        "publisher": "SEC",
-        "date": "2025-04-21",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Zhibao Technology Inc. (ZBAO) filed EFFECT with the SEC on 2026-09-10.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-bb33eb6330d9347a",
-    "slug": "adaptin-bio-inc-aptn",
-    "name": "ADAPTIN BIO, INC. (APTN)",
-    "legalName": "ADAPTIN BIO, INC. (APTN)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-09",
-    "latestUpdateDate": "2026-09-09",
-    "filingType": "EFFECT",
-    "cik": "1938571",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1938571/999999999526002923/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "ADAPTIN BIO, INC. (APTN) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1938571/999999999526002923/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ADAPTIN BIO, INC. (APTN) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1938571/000121390026095034/ea0303043-s1_adaptin.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ADAPTIN BIO, INC. (APTN) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1938571/999999999526002384/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-07-22",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "ADAPTIN BIO, INC. (APTN) filed EFFECT with the SEC on 2026-09-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-0a588370342f006e",
     "slug": "advisors-disciplined-trust-2356",
     "name": "Advisors Disciplined Trust 2356",
@@ -174924,61 +174992,6 @@
       }
     ],
     "notes": "Advisors Disciplined Trust 2356 filed EFFECT with the SEC on 2026-09-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-9a62f2f15fde6ede",
-    "slug": "brenx-ltd-brnx",
-    "name": "BRENX LTD. (BRNX)",
-    "legalName": "BRENX LTD. (BRNX)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-09",
-    "latestUpdateDate": "2026-09-09",
-    "filingType": "EFFECT",
-    "cik": "1901215",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1901215/999999999526002926/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "BRENX LTD. (BRNX) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1901215/999999999526002926/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Brenmiller Energy Ltd. (BNRG) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1901215/999999999526002450/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-07-24",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "BRENX LTD. (BRNX) filed EFFECT with the SEC on 2026-09-09.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -175191,203 +175204,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-b46ef808b7fe8974",
-    "slug": "obsidian-therapeutics-inc-obx",
-    "name": "Obsidian Therapeutics, Inc. (OBX)",
-    "legalName": "Obsidian Therapeutics, Inc. (OBX)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-09",
-    "latestUpdateDate": "2026-09-09",
-    "filingType": "EFFECT",
-    "cik": "2130606",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2130606/999999999526002925/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Obsidian Therapeutics, Inc. (OBX) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2130606/999999999526002925/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Obsidian Therapeutics, Inc. (OBX) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2130606/000119312526374729/d127696ds1.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Obsidian Therapeutics, Inc. (OBX) filed EFFECT with the SEC on 2026-09-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-7336638df83c1b19",
-    "slug": "robo-ai-inc-aiio-aiiow",
-    "name": "ROBO.AI INC. (AIIO, AIIOW)",
-    "legalName": "ROBO.AI INC. (AIIO, AIIOW)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-09",
-    "latestUpdateDate": "2026-09-09",
-    "filingType": "EFFECT",
-    "cik": "1932737",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1932737/999999999526002927/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "ROBO.AI INC. (AIIO, AIIOW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1932737/999999999526002927/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ROBO.AI INC. (AIIO, AIIOW) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1932737/999999999526002646/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-08-12",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ROBO.AI INC. (AIIO, AIIOW) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1932737/000121390026072599/ea0294090-02.htm",
-        "publisher": "SEC",
-        "date": "2026-06-26",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ROBO.AI INC. (AIIO, AIIOW) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1932737/000121390026068388/ea0294090-01.htm",
-        "publisher": "SEC",
-        "date": "2026-06-12",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "ROBO.AI INC. (AIIO, AIIOW) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1932737/000121390025090323/ea0252214-05.htm",
-        "publisher": "SEC",
-        "date": "2025-09-23",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "ROBO.AI INC. (AIIO, AIIOW) filed EFFECT with the SEC on 2026-09-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-9bd8b4a5d7530dfe",
-    "slug": "volitionrx-ltd-vnrx",
-    "name": "VOLITIONRX LTD (VNRX)",
-    "legalName": "VOLITIONRX LTD (VNRX)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-09",
-    "latestUpdateDate": "2026-09-09",
-    "filingType": "EFFECT",
-    "cik": "93314",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/93314/999999999526002936/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "VOLITIONRX LTD (VNRX) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/93314/999999999526002936/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "VOLITIONRX LTD (VNRX) RW WD",
-        "url": "https://www.sec.gov/Archives/edgar/data/93314/000147793225002983/vnrx_rwwd.htm",
-        "publisher": "SEC",
-        "date": "2025-04-25",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "VOLITIONRX LTD (VNRX) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/93314/000147793225002795/vnrx_rw.htm",
-        "publisher": "SEC",
-        "date": "2025-04-16",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "VOLITIONRX LTD (VNRX) filed EFFECT with the SEC on 2026-09-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-a9838e5bb4915c50",
     "slug": "alcoa-corp-aa",
     "name": "Alcoa Corp (AA)",
@@ -175427,85 +175243,6 @@
       }
     ],
     "notes": "Alcoa Corp (AA) filed EFFECT with the SEC on 2026-09-08.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-fb97937779ad9544",
-    "slug": "canary-staked-trx-etf-trxs",
-    "name": "Canary Staked TRX ETF (TRXS)",
-    "legalName": "Canary Staked TRX ETF (TRXS)",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-08",
-    "latestUpdateDate": "2026-09-08",
-    "filingType": "EFFECT",
-    "cik": "2064768",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2064768/999999999526002908/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Canary Staked TRX ETF (TRXS) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2064768/999999999526002908/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Canary Staked TRX ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126018236/trx-s1a_081926.htm",
-        "publisher": "SEC",
-        "date": "2026-08-19",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Canary Staked TRX ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126015859/canary-s1a_072426.htm",
-        "publisher": "SEC",
-        "date": "2026-07-24",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Canary Staked TRX ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126013365/canary-s1a_062426.htm",
-        "publisher": "SEC",
-        "date": "2026-06-24",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Canary Staked TRX ETF S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2064768/000199937126010857/canary-s1a_051526.htm",
-        "publisher": "SEC",
-        "date": "2026-05-15",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Canary Staked TRX ETF (TRXS) filed EFFECT with the SEC on 2026-09-08.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -175859,61 +175596,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-7095719108fa614e",
-    "slug": "air-global-plc-aiir",
-    "name": "AIR Global PLC (AIIR)",
-    "legalName": "AIR Global PLC (AIIR)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-04",
-    "latestUpdateDate": "2026-09-04",
-    "filingType": "EFFECT",
-    "cik": "2097725",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2097725/999999999526002902/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "AIR Global PLC (AIIR) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2097725/999999999526002902/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "AIR Global PLC (AIIR) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2097725/000119312526372035/ck0002097725-20260828.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "AIR Global PLC (AIIR) filed EFFECT with the SEC on 2026-09-04.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-e42792eb79cd9c45",
     "slug": "cbak-energy-technology-ltd-cbat",
     "name": "CBAK Energy Technology Ltd (CBAT)",
@@ -176047,61 +175729,6 @@
       }
     ],
     "notes": "FT 13277 filed EFFECT with the SEC on 2026-09-04.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-bc1b843695fca6f6",
-    "slug": "grande-group-ltd-hk-gran",
-    "name": "Grande Group Ltd/HK (GRAN)",
-    "legalName": "Grande Group Ltd/HK (GRAN)",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-04",
-    "latestUpdateDate": "2026-09-04",
-    "filingType": "EFFECT",
-    "cik": "2027722",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2027722/999999999526002904/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Grande Group Ltd/HK (GRAN) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/2027722/999999999526002904/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-09-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Grande Group Ltd/HK (GRAN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2027722/000121390026096486/ea0304185-f1_grande.htm",
-        "publisher": "SEC",
-        "date": "2026-09-02",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Grande Group Ltd/HK (GRAN) filed EFFECT with the SEC on 2026-09-04.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -184330,7 +183957,7 @@
         "confidence": 1
       },
       {
-        "title": "JONES SODA CO. (JSDA) S-1/A",
+        "title": "JONES SODA CO. (JSDA) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1083522/000149315226035842/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-08-03",
@@ -184528,6 +184155,77 @@
       }
     ],
     "notes": "PRESIDIO PRODUCTION Co (FTW, FTW-WT) filed EFFECT with the SEC on 2026-08-12.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-7336638df83c1b19",
+    "slug": "robo-ai-inc-aiio-aiiow",
+    "name": "ROBO.AI INC. (AIIO, AIIOW)",
+    "legalName": "ROBO.AI INC. (AIIO, AIIOW)",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-08-12",
+    "latestUpdateDate": "2026-08-12",
+    "filingType": "EFFECT",
+    "cik": "1932737",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1932737/999999999526002646/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "ROBO.AI INC. (AIIO, AIIOW) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1932737/999999999526002646/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-08-12",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ROBO.AI INC. (AIIO, AIIOW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1932737/000121390026072599/ea0294090-02.htm",
+        "publisher": "SEC",
+        "date": "2026-06-26",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ROBO.AI INC. (AIIO, AIIOW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1932737/000121390026068388/ea0294090-01.htm",
+        "publisher": "SEC",
+        "date": "2026-06-12",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "ROBO.AI INC. (AIIO, AIIOW) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1932737/000121390025090323/ea0252214-05.htm",
+        "publisher": "SEC",
+        "date": "2025-09-23",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "ROBO.AI INC. (AIIO, AIIOW) filed EFFECT with the SEC on 2026-08-12.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -190581,6 +190279,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-9a62f2f15fde6ede",
+    "slug": "brenmiller-energy-ltd-bnrg",
+    "name": "Brenmiller Energy Ltd. (BNRG)",
+    "legalName": "Brenmiller Energy Ltd. (BNRG)",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-24",
+    "latestUpdateDate": "2026-07-24",
+    "filingType": "EFFECT",
+    "cik": "1901215",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1901215/999999999526002450/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Brenmiller Energy Ltd. (BNRG) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1901215/999999999526002450/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-07-24",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Brenmiller Energy Ltd. (BNRG) filed EFFECT with the SEC on 2026-07-24.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-8a9d90fcd461581e",
     "slug": "cyclerion-therapeutics-inc-cycn",
     "name": "Cyclerion Therapeutics, Inc. (CYCN)",
@@ -192658,6 +192403,61 @@
       }
     ],
     "notes": "Cadrenal Therapeutics, Inc. (CVKD) filed EFFECT with the SEC on 2026-07-20.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-94387625efc9bd24",
+    "slug": "click-holdings-ltd-clik",
+    "name": "Click Holdings Ltd. (CLIK)",
+    "legalName": "Click Holdings Ltd. (CLIK)",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "unknown",
+    "statusLabel": "Needs verification",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-20",
+    "latestUpdateDate": "2026-07-20",
+    "filingType": "EFFECT",
+    "cik": "2020027",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2020027/999999999526002368/primary_doc.xml",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Click Holdings Ltd. (CLIK) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/2020027/999999999526002368/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-07-20",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Click Holdings Ltd. (CLIK) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2020027/000149315226033136/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-14",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Click Holdings Ltd. (CLIK) filed EFFECT with the SEC on 2026-07-20.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
