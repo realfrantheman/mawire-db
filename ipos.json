@@ -1,5 +1,60 @@
 [
   {
+    "id": "ipo-a4014ea285a87ab9",
+    "slug": "tric-global-inc",
+    "name": "TRIC Global, Inc.",
+    "legalName": "TRIC Global, Inc.",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-02",
+    "latestUpdateDate": "2026-07-02",
+    "filingType": "S-1/A",
+    "cik": "2124122",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000012/tric_s1a2.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "TRIC Global, Inc. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000012/tric_s1a2.htm",
+        "publisher": "SEC",
+        "date": "2026-07-02",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "TRIC Global, Inc. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000010/tric_s1a1.htm",
+        "publisher": "SEC",
+        "date": "2026-05-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "TRIC Global, Inc. filed S-1/A with the SEC on 2026-07-02.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-d23e747bb9857455",
     "slug": "rokit-america-inc-rkam",
     "name": "ROKIT America, Inc. (RKAM)",
@@ -14764,7 +14819,7 @@
         "confidence": 1
       },
       {
-        "title": "AEI CapForce II Investment Corp S-1",
+        "title": "AEI CapForce II Investment Corp S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1875655/000149315226035799/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-08-03",
@@ -19139,14 +19194,6 @@
         "date": "2026-07-30",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Gold Mountain Acquisition Corp. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2105318/000149315226031978/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-02",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Gold Mountain Acquisition Corp. (GDMT) filed S-1 with the SEC on 2026-09-11.",
@@ -20036,7 +20083,7 @@
         "confidence": 1
       },
       {
-        "title": "Albatross Acquisition Corp (ATAC) S-1",
+        "title": "Albatross Acquisition Corp (ATAC) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2135163/000182912626008252/albatrossacq_s1a.htm",
         "publisher": "SEC",
         "date": "2026-08-03",
@@ -21633,7 +21680,7 @@
         "confidence": 1
       },
       {
-        "title": "USBC, Inc. (USBC) S-1",
+        "title": "USBC, Inc. (USBC) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1074828/000107482826000044/usbc-20260706.htm",
         "publisher": "SEC",
         "date": "2026-07-06",
@@ -26642,61 +26689,6 @@
       }
     ],
     "notes": "Peraso Inc. (PRSO) filed S-1 with the SEC on 2026-07-02.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-a4014ea285a87ab9",
-    "slug": "tric-global-inc",
-    "name": "TRIC Global, Inc.",
-    "legalName": "TRIC Global, Inc.",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-02",
-    "latestUpdateDate": "2026-07-02",
-    "filingType": "S-1",
-    "cik": "2124122",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000012/tric_s1a2.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "TRIC Global, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000012/tric_s1a2.htm",
-        "publisher": "SEC",
-        "date": "2026-07-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "TRIC Global, Inc. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2124122/000212412226000010/tric_s1a1.htm",
-        "publisher": "SEC",
-        "date": "2026-05-15",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "TRIC Global, Inc. filed S-1 with the SEC on 2026-07-02.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -90270,7 +90262,7 @@
         "confidence": 1
       },
       {
-        "title": "First Breach, Inc. (FBDT) S-1",
+        "title": "First Breach, Inc. (FBDT) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1892704/000149315226035840/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-08-03",
@@ -184338,7 +184330,7 @@
         "confidence": 1
       },
       {
-        "title": "JONES SODA CO. (JSDA) S-1",
+        "title": "JONES SODA CO. (JSDA) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1083522/000149315226035842/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-08-03",
