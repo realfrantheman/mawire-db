@@ -4872,6 +4872,61 @@
     }
   },
   {
+    "id": "ipo-bc944b7615e74cbc",
+    "slug": "keystone-global-financial-group-kcg",
+    "name": "Keystone Global Financial Group (KCG)",
+    "legalName": "Keystone Global Financial Group (KCG)",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-01-06",
+    "latestUpdateDate": "2026-01-06",
+    "filingType": "F-1/A",
+    "cik": "2067719",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2067719/000118518526000036/keystonef1a2010525.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Keystone Global Financial Group (KCG) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2067719/000118518526000036/keystonef1a2010525.htm",
+        "publisher": "SEC",
+        "date": "2026-01-06",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Keystone Global Financial Group F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2067719/000118518525002028/keystonef1a1120925.htm",
+        "publisher": "SEC",
+        "date": "2025-12-12",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Keystone Global Financial Group (KCG) filed F-1/A with the SEC on 2026-01-06.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-7faef855a52b5581",
     "slug": "black-spade-acquisition-iii-co",
     "name": "Black Spade Acquisition III Co",
@@ -13097,6 +13152,93 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-143ce85f77bd980f",
+    "slug": "akanda-corp-akan",
+    "name": "AKANDA CORP. (AKAN)",
+    "legalName": "AKANDA CORP. (AKAN)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-01",
+    "latestUpdateDate": "2026-10-01",
+    "filingType": "F-1",
+    "cik": "1888014",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026105921/ea0302976-f1_akanda.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "AKANDA CORP. (AKAN) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026105921/ea0302976-f1_akanda.htm",
+        "publisher": "SEC",
+        "date": "2026-10-01",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "AKANDA CORP. (AKAN) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026032446/ea0281971-f1a3_akanda.htm",
+        "publisher": "SEC",
+        "date": "2026-03-20",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "AKANDA CORP. (AKAN) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026023275/ea0279475-f1a2_akanda.htm",
+        "publisher": "SEC",
+        "date": "2026-03-04",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "AKANDA CORP. (AKAN) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026008630/ea0274357-f1a1_akanda.htm",
+        "publisher": "SEC",
+        "date": "2026-01-28",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "AKANDA CORP. (AKAN) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026007796/ea0273810-f1_akanda.htm",
+        "publisher": "SEC",
+        "date": "2026-01-26",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "AKANDA CORP. (AKAN) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390025092866/ea0258803-f1a1_akanda.htm",
+        "publisher": "SEC",
+        "date": "2025-09-29",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "AKANDA CORP. (AKAN) filed F-1 with the SEC on 2026-10-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-aaf3042ba9485323",
     "slug": "citrotech-inc-citr",
     "name": "CitroTech Inc. (CITR)",
@@ -13309,6 +13451,147 @@
       }
     ],
     "notes": "POP GLOBAL ACQUISITION Ltd filed S-1 with the SEC on 2026-10-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-c49e4ba8d5257b48",
+    "slug": "top-financial-group-ltd-top",
+    "name": "TOP Financial Group Ltd (TOP)",
+    "legalName": "TOP Financial Group Ltd (TOP)",
+    "sector": "Financial Services",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-01",
+    "latestUpdateDate": "2026-10-01",
+    "filingType": "F-1",
+    "cik": "1848275",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1848275/000121390026105817/ea0306722-f1_top.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "TOP Financial Group Ltd (TOP) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1848275/000121390026105817/ea0306722-f1_top.htm",
+        "publisher": "SEC",
+        "date": "2026-10-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "TOP Financial Group Ltd (TOP) filed F-1 with the SEC on 2026-10-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-697cf5c11b6a0a44",
+    "slug": "uranium-royalty-corp-uroy",
+    "name": "Uranium Royalty Corp. (UROY)",
+    "legalName": "Uranium Royalty Corp. (UROY)",
+    "sector": "Financial Services",
+    "industry": "Commodity Contracts Brokers & Dealers",
+    "description": null,
+    "headquarters": "141 UNION BLVD., SUITE #310, LAKEWOOD, CO, 80228",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "UROY",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-01",
+    "latestUpdateDate": "2026-10-01",
+    "filingType": "S-1",
+    "cik": "2143673",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2143673/000149315226045386/forms-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Uranium Royalty Corp. (UROY) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2143673/000149315226045386/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-10-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Uranium Royalty Corp. (UROY) filed S-1 with the SEC on 2026-10-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-e7db90b36e99f465",
+    "slug": "vsee-health-inc-vsee-vseed-vseew",
+    "name": "VSEE HEALTH, INC. (VSEE, VSEED, VSEEW)",
+    "legalName": "VSEE HEALTH, INC. (VSEE, VSEED, VSEEW)",
+    "sector": "Healthcare",
+    "industry": "Services-Health Services",
+    "description": null,
+    "headquarters": "980 N FEDERAL HWY, #304, BOCA RATON, FL, 33432",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "OTC",
+    "ticker": "VSEE",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-01",
+    "latestUpdateDate": "2026-10-01",
+    "filingType": "S-1",
+    "cik": "1864531",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1864531/000118518526004518/vsees1091726.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "VSEE HEALTH, INC. (VSEE, VSEED, VSEEW) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1864531/000118518526004518/vsees1091726.htm",
+        "publisher": "SEC",
+        "date": "2026-10-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "VSEE HEALTH, INC. (VSEE, VSEED, VSEEW) filed S-1 with the SEC on 2026-10-01.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -21628,21 +21911,21 @@
     "name": "GridAI Technologies Corp. (GRDX)",
     "legalName": "GridAI Technologies Corp. (GRDX)",
     "sector": "Energy",
-    "industry": "Electric & Other Services Combined",
+    "industry": null,
     "description": null,
-    "headquarters": "433 PLAZA REAL, SUITE 275, BOCA RATON, FL",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$900,000",
-    "offeringSizeNum": 900000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "GRDX",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-24",
@@ -21786,9 +22069,9 @@
     "name": "Alzamend Neuro, Inc. (ALZN)",
     "legalName": "Alzamend Neuro, Inc. (ALZN)",
     "sector": "Healthcare",
-    "industry": "Pharmaceutical Preparations",
+    "industry": null,
     "description": null,
-    "headquarters": "480 PEACHTREE ROAD NE, SECOND FLOOR, SUITE 103, ATLANTA, GA, 30326",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -21799,8 +22082,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "ALZN",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-08-21",
@@ -25427,7 +25710,7 @@
         "confidence": 1
       },
       {
-        "title": "Starton Holdings, Inc. (STA) S-1",
+        "title": "Starton Holdings, Inc. (STA) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2049977/000121390026066466/ea0225405-15.htm",
         "publisher": "SEC",
         "date": "2026-06-09",
@@ -32517,85 +32800,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-143ce85f77bd980f",
-    "slug": "akanda-corp-akan",
-    "name": "AKANDA CORP. (AKAN)",
-    "legalName": "AKANDA CORP. (AKAN)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-03-20",
-    "latestUpdateDate": "2026-03-20",
-    "filingType": "F-1",
-    "cik": "1888014",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026032446/ea0281971-f1a3_akanda.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "AKANDA CORP. (AKAN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026032446/ea0281971-f1a3_akanda.htm",
-        "publisher": "SEC",
-        "date": "2026-03-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "AKANDA CORP. (AKAN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026023275/ea0279475-f1a2_akanda.htm",
-        "publisher": "SEC",
-        "date": "2026-03-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "AKANDA CORP. (AKAN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026008630/ea0274357-f1a1_akanda.htm",
-        "publisher": "SEC",
-        "date": "2026-01-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "AKANDA CORP. (AKAN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026007796/ea0273810-f1_akanda.htm",
-        "publisher": "SEC",
-        "date": "2026-01-26",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "AKANDA CORP. (AKAN) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390025092866/ea0258803-f1a1_akanda.htm",
-        "publisher": "SEC",
-        "date": "2025-09-29",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "AKANDA CORP. (AKAN) filed F-1 with the SEC on 2026-03-20.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-f758a5e91181d86d",
     "slug": "baiya-international-group-inc-biya",
     "name": "Baiya International Group Inc. (BIYA)",
@@ -38675,61 +38879,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-bc944b7615e74cbc",
-    "slug": "keystone-global-financial-group-kcg",
-    "name": "Keystone Global Financial Group (KCG)",
-    "legalName": "Keystone Global Financial Group (KCG)",
-    "sector": "Financial Services",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-01-06",
-    "latestUpdateDate": "2026-01-06",
-    "filingType": "F-1",
-    "cik": "2067719",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2067719/000118518526000036/keystonef1a2010525.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Keystone Global Financial Group (KCG) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067719/000118518526000036/keystonef1a2010525.htm",
-        "publisher": "SEC",
-        "date": "2026-01-06",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Keystone Global Financial Group F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067719/000118518525002028/keystonef1a1120925.htm",
-        "publisher": "SEC",
-        "date": "2025-12-12",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Keystone Global Financial Group (KCG) filed F-1 with the SEC on 2026-01-06.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-9ab9bf4dc65989a2",
     "slug": "smart-powerr-corp-creg",
     "name": "Smart Powerr Corp. (CREG)",
@@ -38832,61 +38981,6 @@
     "dependencyIngestion": {
       "parserVersion": "sec-dependency-v2",
       "attemptedAt": "2026-09-20T15:32:34.256Z",
-      "status": "no_evidence",
-      "sourceUrlsFound": 1,
-      "sourceUrlsAttempted": 1,
-      "edgesFound": 0,
-      "errors": []
-    }
-  },
-  {
-    "id": "ipo-e7db90b36e99f465",
-    "slug": "vsee-health-inc-vsee-vseew",
-    "name": "VSEE HEALTH, INC. (VSEE, VSEEW)",
-    "legalName": "VSEE HEALTH, INC. (VSEE, VSEEW)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2025-12-29",
-    "latestUpdateDate": "2025-12-29",
-    "filingType": "S-1",
-    "cik": "1864531",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1864531/000118518525002184/vsees1121725.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "VSEE HEALTH, INC. (VSEE, VSEEW) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1864531/000118518525002184/vsees1121725.htm",
-        "publisher": "SEC",
-        "date": "2025-12-29",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "VSEE HEALTH, INC. (VSEE, VSEEW) filed S-1 with the SEC on 2025-12-29.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": {
-      "parserVersion": "sec-dependency-v2",
-      "attemptedAt": "2026-09-09T18:25:24.449Z",
       "status": "no_evidence",
       "sourceUrlsFound": 1,
       "sourceUrlsAttempted": 1,
@@ -87451,6 +87545,93 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-6b3248fa1963d28e",
+    "slug": "whitehawk-minerals-corp-whk",
+    "name": "WhiteHawk Minerals Corp. (WHK)",
+    "legalName": "WhiteHawk Minerals Corp. (WHK)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-10-01",
+    "filingDate": "2026-10-01",
+    "latestUpdateDate": "2026-10-01",
+    "filingType": "S-1",
+    "cik": "1921603",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526410790/whk-20261001.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "WhiteHawk Minerals Corp. (WHK) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526410790/whk-20261001.htm",
+        "publisher": "SEC",
+        "date": "2026-10-01",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "WhiteHawk Income Corp (WHK) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526264014/d86452d424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-06-09",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "WhiteHawk Income Corp (WHK) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526258901/d86452ds1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-05",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "WhiteHawk Income Corp (WHK) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526252895/d86452ds1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-02",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "WhiteHawk Income Corp (WHK) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526237902/d86452ds1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-26",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "WhiteHawk Income Corp (WHK) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526233140/d86452ds1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "WhiteHawk Minerals Corp. (WHK) filed S-1 with the SEC on 2026-10-01.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-2563b73691f38338",
     "slug": "biodexa-pharmaceuticals-plc-bdrx",
     "name": "Biodexa Pharmaceuticals Plc (BDRX)",
@@ -102493,85 +102674,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-6b3248fa1963d28e",
-    "slug": "whitehawk-income-corp-whk",
-    "name": "WhiteHawk Income Corp (WHK)",
-    "legalName": "WhiteHawk Income Corp (WHK)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-06-09",
-    "filingDate": "2026-06-09",
-    "latestUpdateDate": "2026-06-09",
-    "filingType": "424B4",
-    "cik": "1921603",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526264014/d86452d424b4.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "WhiteHawk Income Corp (WHK) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526264014/d86452d424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-06-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "WhiteHawk Income Corp (WHK) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526258901/d86452ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-05",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "WhiteHawk Income Corp (WHK) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526252895/d86452ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "WhiteHawk Income Corp (WHK) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526237902/d86452ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-26",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "WhiteHawk Income Corp (WHK) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526233140/d86452ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-21",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "WhiteHawk Income Corp (WHK) filed 424B4 with the SEC on 2026-06-09.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-4901a9c73f68e62e",
     "slug": "blockchain-digital-infrastructure-inc-aib",
     "name": "BlockchAIn Digital Infrastructure, Inc. (AIB)",
@@ -114552,14 +114654,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1841644/000121390026005383/ea0201690-19.htm",
         "publisher": "SEC",
         "date": "2026-01-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Picpay Holdings Netherlands B.V. F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1841644/000121390026001029/ea0201690-17.htm",
-        "publisher": "SEC",
-        "date": "2026-01-05",
         "type": "filing",
         "confidence": 1
       }
@@ -179497,14 +179591,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1782107/000121390026087986/ea0301584-s1_onconetix.htm",
         "publisher": "SEC",
         "date": "2026-08-12",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Onconetix, Inc. (ONCO) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1782107/000121390026066400/ea0293708-s1_onconetix.htm",
-        "publisher": "SEC",
-        "date": "2026-06-09",
         "type": "filing",
         "confidence": 1
       },
