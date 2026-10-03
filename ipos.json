@@ -16967,14 +16967,6 @@
         "confidence": 1
       },
       {
-        "title": "SeeQC, Inc. (SEQC) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1779977/000121390026095175/ea0288470-04.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
         "title": "SeeQC, Inc. (SEQC) RW",
         "url": "https://www.sec.gov/Archives/edgar/data/1779977/000121390026095144/ea0303705-rw_seeqc.htm",
         "publisher": "SEC",
@@ -87553,14 +87545,6 @@
       },
       {
         "title": "HCW Biologics Inc. (HCWB) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1828673/000149315226040618/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "HCW Biologics Inc. (HCWB) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1828673/000149315226039452/forms-1.htm",
         "publisher": "SEC",
         "date": "2026-08-20",
@@ -90086,14 +90070,6 @@
         "date": "2026-09-14",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Electra Therapeutics, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2088082/000119312526374259/d61940ds1.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Electra Therapeutics, Inc. (ETRA) filed 424B4 with the SEC on 2026-09-18.",
@@ -92317,7 +92293,7 @@
         "confidence": 1
       },
       {
-        "title": "IMC Rare Earths Ltd (IMC) F-1",
+        "title": "IMC Rare Earths Ltd (IMC) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2098395/000149315226033155/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-07-14",
@@ -92555,61 +92531,6 @@
       }
     ],
     "notes": "Viking Acquisition Corp I (VACI, VACI-UN, VACI-WT) filed EFFECT with the SEC on 2026-08-31.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-9f1d568bdf8c86ea",
-    "slug": "nextboat-inc-nxb",
-    "name": "NextBoat Inc. (NXB)",
-    "legalName": "NextBoat Inc. (NXB)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-08-28",
-    "filingDate": "2026-08-28",
-    "latestUpdateDate": "2026-08-28",
-    "filingType": "S-1",
-    "cik": "2067767",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2067767/000149315226040650/forms-1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "NextBoat Inc. (NXB) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067767/000149315226040650/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "OFF THE HOOK YS INC. (OTH) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067767/000149315225022642/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-11-14",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "NextBoat Inc. (NXB) filed S-1 with the SEC on 2026-08-28.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -118849,6 +118770,53 @@
       }
     ],
     "notes": "Caring Brands, Inc. (CABR, CBRA) filed 424B4 with the SEC on 2025-11-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-9f1d568bdf8c86ea",
+    "slug": "off-the-hook-ys-inc-oth",
+    "name": "OFF THE HOOK YS INC. (OTH)",
+    "legalName": "OFF THE HOOK YS INC. (OTH)",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2025-11-14",
+    "filingDate": "2025-11-14",
+    "latestUpdateDate": "2025-11-14",
+    "filingType": "424B4",
+    "cik": "2067767",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2067767/000149315225022642/form424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "OFF THE HOOK YS INC. (OTH) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/2067767/000149315225022642/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2025-11-14",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "OFF THE HOOK YS INC. (OTH) filed 424B4 with the SEC on 2025-11-14.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -173058,14 +173026,6 @@
       },
       {
         "title": "Bitwise NEAR ETF S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526374507/ck0002067111-20260828.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bitwise NEAR ETF S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2067111/000119312526329988/ck0002067111-20260803.htm",
         "publisher": "SEC",
         "date": "2026-08-03",
@@ -178258,14 +178218,6 @@
         "date": "2026-09-09",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "ADAPTIN BIO, INC. (APTN) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1938571/000121390026095034/ea0303043-s1_adaptin.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "ADAPTIN BIO, INC. (APTN) filed EFFECT with the SEC on 2026-09-09.",
@@ -178617,14 +178569,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2130606/999999999526002925/primary_doc.xml",
         "publisher": "SEC",
         "date": "2026-09-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Obsidian Therapeutics, Inc. (OBX) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2130606/000119312526374729/d127696ds1.htm",
-        "publisher": "SEC",
-        "date": "2026-08-28",
         "type": "filing",
         "confidence": 1
       }
