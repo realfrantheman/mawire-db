@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-10-07T08:37:07.175Z",
+  "generatedAt": "2026-10-07T16:26:22.836Z",
   "mode": "file-backed-sec",
   "ruleVersion": "strict-control-v3",
   "lookbackDays": 3,
   "maxDocumentBytes": 12582912,
   "processedThisRun": {
-    "queued": 9,
+    "queued": 8,
     "verified": 0,
-    "rejected": 0,
-    "needs_review": 8,
+    "rejected": 4,
+    "needs_review": 3,
     "errors": 1,
     "duplicates": 0
   },
