@@ -4379,11 +4379,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-113905": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-10-07T16:26:19.178Z",
+      "lastAttemptAt": "2026-10-08T01:54:42.569Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-113882": {
@@ -4515,11 +4515,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-114077": {
-      "attempts": 3,
+      "attempts": 4,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-10-07T16:26:18.752Z",
+      "lastAttemptAt": "2026-10-08T01:54:42.174Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-114070": {
@@ -4563,19 +4563,19 @@
       "ruleVersion": "strict-control-v3"
     },
     "0000029644-26-000116": {
-      "attempts": 3,
+      "attempts": 4,
       "status": "error",
       "reasonCode": "processing_error",
       "error": "primary SEC document text unavailable",
-      "lastAttemptAt": "2026-10-07T16:26:20.043Z",
+      "lastAttemptAt": "2026-10-08T01:54:43.005Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-114072": {
-      "attempts": 3,
+      "attempts": 4,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-10-07T16:26:22.584Z",
+      "lastAttemptAt": "2026-10-08T01:54:44.460Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001213900-26-107418": {
@@ -4689,7 +4689,15 @@
       "error": null,
       "lastAttemptAt": "2026-10-07T21:58:10.434Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001140361-26-038922": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-10-08T01:54:41.762Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-10-07T21:58:10.685Z"
+  "updatedAt": "2026-10-08T01:54:44.711Z"
 }
