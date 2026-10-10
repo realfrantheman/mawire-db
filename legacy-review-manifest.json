@@ -1,26 +1,26 @@
 {
-  "generatedAt": "2026-10-09T21:14:03.730Z",
+  "generatedAt": "2026-10-10T01:13:27.896Z",
   "ruleVersion": "strict-control-v3",
   "engineVersion": "legacy-control-review-v1.2",
   "batchSize": 1000,
   "processedThisRun": {
     "verified": 0,
     "rejected": 0,
-    "needs_review": 0,
+    "needs_review": 1,
     "error": 0
   },
-  "total": 25219,
-  "reviewed": 25219,
+  "total": 25220,
+  "reviewed": 25220,
   "coveragePct": 100,
   "counts": {
     "verified": 9,
     "rejected": 3,
-    "needs_review": 25207,
+    "needs_review": 25208,
     "error": 0
   },
   "reasons": {
+    "source_truncated_before_verification": 131,
     "verified_primary_source_control_transaction": 9,
-    "source_truncated_before_verification": 130,
     "unresolved_or_invalid_parties": 816,
     "primary_source_unreachable": 19805,
     "no_explicit_control_transaction_evidence": 4,
@@ -33,9 +33,9 @@
     "tender_control_not_proven": 37,
     "party_not_confirmed_in_primary_source": 1
   },
-  "verifiedRatio": 0.00035687378563781274,
-  "unresolvedRatio": 0.9995241682858163,
-  "rejectedRatio": 0.00011895792854593759,
+  "verifiedRatio": 0.00035685963521015065,
+  "unresolvedRatio": 0.9995241871530531,
+  "rejectedRatio": 0.00011895321173671689,
   "duplicateIds": 0,
   "duplicateRecordKeys": 0,
   "complete": true,
@@ -68,6 +68,7 @@
       "id:b1430f2b-d049-4bc4-b06b-3993973fbcb4"
     ],
     "needsReview": [
+      "id:sec-0001140361-26-039290",
       "id:sec-0001140361-26-036084",
       "id:sec-0001193125-26-383841",
       "id:sec-0001193125-26-383837",
@@ -76,8 +77,7 @@
       "id:sec-0001193125-26-382691",
       "id:9991a968-7e4b-4974-9524-b5c65a06a212",
       "id:a3865404-4a57-4384-9e49-e3899886dad0",
-      "id:80f28765-9d07-434a-98cf-55dcc669d367",
-      "id:78b0c998-e7f7-4d72-b3ce-22d12efaa029"
+      "id:80f28765-9d07-434a-98cf-55dcc669d367"
     ]
   },
   "publicationRule": "Migration in progress or safety gate not met: preserve the existing public corpus until an atomic strict cutover is safe."
