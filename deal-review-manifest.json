@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-10-09T20:55:44.408Z",
+  "generatedAt": "2026-10-10T00:48:37.286Z",
   "mode": "file-backed-sec",
   "ruleVersion": "strict-control-v3",
   "lookbackDays": 3,
   "maxDocumentBytes": 12582912,
   "processedThisRun": {
-    "queued": 5,
-    "verified": 0,
+    "queued": 21,
+    "verified": 1,
     "rejected": 4,
-    "needs_review": 1,
+    "needs_review": 16,
     "errors": 0,
     "duplicates": 0
   },
-  "additions": 0,
+  "additions": 1,
   "publicationRule": "Verified primary-source control transactions only."
 }
