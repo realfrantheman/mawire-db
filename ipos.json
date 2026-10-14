@@ -13235,7 +13235,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:36.490Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-34f4a7f517f15c97",
@@ -13282,7 +13290,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:37.261Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-c5b43c1807108d80",
@@ -13329,7 +13345,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:37.924Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-61fe62dd93c88449",
@@ -13392,7 +13416,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:38.933Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a10e3bc4fe8ebbe3",
@@ -13471,7 +13503,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:40.066Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d23354d122efe3a9",
@@ -13550,7 +13590,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:41.490Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-900f34990c202183",
@@ -13613,7 +13661,18 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:46.179Z",
+      "status": "fetch_failed",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": [
+        "https://www.sec.gov/Archives/edgar/data/1966126/000121390026108590/ea0225257-11.htm: response size limit exceeded",
+        "https://www.sec.gov/Archives/edgar/data/1966126/000121390026100586/ea0225257-10.htm: response size limit exceeded"
+      ]
+    }
   },
   {
     "id": "ipo-4d1bbe7e78ba48f6",
@@ -13676,7 +13735,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:47.364Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-37ae247f82ff1d68",
@@ -13731,7 +13798,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:48.132Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-435e7ef9e363d86a",
@@ -13802,7 +13877,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:48.912Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-c6efa3ed8ae5c2c1",
@@ -13849,7 +13932,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:49.224Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-0067d3faf3b7d09e",
@@ -13896,7 +13987,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:49.662Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-671f524926d69b4e",
@@ -13943,7 +14042,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:49.692Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-88f8e5e0dceebfc3",
@@ -13998,7 +14105,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:50.129Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-94c8322c399e9ee1",
@@ -14053,7 +14168,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:51.079Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-6f8e75f186c3005e",
@@ -14116,7 +14239,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:51.453Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-3c91818953f80634",
@@ -14179,7 +14310,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:51.534Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-272fefe4df24ee1b",
@@ -14234,7 +14373,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:51.575Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-c367a66c0ee39e34",
@@ -14289,7 +14436,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:52.108Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d6922ff42659c544",
@@ -14376,7 +14531,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:52.253Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-deee3f8930d08abb",
@@ -14423,7 +14586,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:52.532Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-8d97132febce3279",
@@ -14470,7 +14641,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:52.870Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-eab11892b43d6565",
@@ -14541,7 +14720,18 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:57.393Z",
+      "status": "fetch_failed",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": [
+        "https://www.sec.gov/Archives/edgar/data/2142855/000121390026108148/ea0299258-05.htm: response size limit exceeded",
+        "https://www.sec.gov/Archives/edgar/data/2142855/000121390026103083/ea0299258-04.htm: response size limit exceeded"
+      ]
+    }
   },
   {
     "id": "ipo-cabcac7a3ea2e41b",
@@ -14628,7 +14818,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:58.339Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-3853a10c75a3972a",
@@ -14675,7 +14873,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:58.554Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b54beed03344bb45",
@@ -14722,7 +14928,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:58.791Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-9fbf2f663713079c",
@@ -14769,7 +14983,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:59.260Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e20516d6d8bff6bd",
@@ -14856,7 +15078,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:04:59.503Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1ed901c00a747f13",
@@ -14927,7 +15157,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:00.057Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-9a042378d8fda306",
@@ -14982,7 +15220,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:00.676Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d0506cd982dfb055",
@@ -15061,7 +15307,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:01.020Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e1b18c5fcc16a67d",
@@ -15124,7 +15378,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:01.861Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-90add8480d222eac",
@@ -15195,7 +15457,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:02.505Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ca969e5b7af4d285",
@@ -15250,7 +15520,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:03.348Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4a344174d6f9a1df",
@@ -15305,7 +15583,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:03.430Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1d685bc46833d282",
@@ -15376,7 +15662,17 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:05.769Z",
+      "status": "partial_error",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": [
+        "https://www.sec.gov/Archives/edgar/data/2114145/000121390026108079/ea0274222-12.htm: response size limit exceeded"
+      ]
+    }
   },
   {
     "id": "ipo-99a7e0984d53ad5f",
@@ -15423,7 +15719,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:06.391Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-05d3dde6b4fd276f",
@@ -15486,7 +15790,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:06.533Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e00542e04a984cac",
@@ -15541,7 +15853,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:07.016Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-3401f477097667f9",
@@ -15596,7 +15916,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:07.827Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-8928b4aabe02fb06",
@@ -15651,7 +15979,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:07.995Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-36e8bd917174f23c",
@@ -15698,7 +16034,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:08.036Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d4857804992bc6ae",
@@ -15753,7 +16097,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:08.962Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-10862c7773bdf145",
@@ -15832,7 +16184,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:09.087Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-83b240d74c1e81cc",
@@ -15887,7 +16247,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:09.580Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-8086eb1ecc7f8a6e",
@@ -15934,7 +16302,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:09.597Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d1bca3ae4550e198",
@@ -16005,7 +16381,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:10.157Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-3f4348440baef357",
@@ -16052,7 +16436,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:10.241Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a036d2936440c3ec",
@@ -16099,7 +16491,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:10.388Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ab880a75adbc9c41",
@@ -16146,7 +16546,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:10.735Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1055d42969191e69",
@@ -16193,7 +16601,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:11.124Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4604020f01210b2f",
@@ -16264,7 +16680,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:11.424Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a2f37150fc9e90d9",
@@ -16351,7 +16775,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:12.204Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-cb3133c45af045a5",
@@ -16414,7 +16846,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:12.692Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-794720231dc7dfe3",
@@ -16461,7 +16901,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:13.043Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-be6c411e7327b532",
@@ -16508,7 +16956,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:13.188Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a4e1a2a7bb691371",
@@ -16553,9 +17009,29 @@
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
+      "publicCompaniesIPOCompanyDependsOn": [
+        {
+          "company": "Mastercard",
+          "ticker": "MA",
+          "relationship": "payment processor",
+          "dependencyType": "ipo_company_depends_on",
+          "rationale": "​ ​ 6 TABLE OF CONTENTS • Our merchant acquiring services depend on our continued certification by, and registration with, Visa, Mastercard, and other payment networks.",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1070965/000110465926113366/tm2620318-7_s1.htm",
+          "sourceTitle": "GEORGIA BANKING CO INC SEC filing",
+          "confidence": 0.92,
+          "extractionMethod": "sec-dependency-v2"
+        }
+      ]
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:13.716Z",
+      "status": "complete",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 1,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1c578f7957e958fe",
@@ -16602,7 +17078,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:13.896Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-21c9225c59b034ea",
@@ -16689,7 +17173,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:14.867Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e01f595d6e38cc18",
@@ -16736,7 +17228,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:15.051Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-143ce85f77bd980f",
@@ -16823,7 +17323,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:16.051Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-aaf3042ba9485323",
@@ -16886,7 +17394,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:16.128Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-c08bdc33b1a41d05",
@@ -16941,7 +17457,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:16.213Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-36ca1d4b34bc8971",
@@ -16988,7 +17512,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:16.595Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-697cf5c11b6a0a44",
@@ -17035,7 +17567,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:16.658Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e7db90b36e99f465",
@@ -17082,7 +17622,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:17.510Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-16fb94d7fa2db600",
@@ -17153,7 +17701,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:17.851Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-f74442343da21c37",
@@ -17200,7 +17756,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:18.223Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-c28c05095eadf6d5",
@@ -17279,7 +17843,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:18.571Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ae053d1befd6f4f7",
@@ -17342,7 +17914,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:18.935Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b1e330e6dd48a5ce",
@@ -17397,7 +17977,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:19.886Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-cdd8a866e8561f68",
@@ -17444,7 +18032,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:20.042Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-cbd55fda8927a94d",
@@ -17491,7 +18087,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:20.210Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ba40b657e7fd6ec7",
@@ -17554,7 +18158,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:20.549Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e7733eb1d392d2f8",
@@ -17665,7 +18277,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:20.984Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-78b0f7c74db6588c",
@@ -17720,7 +18340,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:21.278Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-77733e33c45f957a",
@@ -17767,7 +18395,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:21.603Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a487cd67cac9e1f3",
@@ -17822,7 +18458,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:22.146Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-70a7d34ae06a4549",
@@ -17893,7 +18537,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:22.461Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-2e6f0cbcc41fe657",
@@ -17948,7 +18600,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:22.519Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-6468b3165b3fb28b",
@@ -17995,7 +18655,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:22.883Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-46d10654056d3fc6",
@@ -18066,7 +18734,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:22.972Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-55d6da0cd6140518",
@@ -18145,7 +18821,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:23.396Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-fc5d579937ae6390",
@@ -18192,7 +18876,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:23.527Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b96e6d4a99e61ba1",
@@ -18255,7 +18947,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:23.597Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e278c0236f137eff",
@@ -18302,7 +19002,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:23.802Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ac3270375930ce20",
@@ -18349,7 +19057,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:24.060Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-45d53df939fe80ab",
@@ -18394,9 +19110,29 @@
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
+      "publicCompaniesIPOCompanyDependsOn": [
+        {
+          "company": "Pelagos Insurance Capital Ltd",
+          "ticker": "PLGO",
+          "relationship": "material provider",
+          "dependencyType": "ipo_company_depends_on",
+          "rationale": "On July 1, 2024, the Group announced that Lloyd’s had granted approval for the launch of Syndicate 3123 with capital provided by Pelagos Insurance Capital, a global specialty insurer, and Hampden Agencies, the largest provider of private capital to Lloyd’s.",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2128185/000162828026063550/tfpgrouplimited-fx1.htm",
+          "sourceTitle": "TFP Group Ltd SEC filing",
+          "confidence": 0.92,
+          "extractionMethod": "sec-dependency-v2"
+        }
+      ]
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:24.298Z",
+      "status": "complete",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 1,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b458e49a05062a6f",
@@ -18451,7 +19187,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:24.590Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-99bd9299c367c6d0",
@@ -18506,7 +19250,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:24.700Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-6e29db47a593f1b7",
@@ -18553,7 +19305,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:24.956Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-77e74b58526bfc31",
@@ -18632,7 +19392,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:25.405Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-68932ad9df637538",
@@ -18695,7 +19463,18 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:31.131Z",
+      "status": "fetch_failed",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": [
+        "https://www.sec.gov/Archives/edgar/data/1895249/000110465926109830/cntm-20260630xs1a.htm: response size limit exceeded",
+        "https://www.sec.gov/Archives/edgar/data/1895249/000110465926109217/cntm-20260630xs1a.htm: response size limit exceeded"
+      ]
+    }
   },
   {
     "id": "ipo-12af5db1c7bdd079",
@@ -18750,7 +19529,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:31.492Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d4918048b1eaf9e3",
@@ -18805,7 +19592,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:32.332Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-fcb0ebd4f549b48a",
@@ -18884,7 +19679,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:33.104Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-9396721016cd961d",
@@ -18931,7 +19734,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:33.148Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-2458c4039dbbadd2",
@@ -19018,7 +19829,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:33.602Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-11a732d77f57fc12",
@@ -19081,7 +19900,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:33.653Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-9fcd47584f67b4e9",
@@ -19144,7 +19971,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:33.728Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-226f757c007e41da",
@@ -19229,9 +20064,51 @@
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
+      "publicCompaniesIPOCompanyDependsOn": [
+        {
+          "company": "Alphabet",
+          "ticker": "GOOGL",
+          "relationship": "customer acquisition channel",
+          "dependencyType": "ipo_company_depends_on",
+          "rationale": "11 Table of Contents Our business relies heavily on Facebook, Google, Amazon and many other social networks and search engines for customer acquisition.",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626001407/vrhi_s1z.htm",
+          "sourceTitle": "Veri MedTech Holdings, Inc. (VRHID) SEC filing",
+          "confidence": 0.92,
+          "extractionMethod": "sec-dependency-v2"
+        },
+        {
+          "company": "Meta Platforms",
+          "ticker": "META",
+          "relationship": "customer acquisition channel",
+          "dependencyType": "ipo_company_depends_on",
+          "rationale": "11 Table of Contents Our business relies heavily on Facebook, Google, Amazon and many other social networks and search engines for customer acquisition.",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626001407/vrhi_s1z.htm",
+          "sourceTitle": "Veri MedTech Holdings, Inc. (VRHID) SEC filing",
+          "confidence": 0.92,
+          "extractionMethod": "sec-dependency-v2"
+        },
+        {
+          "company": "Amazon",
+          "ticker": "AMZN",
+          "relationship": "customer acquisition channel",
+          "dependencyType": "ipo_company_depends_on",
+          "rationale": "11 Table of Contents Our business relies heavily on Facebook, Google, Amazon and many other social networks and search engines for customer acquisition.",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2078149/000109690626001407/vrhi_s1z.htm",
+          "sourceTitle": "Veri MedTech Holdings, Inc. (VRHID) SEC filing",
+          "confidence": 0.92,
+          "extractionMethod": "sec-dependency-v2"
+        }
+      ]
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:34.184Z",
+      "status": "complete",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 3,
+      "errors": []
+    }
   },
   {
     "id": "ipo-61f933b00ba42c1e",
@@ -19286,7 +20163,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:34.717Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b4f00eb3fc421479",
@@ -19341,7 +20226,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:35.447Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4ed3135d5fa78aee",
@@ -19404,7 +20297,17 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:38.003Z",
+      "status": "partial_error",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": [
+        "https://www.sec.gov/Archives/edgar/data/2133037/000162828026062846/sbenergy-sx1a2.htm: response size limit exceeded"
+      ]
+    }
   },
   {
     "id": "ipo-b21be775c6a7237b",
@@ -19451,7 +20354,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:38.468Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-db09576be9a55d5b",
@@ -19498,7 +20409,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:38.541Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-235107ccb7a94d9e",
@@ -19545,7 +20464,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:38.751Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-069397bd2e7488ec",
@@ -19653,9 +20580,29 @@
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
+      "publicCompaniesIPOCompanyDependsOn": [
+        {
+          "company": "NVIDIA",
+          "ticker": "NVDA",
+          "relationship": "chip manufacturer",
+          "dependencyType": "ipo_company_depends_on",
+          "rationale": "Since we do not have long-term supply guarantees or inventory stocks, and because our third-party suppliers rely on NVIDIA as a primary upstream GPU manufacturer, our suppliers rely on upstream semiconductor manufacturers which further heighten our supply chain risks.",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2110365/000119312526395475/ck0002110365-20260918.htm",
+          "sourceTitle": "NSCALE Ltd SEC filing",
+          "confidence": 0.92,
+          "extractionMethod": "sec-dependency-v2"
+        }
+      ]
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:39.245Z",
+      "status": "complete",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 1,
+      "errors": []
+    }
   },
   {
     "id": "ipo-693649203ffa1f34",
@@ -19702,7 +20649,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:39.472Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-35dd4905866e4dcb",
@@ -19757,7 +20712,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:39.768Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1cac08b0b5bd9906",
@@ -19804,7 +20767,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:39.791Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1640683a8fb8396c",
@@ -19859,7 +20830,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:40.420Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-9ae8c0e0dcbfb76e",
@@ -19914,7 +20893,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:41.397Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4d40657351cf6495",
@@ -19977,7 +20964,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:41.911Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-816b7b6133e57c5d",
@@ -20096,7 +21091,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:42.408Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a935549fec54e30d",
@@ -20215,7 +21218,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:42.660Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a87e9cd428162eab",
@@ -20278,7 +21289,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:43.076Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-cb36ecd28d5cad2a",
@@ -20325,7 +21344,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:43.299Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-2bee61d5cdf4fdf0",
@@ -20388,7 +21415,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:43.645Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-89d8ead8419a77b5",
@@ -20435,7 +21470,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:44.049Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1aa48d8b835f715f",
@@ -20498,7 +21541,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:44.414Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4b1526922b68979a",
@@ -20545,7 +21596,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:44.563Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-f3bc6a307118bb78",
@@ -20656,7 +21715,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:44.938Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-aa70c6eb900cacb1",
@@ -20727,7 +21794,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:45.297Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-03e8989ccf6e959d",
@@ -20774,7 +21849,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:45.492Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-67a00fd93a9f369e",
@@ -20821,7 +21904,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:45.916Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a270e8d2569f0e69",
@@ -20876,7 +21967,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:46.296Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-bacc884eec79b1ae",
@@ -20931,7 +22030,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:47.231Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-3bce2370fca5dbca",
@@ -20986,7 +22093,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:47.936Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-622c4c962da5f529",
@@ -21049,7 +22164,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:48.320Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-dea294fc359a9880",
@@ -21096,7 +22219,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:48.594Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-dfe9dc1760b4d9c4",
@@ -21143,7 +22274,17 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:51.066Z",
+      "status": "fetch_failed",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": [
+        "https://www.sec.gov/Archives/edgar/data/2092314/000121390026099277/ea0304685-01.htm: response size limit exceeded"
+      ]
+    }
   },
   {
     "id": "ipo-86a592dca6429c1f",
@@ -21190,7 +22331,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:51.126Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-fa9b97e16cd60bc1",
@@ -21237,7 +22386,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:51.345Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-044f93bcd0fe4226",
@@ -21300,7 +22457,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:51.853Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e0f593df4570681d",
@@ -21347,7 +22512,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:52.036Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-8895da1ac5c813b7",
@@ -21449,7 +22622,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:52.196Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a135c79425664fdf",
@@ -21496,7 +22677,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:52.470Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-98b3c33b24204c83",
@@ -21543,7 +22732,17 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:54.841Z",
+      "status": "fetch_failed",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": [
+        "https://www.sec.gov/Archives/edgar/data/2152644/000119312526388025/hfg-20260910.htm: response size limit exceeded"
+      ]
+    }
   },
   {
     "id": "ipo-346965321064f842",
@@ -21590,7 +22789,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:54.922Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-51a55a1f7907d18d",
@@ -21669,7 +22876,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:55.703Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-6d58a54408ca2670",
@@ -21716,7 +22931,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:56.052Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a64f7b518bc44554",
@@ -21763,7 +22986,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:56.265Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-87401e9586360491",
@@ -21810,7 +23041,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:56.552Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-07f5ee1def728b20",
@@ -21873,7 +23112,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:56.773Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e0e22d6305fec1b3",
@@ -21928,7 +23175,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:57.015Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-9eaea56bfe06e9ae",
@@ -21983,7 +23238,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:57.773Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1dd3cb1d5eecf15b",
@@ -22030,7 +23293,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:58.264Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a0bdc7038da63fa7",
@@ -22085,7 +23356,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:58.410Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4626331767b8cc68",
@@ -22148,7 +23427,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:58.896Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ddbc092698cde4f2",
@@ -22201,9 +23488,40 @@
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
+      "publicCompaniesIPOCompanyDependsOn": [
+        {
+          "company": "Apple",
+          "ticker": "AAPL",
+          "relationship": "distribution platform",
+          "dependencyType": "ipo_company_depends_on",
+          "rationale": "11 We rely on the Apple iOS and Google Play app store ecosystems, and changes to these ecosystems or their policies could adversely affect our business, financial condition, and results of operations.",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2055301/000162828026060183/aura-sx1a.htm",
+          "sourceTitle": "Aura Consolidated Group, Inc. SEC filing",
+          "confidence": 0.92,
+          "extractionMethod": "sec-dependency-v2"
+        },
+        {
+          "company": "Alphabet",
+          "ticker": "GOOGL",
+          "relationship": "distribution platform",
+          "dependencyType": "ipo_company_depends_on",
+          "rationale": "11 We rely on the Apple iOS and Google Play app store ecosystems, and changes to these ecosystems or their policies could adversely affect our business, financial condition, and results of operations.",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2055301/000162828026060183/aura-sx1a.htm",
+          "sourceTitle": "Aura Consolidated Group, Inc. SEC filing",
+          "confidence": 0.92,
+          "extractionMethod": "sec-dependency-v2"
+        }
+      ]
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:05:59.787Z",
+      "status": "complete",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 2,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d5d297d1359f6490",
@@ -22258,7 +23576,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:00.444Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-3acad518c15d9280",
@@ -22329,7 +23655,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:00.864Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-f9c3aed7fad1c7b8",
@@ -22376,7 +23710,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:01.161Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-089a98df13c4f87c",
@@ -22431,7 +23773,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:02.075Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-cdf75d9a06c9396e",
@@ -22478,7 +23828,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:02.525Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b83b8b931a6b67d1",
@@ -22525,7 +23883,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:02.563Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b769dd5da4cd79d4",
@@ -22572,7 +23938,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:02.599Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-cf706063c713304a",
@@ -22635,7 +24009,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:03.076Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4b895355a27dca0d",
@@ -22690,7 +24072,18 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:07.791Z",
+      "status": "fetch_failed",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": [
+        "https://www.sec.gov/Archives/edgar/data/2045151/000121390026095715/ea0285017-07.htm: response size limit exceeded",
+        "https://www.sec.gov/Archives/edgar/data/2045151/000121390026077111/ea0285017-05.htm: response size limit exceeded"
+      ]
+    }
   },
   {
     "id": "ipo-d79ee81023a93cca",
@@ -22737,7 +24130,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:07.792Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-2fc51f24a442c9df",
@@ -22808,7 +24209,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:08.074Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a5d582ab2b2633f9",
@@ -22855,7 +24264,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:08.386Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-03e31b5232962df3",
@@ -22902,7 +24319,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:08.710Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1691b7c1fd80b5f2",
@@ -22965,7 +24390,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:08.821Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-49ef5965129ed06a",
@@ -23044,7 +24477,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:09.343Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e3949c30d9ffd74b",
@@ -23099,7 +24540,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:09.545Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-3295d13b00daa3c6",
@@ -23146,7 +24595,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:09.638Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d2503bea2ced743d",
@@ -23193,7 +24650,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:09.886Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-fa53ca48dc593f95",
@@ -23280,7 +24745,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:10.278Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b00223b4c07abfa4",
@@ -23327,7 +24800,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:10.585Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-729b91e5cc805f7f",
@@ -23382,7 +24863,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:11.548Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-68b1ff1783079e67",
@@ -23437,7 +24926,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:12.007Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-2ba1d9d1c1873a3e",
@@ -23484,7 +24981,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:12.454Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-7b731c860c7acf30",
@@ -23531,7 +25036,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:12.476Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-f776662102a3a2e1",
@@ -23594,7 +25107,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:12.936Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-990359107a973042",
@@ -23641,7 +25162,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:13.138Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-7c950c521c142bea",
@@ -23712,7 +25241,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:13.378Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-deabcf3e1a743e7f",
@@ -23759,7 +25296,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:13.523Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ed7ece261bde298f",
@@ -23806,7 +25351,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:13.611Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ff7561d67878763f",
@@ -23869,7 +25422,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:13.867Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-8b22f57f5dd881ff",
@@ -23932,7 +25493,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:14.179Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-72c34a5ad31966ea",
@@ -24003,7 +25572,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:14.458Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d6b67595d292b6cb",
@@ -24058,7 +25635,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:15.411Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d9310a4397d3f2ac",
@@ -24145,7 +25730,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:16.068Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1fcf1b4cdcd4c033",
@@ -24200,7 +25793,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:17.013Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-02ccfced24465053",
@@ -24287,7 +25888,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:17.465Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4c35e854798624dd",
@@ -24334,7 +25943,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:17.588Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-cf8d29a1b2a61c15",
@@ -24381,7 +25998,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:17.927Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-bccad0f499dbc360",
@@ -24428,7 +26053,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:18.223Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b97e413f1ef8eaac",
@@ -24475,7 +26108,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:18.668Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b663dade79861ca0",
@@ -24522,7 +26163,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:19.175Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1832004d0afeeaf3",
@@ -24569,7 +26218,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:19.501Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-5ab21936751e563b",
@@ -24616,7 +26273,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:19.681Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b2bdfd3babad6117",
@@ -24671,7 +26336,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:20.296Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-514720c2b201b1ca",
@@ -24718,7 +26391,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:20.891Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-f8a9daf0a291a325",
@@ -24773,7 +26454,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:21.493Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-dc7cf7d641203155",
@@ -24844,7 +26533,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:21.919Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1bd626e29aefd972",
@@ -24891,7 +26588,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:22.460Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-475dd3bca7c06b5c",
@@ -24938,7 +26643,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:22.896Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-193539bba2cd3dbe",
@@ -25001,7 +26714,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:23.111Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-00dd6ab2b0fb3257",
@@ -25072,7 +26793,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:23.184Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-35254b96a87b86c9",
@@ -25119,7 +26848,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:23.221Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-286e18756da6ec8d",
@@ -25166,7 +26903,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:23.328Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-eacc15a7af358351",
@@ -25213,7 +26958,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:23.754Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-4d35718e968f37d7",
@@ -25284,7 +27037,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:24.403Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-c1a99d2156282bc1",
@@ -25371,7 +27132,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:24.561Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-82c7c3a96d854ad1",
@@ -25418,7 +27187,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:24.794Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d6ebb4be86bfbe1e",
@@ -25481,7 +27258,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:25.173Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-58f8dcf75d6fcc6e",
@@ -25560,7 +27345,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:25.357Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e846ccd222e00c1d",
@@ -25607,7 +27400,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:25.591Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-9c292d87c40bf75e",
@@ -25654,7 +27455,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:25.978Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-cdef2d3d63f8114c",
@@ -25709,7 +27518,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:26.539Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-63bbc2537af51d26",
@@ -25764,7 +27581,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:26.592Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-95bf630cabcdbaaa",
@@ -25835,7 +27660,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:27.287Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-be14af5c0fe03c5e",
@@ -25890,7 +27723,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:28.141Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-51e097c8ab464cf6",
@@ -25945,7 +27786,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:28.684Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-6c0566b6758ae526",
@@ -25992,7 +27841,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:28.717Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-308c6358e7b6949d",
@@ -26047,7 +27904,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:29.239Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-c0e94d01b8ab2bcd",
@@ -26094,7 +27959,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:29.274Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-367e0d0609f23a98",
@@ -26141,7 +28014,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:29.441Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-6b7bc99f99b2c1ef",
@@ -26204,7 +28085,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:29.816Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d2d98268e415c8b2",
@@ -26267,7 +28156,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:30.312Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1f9f712958400c36",
@@ -26322,7 +28219,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:31.135Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a644eedc251fdfcc",
@@ -26377,7 +28282,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:31.229Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-c1dff75890899bf7",
@@ -26424,7 +28337,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:31.747Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-314da0e446f29bd7",
@@ -26511,7 +28432,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:32.079Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a366abba1afbec0f",
@@ -26566,7 +28495,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:32.738Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-990b1b50b80ef42f",
@@ -26629,7 +28566,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:33.059Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-0a1b2d68e2372e39",
@@ -26684,7 +28629,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:33.302Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-9701b5a2072b72e3",
@@ -26747,7 +28700,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:33.747Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-db98cb397c0e20dd",
@@ -26810,7 +28771,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:34.208Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a9713bf3b706bd9b",
@@ -26857,7 +28826,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:34.238Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-01c8166a7fd6c861",
@@ -26904,7 +28881,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:34.579Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-797fdcd91d5daca7",
@@ -26951,7 +28936,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:34.609Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-d9a161bc150aaba7",
@@ -27006,7 +28999,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:34.943Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-e8e6588d17b2f045",
@@ -27077,7 +29078,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:35.096Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-135b441bccec8c88",
@@ -27132,7 +29141,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:35.134Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-da9f958960eaa47f",
@@ -27187,7 +29204,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:35.523Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-83e19b5a8edee6c5",
@@ -27258,7 +29283,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:35.962Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-65765fdea92013f2",
@@ -27313,7 +29346,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:36.737Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a5f97432d37e0278",
@@ -27360,7 +29401,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:37.143Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-b19d367d506c8484",
@@ -27463,7 +29512,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:37.308Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-603be1fbf78d14d8",
@@ -27510,7 +29567,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:37.652Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-6a3647e995945634",
@@ -27557,7 +29622,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:37.877Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-fc786b4761c1d330",
@@ -27604,7 +29677,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:38.346Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-394fae43d978c708",
@@ -27651,7 +29732,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:38.387Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-28c3567c09208317",
@@ -27698,7 +29787,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:38.515Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-a4014ea285a87ab9",
@@ -27753,7 +29850,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:38.658Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 2,
+      "sourceUrlsAttempted": 2,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-ac214cf7cb867f4e",
@@ -27800,7 +29905,15 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": null
+    "dependencyIngestion": {
+      "parserVersion": "sec-dependency-v2",
+      "attemptedAt": "2026-10-14T13:06:38.696Z",
+      "status": "no_evidence",
+      "sourceUrlsFound": 1,
+      "sourceUrlsAttempted": 1,
+      "edgesFound": 0,
+      "errors": []
+    }
   },
   {
     "id": "ipo-1fe940b6d80e4354",
