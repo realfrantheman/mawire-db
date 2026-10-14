@@ -669,61 +669,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-6f351e3c486ab9f2",
-    "slug": "bioventrix-inc",
-    "name": "BIOVENTRIX, INC.",
-    "legalName": "BIOVENTRIX, INC.",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-05-29",
-    "latestUpdateDate": "2026-05-29",
-    "filingType": "S-1/A",
-    "cik": "1283259",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1283259/000149315226026355/forms-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "BIOVENTRIX, INC. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1283259/000149315226026355/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-29",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "BIOVENTRIX, INC. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1283259/000149315226023752/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-15",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "BIOVENTRIX, INC. filed S-1/A with the SEC on 2026-05-29.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-d6825860339692fe",
     "slug": "healthlynked-corp-hlyk",
     "name": "HealthLynked Corp (HLYK)",
@@ -1731,14 +1676,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2115119/000119312526206730/d28556ds1a.htm",
         "publisher": "SEC",
         "date": "2026-05-05",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Columbia Financial, Inc./MD/ S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2115119/000119312526164317/d28556ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-04-20",
         "type": "filing",
         "confidence": 1
       }
@@ -13128,6 +13065,77 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-ba40b657e7fd6ec7",
+    "slug": "bitari-inc-biai",
+    "name": "Bitari Inc (BIAI)",
+    "legalName": "Bitari Inc (BIAI)",
+    "sector": "Financial Services",
+    "industry": "Commodity Contracts Brokers & Dealers",
+    "description": null,
+    "headquarters": "16544 HWY 152, WHEELER, TX, 79096",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "BIAI",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-14",
+    "latestUpdateDate": "2026-10-14",
+    "filingType": "S-1",
+    "cik": "2091680",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004746/bitaris1a3101326.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Bitari Inc (BIAI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004746/bitaris1a3101326.htm",
+        "publisher": "SEC",
+        "date": "2026-10-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Bitari Inc (BIAI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004385/bitaris1a2092826.htm",
+        "publisher": "SEC",
+        "date": "2026-09-29",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Bitari Inc (BIAI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004027/bitaris1a1090926.htm",
+        "publisher": "SEC",
+        "date": "2026-09-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Bitari Inc S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526003678/bitaris1082026.htm",
+        "publisher": "SEC",
+        "date": "2026-08-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Bitari Inc (BIAI) filed S-1 with the SEC on 2026-10-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-069397bd2e7488ec",
     "slug": "glucotrack-inc-gctk",
     "name": "Glucotrack, Inc. (GCTK)",
@@ -15272,7 +15280,7 @@
     "status": "filed",
     "statusLabel": "Filed",
     "exchange": null,
-    "ticker": null,
+    "ticker": "IAM",
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-10-08",
@@ -17392,69 +17400,6 @@
       }
     ],
     "notes": "Top Leader Universal Holdings Ltd filed F-1 with the SEC on 2026-09-30.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-ba40b657e7fd6ec7",
-    "slug": "bitari-inc-biai",
-    "name": "Bitari Inc (BIAI)",
-    "legalName": "Bitari Inc (BIAI)",
-    "sector": "Financial Services",
-    "industry": "Commodity Contracts Brokers & Dealers",
-    "description": null,
-    "headquarters": "16544 HWY 152, WHEELER, TX, 79096",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "BIAI",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-29",
-    "latestUpdateDate": "2026-09-29",
-    "filingType": "S-1",
-    "cik": "2091680",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004385/bitaris1a2092826.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Bitari Inc (BIAI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004385/bitaris1a2092826.htm",
-        "publisher": "SEC",
-        "date": "2026-09-29",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bitari Inc (BIAI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526004027/bitaris1a1090926.htm",
-        "publisher": "SEC",
-        "date": "2026-09-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Bitari Inc S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2091680/000118518526003678/bitaris1082026.htm",
-        "publisher": "SEC",
-        "date": "2026-08-21",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Bitari Inc (BIAI) filed S-1 with the SEC on 2026-09-29.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -138589,6 +138534,116 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-6f351e3c486ab9f2",
+    "slug": "bioventrix-inc",
+    "name": "BIOVENTRIX, INC.",
+    "legalName": "BIOVENTRIX, INC.",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-14",
+    "latestUpdateDate": "2026-10-14",
+    "filingType": "RW",
+    "cik": "1283259",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1283259/000149315226046985/formrw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "BIOVENTRIX, INC. RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1283259/000149315226046985/formrw.htm",
+        "publisher": "SEC",
+        "date": "2026-10-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "BIOVENTRIX, INC. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1283259/000149315226026355/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-29",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "BIOVENTRIX, INC. S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1283259/000149315226023752/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "BIOVENTRIX, INC. filed RW with the SEC on 2026-10-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-09725969a8042765",
+    "slug": "sphere-trust",
+    "name": "Sphere Trust",
+    "legalName": "Sphere Trust",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-14",
+    "latestUpdateDate": "2026-10-14",
+    "filingType": "RW",
+    "cik": "2159933",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2159933/000158064226006883/spheretrust_rw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Sphere Trust RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/2159933/000158064226006883/spheretrust_rw.htm",
+        "publisher": "SEC",
+        "date": "2026-10-14",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Sphere Trust filed RW with the SEC on 2026-10-14.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-dad0743a586ddf05",
     "slug": "cn-energy-group-inc-cney",
     "name": "CN ENERGY GROUP. INC. (CNEY)",
@@ -176142,14 +176197,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1357671/000121390026079266/ea0265963-s1a1_creatd.htm",
         "publisher": "SEC",
         "date": "2026-07-17",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Creatd, Inc. (CRTD) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1357671/000121390026070464/ea0265963-s1_creatd.htm",
-        "publisher": "SEC",
-        "date": "2026-06-22",
         "type": "filing",
         "confidence": 1
       },
