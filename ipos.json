@@ -13112,6 +13112,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-11d1b6fd6ce5552c",
+    "slug": "cashlin",
+    "name": "Cashlin",
+    "legalName": "Cashlin",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": "84 TWYFORD AVE, LONDON, W3 9QF",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": "10,000,000",
+    "sharesOfferedNum": 10000000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": "market",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-15",
+    "latestUpdateDate": "2026-10-15",
+    "filingType": "S-1",
+    "cik": "2155673",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2155673/000168316826007889/cashlin_s1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Cashlin S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2155673/000168316826007889/cashlin_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-10-15",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Cashlin filed S-1 with the SEC on 2026-10-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-e0f593df4570681d",
     "slug": "hao-feng-group-ltd-hfe",
     "name": "Hao Feng Group Ltd. (HFE)",
@@ -13222,6 +13269,61 @@
       }
     ],
     "notes": "KBAT Group Inc. filed F-1 with the SEC on 2026-10-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-fc5d579937ae6390",
+    "slug": "med-x-inc",
+    "name": "MED-X, INC.",
+    "legalName": "MED-X, INC.",
+    "sector": "Healthcare",
+    "industry": "Agricultural Chemicals",
+    "description": null,
+    "headquarters": "8236 REMMET AVE., CANOGA PARK, CA, 91304",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": "1,500,000",
+    "sharesOfferedNum": 1500000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "in",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-15",
+    "latestUpdateDate": "2026-10-15",
+    "filingType": "S-1",
+    "cik": "1620704",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1620704/000147793226006268/medx_s1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "MED-X, INC. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1620704/000147793226006268/medx_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-10-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "MED-X, INC. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1620704/000147793226005809/medx_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-09-25",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "MED-X, INC. filed S-1 with the SEC on 2026-10-15.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -18172,53 +18274,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-fc5d579937ae6390",
-    "slug": "med-x-inc",
-    "name": "MED-X, INC.",
-    "legalName": "MED-X, INC.",
-    "sector": "Healthcare",
-    "industry": "Agricultural Chemicals",
-    "description": null,
-    "headquarters": "8236 REMMET AVE., CANOGA PARK, CA, 91304",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": "1,500,000",
-    "sharesOfferedNum": 1500000,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "in",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-25",
-    "latestUpdateDate": "2026-09-25",
-    "filingType": "S-1",
-    "cik": "1620704",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1620704/000147793226005809/medx_s1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "MED-X, INC. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1620704/000147793226005809/medx_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-09-25",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "MED-X, INC. filed S-1 with the SEC on 2026-09-25.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-e278c0236f137eff",
     "slug": "regenlab-usa-inc",
     "name": "Regenlab USA Inc.",
@@ -21481,9 +21536,9 @@
     "name": "Football Manager SPAC Inc.",
     "legalName": "Football Manager SPAC Inc.",
     "sector": "Real Estate",
-    "industry": "Blank Checks",
+    "industry": null,
     "description": null,
-    "headquarters": "VIA BORGONUOVO 4, MILAN, 20121",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -21494,8 +21549,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "FBLL",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-09-09",
@@ -87725,6 +87780,77 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-ca969e5b7af4d285",
+    "slug": "iambic-therapeutics-inc-iam",
+    "name": "Iambic Therapeutics, Inc. (IAM)",
+    "legalName": "Iambic Therapeutics, Inc. (IAM)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-10-15",
+    "filingDate": "2026-10-15",
+    "latestUpdateDate": "2026-10-15",
+    "filingType": "424B4",
+    "cik": "1997038",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1997038/000119312526422865/iambic_inception_424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Iambic Therapeutics, Inc. (IAM) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1997038/000119312526422865/iambic_inception_424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-10-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Iambic Therapeutics, Inc. (IAM) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1997038/999999999526003244/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2026-10-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Iambic Therapeutics, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1997038/000119312526417416/iam-20261008.htm",
+        "publisher": "SEC",
+        "date": "2026-10-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Iambic Therapeutics, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1997038/000119312526396704/iam-20260921.htm",
+        "publisher": "SEC",
+        "date": "2026-09-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Iambic Therapeutics, Inc. (IAM) filed 424B4 with the SEC on 2026-10-15.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-6e29db47a593f1b7",
     "slug": "frazier-life-sciences-acquisition-corp-ii-flsc",
     "name": "Frazier Life Sciences Acquisition Corp. II (FLSC)",
@@ -100912,14 +101038,6 @@
         "confidence": 1
       },
       {
-        "title": "Catheter Precision, Inc. (VTAK) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1716621/000143774926021318/vtak20260618_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-22",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
         "title": "Catheter Precision, Inc. (VTAK) 424B1",
         "url": "https://www.sec.gov/Archives/edgar/data/1716621/000165495424011367/rmed_424b1.htm",
         "publisher": "SEC",
@@ -102681,14 +102799,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1918102/000110465926072286/tm2612179-5_s1a.htm",
         "publisher": "SEC",
         "date": "2026-06-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DEEP FISSION, INC. S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1918102/000110465926045974/tmb-20251231xs1a.htm",
-        "publisher": "SEC",
-        "date": "2026-04-21",
         "type": "filing",
         "confidence": 1
       }
@@ -170669,69 +170779,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-ca969e5b7af4d285",
-    "slug": "iambic-therapeutics-inc-iam",
-    "name": "Iambic Therapeutics, Inc. (IAM)",
-    "legalName": "Iambic Therapeutics, Inc. (IAM)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "unknown",
-    "statusLabel": "Needs verification",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-10-14",
-    "latestUpdateDate": "2026-10-14",
-    "filingType": "EFFECT",
-    "cik": "1997038",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1997038/999999999526003244/primary_doc.xml",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Iambic Therapeutics, Inc. (IAM) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/1997038/999999999526003244/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2026-10-14",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Iambic Therapeutics, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1997038/000119312526417416/iam-20261008.htm",
-        "publisher": "SEC",
-        "date": "2026-10-08",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Iambic Therapeutics, Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1997038/000119312526396704/iam-20260921.htm",
-        "publisher": "SEC",
-        "date": "2026-09-21",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Iambic Therapeutics, Inc. (IAM) filed EFFECT with the SEC on 2026-10-14.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-b96e6d4a99e61ba1",
     "slug": "ocean-power-technologies-inc-optt",
     "name": "Ocean Power Technologies, Inc. (OPTT)",
@@ -184484,14 +184531,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1855467/000149315226032710/forms-1a.htm",
         "publisher": "SEC",
         "date": "2026-07-09",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "MOBIX LABS, INC (MOBX, MOBXW) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1855467/000149315226029436/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-22",
         "type": "filing",
         "confidence": 1
       }
