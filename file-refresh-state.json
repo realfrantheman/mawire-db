@@ -5539,11 +5539,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-115872": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-10-16T01:19:21.712Z",
+      "lastAttemptAt": "2026-10-16T12:23:52.455Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-115853": {
@@ -5563,11 +5563,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-421809": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "verified_result_failed_publication_invariants",
       "error": null,
-      "lastAttemptAt": "2026-10-16T01:19:23.084Z",
+      "lastAttemptAt": "2026-10-16T12:23:54.158Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-039669": {
@@ -5721,7 +5721,47 @@
       "error": null,
       "lastAttemptAt": "2026-10-16T07:07:37.731Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-116412": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-10-16T12:23:49.760Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-109935": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-10-16T12:23:50.250Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-423404": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-10-16T12:23:50.666Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-423331": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-10-16T12:23:51.038Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001493152-26-047296": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-10-16T12:23:52.101Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-10-16T07:07:38.440Z"
+  "updatedAt": "2026-10-16T12:23:54.409Z"
 }
