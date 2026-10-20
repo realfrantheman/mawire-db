@@ -1,52 +1,5 @@
 [
   {
-    "id": "ipo-a5f97432d37e0278",
-    "slug": "samos-energy-acquisition-corp-samo",
-    "name": "Samos Energy Acquisition Corp (SAMO)",
-    "legalName": "Samos Energy Acquisition Corp (SAMO)",
-    "sector": "Real Estate",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-08",
-    "latestUpdateDate": "2026-07-08",
-    "filingType": "S-1/A",
-    "cik": "2125567",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026076151/ea0282661-03.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Samos Energy Acquisition Corp (SAMO) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026076151/ea0282661-03.htm",
-        "publisher": "SEC",
-        "date": "2026-07-08",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Samos Energy Acquisition Corp (SAMO) filed S-1/A with the SEC on 2026-07-08.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-41b3a2e7346dd78f",
     "slug": "coppertech-metals-inc-cux",
     "name": "CopperTech Metals Inc. (CUX)",
@@ -686,6 +639,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2107730/000119312526248888/hype_s-1_amendment_5.htm",
         "publisher": "SEC",
         "date": "2026-05-29",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Grayscale Hyperliquid Staking ETF (GHYP) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2107730/000119312526243167/hype_s-1_amendment_4.htm",
+        "publisher": "SEC",
+        "date": "2026-05-28",
         "type": "filing",
         "confidence": 1
       },
@@ -27955,6 +27916,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-a5f97432d37e0278",
+    "slug": "samos-energy-acquisition-corp-samo",
+    "name": "Samos Energy Acquisition Corp (SAMO)",
+    "legalName": "Samos Energy Acquisition Corp (SAMO)",
+    "sector": "Real Estate",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-08",
+    "latestUpdateDate": "2026-07-08",
+    "filingType": "S-1",
+    "cik": "2125567",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026076151/ea0282661-03.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Samos Energy Acquisition Corp (SAMO) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2125567/000121390026076151/ea0282661-03.htm",
+        "publisher": "SEC",
+        "date": "2026-07-08",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Samos Energy Acquisition Corp (SAMO) filed S-1 with the SEC on 2026-07-08.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-b19d367d506c8484",
     "slug": "texas-precious-metals-trust",
     "name": "Texas Precious Metals Trust",
@@ -27993,7 +28001,7 @@
         "confidence": 1
       },
       {
-        "title": "Texas Precious Metals Trust S-1/A",
+        "title": "Texas Precious Metals Trust S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2087989/000143774926023037/tpmt20260708_s1a.htm",
         "publisher": "SEC",
         "date": "2026-07-08",
@@ -98201,14 +98209,6 @@
         "confidence": 1
       },
       {
-        "title": "iSpecimen Inc. (ISPC) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1558569/000121390026071550/ea0295798-s1_ispecimen.htm",
-        "publisher": "SEC",
-        "date": "2026-06-24",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
         "title": "iSpecimen Inc. (ISPC) 424B4",
         "url": "https://www.sec.gov/Archives/edgar/data/1558569/000121390025067485/ea0250203-424b4_ispecimen.htm",
         "publisher": "SEC",
@@ -99478,7 +99478,7 @@
         "confidence": 1
       },
       {
-        "title": "Sinda Ltd. (SIND) S-1",
+        "title": "Sinda Ltd. (SIND) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2096861/000114036126026259/ny20063495x10_s1a.htm",
         "publisher": "SEC",
         "date": "2026-06-24",
@@ -109055,6 +109055,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1900720/000121390026043558/ea0285778-f1a1_epwkhold.htm",
         "publisher": "SEC",
         "date": "2026-04-14",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "EPWK Holdings Ltd. (EPWK, EPWKF) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1900720/000121390026031876/ea0281037-f1_epwkhold.htm",
+        "publisher": "SEC",
+        "date": "2026-03-19",
         "type": "filing",
         "confidence": 1
       },
@@ -173113,6 +173121,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1866226/000121390026097822/ea0304499-01.htm",
         "publisher": "SEC",
         "date": "2026-09-08",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Evolution Metals & Technologies Corp. (EMAT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1866226/000121390026076202/ea0291858-02.htm",
+        "publisher": "SEC",
+        "date": "2026-07-08",
         "type": "filing",
         "confidence": 1
       }
