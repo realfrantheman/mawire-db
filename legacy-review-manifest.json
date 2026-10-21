@@ -1,26 +1,26 @@
 {
-  "generatedAt": "2026-10-21T05:16:35.482Z",
+  "generatedAt": "2026-10-21T10:33:33.963Z",
   "ruleVersion": "strict-control-v3",
   "engineVersion": "legacy-control-review-v1.2",
   "batchSize": 1000,
   "processedThisRun": {
     "verified": 0,
     "rejected": 0,
-    "needs_review": 0,
+    "needs_review": 1,
     "error": 0
   },
-  "total": 25221,
-  "reviewed": 25221,
+  "total": 25222,
+  "reviewed": 25222,
   "coveragePct": 100,
   "counts": {
     "verified": 10,
     "rejected": 3,
-    "needs_review": 25208,
+    "needs_review": 25209,
     "error": 0
   },
   "reasons": {
+    "source_truncated_before_verification": 132,
     "verified_primary_source_control_transaction": 10,
-    "source_truncated_before_verification": 131,
     "unresolved_or_invalid_parties": 816,
     "primary_source_unreachable": 19805,
     "no_explicit_control_transaction_evidence": 4,
@@ -33,9 +33,9 @@
     "tender_control_not_proven": 37,
     "party_not_confirmed_in_primary_source": 1
   },
-  "verifiedRatio": 0.0003964949843384481,
-  "unresolvedRatio": 0.9994845565203601,
-  "rejectedRatio": 0.00011894849530153443,
+  "verifiedRatio": 0.00039647926413448575,
+  "unresolvedRatio": 0.9994845769566252,
+  "rejectedRatio": 0.00011894377924034573,
   "duplicateIds": 0,
   "duplicateRecordKeys": 0,
   "complete": true,
@@ -69,6 +69,7 @@
       "id:b1430f2b-d049-4bc4-b06b-3993973fbcb4"
     ],
     "needsReview": [
+      "id:sec-0001140361-26-040313",
       "id:sec-0001140361-26-039290",
       "id:sec-0001140361-26-036084",
       "id:sec-0001193125-26-383841",
@@ -77,8 +78,7 @@
       "id:sec-0001628280-26-060722",
       "id:sec-0001193125-26-382691",
       "id:9991a968-7e4b-4974-9524-b5c65a06a212",
-      "id:a3865404-4a57-4384-9e49-e3899886dad0",
-      "id:80f28765-9d07-434a-98cf-55dcc669d367"
+      "id:a3865404-4a57-4384-9e49-e3899886dad0"
     ]
   },
   "publicationRule": "Migration in progress or safety gate not met: preserve the existing public corpus until an atomic strict cutover is safe."

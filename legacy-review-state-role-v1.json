@@ -299292,7 +299292,20 @@
       "evidenceHash": "00bdb6fde89df8ab5306da66ae5320a2d1cfbe7b7762198152a364f8ef337716",
       "repairedParties": null,
       "truncated": true
+    },
+    "id:sec-0001140361-26-040313": {
+      "ruleVersion": "strict-control-v3",
+      "engineVersion": "legacy-control-review-v1.2",
+      "attempts": 1,
+      "reviewedAt": "2026-10-21T10:33:33.251Z",
+      "evidenceUrl": "https://www.sec.gov/Archives/edgar/data/1162194/000114036126040313/ny20077604x7_s4a.htm",
+      "status": "needs_review",
+      "reasonCode": "source_truncated_before_verification",
+      "transactionType": null,
+      "evidenceHash": null,
+      "repairedParties": null,
+      "truncated": true
     }
   },
-  "updatedAt": "2026-10-21T05:16:35.391Z"
+  "updatedAt": "2026-10-21T10:33:33.865Z"
 }
