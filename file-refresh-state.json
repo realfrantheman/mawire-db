@@ -5531,19 +5531,19 @@
       "ruleVersion": "strict-control-v3"
     },
     "0000950103-26-015917": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-10-21T10:06:07.379Z",
+      "lastAttemptAt": "2026-10-21T20:08:07.145Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-426840": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-10-21T10:06:08.719Z",
+      "lastAttemptAt": "2026-10-21T20:08:08.703Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001185185-26-004875": {
@@ -5609,7 +5609,15 @@
       "error": null,
       "lastAttemptAt": "2026-10-21T15:13:09.903Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-427570": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-10-21T20:08:06.599Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-10-21T15:13:18.691Z"
+  "updatedAt": "2026-10-21T20:08:08.953Z"
 }
