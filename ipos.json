@@ -13435,6 +13435,53 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-2a45ff84ccdcc7b3",
+    "slug": "rezera-inc",
+    "name": "Rezera Inc.",
+    "legalName": "Rezera Inc.",
+    "sector": "Healthcare",
+    "industry": "Pharmaceutical Preparations",
+    "description": null,
+    "headquarters": "265 FRANKLIN ST., SUITE 1702, BOSTON, MA, 02110",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "market",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-21",
+    "latestUpdateDate": "2026-10-21",
+    "filingType": "S-1",
+    "cik": "2141583",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2141583/000110465926117853/tmq-20261021xdrsa.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Rezera Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2141583/000110465926117853/tmq-20261021xdrsa.htm",
+        "publisher": "SEC",
+        "date": "2026-10-21",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Rezera Inc. filed S-1 with the SEC on 2026-10-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-57a1eb5a2385ce9f",
     "slug": "sensing4d-ai-ltd",
     "name": "Sensing4D AI Ltd",
@@ -14870,53 +14917,6 @@
       }
     ],
     "notes": "Optimal AI Ltd filed F-1 with the SEC on 2026-10-16.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-05824e4e586c8780",
-    "slug": "robin-energy-ltd-rbne",
-    "name": "Robin Energy Ltd. (RBNE)",
-    "legalName": "Robin Energy Ltd. (RBNE)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-10-16",
-    "latestUpdateDate": "2026-10-16",
-    "filingType": "F-1",
-    "cik": "2039060",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2039060/000114036126039848/ny20082830x2_f1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Robin Energy Ltd. (RBNE) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2039060/000114036126039848/ny20082830x2_f1.htm",
-        "publisher": "SEC",
-        "date": "2026-10-16",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Robin Energy Ltd. (RBNE) filed F-1 with the SEC on 2026-10-16.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -22002,9 +22002,9 @@
     "name": "Rafex Gold Corp.",
     "legalName": "Rafex Gold Corp.",
     "sector": "Other",
-    "industry": "Gold and Silver Ores",
+    "industry": null,
     "description": null,
-    "headquarters": "1912 CAPITOL AVENUE, SUITE 500, CHEYENNE, WY, 82001",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -22015,8 +22015,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "OTC",
-    "ticker": "RAFX",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-09-10",
@@ -27184,7 +27184,7 @@
         "confidence": 1
       },
       {
-        "title": "Arterior Solutions Corp S-1",
+        "title": "Arterior Solutions Corp S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2133770/000147793226003992/arete_s1a.htm",
         "publisher": "SEC",
         "date": "2026-06-25",
@@ -88013,6 +88013,69 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-e457d6d221a679be",
+    "slug": "our-bond-inc-obai",
+    "name": "Our Bond, Inc. (OBAI)",
+    "legalName": "Our Bond, Inc. (OBAI)",
+    "sector": "Telecommunications",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-10-21",
+    "filingDate": "2026-10-21",
+    "latestUpdateDate": "2026-10-21",
+    "filingType": "S-1",
+    "cik": "1756064",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1756064/000149315226047889/forms-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Our Bond, Inc. (OBAI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1756064/000149315226047889/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-10-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Our Bond, Inc. (OBAI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1756064/000149315226033754/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-17",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "TG-17, Inc. 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1756064/000149315226004930/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-02-03",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Our Bond, Inc. (OBAI) filed S-1 with the SEC on 2026-10-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-9524eade8787b14f",
     "slug": "hmh-holding-inc-hmh",
     "name": "HMH Holding Inc (HMH)",
@@ -100746,61 +100809,6 @@
       }
     ],
     "notes": "Nuburu, Inc. (BURU, BURUW) filed 424B4 with the SEC on 2026-07-17.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-e457d6d221a679be",
-    "slug": "our-bond-inc-obai",
-    "name": "Our Bond, Inc. (OBAI)",
-    "legalName": "Our Bond, Inc. (OBAI)",
-    "sector": "Telecommunications",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-07-17",
-    "filingDate": "2026-07-17",
-    "latestUpdateDate": "2026-07-17",
-    "filingType": "S-1",
-    "cik": "1756064",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1756064/000149315226033754/forms-1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Our Bond, Inc. (OBAI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1756064/000149315226033754/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-17",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "TG-17, Inc. 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1756064/000149315226004930/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-02-03",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Our Bond, Inc. (OBAI) filed S-1 with the SEC on 2026-07-17.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -139042,6 +139050,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-05824e4e586c8780",
+    "slug": "robin-energy-ltd-rbne",
+    "name": "Robin Energy Ltd. (RBNE)",
+    "legalName": "Robin Energy Ltd. (RBNE)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-21",
+    "latestUpdateDate": "2026-10-21",
+    "filingType": "RW",
+    "cik": "2039060",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2039060/000114036126040382/ny20082830x7_rw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Robin Energy Ltd. (RBNE) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/2039060/000114036126040382/ny20082830x7_rw.htm",
+        "publisher": "SEC",
+        "date": "2026-10-21",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Robin Energy Ltd. (RBNE) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2039060/000114036126039848/ny20082830x2_f1.htm",
+        "publisher": "SEC",
+        "date": "2026-10-16",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Robin Energy Ltd. (RBNE) filed RW with the SEC on 2026-10-21.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-420f6124667b9764",
     "slug": "kepuni-holdings-inc",
     "name": "Kepuni Holdings Inc.",
@@ -143373,14 +143436,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1187953/000147793226004044/celz_s1a.htm",
         "publisher": "SEC",
         "date": "2026-06-26",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "CREATIVE MEDICAL TECHNOLOGY HOLDINGS, INC. (CELZ) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1187953/000147793226004010/celz_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-06-25",
         "type": "filing",
         "confidence": 1
       }
