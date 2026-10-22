@@ -13482,6 +13482,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-35254b96a87b86c9",
+    "slug": "wallbox-n-v-wbx",
+    "name": "Wallbox N.V. (WBX)",
+    "legalName": "Wallbox N.V. (WBX)",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-22",
+    "latestUpdateDate": "2026-10-22",
+    "filingType": "F-1",
+    "cik": "1866501",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1866501/000119312526428990/d100826df1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Wallbox N.V. (WBX) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1866501/000119312526428990/d100826df1a.htm",
+        "publisher": "SEC",
+        "date": "2026-10-22",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Wallbox N.V. (WBX, WBXWF) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1866501/000119312526328611/d100826df1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-31",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Wallbox N.V. (WBX) filed F-1 with the SEC on 2026-10-22.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-21b8a5fbb77f88cf",
     "slug": "ealixir-inc-eaxr",
     "name": "Ealixir, Inc. (EAXR)",
@@ -19288,7 +19343,7 @@
         "confidence": 1
       },
       {
-        "title": "Canary Staked INJ ETF S-1",
+        "title": "Canary Staked INJ ETF S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2073616/000199937126013516/canarystaked-s1a_062526.htm",
         "publisher": "SEC",
         "date": "2026-06-25",
@@ -21276,14 +21331,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2075036/000118518526000958/evonexusf1a1031726.htm",
         "publisher": "SEC",
         "date": "2026-03-19",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "EvoNexus Group LTD (EVON) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2075036/000118518526000177/evonexusf1011326.htm",
-        "publisher": "SEC",
-        "date": "2026-01-16",
         "type": "filing",
         "confidence": 1
       },
@@ -25817,53 +25864,6 @@
       }
     ],
     "notes": "SHF Holdings, Inc. (SHFS, SHFSW) filed S-1 with the SEC on 2026-07-31.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-35254b96a87b86c9",
-    "slug": "wallbox-n-v-wbx-wbxwf",
-    "name": "Wallbox N.V. (WBX, WBXWF)",
-    "legalName": "Wallbox N.V. (WBX, WBXWF)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-31",
-    "latestUpdateDate": "2026-07-31",
-    "filingType": "F-1",
-    "cik": "1866501",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1866501/000119312526328611/d100826df1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Wallbox N.V. (WBX, WBXWF) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1866501/000119312526328611/d100826df1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-31",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Wallbox N.V. (WBX, WBXWF) filed F-1 with the SEC on 2026-07-31.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -88178,6 +88178,69 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-30b8c89aa641d99c",
+    "slug": "phoenix-energy-one-llc-phxe-p",
+    "name": "Phoenix Energy One, LLC (PHXE-P)",
+    "legalName": "Phoenix Energy One, LLC (PHXE-P)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-10-22",
+    "filingDate": "2026-10-22",
+    "latestUpdateDate": "2026-10-22",
+    "filingType": "S-1",
+    "cik": "1818643",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1818643/000119312526429061/d194117ds1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Phoenix Energy One, LLC (PHXE-P) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1818643/000119312526429061/d194117ds1.htm",
+        "publisher": "SEC",
+        "date": "2026-10-22",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Phoenix Energy One, LLC (PHXE-P) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1818643/000119312526297648/d125339d424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-07-07",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Phoenix Energy One, LLC (PHXE-P) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1818643/000119312526282889/d125339ds1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-25",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Phoenix Energy One, LLC (PHXE-P) filed S-1 with the SEC on 2026-10-22.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-b684cec2f9730b9f",
     "slug": "realpha-tech-corp-aire",
     "name": "reAlpha Tech Corp. (AIRE)",
@@ -101848,61 +101911,6 @@
       }
     ],
     "notes": "Bleichroeder Acquisition Corp. III (BCCQ) filed 424B4 with the SEC on 2026-07-07.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-30b8c89aa641d99c",
-    "slug": "phoenix-energy-one-llc-phxe-p",
-    "name": "Phoenix Energy One, LLC (PHXE-P)",
-    "legalName": "Phoenix Energy One, LLC (PHXE-P)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-07-07",
-    "filingDate": "2026-07-07",
-    "latestUpdateDate": "2026-07-07",
-    "filingType": "424B4",
-    "cik": "1818643",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1818643/000119312526297648/d125339d424b4.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Phoenix Energy One, LLC (PHXE-P) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1818643/000119312526297648/d125339d424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-07-07",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Phoenix Energy One, LLC (PHXE-P) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1818643/000119312526282889/d125339ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-25",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Phoenix Energy One, LLC (PHXE-P) filed 424B4 with the SEC on 2026-07-07.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -139357,6 +139365,53 @@
       }
     ],
     "notes": "Reitar Logtech Holdings Ltd (RITRF) filed RW with the SEC on 2026-10-22.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-b167d5321cd8b01e",
+    "slug": "zacks-trust",
+    "name": "Zacks Trust",
+    "legalName": "Zacks Trust",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "withdrawn",
+    "statusLabel": "Withdrawn",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-10-22",
+    "latestUpdateDate": "2026-10-22",
+    "filingType": "RW",
+    "cik": "1760588",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1760588/000158064226007043/form_rw.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Zacks Trust RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1760588/000158064226007043/form_rw.htm",
+        "publisher": "SEC",
+        "date": "2026-10-22",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Zacks Trust filed RW with the SEC on 2026-10-22.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
