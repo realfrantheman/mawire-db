@@ -299305,7 +299305,20 @@
       "evidenceHash": null,
       "repairedParties": null,
       "truncated": true
+    },
+    "id:sec-0001213900-26-112581": {
+      "ruleVersion": "strict-control-v3",
+      "engineVersion": "legacy-control-review-v1.2",
+      "attempts": 1,
+      "reviewedAt": "2026-10-27T10:56:23.093Z",
+      "evidenceUrl": "https://www.sec.gov/Archives/edgar/data/2134552/000121390026112581/ea0291220-09.htm",
+      "status": "verified",
+      "reasonCode": "verified_primary_source_control_transaction",
+      "transactionType": "Merger / Business Combination",
+      "evidenceHash": "99c4a006c1a951c5ae7899dccc7c644d21096a3327f36122991157760821af3a",
+      "repairedParties": null,
+      "truncated": true
     }
   },
-  "updatedAt": "2026-10-27T05:33:30.660Z"
+  "updatedAt": "2026-10-27T10:56:23.689Z"
 }
