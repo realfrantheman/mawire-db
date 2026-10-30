@@ -299331,7 +299331,20 @@
       "evidenceHash": "a4f75d2836a3432b41f5652af5c4d4e54905135edfd37f5bf844e160deb5a6e8",
       "repairedParties": null,
       "truncated": false
+    },
+    "id:sec-0001140361-26-041224": {
+      "ruleVersion": "strict-control-v3",
+      "engineVersion": "legacy-control-review-v1.2",
+      "attempts": 1,
+      "reviewedAt": "2026-10-30T16:48:40.755Z",
+      "evidenceUrl": "https://www.sec.gov/Archives/edgar/data/1396814/000114036126041224/ny20084254x1_sctot.htm",
+      "status": "verified",
+      "reasonCode": "verified_primary_source_control_transaction",
+      "transactionType": "LBO / Going-Private",
+      "evidenceHash": "35cb506e3e9ebd7c1e2f3f1a1db6a8e1b4f63d724f7c18303b72b3f9405c133c",
+      "repairedParties": null,
+      "truncated": false
     }
   },
-  "updatedAt": "2026-10-30T10:26:21.977Z"
+  "updatedAt": "2026-10-30T16:48:41.409Z"
 }
