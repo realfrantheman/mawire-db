@@ -2,14 +2,6 @@
   "version": 1,
   "ruleVersion": "strict-control-v3",
   "filings": {
-    "0001193125-26-394814": {
-      "attempts": 5,
-      "status": "needs_review",
-      "reasonCode": "primary_source_truncated_before_verification",
-      "error": null,
-      "lastAttemptAt": "2026-09-19T20:38:00.857Z",
-      "ruleVersion": "strict-control-v3"
-    },
     "0001999371-26-020838": {
       "attempts": 5,
       "status": "needs_review",
@@ -5769,7 +5761,31 @@
       "error": null,
       "lastAttemptAt": "2026-11-03T15:04:23.166Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-121764": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-03T20:57:42.889Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001341004-26-000084": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-03T20:57:43.264Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001140361-26-041736": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-03T20:57:44.139Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-11-03T15:04:34.647Z"
+  "updatedAt": "2026-11-03T20:57:44.389Z"
 }
