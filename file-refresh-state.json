@@ -2,14 +2,6 @@
   "version": 1,
   "ruleVersion": "strict-control-v3",
   "filings": {
-    "0001140361-26-037128": {
-      "attempts": 5,
-      "status": "needs_review",
-      "reasonCode": "sec_party_roles_not_proven",
-      "error": null,
-      "lastAttemptAt": "2026-09-20T12:20:38.920Z",
-      "ruleVersion": "strict-control-v3"
-    },
     "0001193125-26-395819": {
       "attempts": 1,
       "status": "rejected",
@@ -5627,19 +5619,19 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001213900-26-115045": {
-      "attempts": 3,
+      "attempts": 4,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-11-04T09:08:05.410Z",
+      "lastAttemptAt": "2026-11-04T17:14:11.054Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-444432": {
-      "attempts": 3,
+      "attempts": 4,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-04T09:08:06.495Z",
+      "lastAttemptAt": "2026-11-04T17:14:12.813Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-121764": {
@@ -5667,11 +5659,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-041824": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-04T09:08:03.170Z",
+      "lastAttemptAt": "2026-11-04T17:14:09.342Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001580642-26-007418": {
@@ -5715,11 +5707,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-445508": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-04T09:08:03.655Z",
+      "lastAttemptAt": "2026-11-04T17:14:09.837Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-445397": {
@@ -5779,13 +5771,61 @@
       "ruleVersion": "strict-control-v3"
     },
     "0000950103-26-016858": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-04T09:08:07.175Z",
+      "lastAttemptAt": "2026-11-04T17:14:13.679Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001140361-26-041902": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-11-04T17:14:03.995Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001829126-26-011942": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-04T17:14:04.759Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-115726": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-11-04T17:14:05.663Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-446413": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-04T17:14:06.026Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001020859-26-000031": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-04T17:14:06.399Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-446390": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-04T17:14:08.224Z",
       "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-11-04T09:08:11.873Z"
+  "updatedAt": "2026-11-04T17:14:13.930Z"
 }
