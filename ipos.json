@@ -107,14 +107,6 @@
         "date": "2026-06-01",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Stewards, Inc. (SWRD) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1795851/000166357726000119/favo_s1a2.htm",
-        "publisher": "SEC",
-        "date": "2026-04-28",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Stewards, Inc. (SWRD) filed S-1/A with the SEC on 2026-07-01.",
@@ -10288,6 +10280,61 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-8c557bcd91698d84",
+    "slug": "lis-technologies-inc-lis",
+    "name": "LIS Technologies Inc (LIS)",
+    "legalName": "LIS Technologies Inc (LIS)",
+    "sector": "Healthcare",
+    "industry": "Industrial Inorganic Chemicals",
+    "description": null,
+    "headquarters": "10 TIMES SQUARE, 30TH FLOOR, NEW YORK, NY, 10018",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": "$5–$7/share",
+    "sharesOffered": "3,100,000",
+    "sharesOfferedNum": 3100000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "LIS",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-05",
+    "latestUpdateDate": "2026-11-05",
+    "filingType": "S-1",
+    "cik": "1973276",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1973276/000149315226050287/forms-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "LIS Technologies Inc (LIS) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1973276/000149315226050287/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-11-05",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "LIS Technologies Inc S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1973276/000149315226048438/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-10-26",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "LIS Technologies Inc (LIS) filed S-1 with the SEC on 2026-11-05.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-fc5d579937ae6390",
     "slug": "med-x-inc-mxrx",
     "name": "MED-X, INC. (MXRX)",
@@ -13147,53 +13194,6 @@
       }
     ],
     "notes": "Aimei Health Technology II Co., Ltd. filed S-1 with the SEC on 2026-10-26.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-8c557bcd91698d84",
-    "slug": "lis-technologies-inc",
-    "name": "LIS Technologies Inc",
-    "legalName": "LIS Technologies Inc",
-    "sector": "Healthcare",
-    "industry": "Industrial Inorganic Chemicals",
-    "description": null,
-    "headquarters": "10 TIMES SQUARE, 30TH FLOOR, NEW YORK, NY, 10018",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": "$5–$7/share",
-    "sharesOffered": "2,833,334",
-    "sharesOfferedNum": 2833334,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "market",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-10-26",
-    "latestUpdateDate": "2026-10-26",
-    "filingType": "S-1",
-    "cik": "1973276",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1973276/000149315226048438/forms-1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "LIS Technologies Inc S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1973276/000149315226048438/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-10-26",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "LIS Technologies Inc filed S-1 with the SEC on 2026-10-26.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -198482,7 +198482,7 @@
         "confidence": 1
       },
       {
-        "title": "VisionWave Holdings, Inc. (VWAV, VWAVW) S-1",
+        "title": "VisionWave Holdings, Inc. (VWAV, VWAVW) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2038439/000173112226000921/e7757_s1a.htm",
         "publisher": "SEC",
         "date": "2026-07-07",
