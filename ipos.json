@@ -3149,6 +3149,61 @@
     }
   },
   {
+    "id": "ipo-486878bc57032893",
+    "slug": "gigabit-inc-gbh",
+    "name": "Gigabit Inc. (GBH)",
+    "legalName": "Gigabit Inc. (GBH)",
+    "sector": "Technology",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-03-30",
+    "latestUpdateDate": "2026-03-30",
+    "filingType": "F-1/A",
+    "cik": "2066522",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2066522/000149315226013599/formf-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Gigabit Inc. (GBH) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2066522/000149315226013599/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-03-30",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Gigabit Inc. (GBH) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2066522/000149315225027388/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2025-12-12",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Gigabit Inc. (GBH) filed F-1/A with the SEC on 2026-03-30.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-3fc12d11ddbe0022",
     "slug": "medical-21-inc",
     "name": "Medical 21, Inc.",
@@ -3768,61 +3823,6 @@
       "edgesFound": 0,
       "errors": []
     }
-  },
-  {
-    "id": "ipo-26f344f0673ebc1f",
-    "slug": "kokobots-group-koko",
-    "name": "KOKOBOTS GROUP (KOKO)",
-    "legalName": "KOKOBOTS GROUP (KOKO)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-01-23",
-    "latestUpdateDate": "2026-01-23",
-    "filingType": "F-1/A",
-    "cik": "2045907",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2045907/000121390026007321/ea0225390-10.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "KOKOBOTS GROUP (KOKO) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2045907/000121390026007321/ea0225390-10.htm",
-        "publisher": "SEC",
-        "date": "2026-01-23",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "KOKOBOTS GROUP (KOKO) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2045907/000121390025098168/ea0225390-08.htm",
-        "publisher": "SEC",
-        "date": "2025-10-10",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "KOKOBOTS GROUP (KOKO) filed F-1/A with the SEC on 2026-01-23.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
   },
   {
     "id": "ipo-b70921ac5739e644",
@@ -10398,6 +10398,14 @@
         "confidence": 1
       },
       {
+        "title": "AKANDA CORP. (AKAN) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390026007796/ea0273810-f1_akanda.htm",
+        "publisher": "SEC",
+        "date": "2026-01-26",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
         "title": "AKANDA CORP. (AKAN) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1888014/000121390025092866/ea0258803-f1a1_akanda.htm",
         "publisher": "SEC",
@@ -15321,7 +15329,7 @@
         "confidence": 1
       },
       {
-        "title": "CGL Logistics Holdings Ltd (CGL) F-1",
+        "title": "CGL Logistics Holdings Ltd (CGL) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1934387/000149315226013468/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-03-30",
@@ -15574,7 +15582,7 @@
         "confidence": 1
       },
       {
-        "title": "Optimal AI Ltd F-1/A",
+        "title": "Optimal AI Ltd F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2083345/000121390026007642/ea0273888-f1a1_optimal.htm",
         "publisher": "SEC",
         "date": "2026-01-26",
@@ -29127,6 +29135,14 @@
         "date": "2026-02-09",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "Starrygazey Inc. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226003339/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-01-23",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "Starrygazey Inc. (MARH) filed F-1 with the SEC on 2026-05-26.",
@@ -29572,7 +29588,7 @@
         "confidence": 1
       },
       {
-        "title": "Black Titan Corp (BTTC) F-1",
+        "title": "Black Titan Corp (BTTC) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2034400/000149315226013659/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-03-30",
@@ -30476,14 +30492,6 @@
         "date": "2026-04-15",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "CollPlant Biotechnologies Ltd (CLGN) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1631487/000121390026036445/ea0283838-f1_collplant.htm",
-        "publisher": "SEC",
-        "date": "2026-03-30",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "CollPlant Biotechnologies Ltd (CLGN) filed F-1 with the SEC on 2026-04-15.",
@@ -30999,61 +31007,6 @@
       }
     ],
     "notes": "Bonus Biogroup Ltd. filed F-1 with the SEC on 2026-03-31.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-486878bc57032893",
-    "slug": "gigabit-inc-gbh",
-    "name": "Gigabit Inc. (GBH)",
-    "legalName": "Gigabit Inc. (GBH)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-03-30",
-    "latestUpdateDate": "2026-03-30",
-    "filingType": "F-1",
-    "cik": "2066522",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2066522/000149315226013599/formf-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Gigabit Inc. (GBH) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2066522/000149315226013599/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-30",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Gigabit Inc. (GBH) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2066522/000149315225027388/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2025-12-12",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Gigabit Inc. (GBH) filed F-1 with the SEC on 2026-03-30.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -35501,6 +35454,61 @@
       "edgesFound": 0,
       "errors": []
     }
+  },
+  {
+    "id": "ipo-26f344f0673ebc1f",
+    "slug": "kokobots-group-koko",
+    "name": "KOKOBOTS GROUP (KOKO)",
+    "legalName": "KOKOBOTS GROUP (KOKO)",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-01-23",
+    "latestUpdateDate": "2026-01-23",
+    "filingType": "F-1",
+    "cik": "2045907",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2045907/000121390026007321/ea0225390-10.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "KOKOBOTS GROUP (KOKO) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2045907/000121390026007321/ea0225390-10.htm",
+        "publisher": "SEC",
+        "date": "2026-01-23",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "KOKOBOTS GROUP (KOKO) F-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/2045907/000121390025098168/ea0225390-08.htm",
+        "publisher": "SEC",
+        "date": "2025-10-10",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "KOKOBOTS GROUP (KOKO) filed F-1 with the SEC on 2026-01-23.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
   },
   {
     "id": "ipo-0c4009055f43d9aa",
@@ -109722,7 +109730,7 @@
         "confidence": 1
       },
       {
-        "title": "LIBERTY DEFENSE HOLDINGS, LTD. (LDHL, LDDFD, LDDFF) F-1",
+        "title": "LIBERTY DEFENSE HOLDINGS, LTD. (LDHL, LDDFD, LDDFF) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1919776/000110465926036933/tm261972-17_f1a.htm",
         "publisher": "SEC",
         "date": "2026-03-30",
@@ -113547,6 +113555,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1741534/000110465926012910/mdjh-20250630x424b4.htm",
         "publisher": "SEC",
         "date": "2026-02-11",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "MDJM LTD (UOKA) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1741534/000110465926006593/mdjh-20250630xf1.htm",
+        "publisher": "SEC",
+        "date": "2026-01-26",
         "type": "filing",
         "confidence": 1
       }
@@ -150894,7 +150910,7 @@
         "confidence": 1
       },
       {
-        "title": "VISTEK LTD (VTEK) F-1",
+        "title": "VISTEK LTD (VTEK) F-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2013100/000149315226013509/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-03-30",
@@ -151730,6 +151746,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1875994/000121390026009619/ea0273484-03.htm",
         "publisher": "SEC",
         "date": "2026-01-29",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "XINXU COPPER INDUSTRY TECHNOLOGY Ltd (XXC) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1875994/000121390026007644/ea0273484-01.htm",
+        "publisher": "SEC",
+        "date": "2026-01-26",
         "type": "filing",
         "confidence": 1
       },
