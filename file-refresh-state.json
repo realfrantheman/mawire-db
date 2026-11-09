@@ -2,14 +2,6 @@
   "version": 1,
   "ruleVersion": "strict-control-v3",
   "filings": {
-    "0001628280-26-063259": {
-      "attempts": 5,
-      "status": "needs_review",
-      "reasonCode": "sec_party_roles_not_proven",
-      "error": null,
-      "lastAttemptAt": "2026-09-25T07:45:54.907Z",
-      "ruleVersion": "strict-control-v3"
-    },
     "0001104659-26-110234": {
       "attempts": 5,
       "status": "needs_review",
@@ -64,22 +56,6 @@
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
       "lastAttemptAt": "2026-09-27T01:25:17.548Z",
-      "ruleVersion": "strict-control-v3"
-    },
-    "0001079973-26-001278": {
-      "attempts": 1,
-      "status": "rejected",
-      "reasonCode": "unresolved_or_invalid_parties",
-      "error": null,
-      "lastAttemptAt": "2026-09-25T13:44:53.898Z",
-      "ruleVersion": "strict-control-v3"
-    },
-    "0001493152-26-044216": {
-      "attempts": 1,
-      "status": "rejected",
-      "reasonCode": "unresolved_or_invalid_parties",
-      "error": null,
-      "lastAttemptAt": "2026-09-25T13:44:55.107Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001213900-26-103194": {
@@ -5617,7 +5593,95 @@
       "error": null,
       "lastAttemptAt": "2026-11-08T07:17:02.719Z",
       "ruleVersion": "strict-control-v3"
+    },
+    "0001140361-26-042547": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:12.021Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001493152-26-050639": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:12.612Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001437749-26-035671": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:13.118Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-117216": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:13.990Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-117195": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:14.781Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-452725": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:17.350Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-124271": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:18.104Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-124243": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:18.669Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-124229": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "unresolved_or_invalid_parties",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:19.529Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001140361-26-042603": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "tender_control_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:20.810Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001193125-26-452264": {
+      "attempts": 1,
+      "status": "rejected",
+      "reasonCode": "non_mna_context",
+      "error": null,
+      "lastAttemptAt": "2026-11-09T17:27:29.407Z",
+      "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-11-09T06:20:48.949Z"
+  "updatedAt": "2026-11-09T17:27:29.658Z"
 }
