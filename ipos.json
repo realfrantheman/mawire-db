@@ -10426,6 +10426,85 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-70a7d34ae06a4549",
+    "slug": "encore-medical-inc-emi",
+    "name": "Encore Medical, Inc. (EMI)",
+    "legalName": "Encore Medical, Inc. (EMI)",
+    "sector": "Industrials",
+    "industry": "Surgical & Medical Instruments & Apparatus",
+    "description": null,
+    "headquarters": "2975 LONE OAK DRIVE, EAGAN, MN, 55121",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "EMI",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-16",
+    "latestUpdateDate": "2026-11-16",
+    "filingType": "S-1",
+    "cik": "1838003",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926128582/tm2525595-32_s1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Encore Medical, Inc. (EMI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926128582/tm2525595-32_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-11-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Encore Medical, Inc. (EMI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926111104/tm2525595-30_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-09-28",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Encore Medical, Inc. (EMI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926093252/tm2525595-26_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-10",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Encore Medical, Inc. (EMI) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926083917/tm2525595-23_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-07-15",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Encore Medical, Inc. (EMI) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926079489/tm2525595-12_s1a.htm",
+        "publisher": "SEC",
+        "date": "2026-07-01",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Encore Medical, Inc. (EMI) filed S-1 with the SEC on 2026-11-16.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-78b0f7c74db6588c",
     "slug": "gold-stone-technical-inc",
     "name": "Gold Stone Technical Inc.",
@@ -16154,6 +16233,14 @@
         "date": "2026-10-16",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "TANG CAPITAL ACQUISITION CORP. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2151808/000119312526415765/ck0002151808-20261006.htm",
+        "publisher": "SEC",
+        "date": "2026-10-06",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "TANG CAPITAL ACQUISITION CORP. (TCAA) filed S-1 with the SEC on 2026-10-16.",
@@ -17547,15 +17634,7 @@
       "publicCompaniesDependingOnIPO": [],
       "publicCompaniesIPOCompanyDependsOn": []
     },
-    "dependencyIngestion": {
-      "parserVersion": "sec-dependency-v2",
-      "attemptedAt": "2026-11-16T17:26:56.243Z",
-      "status": "no_evidence",
-      "sourceUrlsFound": 1,
-      "sourceUrlsAttempted": 1,
-      "edgesFound": 0,
-      "errors": []
-    }
+    "dependencyIngestion": null
   },
   {
     "id": "ipo-ab880a75adbc9c41",
@@ -18272,77 +18351,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-70a7d34ae06a4549",
-    "slug": "encore-medical-inc-emi",
-    "name": "Encore Medical, Inc. (EMI)",
-    "legalName": "Encore Medical, Inc. (EMI)",
-    "sector": "Industrials",
-    "industry": "Surgical & Medical Instruments & Apparatus",
-    "description": null,
-    "headquarters": "2975 LONE OAK DRIVE, EAGAN, MN, 55121",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "EMI",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-09-28",
-    "latestUpdateDate": "2026-09-28",
-    "filingType": "S-1",
-    "cik": "1838003",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926111104/tm2525595-30_s1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Encore Medical, Inc. (EMI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926111104/tm2525595-30_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-09-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Encore Medical, Inc. (EMI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926093252/tm2525595-26_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Encore Medical, Inc. (EMI) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926083917/tm2525595-23_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-07-15",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Encore Medical, Inc. (EMI) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926079489/tm2525595-12_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-07-01",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Encore Medical, Inc. (EMI) filed S-1 with the SEC on 2026-09-28.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-6468b3165b3fb28b",
     "slug": "orange-street-acquisition-corp",
     "name": "Orange Street Acquisition Corp",
@@ -18395,9 +18403,9 @@
     "name": "SPECTRAL CAPITAL Corp (FCCN)",
     "legalName": "SPECTRAL CAPITAL Corp (FCCN)",
     "sector": "Technology",
-    "industry": "Services-Computer Processing & Data Preparation",
+    "industry": null,
     "description": null,
-    "headquarters": "4500 9TH AVENUE NE, SEATTLE, WA, 98105",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
@@ -18408,8 +18416,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "OTC",
-    "ticker": "FCCN",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-09-28",
@@ -21283,7 +21291,7 @@
         "confidence": 1
       },
       {
-        "title": "Syntiant Corp. S-1",
+        "title": "Syntiant Corp. S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1718728/000119312526302144/project_sterling_s-1a_ex.htm",
         "publisher": "SEC",
         "date": "2026-07-13",
@@ -87261,14 +87269,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2030617/000182912626004627/picardmedical_424b4.htm",
         "publisher": "SEC",
         "date": "2026-05-06",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Picard Medical, Inc. (PMI) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2030617/000182912626004376/picardmedical_s1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-01",
         "type": "filing",
         "confidence": 1
       },
@@ -182114,7 +182114,7 @@
         "confidence": 1
       },
       {
-        "title": "GridAI Technologies Corp. (GRDX) S-1/A",
+        "title": "GridAI Technologies Corp. (GRDX) S-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1604191/000110465926114071/tm2615795d9_s1a.htm",
         "publisher": "SEC",
         "date": "2026-10-06",
