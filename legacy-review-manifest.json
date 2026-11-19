@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-11-18T21:34:20.969Z",
+  "generatedAt": "2026-11-19T02:46:53.979Z",
   "ruleVersion": "strict-control-v3",
   "engineVersion": "legacy-control-review-v1.2",
   "batchSize": 1000,
   "processedThisRun": {
     "verified": 0,
     "rejected": 0,
-    "needs_review": 0,
+    "needs_review": 1,
     "error": 0
   },
-  "total": 25225,
-  "reviewed": 25225,
+  "total": 25226,
+  "reviewed": 25226,
   "coveragePct": 100,
   "counts": {
     "verified": 13,
     "rejected": 3,
-    "needs_review": 25209,
+    "needs_review": 25210,
     "error": 0
   },
   "reasons": {
+    "party_control_proximity_not_proven": 7,
     "verified_primary_source_control_transaction": 13,
     "source_truncated_before_verification": 132,
     "unresolved_or_invalid_parties": 816,
     "primary_source_unreachable": 19805,
     "no_explicit_control_transaction_evidence": 4,
     "non_mna_context": 3,
-    "party_control_proximity_not_proven": 6,
     "missing_primary_source": 4391,
     "unsupported_sec_form": 1,
     "primary_source_text_unavailable": 1,
@@ -33,9 +33,9 @@
     "tender_control_not_proven": 37,
     "party_not_confirmed_in_primary_source": 1
   },
-  "verifiedRatio": 0.0005153617443012885,
-  "unresolvedRatio": 0.9993657086223984,
-  "rejectedRatio": 0.00011892963330029732,
+  "verifiedRatio": 0.0005153413145167684,
+  "unresolvedRatio": 0.9993657337667486,
+  "rejectedRatio": 0.00011892491873463886,
   "duplicateIds": 0,
   "duplicateRecordKeys": 0,
   "complete": true,
@@ -69,6 +69,7 @@
       "id:b1430f2b-d049-4bc4-b06b-3993973fbcb4"
     ],
     "needsReview": [
+      "id:sec-0001140361-26-044623",
       "id:sec-0001140361-26-040313",
       "id:sec-0001140361-26-039290",
       "id:sec-0001140361-26-036084",
@@ -77,8 +78,7 @@
       "id:sec-0001104659-26-105505",
       "id:sec-0001628280-26-060722",
       "id:sec-0001193125-26-382691",
-      "id:9991a968-7e4b-4974-9524-b5c65a06a212",
-      "id:a3865404-4a57-4384-9e49-e3899886dad0"
+      "id:9991a968-7e4b-4974-9524-b5c65a06a212"
     ]
   },
   "publicationRule": "Migration in progress or safety gate not met: preserve the existing public corpus until an atomic strict cutover is safe."
