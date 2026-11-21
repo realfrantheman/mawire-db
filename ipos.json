@@ -1872,85 +1872,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-c3c83501e2ec8b06",
-    "slug": "starrygazey-inc-marh",
-    "name": "Starrygazey Inc. (MARH)",
-    "legalName": "Starrygazey Inc. (MARH)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "amended",
-    "statusLabel": "Amended",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-05-26",
-    "latestUpdateDate": "2026-05-26",
-    "filingType": "F-1/A",
-    "cik": "2087064",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226025232/formf-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Starrygazey Inc. (MARH) F-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226025232/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-05-26",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Starrygazey Inc. (MARH) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226017135/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-04-17",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Starrygazey Inc. (MARH) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226009512/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-03-10",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Starrygazey Inc. (MARH) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226007843/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-02-24",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Starrygazey Inc. (MARH) F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226005736/formf-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-02-09",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Starrygazey Inc. (MARH) filed F-1/A with the SEC on 2026-05-26.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-2eb68f0d88a0ddf3",
     "slug": "lgl-group-inc-lgl",
     "name": "LGL GROUP INC (LGL)",
@@ -15999,7 +15920,7 @@
         "confidence": 1
       },
       {
-        "title": "Hacker Interstellar Inc. (SOUD) F-1/A",
+        "title": "Hacker Interstellar Inc. (SOUD) F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2070237/000121390026074553/ea0243202-15.htm",
         "publisher": "SEC",
         "date": "2026-07-02",
@@ -21873,6 +21794,14 @@
         "date": "2026-09-04",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "Cumberland Farms Ltd F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2123232/000119312526293820/d113224df1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-02",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "Cumberland Farms Ltd (CMBY) filed F-1 with the SEC on 2026-09-04.",
@@ -25963,7 +25892,7 @@
         "confidence": 1
       },
       {
-        "title": "Carbon Zero Technologies International Inc. F-1/A",
+        "title": "Carbon Zero Technologies International Inc. F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/1997182/000149315226025227/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-05-26",
@@ -29647,6 +29576,14 @@
         "date": "2026-06-03",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "Powercheck AI Holdings Ltd F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2131101/000121390026061509/ea0286770-f1_powercheck.htm",
+        "publisher": "SEC",
+        "date": "2026-05-27",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "Powercheck AI Holdings Ltd (PCAI) filed F-1 with the SEC on 2026-06-03.",
@@ -29886,6 +29823,85 @@
       }
     ],
     "notes": "Nintech Mould Factory Inc. filed F-1 with the SEC on 2026-05-26.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-c3c83501e2ec8b06",
+    "slug": "starrygazey-inc-marh",
+    "name": "Starrygazey Inc. (MARH)",
+    "legalName": "Starrygazey Inc. (MARH)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-05-26",
+    "latestUpdateDate": "2026-05-26",
+    "filingType": "F-1",
+    "cik": "2087064",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226025232/formf-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Starrygazey Inc. (MARH) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226025232/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-05-26",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Starrygazey Inc. (MARH) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226017135/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-04-17",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Starrygazey Inc. (MARH) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226009512/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-03-10",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Starrygazey Inc. (MARH) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226007843/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-02-24",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Starrygazey Inc. (MARH) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2087064/000149315226005736/formf-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-02-09",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Starrygazey Inc. (MARH) filed F-1 with the SEC on 2026-05-26.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -95769,7 +95785,7 @@
         "confidence": 1
       },
       {
-        "title": "Verdera Energy Corp. (VUECF) F-1/A",
+        "title": "Verdera Energy Corp. (VUECF) F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2111453/000110465926067076/tm267430d6_f-1a.htm",
         "publisher": "SEC",
         "date": "2026-05-28",
@@ -97953,6 +97969,14 @@
         "date": "2026-08-03",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "Londian Wason New Energy Tech Inc. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2006960/000119312526294413/d476818df1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-02",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "Londian Wason New Energy Tech Inc. filed 424B4 with the SEC on 2026-08-14.",
@@ -98183,7 +98207,7 @@
         "confidence": 1
       },
       {
-        "title": "SunScout Holding Ltd (SNSC) F-1/A",
+        "title": "SunScout Holding Ltd (SNSC) F-1",
         "url": "https://www.sec.gov/Archives/edgar/data/2101240/000121390026074871/ea0268485-15.htm",
         "publisher": "SEC",
         "date": "2026-07-02",
@@ -102276,6 +102300,14 @@
         "date": "2026-06-08",
         "type": "filing",
         "confidence": 1
+      },
+      {
+        "title": "DSC Holdings Ltd. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1966041/000121390026060977/ea0200059-28.htm",
+        "publisher": "SEC",
+        "date": "2026-05-26",
+        "type": "filing",
+        "confidence": 1
       }
     ],
     "notes": "DSC Holdings Ltd. filed 424B4 with the SEC on 2026-06-26.",
@@ -103619,6 +103651,14 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1983324/000149315226027814/form424b4.htm",
         "publisher": "SEC",
         "date": "2026-06-09",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Real Messenger Corp (RMSG, RMSGW) F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1983324/000149315226025203/formf-1.htm",
+        "publisher": "SEC",
+        "date": "2026-05-26",
         "type": "filing",
         "confidence": 1
       }
