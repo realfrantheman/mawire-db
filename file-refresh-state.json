@@ -2,22 +2,6 @@
   "version": 1,
   "ruleVersion": "strict-control-v3",
   "filings": {
-    "0001104659-26-115064": {
-      "attempts": 5,
-      "status": "needs_review",
-      "reasonCode": "verified_result_failed_publication_invariants",
-      "error": null,
-      "lastAttemptAt": "2026-10-11T08:47:16.368Z",
-      "ruleVersion": "strict-control-v3"
-    },
-    "0001213900-26-108565": {
-      "attempts": 5,
-      "status": "needs_review",
-      "reasonCode": "primary_source_truncated_before_verification",
-      "error": null,
-      "lastAttemptAt": "2026-10-11T08:47:15.016Z",
-      "ruleVersion": "strict-control-v3"
-    },
     "0001829126-26-011034": {
       "attempts": 5,
       "status": "needs_review",
@@ -5123,19 +5107,19 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-472683": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:41.142Z",
+      "lastAttemptAt": "2026-11-25T12:48:31.151Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-472630": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:43.165Z",
+      "lastAttemptAt": "2026-11-25T12:48:31.981Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001628280-26-075502": {
@@ -5227,11 +5211,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-130711": {
-      "attempts": 4,
+      "attempts": 5,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:43.582Z",
+      "lastAttemptAt": "2026-11-25T12:48:32.330Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-045308": {
@@ -5251,11 +5235,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-045385": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:26.818Z",
+      "lastAttemptAt": "2026-11-25T12:48:25.886Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001542447-26-000125": {
@@ -5315,27 +5299,27 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001213900-26-123321": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:37.876Z",
+      "lastAttemptAt": "2026-11-25T12:48:28.634Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001104659-26-131286": {
-      "attempts": 2,
+      "attempts": 3,
       "status": "needs_review",
       "reasonCode": "primary_source_truncated_before_verification",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:40.357Z",
+      "lastAttemptAt": "2026-11-25T12:48:30.545Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-476039": {
-      "attempts": 1,
+      "attempts": 2,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:27.354Z",
+      "lastAttemptAt": "2026-11-25T12:48:26.215Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-475801": {
@@ -5347,11 +5331,11 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001193125-26-475130": {
-      "attempts": 1,
+      "attempts": 2,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:28.294Z",
+      "lastAttemptAt": "2026-11-25T12:48:26.590Z",
       "ruleVersion": "strict-control-v3"
     },
     "0001140361-26-045488": {
@@ -5403,13 +5387,29 @@
       "ruleVersion": "strict-control-v3"
     },
     "0001493152-26-054062": {
+      "attempts": 2,
+      "status": "needs_review",
+      "reasonCode": "sec_party_roles_not_proven",
+      "error": null,
+      "lastAttemptAt": "2026-11-25T12:48:27.736Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001104659-26-131733": {
       "attempts": 1,
       "status": "needs_review",
       "reasonCode": "sec_party_roles_not_proven",
       "error": null,
-      "lastAttemptAt": "2026-11-25T03:01:36.410Z",
+      "lastAttemptAt": "2026-11-25T12:48:23.509Z",
+      "ruleVersion": "strict-control-v3"
+    },
+    "0001213900-26-123865": {
+      "attempts": 1,
+      "status": "needs_review",
+      "reasonCode": "primary_source_truncated_before_verification",
+      "error": null,
+      "lastAttemptAt": "2026-11-25T12:48:24.752Z",
       "ruleVersion": "strict-control-v3"
     }
   },
-  "updatedAt": "2026-11-25T03:01:43.833Z"
+  "updatedAt": "2026-11-25T12:48:32.580Z"
 }
