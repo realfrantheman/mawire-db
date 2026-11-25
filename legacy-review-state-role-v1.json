@@ -299357,7 +299357,20 @@
       "evidenceHash": "30ca08368f2ab0d866bf497009219e085fc8a276ac528b2c5df5b931831b55a0",
       "repairedParties": null,
       "truncated": false
+    },
+    "id:sec-0001193125-26-473415": {
+      "ruleVersion": "strict-control-v3",
+      "engineVersion": "legacy-control-review-v1.2",
+      "attempts": 1,
+      "reviewedAt": "2026-11-25T01:03:36.489Z",
+      "evidenceUrl": "https://www.sec.gov/Archives/edgar/data/1380106/000119312526473415/d193896dsctot.htm",
+      "status": "verified",
+      "reasonCode": "verified_primary_source_control_transaction",
+      "transactionType": "LBO / Going-Private",
+      "evidenceHash": "8045ed152574e019647c74d0fd53868a036dbe5c5cad4483354b6bdfb6b65366",
+      "repairedParties": null,
+      "truncated": false
     }
   },
-  "updatedAt": "2026-11-24T16:20:51.398Z"
+  "updatedAt": "2026-11-25T01:03:36.972Z"
 }
