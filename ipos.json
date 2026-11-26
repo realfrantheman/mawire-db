@@ -1,5 +1,52 @@
 [
   {
+    "id": "ipo-c0e94d01b8ab2bcd",
+    "slug": "agape-atp-corp-atpc",
+    "name": "Agape ATP Corp (ATPC)",
+    "legalName": "Agape ATP Corp (ATPC)",
+    "sector": "Healthcare",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "amended",
+    "statusLabel": "Amended",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-07-20",
+    "latestUpdateDate": "2026-07-20",
+    "filingType": "S-1/A",
+    "cik": "1713210",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1713210/000149315226033881/forms-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Agape ATP Corp (ATPC) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1713210/000149315226033881/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-07-20",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Agape ATP Corp (ATPC) filed S-1/A with the SEC on 2026-07-20.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-f5fa71abff6cc77d",
     "slug": "arterior-solutions-corp",
     "name": "Arterior Solutions Corp",
@@ -10629,6 +10676,116 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-1ad5d337a74d65da",
+    "slug": "biotricity-inc-btcy",
+    "name": "BIOTRICITY INC. (BTCY)",
+    "legalName": "BIOTRICITY INC. (BTCY)",
+    "sector": "Industrials",
+    "industry": "Surgical & Medical Instruments & Apparatus",
+    "description": null,
+    "headquarters": "203 REDWOOD PARKWAY, SUITE 600, REDWOOD CITY, CA, 94065",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "OTC",
+    "ticker": "BTCY",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "S-1",
+    "cik": "1630113",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1630113/000149315226054303/forms-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "BIOTRICITY INC. (BTCY) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630113/000149315226054303/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "BIOTRICITY INC. (BTCY) RW",
+        "url": "https://www.sec.gov/Archives/edgar/data/1630113/000149315226046137/formrw.htm",
+        "publisher": "SEC",
+        "date": "2026-10-07",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "BIOTRICITY INC. (BTCY) filed S-1 with the SEC on 2026-11-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-26e8702486530685",
+    "slug": "compute-ai-acquisition-corp-aicp",
+    "name": "Compute AI Acquisition Corp. (AICP)",
+    "legalName": "Compute AI Acquisition Corp. (AICP)",
+    "sector": "Real Estate",
+    "industry": "Blank Checks",
+    "description": null,
+    "headquarters": "244 5TH AVE, SUITE #1754, NEW YORK, NY, 10001",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "AICP",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "S-1",
+    "cik": "2158099",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2158099/000149315226054294/forms-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Compute AI Acquisition Corp. (AICP) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2158099/000149315226054294/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "Compute AI Acquisition Corp. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2158099/000149315226051694/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-11-13",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Compute AI Acquisition Corp. (AICP) filed S-1 with the SEC on 2026-11-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-f8a9daf0a291a325",
     "slug": "crestone-strategic-capital-acquisition-corp-cscm",
     "name": "Crestone Strategic Capital Acquisition Corp (CSCM)",
@@ -10692,6 +10849,258 @@
       }
     ],
     "notes": "Crestone Strategic Capital Acquisition Corp (CSCM) filed S-1 with the SEC on 2026-11-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-7b8c62cd11ab83de",
+    "slug": "csts-enterprises-inc",
+    "name": "CSTS Enterprises Inc.",
+    "legalName": "CSTS Enterprises Inc.",
+    "sector": "Other",
+    "industry": "Transportation Services",
+    "description": null,
+    "headquarters": "SUITE 404, LEVEL 4, FESTIVAL WALK TOWER, 80 TAT CHEE AVENUE, KOWLOON TONG, 00000",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": "$1.4–$2.5/share",
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "of",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "S-1",
+    "cik": "2101280",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2101280/000149315226054262/forms-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "CSTS Enterprises Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2101280/000149315226054262/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "CSTS Enterprises Inc. filed S-1 with the SEC on 2026-11-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-cf6ef4c5cd3fb2ff",
+    "slug": "darkpulse-inc-dpls",
+    "name": "DarkPulse, Inc. (DPLS)",
+    "legalName": "DarkPulse, Inc. (DPLS)",
+    "sector": "Technology",
+    "industry": "Services-Prepackaged Software",
+    "description": null,
+    "headquarters": "2325 E CAMELBACK RD, SUITE 400, PHOENIX, AZ, 85016",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": "OTC",
+    "ticker": "DPLS",
+    "expected": null,
+    "ipoDate": "2025-05-02",
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "S-1",
+    "cik": "866439",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866439/000168316825003059/darkpulse_424b4.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "DarkPulse, Inc. (DPLS) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/866439/000168316825003059/darkpulse_424b4.htm",
+        "publisher": "SEC",
+        "date": "2025-05-02",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DarkPulse, Inc. (DPLS) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/866439/000168316824008879/darkpulse_424b4.htm",
+        "publisher": "SEC",
+        "date": "2024-12-20",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DarkPulse, Inc. (DPLS) EFFECT",
+        "url": "https://www.sec.gov/Archives/edgar/data/866439/999999999524003849/primary_doc.xml",
+        "publisher": "SEC",
+        "date": "2024-12-20",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DarkPulse, Inc. (DPLS) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/866439/000168316824008790/darkpulse_s1a4.htm",
+        "publisher": "SEC",
+        "date": "2024-12-17",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DarkPulse, Inc. (DPLS) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/866439/000168316826009139/darkpulse_s1.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "DarkPulse, Inc. (DPLS) filed 424B4 with the SEC on 2025-05-02.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-3f04e5a2728fb351",
+    "slug": "data-i-o-corp-daio",
+    "name": "DATA I/O CORP (DAIO)",
+    "legalName": "DATA I/O CORP (DAIO)",
+    "sector": "Industrials",
+    "industry": "Instruments For Meas & Testing of Electricity & Elec Signals",
+    "description": null,
+    "headquarters": "6645 185TH AVE NE, SUITE 100, REDMOND, WA, 98052",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "DAIO",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "S-1",
+    "cik": "351998",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/351998/000119312526478540/d142737ds1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "DATA I/O CORP (DAIO) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/351998/000119312526478540/d142737ds1.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DATA I/O CORP (DAIO) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/351998/000119312526468831/d362942ds1.htm",
+        "publisher": "SEC",
+        "date": "2026-11-19",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DATA I/O CORP (DAIO) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/351998/000119312526344149/d128048ds1a.htm",
+        "publisher": "SEC",
+        "date": "2026-08-11",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "DATA I/O CORP (DAIO) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/351998/000119312526328766/d128048ds1.htm",
+        "publisher": "SEC",
+        "date": "2026-07-31",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "DATA I/O CORP (DAIO) filed S-1 with the SEC on 2026-11-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-3647c58c2cd3b1d2",
+    "slug": "eon-resources-inc-eonr-eonr-wt",
+    "name": "EON Resources Inc. (EONR, EONR-WT)",
+    "legalName": "EON Resources Inc. (EONR, EONR-WT)",
+    "sector": "Other",
+    "industry": "Crude Petroleum & Natural Gas",
+    "description": null,
+    "headquarters": "3730 KIRBY DRIVE, SUITE 1200, HOUSTON, TX, 77098",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "NYSE",
+    "ticker": "EONR",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "S-1",
+    "cik": "1842556",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1842556/000121390026124137/ea0313532-s1a2_eonres.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "EON Resources Inc. (EONR, EONR-WT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1842556/000121390026124137/ea0313532-s1a2_eonres.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "EON Resources Inc. (EONR, EONR-WT) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1842556/000121390026112971/ea0290025-s1a1_eonres.htm",
+        "publisher": "SEC",
+        "date": "2026-10-27",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "EON Resources Inc. (EONR, EONR-WT) filed S-1 with the SEC on 2026-11-25.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -10794,6 +11203,100 @@
       }
     ],
     "notes": "Guitar Group Ltd filed F-1 with the SEC on 2026-11-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-7138aa938f4ddd77",
+    "slug": "indrocorp-technologies-inc",
+    "name": "Indrocorp Technologies Inc.",
+    "legalName": "Indrocorp Technologies Inc.",
+    "sector": "Industrials",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "F-1",
+    "cik": "1889417",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1889417/000117184326007729/f1_112426.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Indrocorp Technologies Inc. F-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1889417/000117184326007729/f1_112426.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Indrocorp Technologies Inc. filed F-1 with the SEC on 2026-11-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
+    "id": "ipo-9d50ab8f4ea902c6",
+    "slug": "kalohexis-inc",
+    "name": "Kalohexis, Inc.",
+    "legalName": "Kalohexis, Inc.",
+    "sector": "Healthcare",
+    "industry": "Pharmaceutical Preparations",
+    "description": null,
+    "headquarters": "1935 TECHNY RD., SUITE 14, NORTHBROOK, IL, 60062",
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "filed",
+    "statusLabel": "Filed",
+    "exchange": "Nasdaq",
+    "ticker": "market",
+    "expected": null,
+    "ipoDate": null,
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "S-1",
+    "cik": "2135148",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2135148/000149315226054198/forms-1.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "Kalohexis, Inc. S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/2135148/000149315226054198/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "Kalohexis, Inc. filed S-1 with the SEC on 2026-11-25.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -12865,69 +13368,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-3f04e5a2728fb351",
-    "slug": "data-i-o-corp-daio",
-    "name": "DATA I/O CORP (DAIO)",
-    "legalName": "DATA I/O CORP (DAIO)",
-    "sector": "Industrials",
-    "industry": "Instruments For Meas & Testing of Electricity & Elec Signals",
-    "description": null,
-    "headquarters": "6645 185TH AVE NE, SUITE 100, REDMOND, WA, 98052",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "DAIO",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-11-19",
-    "latestUpdateDate": "2026-11-19",
-    "filingType": "S-1",
-    "cik": "351998",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/351998/000119312526468831/d362942ds1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "DATA I/O CORP (DAIO) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/351998/000119312526468831/d362942ds1.htm",
-        "publisher": "SEC",
-        "date": "2026-11-19",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DATA I/O CORP (DAIO) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/351998/000119312526344149/d128048ds1a.htm",
-        "publisher": "SEC",
-        "date": "2026-08-11",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DATA I/O CORP (DAIO) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/351998/000119312526328766/d128048ds1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-31",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "DATA I/O CORP (DAIO) filed S-1 with the SEC on 2026-11-19.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-fc5d579937ae6390",
     "slug": "med-x-inc-mxrx",
     "name": "MED-X, INC. (MXRX)",
@@ -13786,53 +14226,6 @@
       }
     ],
     "notes": "CloudDepots Holdings Inc. filed S-1 with the SEC on 2026-11-13.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-26e8702486530685",
-    "slug": "compute-ai-acquisition-corp",
-    "name": "Compute AI Acquisition Corp.",
-    "legalName": "Compute AI Acquisition Corp.",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": "244 5TH AVE, SUITE #1754, NEW YORK, NY, 10001",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "price",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-11-13",
-    "latestUpdateDate": "2026-11-13",
-    "filingType": "S-1",
-    "cik": "2158099",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2158099/000149315226051694/forms-1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Compute AI Acquisition Corp. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2158099/000149315226051694/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-11-13",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Compute AI Acquisition Corp. filed S-1 with the SEC on 2026-11-13.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -15955,14 +16348,6 @@
         "date": "2026-08-20",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "NON INVASIVE MONITORING SYSTEMS INC /FL/ (NIMU) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/720762/000149315226033920/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-20",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "NON INVASIVE MONITORING SYSTEMS INC /FL/ (NIMU) filed S-1 with the SEC on 2026-11-05.",
@@ -16753,53 +17138,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-3647c58c2cd3b1d2",
-    "slug": "eon-resources-inc-eonr-eonr-wt",
-    "name": "EON Resources Inc. (EONR, EONR-WT)",
-    "legalName": "EON Resources Inc. (EONR, EONR-WT)",
-    "sector": "Other",
-    "industry": "Crude Petroleum & Natural Gas",
-    "description": null,
-    "headquarters": "3730 KIRBY DRIVE, SUITE 1200, HOUSTON, TX, 77098",
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": "NYSE",
-    "ticker": "EONR",
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-10-27",
-    "latestUpdateDate": "2026-10-27",
-    "filingType": "S-1",
-    "cik": "1842556",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1842556/000121390026112971/ea0290025-s1a1_eonres.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "EON Resources Inc. (EONR, EONR-WT) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1842556/000121390026112971/ea0290025-s1a1_eonres.htm",
-        "publisher": "SEC",
-        "date": "2026-10-27",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "EON Resources Inc. (EONR, EONR-WT) filed S-1 with the SEC on 2026-10-27.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-0e552687a1fd2af4",
     "slug": "heroic-empire-acquisition-ltd",
     "name": "Heroic Empire Acquisition Ltd",
@@ -16991,14 +17329,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2146369/000209757026000030/londonla-20260911_s1a1.htm",
         "publisher": "SEC",
         "date": "2026-09-28",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Londonla Inc. S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2146369/000209757026000028/londonla-20260714_s1.htm",
-        "publisher": "SEC",
-        "date": "2026-07-20",
         "type": "filing",
         "confidence": 1
       }
@@ -18697,19 +19027,19 @@
     "sector": "Other",
     "industry": null,
     "description": null,
-    "headquarters": "2035 REGATTA DRIVE, VERO BEACH, FL, 32963",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$257M",
-    "offeringSizeNum": 257000000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "APTT",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-10-13",
@@ -18744,19 +19074,19 @@
     "sector": "Other",
     "industry": null,
     "description": null,
-    "headquarters": "11 CANTERBURY LANE, WATCHUNG, NJ, 07069",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$130M",
-    "offeringSizeNum": 129500000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "on",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-10-13",
@@ -18852,12 +19182,12 @@
     "name": "KiNRG, Inc. (BYOP)",
     "legalName": "KiNRG, Inc. (BYOP)",
     "sector": "Other",
-    "industry": "Heavy Construction Other Than Bldg Const - Contractors",
+    "industry": null,
     "description": null,
-    "headquarters": "839 BESTGATE ROAD, SUITE 400, ANNAPOLIS, MD, 21401",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
-    "priceRange": "$5–$7/share",
+    "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
     "offeringSize": null,
@@ -18865,8 +19195,8 @@
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "NYSE American",
-    "ticker": "BYOP",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-10-13",
@@ -18931,21 +19261,21 @@
     "name": "Allarity Acquisition Corp. (ALLN)",
     "legalName": "Allarity Acquisition Corp. (ALLN)",
     "sector": "Real Estate",
-    "industry": "Blank Checks",
+    "industry": null,
     "description": null,
-    "headquarters": "123 E TARPON AVE, TARPON SPRINGS, FL, 34689",
+    "headquarters": null,
     "valuation": null,
     "valuationNum": null,
     "priceRange": null,
     "sharesOffered": null,
     "sharesOfferedNum": null,
-    "offeringSize": "$80M",
-    "offeringSizeNum": 80000000,
+    "offeringSize": null,
+    "offeringSizeNum": null,
     "leadUnderwriters": [],
     "status": "filed",
     "statusLabel": "Filed",
-    "exchange": "Nasdaq",
-    "ticker": "ALLN",
+    "exchange": null,
+    "ticker": null,
     "expected": null,
     "ipoDate": null,
     "filingDate": "2026-10-09",
@@ -20272,14 +20602,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/1131903/000121390026085798/ea0299843-s1a1_spectral.htm",
         "publisher": "SEC",
         "date": "2026-08-05",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "SPECTRAL CAPITAL Corp (FCCN) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1131903/000121390026079360/ea0298149-s1_spectral.htm",
-        "publisher": "SEC",
-        "date": "2026-07-20",
         "type": "filing",
         "confidence": 1
       }
@@ -26683,7 +27005,7 @@
         "confidence": 1
       },
       {
-        "title": "Spin AI Inc. S-1",
+        "title": "Spin AI Inc. S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2139511/000168316826005649/spinai_s1a1.htm",
         "publisher": "SEC",
         "date": "2026-07-20",
@@ -27573,53 +27895,6 @@
       }
     ],
     "notes": "Tong Ying Group filed F-1 with the SEC on 2026-07-21.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-c0e94d01b8ab2bcd",
-    "slug": "agape-atp-corp-atpc",
-    "name": "Agape ATP Corp (ATPC)",
-    "legalName": "Agape ATP Corp (ATPC)",
-    "sector": "Healthcare",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "filed",
-    "statusLabel": "Filed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-07-20",
-    "latestUpdateDate": "2026-07-20",
-    "filingType": "S-1",
-    "cik": "1713210",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1713210/000149315226033881/forms-1a.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "Agape ATP Corp (ATPC) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1713210/000149315226033881/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-07-20",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "Agape ATP Corp (ATPC) filed S-1 with the SEC on 2026-07-20.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -30436,14 +30711,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2084806/000149315226008823/formf-1a.htm",
         "publisher": "SEC",
         "date": "2026-03-04",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Gravity AI F-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/2084806/000149315226005514/formf-1.htm",
-        "publisher": "SEC",
-        "date": "2026-02-06",
         "type": "filing",
         "confidence": 1
       }
@@ -86595,6 +86862,85 @@
     "dependencyIngestion": null
   },
   {
+    "id": "ipo-83c1d6926b6ea641",
+    "slug": "bioaffinity-technologies-inc-biaf-biafw",
+    "name": "bioAffinity Technologies, Inc. (BIAF, BIAFW)",
+    "legalName": "bioAffinity Technologies, Inc. (BIAF, BIAFW)",
+    "sector": "Other",
+    "industry": null,
+    "description": null,
+    "headquarters": null,
+    "valuation": null,
+    "valuationNum": null,
+    "priceRange": null,
+    "sharesOffered": null,
+    "sharesOfferedNum": null,
+    "offeringSize": null,
+    "offeringSizeNum": null,
+    "leadUnderwriters": [],
+    "status": "completed",
+    "statusLabel": "Completed",
+    "exchange": null,
+    "ticker": null,
+    "expected": null,
+    "ipoDate": "2026-11-25",
+    "filingDate": "2026-11-25",
+    "latestUpdateDate": "2026-11-25",
+    "filingType": "S-1",
+    "cik": "1712762",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226054208/forms-1a.htm",
+    "source": "SEC",
+    "sources": [
+      {
+        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226054208/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-11-25",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) S-1",
+        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226053519/forms-1.htm",
+        "publisher": "SEC",
+        "date": "2026-11-20",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226029206/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2026-06-18",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) S-1/A",
+        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226028877/forms-1a.htm",
+        "publisher": "SEC",
+        "date": "2026-06-16",
+        "type": "filing",
+        "confidence": 1
+      },
+      {
+        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) 424B4",
+        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315225016338/form424b4.htm",
+        "publisher": "SEC",
+        "date": "2025-09-30",
+        "type": "filing",
+        "confidence": 1
+      }
+    ],
+    "notes": "bioAffinity Technologies, Inc. (BIAF, BIAFW) filed S-1 with the SEC on 2026-11-25.",
+    "tags": [],
+    "dependencyGraph": {
+      "publicCompaniesDependingOnIPO": [],
+      "publicCompaniesIPOCompanyDependsOn": []
+    },
+    "dependencyIngestion": null
+  },
+  {
     "id": "ipo-fec1a22dc91649ec",
     "slug": "roze-ai-inc-rzai",
     "name": "ROZE AI INC. (RZAI)",
@@ -87163,77 +87509,6 @@
       }
     ],
     "notes": "Aptevo Therapeutics Inc. (APVO) filed S-1 with the SEC on 2026-11-20.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-83c1d6926b6ea641",
-    "slug": "bioaffinity-technologies-inc-biaf-biafw",
-    "name": "bioAffinity Technologies, Inc. (BIAF, BIAFW)",
-    "legalName": "bioAffinity Technologies, Inc. (BIAF, BIAFW)",
-    "sector": "Other",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2026-11-20",
-    "filingDate": "2026-11-20",
-    "latestUpdateDate": "2026-11-20",
-    "filingType": "S-1",
-    "cik": "1712762",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226053519/forms-1.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226053519/forms-1.htm",
-        "publisher": "SEC",
-        "date": "2026-11-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226029206/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2026-06-18",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315226028877/forms-1a.htm",
-        "publisher": "SEC",
-        "date": "2026-06-16",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "bioAffinity Technologies, Inc. (BIAF, BIAFW) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/1712762/000149315225016338/form424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-09-30",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "bioAffinity Technologies, Inc. (BIAF, BIAFW) filed S-1 with the SEC on 2026-11-20.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -96115,7 +96390,7 @@
         "confidence": 1
       },
       {
-        "title": "Game Your Game Inc. (GYGY) S-1",
+        "title": "Game Your Game Inc. (GYGY) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/2111846/000121390026079281/ea0275919-09.htm",
         "publisher": "SEC",
         "date": "2026-07-20",
@@ -100783,13 +101058,13 @@
     "ipoDate": "2026-07-20",
     "filingDate": "2026-07-20",
     "latestUpdateDate": "2026-07-20",
-    "filingType": "S-1",
+    "filingType": "S-1/A",
     "cik": "1633369",
     "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1633369/000121390026079417/ea0298484-s1a1_freecast.htm",
     "source": "SEC",
     "sources": [
       {
-        "title": "FreeCast, Inc. (CAST) S-1",
+        "title": "FreeCast, Inc. (CAST) S-1/A",
         "url": "https://www.sec.gov/Archives/edgar/data/1633369/000121390026079417/ea0298484-s1a1_freecast.htm",
         "publisher": "SEC",
         "date": "2026-07-20",
@@ -100805,7 +101080,7 @@
         "confidence": 1
       }
     ],
-    "notes": "FreeCast, Inc. (CAST) filed S-1 with the SEC on 2026-07-20.",
+    "notes": "FreeCast, Inc. (CAST) filed S-1/A with the SEC on 2026-07-20.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
@@ -105689,14 +105964,6 @@
         "date": "2026-05-21",
         "type": "filing",
         "confidence": 1
-      },
-      {
-        "title": "Aperture AC (APUR) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2093524/000121390026052910/ea0264741-06.htm",
-        "publisher": "SEC",
-        "date": "2026-05-06",
-        "type": "filing",
-        "confidence": 1
       }
     ],
     "notes": "Aperture AC (APUR) filed 424B4 with the SEC on 2026-05-21.",
@@ -106655,14 +106922,6 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2095443/000121390026056033/ea0290565-424b4_breeze2.htm",
         "publisher": "SEC",
         "date": "2026-05-14",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "Breeze Acquisition Corp. II (BREZ) S-1/A",
-        "url": "https://www.sec.gov/Archives/edgar/data/2095443/000121390026052460/ea0288729-s1a4_breeze2.htm",
-        "publisher": "SEC",
-        "date": "2026-05-06",
         "type": "filing",
         "confidence": 1
       }
@@ -128358,77 +128617,6 @@
     "dependencyIngestion": null
   },
   {
-    "id": "ipo-cf6ef4c5cd3fb2ff",
-    "slug": "darkpulse-inc-dpls",
-    "name": "DarkPulse, Inc. (DPLS)",
-    "legalName": "DarkPulse, Inc. (DPLS)",
-    "sector": "Technology",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "completed",
-    "statusLabel": "Completed",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": "2025-05-02",
-    "filingDate": "2025-05-02",
-    "latestUpdateDate": "2025-05-02",
-    "filingType": "424B4",
-    "cik": "866439",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866439/000168316825003059/darkpulse_424b4.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "DarkPulse, Inc. (DPLS) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/866439/000168316825003059/darkpulse_424b4.htm",
-        "publisher": "SEC",
-        "date": "2025-05-02",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DarkPulse, Inc. (DPLS) 424B4",
-        "url": "https://www.sec.gov/Archives/edgar/data/866439/000168316824008879/darkpulse_424b4.htm",
-        "publisher": "SEC",
-        "date": "2024-12-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DarkPulse, Inc. (DPLS) EFFECT",
-        "url": "https://www.sec.gov/Archives/edgar/data/866439/999999999524003849/primary_doc.xml",
-        "publisher": "SEC",
-        "date": "2024-12-20",
-        "type": "filing",
-        "confidence": 1
-      },
-      {
-        "title": "DarkPulse, Inc. (DPLS) S-1",
-        "url": "https://www.sec.gov/Archives/edgar/data/866439/000168316824008790/darkpulse_s1a4.htm",
-        "publisher": "SEC",
-        "date": "2024-12-17",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "DarkPulse, Inc. (DPLS) filed 424B4 with the SEC on 2025-05-02.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
     "id": "ipo-b293e21450afa5a0",
     "slug": "berto-acquisition-corp-taco",
     "name": "Berto Acquisition Corp. (TACO)",
@@ -143155,53 +143343,6 @@
       }
     ],
     "notes": "Largo Inc. (LGO) filed RW with the SEC on 2026-10-08.",
-    "tags": [],
-    "dependencyGraph": {
-      "publicCompaniesDependingOnIPO": [],
-      "publicCompaniesIPOCompanyDependsOn": []
-    },
-    "dependencyIngestion": null
-  },
-  {
-    "id": "ipo-1ad5d337a74d65da",
-    "slug": "biotricity-inc-btcy",
-    "name": "BIOTRICITY INC. (BTCY)",
-    "legalName": "BIOTRICITY INC. (BTCY)",
-    "sector": "Industrials",
-    "industry": null,
-    "description": null,
-    "headquarters": null,
-    "valuation": null,
-    "valuationNum": null,
-    "priceRange": null,
-    "sharesOffered": null,
-    "sharesOfferedNum": null,
-    "offeringSize": null,
-    "offeringSizeNum": null,
-    "leadUnderwriters": [],
-    "status": "withdrawn",
-    "statusLabel": "Withdrawn",
-    "exchange": null,
-    "ticker": null,
-    "expected": null,
-    "ipoDate": null,
-    "filingDate": "2026-10-07",
-    "latestUpdateDate": "2026-10-07",
-    "filingType": "RW",
-    "cik": "1630113",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1630113/000149315226046137/formrw.htm",
-    "source": "SEC",
-    "sources": [
-      {
-        "title": "BIOTRICITY INC. (BTCY) RW",
-        "url": "https://www.sec.gov/Archives/edgar/data/1630113/000149315226046137/formrw.htm",
-        "publisher": "SEC",
-        "date": "2026-10-07",
-        "type": "filing",
-        "confidence": 1
-      }
-    ],
-    "notes": "BIOTRICITY INC. (BTCY) filed RW with the SEC on 2026-10-07.",
     "tags": [],
     "dependencyGraph": {
       "publicCompaniesDependingOnIPO": [],
